@@ -1,0 +1,222 @@
+<odoo>
+  <data>
+    <record id='tipo_peligro_mecanico_completo' model='type.iper'>
+        <field name='name'>MECÁNICOS</field>
+    </record>
+    <record id='tipo_peligro_mecanico_completo_1' model='evaluacion.iper'>
+        <field name='name'>Equipos y Máquinas sin guardas</field>
+        <field name="type_id" eval="ref('tipo_peligro_mecanico_completo')"></field>
+    </record>
+    <record id='tipo_peligro_mecanico_completo_2' model='evaluacion.iper'>
+        <field name='name'>Herramienta defectuosa</field>
+        <field name="type_id" eval="ref('tipo_peligro_mecanico_completo')"></field>
+    </record>
+    <record id='tipo_peligro_mecanico_completo_3' model='evaluacion.iper'>
+        <field name='name'>Vehículos en mal estado</field>
+        <field name="type_id" eval="ref('tipo_peligro_mecanico_completo')"></field>
+    </record>
+    <record id='tipo_peligro_mecanico_completo_4' model='evaluacion.iper'>
+        <field name='name'>Objetos punzocortantes</field>
+        <field name="type_id" eval="ref('tipo_peligro_mecanico_completo')"></field>
+    </record>
+    <record id='tipo_peligro_mecanico_completo_5' model='descripcion.iper'>
+        <field name='name'>Equipos y Máquinas sin guardas</field>
+        <field name="descripcion_id" eval="ref('tipo_peligro_mecanico_completo')"></field>
+    </record>
+    <record id='tipo_peligro_mecanico_completo_6' model='descripcion.iper'>
+        <field name='name'>Herramienta defectuosa</field>
+        <field name="descripcion_id" eval="ref('tipo_peligro_mecanico_completo')"></field>
+    </record>
+    <record id='tipo_peligro_mecanico_completo_7' model='descripcion.iper'>
+        <field name='name'>Vehículos en mal estado</field>
+        <field name="descripcion_id" eval="ref('tipo_peligro_mecanico_completo')"></field>
+    </record>
+    <record id='tipo_peligro_mecanico_completo_8' model='descripcion.iper'>
+        <field name='name'>Objetos punzocortantes</field>
+        <field name="descripcion_id" eval="ref('tipo_peligro_mecanico_completo')"></field>
+    </record>
+    <record id='tipo_peligro_electricos_completo' model='type.iper'>
+        <field name='name'>ELECTRICOS</field>
+    </record>
+    <record id='tipo_peligro_electricos_completo_1' model='evaluacion.iper'>
+        <field name='name'>Tableros eléctricos en mal estado</field>
+        <field name="type_id" eval="ref('tipo_peligro_electricos_completo')"></field>
+    </record>
+    <record id='tipo_peligro_electricos_completo_2' model='evaluacion.iper'>
+        <field name='name'>Conductores sin entubar y expuestos</field>
+        <field name="type_id" eval="ref('tipo_peligro_electricos_completo')"></field>
+    </record>
+    <record id='tipo_peligro_electricos_completo_3' model='evaluacion.iper'>
+        <field name='name'>Tomacorrientes sobrecargados</field>
+        <field name="type_id" eval="ref('tipo_peligro_electricos_completo')"></field>
+    </record>
+    <record id='tipo_peligro_electricos_completo_4' model='evaluacion.iper'>
+        <field name='name'>Deficiente distribución de cargas</field>
+        <field name="type_id" eval="ref('tipo_peligro_electricos_completo')"></field>
+    </record>
+    <record id='tipo_peligro_electricos_completo_5' model='evaluacion.iper'>
+        <field name='name'>Conexiones clandestinas</field>
+        <field name="type_id" eval="ref('tipo_peligro_electricos_completo')"></field>
+    </record>
+    <record id='tipo_peligro_electricos_completo_6' model='descripcion.iper'>
+        <field name='name'>Tableros eléctricos en mal estado</field>
+        <field name="descripcion_id" eval="ref('tipo_peligro_electricos_completo')"></field>
+    </record>
+    <record id='tipo_peligro_electricos_completo_7' model='descripcion.iper'>
+        <field name='name'>Conductores sin entubar y expuestos</field>
+        <field name="descripcion_id" eval="ref('tipo_peligro_electricos_completo')"></field>
+    </record>
+    <record id='tipo_peligro_electricos_completo_8' model='descripcion.iper'>
+        <field name='name'>Tomacorrientes sobrecargados</field>
+        <field name="descripcion_id" eval="ref('tipo_peligro_electricos_completo')"></field>
+    </record>
+    <record id='tipo_peligro_electricos_completo_9' model='descripcion.iper'>
+        <field name='name'>Deficiente distribución de cargas</field>
+        <field name="descripcion_id" eval="ref('tipo_peligro_electricos_completo')"></field>
+    </record>
+    <record id='tipo_peligro_electricos_completo_10' model='descripcion.iper'>
+        <field name='name'>Conexiones clandestinas</field>
+        <field name="descripcion_id" eval="ref('tipo_peligro_electricos_completo')"></field>
+    </record>
+    <record id='tipo_peligro_incendios_completo' model='type.iper'>
+        <field name='name'>INCENDIOS Y EXPLOSIONES</field>
+    </record>
+    <record id='tipo_peligro_incendios_completo_1' model='evaluacion.iper'>
+        <field name='name'>Materiales inflamables cerca de fuentes de calor</field>
+        <field name="type_id" eval="ref('tipo_peligro_incendios_completo')"></field>
+    </record>
+    <record id='tipo_peligro_incendios_completo_2' model='evaluacion.iper'>
+        <field name='name'>Cilindros de gases comprimidos inflamables con válvulas defectuosas</field>
+        <field name="type_id" eval="ref('tipo_peligro_incendios_completo')"></field>
+    </record>
+    <record id='tipo_peligro_incendios_completo_3' model='evaluacion.iper'>
+        <field name='name'>Derrames de líquidos inflamables</field>
+        <field name="type_id" eval="ref('tipo_peligro_incendios_completo')"></field>
+    </record>
+    <record id='tipo_peligro_incendios_completo_4' model='descripcion.iper'>
+        <field name='name'>Materiales inflamables cerca de fuentes de calor</field>
+        <field name="descripcion_id" eval="ref('tipo_peligro_incendios_completo')"></field>
+    </record>
+    <record id='tipo_peligro_incendios_completo_5' model='descripcion.iper'>
+        <field name='name'>Cilindros de gases comprimidos inflamables con válvulas defectuosas</field>
+        <field name="descripcion_id" eval="ref('tipo_peligro_incendios_completo')"></field>
+    </record>
+    <record id='tipo_peligro_incendios_completo_6' model='descripcion.iper'>
+        <field name='name'>Derrames de líquidos inflamables</field>
+        <field name="descripcion_id" eval="ref('tipo_peligro_incendios_completo')"></field>
+    </record>
+    <record id='tipo_peligro_ergo_completo' model='type.iper'>
+        <field name='name'>ERGONÓMICOS</field>
+    </record>
+    <record id='tipo_peligro_ergo_completo_1' model='evaluacion.iper'>
+        <field name='name'>Posturas forzadas</field>
+        <field name="type_id" eval="ref('tipo_peligro_ergo_completo')"></field>
+    </record>
+    <record id='tipo_peligro_ergo_completo_2' model='evaluacion.iper'>
+        <field name='name'>Movimientos repetitivos</field>
+        <field name="type_id" eval="ref('tipo_peligro_ergo_completo')"></field>
+    </record>
+    <record id='tipo_peligro_ergo_completo_3' model='evaluacion.iper'>
+        <field name='name'>Malas técnicas de levantamiento y manipulación manual de cargas</field>
+        <field name="type_id" eval="ref('tipo_peligro_ergo_completo')"></field>
+    </record>
+    <record id='tipo_peligro_ergo_completo_4' model='evaluacion.iper'>
+        <field name='name'>Sobreesfuerzos</field>
+        <field name="type_id" eval="ref('tipo_peligro_ergo_completo')"></field>
+    </record>
+    <record id='tipo_peligro_ergo_completo_5' model='descripcion.iper'>
+        <field name='name'>Posturas forzadas</field>
+        <field name="descripcion_id" eval="ref('tipo_peligro_ergo_completo')"></field>
+    </record>
+    <record id='tipo_peligro_ergo_completo_6' model='descripcion.iper'>
+        <field name='name'>Movimientos repetitivos</field>
+        <field name="descripcion_id" eval="ref('tipo_peligro_ergo_completo')"></field>
+    </record>
+    <record id='tipo_peligro_ergo_completo_7' model='descripcion.iper'>
+        <field name='name'>Malas técnicas de levantamiento y manipulación manual de cargas</field>
+        <field name="descripcion_id" eval="ref('tipo_peligro_ergo_completo')"></field>
+    </record>
+    <record id='tipo_peligro_ergo_completo_8' model='descripcion.iper'>
+        <field name='name'>Sobreesfuerzos</field>
+        <field name="descripcion_id" eval="ref('tipo_peligro_ergo_completo')"></field>
+    </record>
+    <record id='tipo_peligro_locativos_completo' model='type.iper'>
+        <field name='name'>LOCATIVOS</field>
+    </record>
+    <record id='tipo_peligro_locativos_completo_1' model='evaluacion.iper'>
+        <field name='name'>Hacinamiento</field>
+        <field name="type_id" eval="ref('tipo_peligro_locativos_completo')"></field>
+    </record>
+    <record id='tipo_peligro_locativos_completo_2' model='evaluacion.iper'>
+        <field name='name'>Falta de Orden y Limpieza</field>
+        <field name="type_id" eval="ref('tipo_peligro_locativos_completo')"></field>
+    </record>
+    <record id='tipo_peligro_locativos_completo_3' model='evaluacion.iper'>
+        <field name='name'>Superficies de trabajo en mal estado</field>
+        <field name="type_id" eval="ref('tipo_peligro_locativos_completo')"></field>
+    </record>
+    <record id='tipo_peligro_locativos_completo_4' model='evaluacion.iper'>
+        <field name='name'>Infraestructura en mal estado de conservación</field>
+        <field name="type_id" eval="ref('tipo_peligro_locativos_completo')"></field>
+    </record>
+    <record id='tipo_peligro_locativos_completo_5' model='descripcion.iper'>
+        <field name='name'>Hacinamiento</field>
+        <field name="descripcion_id" eval="ref('tipo_peligro_locativos_completo')"></field>
+    </record>
+    <record id='tipo_peligro_locativos_completo_6' model='descripcion.iper'>
+        <field name='name'>Falta de Orden y Limpieza</field>
+        <field name="descripcion_id" eval="ref('tipo_peligro_locativos_completo')"></field>
+    </record>
+    <record id='tipo_peligro_locativos_completo_7' model='descripcion.iper'>
+        <field name='name'>Superficies de trabajo en mal estado</field>
+        <field name="descripcion_id" eval="ref('tipo_peligro_locativos_completo')"></field>
+    </record>
+    <record id='tipo_peligro_locativos_completo_8' model='descripcion.iper'>
+        <field name='name'>Infraestructura en mal estado de conservación</field>
+        <field name="descripcion_id" eval="ref('tipo_peligro_locativos_completo')"></field>
+    </record>
+    <record id='tipo_peligro_psico_completo' model='type.iper'>
+        <field name='name'>PSICOSOCIAL</field>
+    </record>
+    <record id='tipo_peligro_psico_completo_1' model='evaluacion.iper'>
+        <field name='name'>Estilo de mando autoritario</field>
+        <field name="type_id" eval="ref('tipo_peligro_psico_completo')"></field>
+    </record>
+    <record id='tipo_peligro_psico_completo_2' model='evaluacion.iper'>
+        <field name='name'>Deficiente clima laboral</field>
+        <field name="type_id" eval="ref('tipo_peligro_psico_completo')"></field>
+    </record>
+    <record id='tipo_peligro_psico_completo_3' model='evaluacion.iper'>
+        <field name='name'>Comunicaciones deficientes</field>
+        <field name="type_id" eval="ref('tipo_peligro_psico_completo')"></field>
+    </record>
+    <record id='tipo_peligro_psico_completo_4' model='evaluacion.iper'>
+        <field name='name'>Turnos y horarios de trabajo</field>
+        <field name="type_id" eval="ref('tipo_peligro_psico_completo')"></field>
+    </record>
+    <record id='tipo_peligro_psico_completo_5' model='evaluacion.iper'>
+        <field name='name'>Régimen laboral extenso</field>
+        <field name="type_id" eval="ref('tipo_peligro_psico_completo')"></field>
+    </record>
+    <record id='tipo_peligro_psico_completo_6' model='descripcion.iper'>
+        <field name='name'>Estilo de mando autoritario</field>
+        <field name="descripcion_id" eval="ref('tipo_peligro_psico_completo')"></field>
+    </record>
+    <record id='tipo_peligro_psico_completo_7' model='descripcion.iper'>
+        <field name='name'>Deficiente clima laboral</field>
+        <field name="descripcion_id" eval="ref('tipo_peligro_psico_completo')"></field>
+    </record>
+    <record id='tipo_peligro_psico_completo_8' model='descripcion.iper'>
+        <field name='name'>Comunicaciones deficientes</field>
+        <field name="descripcion_id" eval="ref('tipo_peligro_psico_completo')"></field>
+    </record>
+    <record id='tipo_peligro_psico_completo_9' model='descripcion.iper'>
+        <field name='name'>Turnos y horarios de trabajo</field>
+        <field name="descripcion_id" eval="ref('tipo_peligro_psico_completo')"></field>
+    </record>
+    <record id='tipo_peligro_psico_completo_10' model='descripcion.iper'>
+        <field name='name'>Régimen laboral extenso</field>
+        <field name="descripcion_id" eval="ref('tipo_peligro_psico_completo')"></field>
+    </record>
+  </data>
+</odoo>

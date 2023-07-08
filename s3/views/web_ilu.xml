@@ -1,0 +1,479 @@
+<odoo>
+    <template id="form_ilu" name="Registros de Monitoreo - Iluminacion">
+      <t t-call="s3.sidebar_s3">
+        <div class="wrapper modulo-s3">
+          <!-- Sidebar -->
+          <div id="content" class="width-table p-3 planid mx-auto my-2" t-att-data-plan_id="plan.id">
+          <div class="alert alert-primary text-center mb-5" role="alert">
+            <h4>ILUMINACIÓN</h4>
+          </div>
+          <form method="POST">
+              <div class="row m-1">
+                  <div class="col-sm-12 bg-primary text-center border border-dark"><strong>REGISTROS DE MONITOREO</strong></div>
+              </div>
+
+              <p></p>
+
+              <div class="row m-1">
+                  <div class="col-sm-4 bg-primary text-center border border-dark"><strong>RUC</strong></div>
+                  <div class="col-sm-8 text-center border border-dark">
+                      <strong><span t-field="registro.ruc"/></strong>
+                  </div>
+              </div>
+              <div class="row m-1">
+                  <div class="col-sm-4 bg-primary text-center border border-dark"><strong>RAZON SOCIAL</strong></div>
+                  <div class="col-sm-8 text-center border border-dark">
+                      <strong><span t-field="registro.cliente"/></strong>
+                  </div>
+              </div>
+
+              <p></p>
+
+              <div class="row m-1">
+                  <t t-set="cont" t-value="0"/>
+                  <t t-foreach="registro.iluminacion_ids" t-as="ilu">
+                    <t t-set="cont" t-value="cont + 1"/>
+                  </t>
+                  <div class="col-sm-4 bg-primary text-center border border-dark px-0">
+                      <strong>NUMERO DE PUNTOS POR AGENTE</strong>
+                      <div class="text-center bg-white">
+                      <strong><span t-esc="cont"/></strong>
+                      </div>
+                  </div>
+                  <div class="col-sm-4 bg-primary text-center border border-dark px-0">
+                      <strong>FECHA INICIO</strong>
+                      <div class="text-center bg-white">
+                      <strong><span t-field="registro.fecha_monitoreo"/></strong>
+                      </div>
+                  </div>
+                  <div class="col-sm-4 bg-primary text-center border border-dark px-0">
+                      <strong>FECHA FIN</strong>
+                      <div class="text-center bg-white">
+                      <strong><span t-field="registro.fecha_monitoreo_fin"/></strong>
+                      </div>
+                  </div>
+              </div>
+              <p></p>
+              <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item">
+                  <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Registros</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Datos</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Resultados</a>
+              </li>
+              </ul>
+              <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+              <div class="py-8">
+                  <div class="table-responsive">
+                      <table id="resumen" class="table table-hover table-bordered responsive nowrap" style="width:100%; text-align: center;">
+                      <thead>
+                          <tr class="table-active bg-primary">
+                          <th class="align-middle">N°</th>
+                          <th class="align-middle">Area</th>
+                          <th class="align-middle">Puesto de Trabajo</th>
+                          <th class="align-middle">Turno</th>
+                          <th class="align-middle">Tarea Visual</th>
+                          <th class="align-middle">Nivel de Lux</th>
+                          <th class="align-middle">Editar</th>
+                          <th class="align-middle">Eliminar</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <t t-set="counter" t-value="0"/>
+                          <t t-foreach="registro.iluminacion_ids" t-as="ilu">
+
+                              <t t-set="counter" t-value="counter + 1"/>
+                              <tr class="row_registro">
+                                  <td>
+                                  <span class="align-middle" t-esc="counter"/>
+                                  </td>
+                                  <td>
+                                  <span class="align-middle" t-field="ilu.area"/>
+                                  </td>
+                                  <td >
+                                  <span class="align-middle" t-field="ilu.puesto_trabajo"/>
+                                  </td>
+                                  <td>
+                                  <t t-if="ilu.horario == '9'" class="align-middle">Diurno</t>
+                                  <t t-if="ilu.horario == '0'" class="align-middle">Nocturno</t>
+                                  </td>
+                                  <td >
+                                  <t t-if="ilu.tarea == '1'" class="align-middle">En Exteriores</t>
+                                  <t t-if="ilu.tarea == '2'" class="align-middle">En Interiores</t>
+                                  <t t-if="ilu.tarea == '3'" class="align-middle">Requerimiento Visual Simple</t>
+                                  <t t-if="ilu.tarea == '4'" class="align-middle">Distinción Moderada de Detalles</t>
+                                  <t t-if="ilu.tarea == '5'" class="align-middle">Distinción Clara de Detalles</t>
+                                  <t t-if="ilu.tarea == '6'" class="align-middle">Distinción Fina de Detalles</t>
+                                  <t t-if="ilu.tarea == '7'" class="align-middle">Alta Exactitud en la Distinción de Delta</t>
+                                  <t t-if="ilu.tarea == '8'" class="align-middle">Alta Exactitud de Especialización</t>
+                                  </td>
+                                  <td >
+                                  <span t-field="ilu.lux"/>
+                                  </td>
+                                  <td >
+                                  <button type="button" class="btn bg-success" data-toggle="modal" t-attf-data-target="#aeae{{ilu.id}}"><i class="fa fa-pencil-square-o" style="font-size:20px"></i></button>
+                                  <div class="modal fade" t-attf-id="aeae{{ilu.id}}" t-att-aria-hidden="true" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                      <div class="modal-dialog modal-dialog-centered" role="document">
+                                          <div class="modal-content">
+                                          <div class="modal-header">
+                                              <h5 class="modal-title" id="exampleModalLongTitle">Iluminacion</h5>
+                                          </div>
+                                          <div class="modal-body">
+                                              <form class="registro_iluminacion">
+                                                  <div class="form-group row">
+                                                      <input name="id" type="text" class="d-none" t-attf-value="{{ilu.id}}" placeholder="ID"/>
+                                                      <input name="counter" type="text" class="d-none" t-attf-value="{{counter}}" placeholder="Contador"/>
+                                                      <label for="area" class="col-sm-2 col-form-label">Area</label>
+                                                      <div class="col-sm-10">
+                                                      <input name="area" type="text" class="form-control area" t-attf-value="{{ilu.area}}" placeholder="Area"/>
+                                                      </div>
+                                                      <label for="puesto_trabajo" class="col-sm-2 col-form-label">Puesto de Trabajo</label>
+                                                      <div class="col-sm-10">
+                                                      <input type="text" name="puesto_trabajo" class="form-control puesto_trabajo" t-attf-value="{{ilu.puesto_trabajo}}" placeholder="Puesto de Trabajo"/>
+                                                      </div>
+                                                      <label for="turno" class="col-sm-2 col-form-label">Turno</label>
+                                                      <div class="col-sm-10">
+                                                      <select name="horario" t-attf-id="horario_id-{{ilu.id}}"  class="form-control horario">
+                                                          <t t-if="'9' == ilu.horario">
+                                                            <option value="9" selected="selected">Diurno</option>
+                                                            <option value="0">Nocturno</option>
+                                                          </t>
+                                                          <t t-elif="'0' == ilu.horario">
+                                                            <option value="9">Diurno</option>
+                                                            <option value="0" selected="selected">Nocturno</option>
+                                                          </t>
+                                                      </select>
+                                                      </div>
+                                                      <label for="tarea" class="col-sm-2 col-form-label">Tarea Visual</label>
+                                                      <div class="col-sm-10">
+                                                      <select name="tarea" t-attf-id="tarea_id-{{ilu.id}}" class="form-control tarea_visual">
+                                                          <t t-if="'1' == ilu.tarea">
+                                                            <option value="1" selected="selected">En Exteriores</option>
+                                                            <option value="2">En Interiores</option>
+                                                            <option value="3">Requerimiento Visual Simple</option>
+                                                            <option value="4">Distinción Moderada de Detalles</option>
+                                                            <option value="5">Distinción Clara de Detalles</option>
+                                                            <option value="6">Distinción Fina de Detalles</option>
+                                                            <option value="7">Alta Exactitud en la Distinción de Delta</option>
+                                                            <option value="8">Alta Exactitud de Especialización</option>
+                                                          </t>
+                                                          <t t-elif="'2' == ilu.tarea">
+                                                            <option value="1">En Exteriores</option>
+                                                            <option value="2" selected="selected">En Interiores</option>
+                                                            <option value="3">Requerimiento Visual Simple</option>
+                                                            <option value="4">Distinción Moderada de Detalles</option>
+                                                            <option value="5">Distinción Clara de Detalles</option>
+                                                            <option value="6">Distinción Fina de Detalles</option>
+                                                            <option value="7">Alta Exactitud en la Distinción de Delta</option>
+                                                            <option value="8">Alta Exactitud de Especialización</option>
+                                                          </t>
+                                                          <t t-elif="'3' == ilu.tarea">
+                                                            <option value="1">En Exteriores</option>
+                                                            <option value="2">En Interiores</option>
+                                                            <option value="3" selected="selected">Requerimiento Visual Simple</option>
+                                                            <option value="4">Distinción Moderada de Detalles</option>
+                                                            <option value="5">Distinción Clara de Detalles</option>
+                                                            <option value="6">Distinción Fina de Detalles</option>
+                                                            <option value="7">Alta Exactitud en la Distinción de Delta</option>
+                                                            <option value="8">Alta Exactitud de Especialización</option>
+                                                          </t>
+                                                          <t t-elif="'4' == ilu.tarea">
+                                                            <option value="1">En Exteriores</option>
+                                                            <option value="2">En Interiores</option>
+                                                            <option value="3">Requerimiento Visual Simple</option>
+                                                            <option value="4" selected="selected">Distinción Moderada de Detalles</option>
+                                                            <option value="5">Distinción Clara de Detalles</option>
+                                                            <option value="6">Distinción Fina de Detalles</option>
+                                                            <option value="7">Alta Exactitud en la Distinción de Delta</option>
+                                                            <option value="8">Alta Exactitud de Especialización</option>
+                                                          </t>
+                                                          <t t-elif="'5' == ilu.tarea">
+                                                            <option value="1">En Exteriores</option>
+                                                            <option value="2">En Interiores</option>
+                                                            <option value="3">Requerimiento Visual Simple</option>
+                                                            <option value="4">Distinción Moderada de Detalles</option>
+                                                            <option value="5" selected="selected">Distinción Clara de Detalles</option>
+                                                            <option value="6">Distinción Fina de Detalles</option>
+                                                            <option value="7">Alta Exactitud en la Distinción de Delta</option>
+                                                            <option value="8">Alta Exactitud de Especialización</option>
+                                                          </t>
+                                                          <t t-elif="'6' == ilu.tarea">
+                                                            <option value="1">En Exteriores</option>
+                                                            <option value="2">En Interiores</option>
+                                                            <option value="3">Requerimiento Visual Simple</option>
+                                                            <option value="4">Distinción Moderada de Detalles</option>
+                                                            <option value="5">Distinción Clara de Detalles</option>
+                                                            <option value="6" selected="selected">Distinción Fina de Detalles</option>
+                                                            <option value="7">Alta Exactitud en la Distinción de Delta</option>
+                                                            <option value="8">Alta Exactitud de Especialización</option>
+                                                          </t>
+                                                          <t t-elif="'7' == ilu.tarea">
+                                                            <option value="1">En Exteriores</option>
+                                                            <option value="2">En Interiores</option>
+                                                            <option value="3">Requerimiento Visual Simple</option>
+                                                            <option value="4">Distinción Moderada de Detalles</option>
+                                                            <option value="5">Distinción Clara de Detalles</option>
+                                                            <option value="6">Distinción Fina de Detalles</option>
+                                                            <option value="7" selected="selected">Alta Exactitud en la Distinción de Delta</option>
+                                                            <option value="8">Alta Exactitud de Especialización</option>
+                                                          </t>
+                                                          <t t-elif="'8' == ilu.tarea">
+                                                            <option value="1">En Exteriores</option>
+                                                            <option value="2">En Interiores</option>
+                                                            <option value="3">Requerimiento Visual Simple</option>
+                                                            <option value="4">Distinción Moderada de Detalles</option>
+                                                            <option value="5">Distinción Clara de Detalles</option>
+                                                            <option value="6">Distinción Fina de Detalles</option>
+                                                            <option value="7">Alta Exactitud en la Distinción de Delta</option>
+                                                            <option value="8" selected="selected">Alta Exactitud de Especialización</option>
+                                                          </t>
+                                                      </select>
+                                                      </div>
+                                                      <label for="lux" class="col-sm-2 col-form-label">Nivel de Iluminación</label>
+                                                      <div class="col-sm-10">
+                                                      <input name="lux" type="number" class="form-control lux" t-attf-value="{{ilu.lux}}" placeholder="0" oninput="if(value>20000){value=19999}else{value=Math.abs(value)}"/>
+                                                      </div>
+                                                  </div>
+                                              </form>
+                                          </div>
+                                          <div class="modal-footer" t-att-data-id="ilu.id">
+                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Descartar</button>
+                                              <button type="button" class="btn btn-primary botton-editar-ilu">Guardar</button>
+                                          </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  </td>
+                                  <td>
+                                  <button type="button" class="btn btn-danger" data-toggle="modal" t-attf-data-target="#dada{{ilu.id}}"><i class="fa fa-trash" style="font-size:20px"></i></button>
+                                  <div class="modal fade" t-attf-id="dada{{ilu.id}}" t-att-aria-hidden="true" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                      <div class="modal-dialog modal-dialog-centered" role="document">
+                                          <div class="modal-content">
+                                          <div class="modal-header">
+                                              <h4 class="modal-title" id="exampleModalLongTitle"></h4>
+                                          </div>
+                                          <div class="modal-body">
+                                            <div class="alert alert-danger" role="alert">
+                                              ESTA SEGURO DE ELIMINAR
+                                            </div>
+                                          </div>
+                                          <div class="modal-footer" t-att-data-id="ilu.id">
+                                              <input name="id_registro" type="text" class="d-none" t-attf-value="{{registro.id}}" placeholder="ID"/>
+                                              <input name="id" type="text" class="d-none" t-attf-value="{{ilu.id}}" placeholder="ID"/>
+                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Descartar</button>
+                                              <button type="button" class="btn btn-danger botton-eliminar-ilu">Eliminar</button>
+                                          </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  </td>
+                              </tr>
+                          </t>
+                      </tbody>
+                      </table>
+                  </div>
+              </div>
+              <div class="row justify-content-around">
+                  <div class="text-center"><button type="button" class="btn btn-secondary" data-toggle="modal" t-attf-data-target="#exampleModalLong">CREAR</button></div>
+                  <div class="text-center"><a class="btn btn-secondary" t-att-href="'/registros/%s' % (registro.id)" role="button">REGRESAR</a></div>
+              </div>
+              <div class="modal fade row_registro" t-attf-id="exampleModalLong" t-att-aria-hidden="true" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLongTitle">Iluminacion</h5>
+                      </div>
+                      <div class="modal-body">
+                          <form class="registro_iluminacion">
+                              <div class="form-group row">
+                                  <input name="id" type="text" class="d-none" t-attf-value="{{registro.id}}" placeholder="ID"/>
+                                  <input name="counter" type="text" class="d-none" t-attf-value="{{counter}}" placeholder="Contador"/>
+                                  <label for="area" class="col-sm-2 col-form-label">Area</label>
+                                  <div class="col-sm-10">
+                                  <input name="area" type="text" class="form-control area" placeholder="Area"/>
+                                  </div>
+                                  <label for="puesto_trabajo" class="col-sm-2 col-form-label">Puesto de Trabajo</label>
+                                  <div class="col-sm-10">
+                                  <input name="puesto_trabajo" type="text" class="form-control puesto_trabajo" placeholder="Puesto de Trabajo"/>
+                                  </div>
+                                  <label for="turno" t-attf-value="1" class="col-sm-2 col-form-label">Turno</label>
+                                  <div class="col-sm-10">
+                                  <select id="horario_id"  class="form-control horario">
+                                      <option name="turno" t-attf-value="9">Diurno</option>
+                                      <option name="turno" t-attf-value="0">Nocturno</option>
+                                  </select>
+
+                                  </div>
+                                  <label for="tarea" class="col-sm-2 col-form-label">Tarea Visual</label>
+                                  <div class="col-sm-10">
+                                  <select name="tarea" id="tarea_id" t-attf-value="1" class="form-control tarea_visual">
+                                      <option value="1">En Exteriores</option>
+                                      <option value="2">En Interiores</option>
+                                      <option value="3">Requerimiento Visual Simple</option>
+                                      <option value="4">Distinción Moderada de Detalles</option>
+                                      <option value="5">Distinción Clara de Detalles</option>
+                                      <option value="6">Distinción Fina de Detalles</option>
+                                      <option value="7">Alta Exactitud en la Distinción de Delta</option>
+                                      <option value="8">Alta Exactitud de Especialización</option>
+                                  </select>
+                                  </div>
+                                  <label for="lux" class="col-sm-2 col-form-label">Nivel de Iluminación</label>
+                                  <div class="col-sm-10">
+                                  <input name="lux" type="number" class="form-control lux" placeholder="0" oninput="if(value>20000){value=19999}else{value=Math.abs(value)}"/>
+                                  </div>
+                              </div>
+                          </form>
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Descartar</button>
+                          <!--Guardar requiere de js-->
+                          <button type="button" class="btn btn-primary botton-crear-ilu">Guardar</button>
+                      </div>
+                      </div>
+                  </div>
+              </div>
+              </div>
+              <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+              <t t-set="counter" t-value="0"/>
+              <div class="py-6">
+                  <div class="table-responsive">
+                      <table id="resumen" class="table table-hover table-bordered responsive nowrap" style="width:100%; text-align: center;">
+                      <thead>
+                          <tr class="table-active bg-primary">
+                          <th class="align-middle">N°</th>
+                          <th class="align-middle">Area</th>
+                          <th class="align-middle">Puesto de Trabajo</th>
+                          <th class="align-middle">Tarea Visual</th>
+                          <th class="align-middle">Nivel de Lux</th>
+                          <th class="align-middle">Valor Minimo Recomendado</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <t t-foreach="registro.iluminacion_ids" t-as="ilu">
+
+                              <t t-set="counter" t-value="counter + 1"/>
+                              <tr class="row_registro">
+                                  <td>
+                                  <span class="align-middle" t-esc="counter"/>
+                                  </td>
+                                  <td>
+                                  <span class="align-middle" t-field="ilu.area"/>
+                                  </td>
+                                  <td >
+                                  <span class="align-middle" t-field="ilu.puesto_trabajo"/>
+                                  </td>
+                                  <td >
+                                  <t t-if="ilu.tarea == '1'" class="align-middle">En Exteriores</t>
+                                  <t t-if="ilu.tarea == '2'" class="align-middle">En Interiores</t>
+                                  <t t-if="ilu.tarea == '3'" class="align-middle">Requerimiento Visual Simple</t>
+                                  <t t-if="ilu.tarea == '4'" class="align-middle">Distinción Moderada de Detalles</t>
+                                  <t t-if="ilu.tarea == '5'" class="align-middle">Distinción Clara de Detalles</t>
+                                  <t t-if="ilu.tarea == '6'" class="align-middle">Distinción Fina de Detalles</t>
+                                  <t t-if="ilu.tarea == '7'" class="align-middle">Alta Exactitud en la Distinción de Delta</t>
+                                  <t t-if="ilu.tarea == '8'" class="align-middle">Alta Exactitud de Especialización</t>
+                                  </td>
+                                  <td >
+                                  <span t-field="ilu.lux"/>
+                                  </td>
+                                  <td >
+                                  <span t-field="ilu.val_min"/>
+                                  </td>
+                              </tr>
+                          </t>
+                      </tbody>
+                      </table>
+                  </div>
+              </div>
+              </div>
+              <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+              <t t-set="counter" t-value="0"/>
+              <div class="py-6">
+                  <div class="table-responsive">
+                      <table id="resumen" class="table table-hover table-bordered responsive nowrap" style="width:100%; text-align: center;">
+                      <thead>
+                          <tr class="table-active bg-primary">
+                          <th class="align-middle">N°</th>
+                          <th class="align-middle">Tarea Visual</th>
+                          <th class="align-middle">Turno</th>
+                          <th class="align-middle">Nivel de Lux</th>
+                          <th class="align-middle">Valor Minimo Recomendado</th>
+                          <th class="align-middle">¿Cumple con la R.M. N°375-2008-TR?</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <t t-foreach="registro.iluminacion_ids" t-as="ilu">
+
+                              <t t-set="counter" t-value="counter + 1"/>
+                              <tr class="row_registro">
+                                  <td>
+                                  <span class="align-middle" t-esc="counter"/>
+                                  </td>
+                                  <td >
+                                  <t t-if="ilu.tarea == '1'" class="align-middle">En Exteriores</t>
+                                  <t t-if="ilu.tarea == '2'" class="align-middle">En Interiores</t>
+                                  <t t-if="ilu.tarea == '3'" class="align-middle">Requerimiento Visual Simple</t>
+                                  <t t-if="ilu.tarea == '4'" class="align-middle">Distinción Moderada de Detalles</t>
+                                  <t t-if="ilu.tarea == '5'" class="align-middle">Distinción Clara de Detalles</t>
+                                  <t t-if="ilu.tarea == '6'" class="align-middle">Distinción Fina de Detalles</t>
+                                  <t t-if="ilu.tarea == '7'" class="align-middle">Alta Exactitud en la Distinción de Delta</t>
+                                  <t t-if="ilu.tarea == '8'" class="align-middle">Alta Exactitud de Especialización</t>
+                                  </td>
+                                  <td>
+                                  <t t-if="ilu.horario == '9'" class="align-middle">Diurno</t>
+                                  <t t-if="ilu.horario == '0'" class="align-middle">Nocturno</t>
+                                  </td>
+                                  <td >
+                                  <span class="align-middle" t-field="ilu.lux"/>
+                                  </td>
+
+                                  <td >
+                                  <span t-field="ilu.val_min"/>
+                                  </td>
+                                  <t t-if="ilu.cumple=='NO CUMPLE'">
+                                      <td class="bg-danger">
+                                      <span t-field="ilu.cumple"/>
+                                      </td>
+                                  </t>
+                                  <t t-if="ilu.cumple=='SÍ CUMPLE'">
+                                      <td class="" style="background-color:#A3F452;">
+                                      <span t-field="ilu.cumple"/>
+                                      </td>
+                                  </t>
+                              </tr>
+                          </t>
+                      </tbody>
+                      </table>
+                      <div class="row_registro registroid" t-att-data-registro_id="registro.id">
+                          <!-- <a class="btn btn-success actualizar-excel-registro registroid" t-att-data-registro_id="registro.id" role="button">ACTUALIZAR</a> -->
+                          <t t-if="plan.report_excel">
+                            <td>
+                              <t t-if="registro.excel_ilu_binary">
+                              <a class="btn btn-info" role="button" t-attf-href="/web/content?model=registro.monitoreo&amp;field=excel_ilu_binary&amp;id={{registro.id}}&amp;filename={{registro.excel_ilu}}&amp;download=true">
+                                  <i class="fa fa-file-excel-o" style="font-size:20px"></i>
+                              </a>
+                              </t>
+                            </td>
+                          </t>
+                          <t t-else="">
+                            <td class="line-excel">
+                              <a class="btn btn-info text-light file-gratis"  role="button">
+                                <i class="fa fa-file-excel-o" style="font-size:20px"></i>
+                              </a>
+                            </td>
+                          </t>
+                      </div>
+                  </div>
+              </div>
+              </div>
+              </div>
+          </form>
+        </div>
+        </div>
+      </t>
+  </template>
+</odoo>

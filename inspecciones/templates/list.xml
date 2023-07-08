@@ -1,0 +1,368 @@
+<odoo>
+	<template id="lista_inspecciones" name="Lista de Inspecciones">
+		<t t-call="inspecciones.sidebar_inspecciones">
+
+			<div class="wrapper modulo-wrapper">
+				<!-- Page Content -->
+				<div id="content" class="list-inspecciones" t-att-data-empresa_id="empresa.id">
+
+					<div class="row py-2">
+						<div class="col-12">
+							<div class="alert alert-primary text-center" role="alert">
+								<h4>LISTA DE INSPECCIONES
+								</h4>
+							</div>
+							<button type="button" class="btn bg-success" data-toggle="modal" t-attf-data-target="#crearregistro">NUEVO REGISTRO</button>
+							<div class="modal fade" t-attf-id="crearregistro" t-att-aria-hidden="true" tabindex="-1" role="dialog" aria-labelledby="exampleModalTitle" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title">NUEVO REGISTRO</h5>
+										</div>
+										<div class="modal-body">
+											NOMBRE
+											<input class="form-control col-12" t-att-value="name" name="new-registro-name" type="char"/>
+											Seleccionar Formato
+											<select name="new-formato_id" class="form-control col-12">
+												<t t-foreach="formatos" t-as="formato">
+													<option t-att-value="formato.id" t-esc="formato.name"></option>
+												</t>
+
+											</select>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Descartar</button>
+											<!--Guardar requiere de js-->
+											<button type="button" class="btn btn-primary botton-inspecciones">CREAR</button>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<hr/>
+							<div class="table-responsive">
+								<table id="modulo-inspecciones" class="table table-hover responsive nowrap" style="width:100%; text-align: center;" t-att-data-plan_id="plan.id">
+									<thead class="thead-dark">
+										<tr>
+											<th>NOMBRE</th>
+											<th>EDITAR</th>
+											<th>ELIMINAR</th>
+										</tr>
+									</thead>
+									<tbody >
+										<t t-set="contador" t-value="0"/>
+
+										<t t-foreach="registros" t-as="registro">
+											<t t-set="contador" t-value="contador + 1"/>
+											<tr>
+												<td>
+													<div>
+														<span t-field="registro.name"/>
+													</div>
+												</td>
+												<td >
+													<a class="btn btn-success" t-att-href="'/inspecciones_form/%s' % (registro.id)" role="button">
+														<i class="fa fa-pencil-square-o" style="font-size:20px"></i>
+													</a>
+												</td>
+												<td>
+													<div >
+														<button type="button" class="btn btn-danger" data-toggle="modal" t-attf-data-target="#lista-{{registro.id}}">
+															<i class="fa fa-trash" style="font-size:20px"></i>
+
+														</button>
+														<div class="modal fade" t-attf-id="lista-{{registro.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+															<div class="modal-dialog" role="document">
+																<div class="modal-content">
+																	<div class="modal-header">
+																		<h5 class="modal-title" id="exampleModalLabel"></h5>
+																	</div>
+																	<div class="modal-body">
+																		<div class="alert alert-danger" role="alert">
+																			ESTA SEGURO DE ELIMINAR
+																		</div>
+																	</div>
+																	<div class="modal-footer">
+																		<button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+																		<button type="button" class="btn btn-secondary botton-eliminar-inspecciones" t-att-data-registro_id="registro.id">ELIMINAR</button>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+
+												</td>
+											</tr>
+										</t>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</t>
+	</template>
+
+	<template id="lista_formatos" name="Lista de Formatos">
+		<t t-call="inspecciones.sidebar_inspecciones">
+
+			<div class="wrapper modulo-wrapper">
+				<!-- Page Content -->
+				<div id="content" class="list-formatos" t-att-data-empresa_id="empresa.id">
+
+					<div class="row py-2">
+						<div class="col-12">
+							<div class="alert alert-primary text-center" role="alert">
+								<h4>LISTA DE FORMATOS
+								</h4>
+							</div>
+							<button type="button" class="btn bg-success" data-toggle="modal" t-attf-data-target="#crearregistro">NUEVO FORMATO</button>
+							<div class="modal fade" t-attf-id="crearregistro" t-att-aria-hidden="true" tabindex="-1" role="dialog" aria-labelledby="exampleModalTitle" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title">NUEVO FORMATO</h5>
+										</div>
+										<div class="modal-body">
+											NOMBRE
+											<input class="form-control col-12" t-att-value="name" name="new-registro-name" type="char"/>
+											Seleccionar Formato
+											<select name="new-formato_id" class="form-control col-12">
+												<t t-foreach="formatos" t-as="formato">
+													<option t-att-value="formato.id" t-esc="formato.name"></option>
+												</t>
+
+											</select>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Descartar</button>
+											<!--Guardar requiere de js-->
+											<button type="button" class="btn btn-primary botton-formatos">CREAR</button>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<hr/>
+							<div class="table-responsive">
+								<table id="modulo-inspecciones" class="table table-hover responsive nowrap" style="width:100%; text-align: center;" >
+									<thead class="thead-dark">
+										<tr>
+											<th>NOMBRE</th>
+											<th>EDITAR</th>
+											<th>ELIMINAR</th>
+										</tr>
+									</thead>
+									<tbody >
+										<t t-set="contador" t-value="0"/>
+
+										<t t-foreach="formatos" t-as="registro">
+											<t t-set="contador" t-value="contador + 1"/>
+											<tr>
+												<td>
+													<div>
+														<span t-field="registro.name"/>
+													</div>
+												</td>
+												<td >
+													<a class="btn btn-success" t-att-href="'/formatos_form/%s' % (registro.id)" role="button">
+														<i class="fa fa-pencil-square-o" style="font-size:20px"></i>
+													</a>
+												</td>
+												<td>
+													<t t-if="'1' == registro.origen">
+														<button type="button" class="btn btn-danger" data-toggle="modal" t-attf-data-target="#lista-{{registro.id}}" disabled="1">
+															<i class="fa fa-trash" style="font-size:20px"></i>
+
+														</button>
+													</t>
+													<t t-if="'2' == registro.origen">
+
+													<div >
+														<button type="button" class="btn btn-danger" data-toggle="modal" t-attf-data-target="#lista-{{registro.id}}">
+															<i class="fa fa-trash" style="font-size:20px"></i>
+
+														</button>
+														<div class="modal fade" t-attf-id="lista-{{registro.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+															<div class="modal-dialog" role="document">
+																<div class="modal-content">
+																	<div class="modal-header">
+																		<h5 class="modal-title" id="exampleModalLabel"></h5>
+																	</div>
+																	<div class="modal-body">
+																		<div class="alert alert-danger" role="alert">
+																			ESTA SEGURO DE ELIMINAR
+																		</div>
+																	</div>
+																	<div class="modal-footer">
+																		<button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+																		<button type="button" class="btn btn-secondary botton-eliminar-inspecciones" t-att-data-registro_id="registro.id">ELIMINAR</button>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</t>
+
+												</td>
+											</tr>
+										</t>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</t>
+	</template>
+
+	<template id="list_permiso_guia" name="Lista de Inspecciones">
+		<t t-call="inspecciones.sidebar_inspecciones">
+			<div class="wrapper modulo-wrapper">
+				<!-- Sidebar -->
+				<!-- Page Content -->
+				<div id="content" class="eliminar-registro">
+					<t t-if="len(producto.solve_file_ids)>0">
+						<div class="container">
+							<div class="mx-auto row-center">
+								<object t-att-data="pdf" type="application/pdf" width="100%" height="600px" class="display-none"/>
+								<a class="btn btn-primary display-block-guia font-weight-bold justify-content-center button-pdf" t-att-href="pdf">Visualizar PDF<span></span></a>
+							</div>
+						</div>
+					</t>
+					<t t-else="">
+						<div class="card text-center">
+							<div class="card-header  bg-warning">
+								ALERTA
+							</div>
+							<div class="card-body">
+								<p class="card-text">No se ha publicado el pdf</p>
+							</div>
+							<div class="card-footer text-muted"></div>
+						</div>
+					</t>
+				</div>
+			</div>
+
+		</t>
+	</template>
+
+	<template id="sidebar_inspecciones" name="Sdebar">
+		<t t-call="website.layout">
+			<t t-set="no_header" t-value="True"/>
+			<t t-set="no_footer" t-value="True"/>
+			<header>
+				<nav class="navbar navbar-expand-md navbar-dark bg-primary accidente">
+					<div class="ml-auto">
+						<a class="navbar-brand logo" href="https://softwaresst.com">
+							<img src="/web/image/website/1/logo/PREVENTOR?unique=43ff1c1" class="img img-fluid" style="height:120px" alt="logo-preventor"/>
+						</a>
+					</div>
+				</nav>
+			</header>
+			<div class="perfil_alumno">
+				<div class="page-wrapper chiller-theme toggled">
+					<a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+						<i class="fa fa-bars"></i>
+					</a>
+					<nav id="sidebar" class="sidebar-wrapper pt-5">
+						<div class="sidebar-content">
+							<div class="sidebar-brand h4">
+								<a href="#" class="text-white text-center">MODULO DE INSPECCIONES</a>
+								<div id="close-sidebar">
+									<i class="fa fa-times"></i>
+								</div>
+							</div>
+							<div class="sidebar-header">
+								<div class="user-pic">
+									<img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg" alt="User picture"/></div>
+								<div class="user-info">
+									<span class="user-name">
+										<!-- <strong t-field="user.name"></strong> -->
+									</span>
+									<span class="user-role"></span>
+									<span class="user-status d-flex align-items-center">
+										<i class="fa fa-circle"></i>
+										<span class="text-white font-weight-bold h6 mb-0" t-esc="user_id.name[:23] + '...' if user_id.name and len(user_id.name) &gt; 25 else user_id.name"/>
+									</span>
+								</div>
+							</div>
+							<!-- sidebar-search -->
+							<div class="sidebar-menu">
+								<ul>
+									<li class="header-menu">
+										<span>General</span>
+									</li>
+									<li class="sidebar-dropdown">
+										<a href="/inspecciones_list" class="sidebar-dropdown-activate">
+											<i class="fa fa-list"></i>
+											<span>LISTA DE INSPECCIONES</span>
+										</a>
+									</li>
+									<li class="sidebar-dropdown">
+										<a href="/formatos_list" class="sidebar-dropdown-activate">
+											<i class="fa fa-minus-square-o"></i>
+											<span>GESTIÓN DE FORMATOS</span>
+										</a>
+									</li>
+									<li class="sidebar-dropdown">
+										<a href="/inspeccion/guia" class="sidebar-dropdown-activate">
+											<i class="fa fa-file-text-o"></i>
+											<span>INSTRUCTIVO</span>
+										</a>
+									</li>
+									<li class="sidebar-dropdown">
+										<a href="/consolidado/inspeccion" class="sidebar-dropdown-activate">
+											<i class="fa fa-table"></i>
+											<span>CONSOLIDADO</span>
+										</a>
+									</li>
+
+								</ul>
+							</div>
+							<!-- sidebar-menu -->
+						</div>
+						<!-- sidebar-content -->
+						<div class="sidebar-footer">
+							<a href="/chat_lms">
+								<i class="fa fa-bell"></i>
+								<span class="badge badge-pill badge-warning notification">3</span>
+							</a>
+							<a href="#">
+								<i class="fa fa-envelope"></i>
+								<span class="badge badge-pill badge-success notification">7</span>
+							</a>
+							<a href="#">
+								<i class="fa fa-cog"></i>
+								<span class="badge-sonar"></span>
+							</a>
+							<a href="#" class="nav-link dropdown-toggle align-items-center d-flex" data-toggle="dropdown">
+								<i class="fa fa-user-circle mr-1"></i>
+							</a>
+							<div class="dropdown-menu js_usermenu" role="menu">
+								<a class="dropdown-item" t-attf-href="/usuarios" role="menuitem">Panel de control</a>
+								<a id="o_logout" class="dropdown-item" role="menuitem" href="/web/session/logout?redirect=https://softwaresst.com/">Cerrar sesión</a>
+							</div>
+						</div>
+					</nav>
+					<!-- sidebar-wrapper -->
+					<main class="page-content">
+						<div class="">
+
+							<t t-raw="0"/>
+
+						</div>
+
+					</main>
+					<!-- page-content" -->
+				</div>
+			</div>
+		</t>
+	</template>
+
+
+</odoo>

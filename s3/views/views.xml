@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_registro_iluminacion_form" model="ir.ui.view">
+          <field name="name">view.registro.iluminacion.form</field>
+          <field name="model">registro.monitoreo</field>
+          <field name="arch" type="xml">
+          <form>
+            <sheet>
+            <group>
+                <field name="ruc"/>
+                <field name="cliente"/>
+                <field name="puntos"/>
+                <field name="fecha_monitoreo"/>
+                <field name="fecha_monitoreo_fin"/>
+                <field name="puntos_ilu"/>
+            </group>
+            <field name="iluminacion_ids" mode="tree">
+                <tree>
+                    <field name="horario"/>
+                    <field name="area"/>
+                    <field name="puesto_trabajo"/>
+                    <field name="ubicacion"/>
+                    <field name="actividades"/>
+                    <field name="fuentes_peligro"/>
+                    <field name="tarea"/>
+                    <field name="lux"/>
+                </tree>
+                <form>
+                    <group>
+                        <field name="horario"/>
+                        <field name="area"/>
+                        <field name="puesto_trabajo"/>
+                        <field name="ubicacion"/>
+                    </group>
+                    <group>
+                        <field name="actividades"/>
+                        <field name="fuentes_peligro"/>
+                        <field name="tarea"/>
+                        <field name="lux"/>
+                    </group>
+                </form>
+            </field>
+
+            <field name="dosimetria_ids" mode="tree">
+                <tree>
+                    <field name="empleado"/>
+                    <field name="area"/>
+                    <field name="puesto_trabajo"/>
+                    <field name="jornada" widget="time"/>
+                    <field name="actividades"/>
+                    <field name="fuentes_peligro"/>
+                    <field name="leq"/>
+                    <field name="val_max"/>
+                </tree>
+                <form>
+                    <group>
+                        <field name="empleado"/>
+                        <field name="area"/>
+                        <field name="puesto_trabajo"/>
+                        <field name="jornada" widget="time"/>
+                    </group>
+                    <group>
+                        <field name="actividades"/>
+                        <field name="fuentes_peligro"/>
+                        <field name="leq"/>
+                        <field name="val_max"/>
+                    </group>
+                </form>
+            </field>
+
+            <field name="sonometria_ids" mode="tree">
+                <tree>
+                    <field name="empleado"/>
+                    <field name="area"/>
+                    <field name="puesto_trabajo"/>
+                    <field name="jornada" widget="time"/>
+                    <field name="actividades"/>
+                    <field name="fuentes_peligro"/>
+                    <field name="leq"/>
+                    <field name="val_max"/>
+                </tree>
+                <form>
+                    <group>
+                        <field name="empleado"/>
+                        <field name="area"/>
+                        <field name="puesto_trabajo"/>
+                        <field name="jornada" widget="time"/>
+                    </group>
+                    <group>
+                        <field name="actividades"/>
+                        <field name="fuentes_peligro"/>
+                        <field name="leq"/>
+                        <field name="val_max"/>
+                    </group>
+                </form>
+            </field>
+            <field name="reba_ids" mode="tree">
+                <tree>
+                    <field name="empleado"/>
+                    <field name="area"/>
+                    <field name="puesto_trabajo"/>
+                </tree>
+
+            </field>
+            </sheet>
+          </form>
+          </field>
+        </record>
+
+        <record id="action_iluminacion" model="ir.actions.act_window">
+            <field name="name">iluminación</field>
+            <field name="res_model">registro.monitoreo</field>
+            <field name="view_mode">form</field>
+        </record>
+
+        <menuitem name="Registros de Monitoreo"
+                id="menu_principal_registro"
+                web_icon="registro_monitoreo,static/description/icon.png"
+                sequence="-10"
+                groups="s3.group_registros_user"/>
+
+        <menuitem id="menu_registro_manuales"
+                  name="Registros Manuales"
+                  action = "action_iluminacion"
+                  sequence="10"
+                  parent="menu_principal_registro"
+                  groups="s3.group_registros_user"/>
+    </data>
+</odoo>

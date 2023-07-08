@@ -1,0 +1,45 @@
+<odoo>
+    <data>
+        <record  id="category_registros" model="ir.module.category">
+            <field name="name">Covid</field>
+        </record>
+
+        <record id="group_registros_user" model="res.groups">
+            <field name="name">Usuario</field>
+            <field name="category_id" ref="category_registros" />
+        </record>
+
+        <record id="group_registros_manager" model="res.groups">
+            <field name="name">Responsable</field>
+            <field name="implied_ids" eval="[(4, ref('group_registros_user'))]" />
+            <field name="category_id" ref="category_registros"/>
+        </record>
+
+        <record id="group_registros_admin" model="res.groups">
+            <field name="name">Administrator</field>
+            <field name="implied_ids" eval="[(4, ref('group_registros_manager'))]" />
+            <field name="category_id" ref="category_registros"/>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+
+        <record id="model_access_registro" model="ir.model.access">
+            <field name="name">model.access.registros.user</field>
+            <field name="group_id" ref="covid.group_registros_user"/>
+            <field name="model_id" ref="covid.model_covid_4"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_agentes" model="ir.model.access">
+            <field name="name">model.access.agentes.user</field>
+            <field name="group_id" ref="covid.group_registros_user"/>
+            <field name="model_id" ref="covid.model_covid_4_lista"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+    </data>
+</odoo>

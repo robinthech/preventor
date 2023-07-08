@@ -1,0 +1,103 @@
+<odoo>
+  <data>
+    <record id="model_access_equipos_seguridad_portal" model="ir.model.access">
+        <field name="name">model.access.equipos.seguridad.portal</field>
+        <field name="group_id" ref="base.group_portal"/>
+        <field name="model_id" ref="equipo_seguridad.model_equipos_seguridad"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="model_access_equipo_proteccion_default_portal" model="ir.model.access">
+        <field name="name">model.access.equipo.proteccion.default.portal</field>
+        <field name="group_id" ref="base.group_portal"/>
+        <field name="model_id" ref="equipo_seguridad.model_equipo_proteccion_default"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="model_access_equipo_proteccion_portal" model="ir.model.access">
+        <field name="name">model.access.equipo.proteccion.portal</field>
+        <field name="group_id" ref="base.group_portal"/>
+        <field name="model_id" ref="equipo_seguridad.model_equipo_proteccion"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="model_access_equipo_emergencia_default_portal" model="ir.model.access">
+        <field name="name">model.access.equipo.emergencia.default.portal</field>
+        <field name="group_id" ref="base.group_portal"/>
+        <field name="model_id" ref="equipo_seguridad.model_equipo_emergencia_default"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="model_access_equipo_emergencia_portal" model="ir.model.access">
+        <field name="name">model.access.equipo.emergencia.portal</field>
+        <field name="group_id" ref="base.group_portal"/>
+        <field name="model_id" ref="equipo_seguridad.model_equipo_emergencia"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="model_access_seguridad_responsable_portal" model="ir.model.access">
+        <field name="name">model.access.seguridad.responsable.portal</field>
+        <field name="group_id" ref="base.group_portal"/>
+        <field name="model_id" ref="equipo_seguridad.model_seguridad_responsable"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="model_access_seguridad_responsable_default_portal" model="ir.model.access">
+        <field name="name">model.access.seguridad.responsable.default.portal</field>
+        <field name="group_id" ref="base.group_portal"/>
+        <field name="model_id" ref="equipo_seguridad.model_seguridad_responsable_default"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="model_access_equipo_trabajadores_portal" model="ir.model.access">
+        <field name="name">model.access.equipo.trabajadores.portal</field>
+        <field name="group_id" ref="base.group_portal"/>
+        <field name="model_id" ref="equipo_seguridad.model_equipo_trabajadores"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="model_access_equipo_trabajadores_default_portal" model="ir.model.access">
+        <field name="name">model.access.equipo.trabajadores.default.portal</field>
+        <field name="group_id" ref="base.group_portal"/>
+        <field name="model_id" ref="equipo_seguridad.model_equipo_trabajadores_default"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="model_access_equipo_trabajadores_trabajadores_portal" model="ir.model.access">
+        <field name="name">model.access.equipo.trabajadores.trabajadores.portal</field>
+        <field name="group_id" ref="base.group_portal"/>
+        <field name="model_id" ref="equipo_seguridad.model_equipo_trabajadores_trabajadores"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+  </data>
+</odoo>

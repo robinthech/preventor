@@ -1,0 +1,128 @@
+<odoo>
+
+  <template id="preventor" name="Permisos">
+    <t t-call="website.layout">
+      <t t-set="no_header" t-value="True"/>
+      <t t-set="no_footer" t-value="True"/>
+
+      <nav class="navbar navbar-dark bg-primary">
+        <button type="button" id="sidebarCollapse1" class="btn btn-info display-block">
+          <i class="fa fa-arrow-right"></i>
+        </button>
+        <a class="navbar-brand" href="/usuarios">
+          <img src="/website_permiso/static/description/preventor isotipo.png" width="30" height="30" class="d-inline-block align-top mr-1" alt=""/>
+          PREVENTOR
+        </a>
+        <div class="nav-item dropdown derecha">
+          <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action">
+            <b>
+              <span t-esc="user_id.name[:23] + '...' if user_id.name and len(user_id.name) &gt; 25 else user_id.name"/>
+            </b>
+          </a>
+          <div class="dropdown-menu">
+            <div class="divider dropdown-divider"></div>
+            <a t-attf-href="/web/session/logout?redirect=https://softwaresst.com/" class="dropdown-item">
+              Logout</a>
+          </div>
+        </div>
+      </nav>
+      <div class="wrapper d-flex">
+        <div class="row justify-content-center w-100">
+          <div class="p-3 m-3 ">
+            <div class="card width-card">
+              <img class="card-img-top" src="/website_permiso/static/description/PERMISOS DE TRABAJO.jpeg"/>
+              <div class="card-body">
+                <h5 class="card-title">PERMISOS DE TRABAJO</h5>
+                <a href="/permiso/solicitar" class="btn btn-primary">EMPEZAR</a>
+              </div>
+            </div>
+          </div>
+          <div class="p-3 m-3">
+            <div class="card width-card">
+              <img class="card-img-top" src="/website_permiso/static/description/MONITOREO OCUPACIONAL.jpeg"/>
+              <div class="card-body">
+                <h5 class="card-title">MONITOREO OCUPACIONAL</h5>
+                <a href="/registros" class="btn btn-primary">EMPEZAR</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-3 m-3">
+            <div class="card width-card">
+              <img class="card-img-top" src="/website_permiso/static/description/MONITOREO OCUPACIONAL.jpeg"/>
+              <div class="card-body">
+                <h5 class="card-title">REGISTRO DE ACCIDENTES</h5>
+                <a href="/accidentes" class="btn btn-primary">EN DESARROLLO</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center w-100">
+
+          <div class="p-3 m-3">
+            <div class="card width-card">
+              <img class="card-img-top" src="/website_permiso/static/description/MONITOREO OCUPACIONAL.jpeg"/>
+              <div class="card-body">
+                <h5 class="card-title">LISTA DE VERIFICACION</h5>
+                <a href="lista_verificacion" class="btn btn-primary">EN DESARROLLO</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-3 m-3">
+            <div class="card width-card">
+              <img class="card-img-top" src="/website_permiso/static/description/MONITOREO OCUPACIONAL.jpeg"/>
+              <div class="card-body">
+                <h5 class="card-title">AUDITORÍAS</h5>
+                <a href="#" class="btn btn-primary">EN DESARROLLO</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-3 m-3">
+            <div class="card width-card">
+              <img class="card-img-top" src="/website_permiso/static/description/MONITOREO OCUPACIONAL.jpeg"/>
+              <div class="card-body">
+                <h5 class="card-title">IPERC</h5>
+                <a href="#" class="btn btn-primary">EN DESARROLLO</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </t>
+
+  </template>
+
+  <template id="list_permiso_guia" name="Permisos de trabajo">
+    <t t-call="website_permiso.sidebar_permiso">
+      <div class="wrapper modulo-wrapper">
+        <!-- Sidebar -->
+        <!-- Page Content -->
+        <div id="content" class="eliminar-registro">
+          <t t-if="len(producto.solve_file_ids)>0">
+            <div class="container">
+              <div class="mx-auto row-center">
+                <object t-att-data="pdf" type="application/pdf" width="100%" height="600px" class="display-none"/>
+                <a class="btn btn-primary display-block-guia font-weight-bold justify-content-center button-pdf" t-att-href="pdf">Visualizar PDF<span></span></a>
+              </div>
+            </div>
+          </t>
+          <t t-else="">
+            <div class="card text-center">
+              <div class="card-header  bg-warning">
+                ALERTA
+              </div>
+              <div class="card-body">
+                <p class="card-text">No se ha publicado el pdf</p>
+              </div>
+              <div class="card-footer text-muted"></div>
+            </div>
+          </t>
+        </div>
+      </div>
+
+    </t>
+  </template>
+</odoo>

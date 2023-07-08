@@ -1,0 +1,151 @@
+.modulo-accidente .width-content{
+  width: 75% !important;
+}
+
+
+@media only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px){
+  .modulo-accidente .width-content{
+    width: 100% !important;
+  }
+}
+
+
+/* Reset Select */
+.select-dom {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background: #2c3e50;
+  background-image: none;
+}
+/* Remove IE arrow */
+.select-dom::-ms-expand {
+  display: none;
+}
+/* Custom Select */
+.select-accidentes {
+  position: relative;
+  display: flex;
+  width: 20em;
+  height: 3em;
+  line-height: 3;
+  background: #2c3e50;
+  overflow: hidden;
+  border-radius: .25em;
+}
+.select-dom {
+  flex: 1;
+  padding: 0 .5em;
+  color: #fff;
+  cursor: pointer;
+}
+/* Arrow */
+.select-accidentes::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 1em;
+  background: #34495e;
+  cursor: pointer;
+  pointer-events: none;
+  -webkit-transition: .25s all ease;
+  -o-transition: .25s all ease;
+  transition: .25s all ease;
+}
+/* Transition */
+.select-accidentes:hover::after {
+  color: #f39c12;
+}
+
+
+// tabla responsive
+
+
+.tabla-registro-accidente-form{
+
+
+  h1 {
+    font-size: 200%;
+    font-weight: bold;
+    text-decoration: underline;
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+}
+
+th {
+  // background: #333;
+  color: white;
+  font-weight: bold;
+  padding: 6px;
+  border: 1px solid #ccc;
+}
+
+td {
+  padding: 6px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
+@media only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	/* Force table to not be like tables anymore */
+	table.table, .table thead, .table tbody, .table th, .table td, .table tr {
+		display: block;
+	}
+
+	/* Hide table headers (but not display: none;, for accessibility) */
+	.table thead tr {
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+
+	.table tr { border: 1px solid #ccc; }
+
+	.table td {
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee;
+		position: relative;
+		padding-left: 50%;
+	}
+
+	.table td:before {
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%;
+		padding-right: 10px;
+		white-space: nowrap;
+	}
+
+  textarea {
+    position: relative !important;
+    padding: 0px !important;
+  }
+
+	/*
+	Label the data
+	*/
+	.table td:before {
+    content: attr(data-table-header);
+    font-weight: bold;
+  }
+}
+
+}

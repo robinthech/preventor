@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+  <template id="website_conditions_view" name="Website Conditions">
+    <t t-call="website.layout">
+      <div id="wrap" class="oe_structure oe_empty">
+        <div class="container">
+          <div class="page">
+            <div id="terms-and-conditions">
+              <h1>TÉRMINOS DE SERVICIO DE PREVENTOR</h1>
+              <li>
+                <b>Bienvenido a Preventor.</b>
+                <ol>
+                  <li>
+                    Al acceder y utilizar el Servicio, usted expresa su consentimiento, acuerdo y entendimiento de los Términos de Servicio y la Política de Privacidad. Si no está de acuerdo con los Términos de Servicio o la Política de Privacidad, no utilice el
+                    Servicio.
+                  </li>
+                  <li>Generalidades sobre los Términos de Servicio
+                    <ol>
+                      <li>lPreventor te ayudará en tu gestión con diversos módulos: permisos de trabajo, monitoreos ocupacionales, lista de verificación, registro de accidentes y programa anual de seguridad entre otros.</li>
+                      <li>El Servicio sólo funciona con su computadora personal y dispositivos compatibles.</li>
+                      <li>Para utilizar el Servicio, deberá registrarse y abrir una Cuenta de https://preventor.tech/</li>
+                      <li>Nos reservamos el derecho a realizar actualizaciones periódicas del Servicio, con o sin previo aviso.</li>
+                      <li>El Servicio incluye funciones relacionadas con la seguridad y la manipulación indebida que, en caso de activarse, podrían ocasionar que el contenido previamente disponible para su uso, deje de estarlo a partir de entonces.</li>
+                      <li>Debe tener al menos 18 años de edad para aceptar estos Términos de Servicio, quedando entendido.</li>
+                      <li>Al utilizar el Servicio, usted autoriza la recopilación, procesamiento y utilización de toda aquella información relacionada con el uso que usted hace del Servicio, la cual se recopila y maneja de conformidad con los términos de nuestra Política
+                        de Privacidad. Usted comprende que podrá encontrar contenidos que le resulten objetables.</li>
+                      <li>Nos reservamos el derecho, a nuestra discreción, de cambiar estos Términos de Servicio en cualquier momento, sin previo aviso. En caso de algún cambio sustancial, haremos todos los esfuerzos comercialmente razonables para notificárselo y obtener
+                        su consentimiento antes de implementar dichos cambios.</li>
+                      <li>Preventor brinda garantía relacionadas con el Servicio, y limita su responsabilidad con respecto a los términos de servicio y política de privacidad.</li>
+                      <li>Si tiene alguna pregunta acerca de estos Términos de Servicio, o desea comunicarse con nosotros , escribir a
+                        <strong>soporte@preventor.tech</strong>
+                      </li>
+                    </ol>
+                  </li>
+                  <li>Descripción del Servicio.
+                    <ol>
+                      <li>Su Cuenta e Información de Registro. Puede navegar, previsualizar e informarse de los módulos dentro de la página web sin necesidad de abrir una Cuenta en Preventor, sin embargo, para cualquier otro uso del Servicio, deberá abrir una cuenta y
+                        facilitar la información de registro a la Compañía.</li>
+                      <li>Acceso a los modulos de Preventor. La propiedad sobre el contenido de Preventor se define más adelante en la (Propiedad Intelectual) de los presentes Términos de Servicio. Usted puede acceder a los módulos de Preventor la cantidad de veces que lo
+                        desee siempre que se haya suscrito al módulo.
+                      </li>
+                    </ol>
+                  </li>
+                </ol>
+              </li>
+
+              <li>
+                <b>Restricciones</b>
+                <ol>
+                  <li>
+                    El uso del Servicio, por parte de usted, está sujeto a las siguientes restricciones:
+                  </li>
+                  <li>Normas y políticas de la Compañía:
+                    <ol>
+                      <li>Al utilizar el Servicio, usted estará sujeto a cualquier otra directriz o norma aplicable a los servicios y características específicas que se publiquen en forma ocasional (las "Directrices"). Todas las Directrices se incorporan mediante
+                        referencia a estos Términos de Servicio.
+                      </li>
+                      <li>Estas Directrices se aplicarán en forma general de manera no discriminatoria a todos los usuarios finales del Servicio y podrían incluir, por ejemplo, actualizaciones, modificaciones requeridas o automáticas, entre otras razones, abordar
+                        cuestiones de seguridad, interoperabilidad y/o funcionamiento.</li>
+                      <li>Estas actualizaciones, modificaciones y operaciones similares pueden realizarse en forma periódica o cuando sea necesario, sin previo aviso. Además, usted entiende que determinados aspectos del Servicio son capaces de controlarse a sí mismos y
+                        pueden crear un sistema especial de identificación con fines relacionados con la seguridad y la detección de manipulaciones indebidas.</li>
+                    </ol>
+                  </li>
+                  <li>Requisito de edad
+                    <ol>
+                      <li>Usted debe tener al menos 18 años de edad para convenir y aceptar estos Términos de Servicio en nombre propio. Si es menor de 18 años, su padre, madre o tutor legal debe aceptar estos Términos de Servicio y registrarse para el Servicio en nombre
+                        de usted.
+                      </li>
+                      <li>De conformidad con la Ley de Protección de Menores en Internet (COPPA, por sus siglas en inglés), y según las modificaciones que se realicen en forma ocasional, si es menor de 13 años, se le solicita que no proporcione información alguna a la
+                        Compañía, ya sea mediante el uso del Servicio, la participación en alguna de las promociones, concursos o sorteos relacionados con el Servicio, o a través de cualquier otra actividad.</li>
+                    </ol>
+                  </li>
+                  <li>Conducta prohibida.
+                    <ol>
+                      <li>Usted no utilizará el Servicio para transmitir, mostrar, ejecutar o de algún modo poner a disposición mensajes, contenidos o materiales (i) que sean ilegales, obscenos, amenazantes, masivos no solicitados o "spam", difamatorios, invasores de la
+                        privacidad, o (ii) que violen o infrinjan derechos de autor, marcas registradas, patentes, secretos comerciales y otros derechos de propiedad intelectual, derechos de privacidad o publicidad, reglamentos o estatutos de comunicaciones, o cualesquiera
+                        otras leyes, incluyendo, sin limitación, las leyes sobre difamación, acoso, obscenidad y pornografía; (iii) que constituyan campañas políticas o solicitudes de venta o marketing o que contengan virus informáticos u otro código de computadora
+                        destinado a interferir con la funcionalidad de los sistemas de computadoras, o (iv) que de alguna manera perjudiquen a los menores. Usted conviene en no interrumpir ni intentar interrumpir la operación o el Servicio de ninguna manera. Cualquier
+                        violación a lo aquí dispuesto, estará sujeta a la revisión y las acciones pertinentes que la Compañía decida adoptar, a su sola consideración e inclusive proceder al derecho de Terminar el Servicio. Además, no podrá utilizar una dirección de correo
+                        electrónico falsa o de algún modo engañar a otros miembros en cuanto a su identidad o al origen de un mensaje o contenido.</li>
+                    </ol>
+                  </li>
+                  <li>Restricción sobre el uso relacionado con el Servicio
+                    <ol>
+                      <li>El Servicio incluye componentes de seguridad por lo que se aplican normas y políticas especiales. Usted no deberá intentar (ni apoyar los intentos de otros) eludir, aplicar ingeniería inversa, descifrar, descompilar, desmontar o de algún modo
+                        modificar, alterar o interferir con ningún aspecto del Servicio.
+                      </li>
+                      <li>Usted no podrá distribuir, intercambiar, modificar, vender o revender, o transmitir a cualquier otra persona cualquier parte del Servicio, incluyendo, sin limitación, cualquier texto, imagen o audio, para cualquier propósito empresarial,
+                        comercial o público. Usted conviene en no copiar, vender, distribuir o de algún modo transferir Contenido de Preventor, salvo del modo expresamente permitido en el presente.
+                      </li>
+                    </ol>
+                  </li>
+                  <li>Restricción sobre el uso relacionado con la Cuenta de Preventor
+                    <ol>
+                      <li>Usted conviene en notificar inmediatamente a la Compañía cualquier uso no autorizado de su contraseña y/o Cuenta de Preventor, enviándonos un correo electrónico a soporte@preventor.tech. Si utiliza o abre una cuenta en el Servicio en nombre de
+                        una empresa, entidad u organización (colectivamente "Organización Suscriptora"), entonces usted declara y garantiza que es un representante autorizado de dicha Organización Suscriptora con autoridad para obligar a tal organización a estos Términos de
+                        Servicio, y acuerda obligarse por estos Términos de Servicio en nombre de dicha Organización Suscriptora.</li>
+                    </ol>
+                  </li>
+
+                </ol>
+              </li>
+              <li>
+                <b>Cargos y facturación</b>
+                <ol>
+                  <li>Política de reembolso:
+                    <ol>
+                      <li>No hacemos reembolsos si estás en la suscripción mensual
+                      </li>
+                      <li>No hacemos devoluciones en compras de módulos individuales</li>
+                      <li>No hacemos devoluciones para pagos en efectivo</li>
+                    </ol>
+                  </li>
+                  <li>Terminación
+                    <ol>
+                      <li>La Compañía se reserva el derecho a dar por terminada su Cuenta de Preventor y/o el acceso por parte de usted al Servicio si infringe los Términos de Servicio. Si se diera por terminada su membresía y suscripción(s), no serán reembolsables las
+                        cuotas ni los cargos.
+                      </li>
+                    </ol>
+                  </li>
+                  <li>Derecho al cambio de precios
+                    <ol>
+                      <li>Todos los precios relacionados con el Servicio están sujetos a cambios por la Compañía en cualquier momento, sin previo aviso y sin responsabilidad alguna hacia usted. La Compañía no ofrece una protección de precios o rembolsos en caso de una
+                        caída de precios o una oferta promocional.</li>
+                    </ol>
+                  </li>
+                </ol>
+              </li>
+
+              <li>
+                <b>Notificaciones especiales</b>
+                <ol>
+                  <li>Privacidad:
+                    <ol>
+                      <li>Al registrarse en el Servicio, usted otorga su consentimiento para la recopilación y procesamiento de toda la información relacionada con el uso que usted hace del Servicio, incluyendo la Información de Registro. La Compañía recopila y maneja
+                        esta información de conformidad con los términos de la Política de Privacidad, que queda expresamente incorporada en estos Términos de Servicio mediante referencia. Al aceptar estos Términos de Servicio, usted también acepta la política de privacidad
+                        la cual está disponible en el website de la Compañía.
+                      </li>
+                    </ol>
+                  </li>
+                  <li>Exactitud de la información
+                    <ol>
+                      <li>Usted declara y garantiza que toda la información (incluida la Información de Registro y las respuestas a los sondeos y encuestas) que proporciona a la Compañía es correcta, completa y vigente, y se compromete a actualizar dicha información
+                        cuando sea necesario. También admite que cualquier información proporcionada por usted a la Compañía no violará ninguna ley o reglamento, ni infringirá los derechos de terceros.
+                      </li>
+                    </ol>
+                  </li>
+                  <li>Riesgo de uso
+                    <ol>
+                      <li>la Compañía asumirán responsabilidad alguna y no serán responsables por ningún daño o virus que provoque algún daño a su computadora u otra propiedad como consecuencia del acceso, uso, descarga o navegación por el Servicio.</li>
+                    </ol>
+                  </li>
+                  <li>El derecho de la Compañía a cambiar estos Términos de Servicio
+                    <ol>
+                      <li>La Compañía se reserva el derecho, a su discreción, de cambiar, modificar, añadir o eliminar partes de estos Términos de Servicio en cualquier momento, sin previo aviso a usted. Todos los cambios entrarán en vigor de inmediato. En caso de algún
+                        cambio sustancial, haremos todos los esfuerzos comercialmente razonables para notificárselo y obtener su consentimiento antes de implementar dichos cambios. Le recomendamos que consulte estos Términos de Servicio en forma periódica para ver si se han
+                        registrado cambios. El uso continuado del Servicio por parte suya después de la publicación de dichos cambios implica la aceptación de los mismos.</li>
+                    </ol>
+                  </li>
+                  <li>El derecho de la Compañía a efectuar cambios al Servicio
+                    <ol>
+                      <li>La Compañía puede agregar, cambiar, terminar, remover o suspender cualquier material incorporado al Servicio, incluyendo funcionalidades, precios y especificaciones de los módulos descritos o reseñados en el Servicio, en forma temporal o
+                        permanente, en cualquier momento, sin previo aviso y sin responsabilidad alguna</li>
+                    </ol>
+                  </li>
+                </ol>
+              </li>
+
+              <li>
+                <b>Propiedad intelectual</b>
+                <ol>
+                  <li>Acción por infracción de los derechos de propiedad intelectual:
+                    <ol>
+                      <li>Si la Compañía recibe una notificación alegando que usted se ha involucrado en una conducta que viola cualquiera de los derechos de propiedad intelectual de la Compañía o de sus Afiliadas, o de un tercero, o razonablemente sospecha esto, la
+                        Compañía podrá suspender o dar por terminado el acceso suyo al Servicio, sin previo aviso.
+                      </li>
+                      <li>
+                        Si la Compañía actúa conforme a esta Sección, la misma no tendrá responsabilidad alguna frente a usted, incluso por cualquier cantidad que haya pagado previamente o cualquier crédito que tenga en el Servicio.
+                      </li>
+                    </ol>
+                  </li>
+
+                </ol>
+              </li>
+
+              <li>
+                <b>Términos estándar</b>
+                <ol>
+                  <li>Indemnización:
+                    <ol>
+                      <li>Usted conviene en defender, indemnizar y eximir de toda responsabilidad a la Compañía respecto a todas y cualesquiera reclamaciones, pérdidas, daños y perjuicios, responsabilidades, deficiencias, sentencias, gravámenes, multas, costas y otros
+                        gastos (incluidos los honorarios razonables de abogados) que surjan de o, en relación con, el uso por parte de usted del Servicio, o cualquier incumplimiento por parte de usted de estos Términos de Servicio, y conviene en rembolsar a la Compañía, a
+                        solicitud, cualquier pérdida, costo o gasto en los que incurran a causa de ello.</li>
+                    </ol>
+                  </li>
+                  <li>La compañía no garantiza que el servicio sea compatible con cualquier computadora personal, reproductor de cd o dvd, grabador de cd o dvd, o dispositivos portátiles registrados. usted es el único responsable de asegurarse de que sus sistemas
+                    funcionen correctamente con el servicio.
+                  </li>
+                  <li>Convenio total y divisibilidad:
+                    <ol>
+                      <li>Estos Términos de Servicio, la Política de Privacidad, los Términos de Compra y la autorización de pago (incluyendo cualquier modificación o revisión realizada por la Compañía a cualquiera de estos documentos) constituyen juntos el acuerdo total
+                        entre usted y la Compañía, con respecto a su objeto, y remplaza a todos los convenios y entendimientos previos y/o contemporáneos, ya sea escritos u orales, entre usted y la Compañía con respecto al objeto del presente documento. Salvo lo
+                        expresamente establecido en el presente, estos Términos de Servicio no podrán de ninguna manera ser enmendados, modificados o complementados por las partes, excepto mediante instrumento por escrito firmado por un directivo autorizado de la Compañía.</li>
+                    </ol>
+                  </li>
+
+                </ol>
+              </li>
+
+            </div>
+            <!-- end #terms-and-conditions -->
+          </div>
+          <!-- end .page -->
+
+        </div>
+      </div>
+    </t>
+  </template>
+
+  <record id="website_conditions_page" model="website.page">
+    <field name="website_published">True</field>
+    <field name="url">/conditions</field>
+    <field name="view_id" ref="website_conditions_view"/>
+  </record>
+
+  <template id="website_privacy_policy_view" name="Website Privacy Policy">
+    <t t-call="website.layout">
+      <div id="wrap" class="oe_structure oe_empty">
+        <div class="container">
+          <div class="page">
+            <div id="terms-and-conditions">
+              <h1>POLÍTICA DE PRIVACIDAD</h1>
+              <li>
+                <b>Introducción
+                </b>
+                <ol>
+                  <li>
+                    Bienvenido a Preventor, respetamos su privacidad y queremos que sepa qué información recolectamos sobre usted y qué hacemos con esa información. La siguiente Política de Privacidad fue creada para ayudarlo a entender cómo será usada la información
+                    que usted proporciona. Esta Política de Privacidad aplica para toda la información que recolectamos sobre usted.
+                  </li>
+                  <li>Cómo contactarnos
+                    <ol>
+                      <li>Si tiene alguna pregunta sobre esta Política de Privacidad, por favor contáctenos a soporte@preventor.tech</li>
+                    </ol>
+                  </li>
+                  <li>Información de Registro
+                    <ol>
+                      <li>Usted podrá visitar nuestro Website y usar algunos campos de nuestros servicios de manera anónima. No obstante, aunque se haya registrado con nosotros o no, Preventor puede recolectar cierta información personal para el uso de nuestros servicios.
+                        Por ejemplo, Preventor puede recolectar información concerniente al tipo de Navegador de Internet que usted usa, el tipo de computadora o sistema operativo que usted usa, su dirección de IP, la velocidad de su conexión, el nombre del dominio de su
+                        proveedor de servicio Internet, la localidad geográfica de dónde usted esta accediendo a nuestros servicios y/o la Website o propaganda de donde usted se conectó a nuestro Website.
+                      </li>
+                    </ol>
+                  </li>
+
+                </ol>
+              </li>
+              <li>
+                <b>Ofrecer un mejor producto y servicioS</b>
+                <ol>
+                  <li>
+                    En general, usar la información sobre usted para proporcionar y mejorar el servicio. La información personal, tomaremos razonados y apropiados pasos para proteger esta información. Excepto conforme está descrito en esta Política de Privacidad,
+                    Preventor no revelará, compartirá, venderá ni rentará información personal recolectada en nuestra Website a terceros para su uso promocional sin su consentimiento a menos que sea para un programa específico el cual podrá pedirnos no participar.
+                  </li>
+                </ol>
+              </li>
+
+              <li>
+                <b>Servicios de terceros con los cuales compartimos información del usuario</b>
+                <ol>
+                  <li>Estadísticas y anuncios
+                    <ol>
+                      <li>Google Analytics
+                      </li>
+                      <li>Inspectlet
+                      </li>
+                      <li>Facebook Analytics</li>
+                      <li>Twitter Analytics</li>
+                      <li>Facebook Ads</li>
+                    </ol>
+                  </li>
+
+                  <li>Datos Personales
+                    <ol>
+                      <li>Nombres y apellidos</li>
+                      <li>Correo electrónico</li>
+                      <li>Nombre de empresa</li>
+                    </ol>
+                  </li>
+                </ol>
+              </li>
+
+              <li>
+                <b>Seguridad</b>
+                <ol>
+                  <li>Usamos métodos razonables de seguridad para proteger la data que reside en nuestros servidores. Sin embargo, ningún sistema de seguridad es impenetrable, debido a esto, no le podemos garantizar la seguridad de nuestros servidores. Es también posible que la información que usted nos provea pueda ser interceptada durante la transmisión de datos.
+                  </li>
+                  <li>Cada vez que usted brinde información sensible (ejemplo: contraseñas, números de tarjeta de crédito, etc), Preventor tomara medidas comerciales razonables para proteger dicha información y establecer una conexión segura con nuestro Navegador de Web. https://preventor.tech/ emplea una tecnología industrial estándar conocida como secure-socket-layer ("SSL") para proteger la transmisión de información de pago al Website. Puede usted chequear la seguridad de su conexión tras observar la barra de direcciones en su ventana de Navegador. Cuando usted acceda un servidor protegido por SSL, los primeros caracteres de la dirección cambiaran de "http" a "https."
+                  </li>
+                  <li>Para ayudarle a proteger la información de su cuenta de Preventor.tech, por favor mantenga su contraseña segura. Su contraseña se mantendrá en nuestro sistema de forma codificada.  Esto no afectara su perfil de ninguna manera. Le sugerimos que escoja una contraseña no-obvia que contenga números y letras. Además, le recomendamos que no divulgue su contraseña a nadie. </li>
+                </ol>
+              </li>
+
+            </div>
+            <!-- end #terms-and-conditions -->
+          </div>
+          <!-- end .page -->
+        </div>
+      </div>
+    </t>
+  </template>
+
+  <record id="website_privacy_policy_page" model="website.page">
+    <field name="website_published">True</field>
+    <field name="url">/privacy-policy</field>
+    <field name="view_id" ref="website_privacy_policy_view"/>
+  </record>
+
+</odoo>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate='1'>
+        <record id="seq_riesgo_disergonomico" model="ir.sequence">
+            <field name="name">Riesgo Disergonomico</field>
+            <field name="code">registro.monitoreo.dosimetria</field>
+            <field name="prefix">RD - </field>
+            <field name="padding">6</field>
+            <field name="number_increment">1</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

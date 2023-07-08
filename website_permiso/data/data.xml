@@ -1,0 +1,1067 @@
+<odoo>
+    <data>
+        <record id='website_permiso.altura' model='tipo.permiso'>
+            <field name='name'>Trabajo en Altura</field>
+            <field name="icono" type="base64" file="website_permiso/static/img/altura.png"/>
+        </record>
+        <record id='website_permiso.confinado' model='tipo.permiso'>
+            <field name='name'>Trabajo en Espacios Confinados</field>
+            <field name="icono" type="base64" file="website_permiso/static/img/confined.png"/>
+        </record>
+        <record id='website_permiso.calor' model='tipo.permiso'>
+            <field name='name'>Trabajo en Caliente</field>
+            <field name="icono" type="base64" file="website_permiso/static/img/caliente.png"/>
+        </record>
+        <record id='website_permiso.frio' model='tipo.permiso'>
+            <field name='name'>Trabajo en Frío</field>
+            <field name="icono" type="base64" file="website_permiso/static/img/frio.png"/>
+        </record>
+        <record id='website_permiso.electrico' model='tipo.permiso'>
+            <field name='name'>Trabajo Eléctricos</field>
+            <field name="icono" type="base64" file="website_permiso/static/img/electrico.png"/>
+        </record>
+
+        <record id='website_permiso.epp' model='tipo.requisito'>
+            <field name='name'>EPP</field>
+        </record>
+        <record id='website_permiso.altura_casco' model='requisito.requisito'>
+            <field name='name'>Casco con Barbiquejo</field>
+            <field name='tipo_requi_id' ref='website_permiso.epp'/>
+            <field name='tipo_permiso_id' ref="website_permiso.altura"/>
+            <field name="altura">True</field>
+        </record>
+        <record id='website_permiso.altura_anteojos' model='requisito.requisito'>
+            <field name='name'>Safety glasses</field>
+            <field name="tipo_requi_id" ref="website_permiso.epp"/>
+            <field name='tipo_permiso_id' ref="website_permiso.altura"/>
+            <field name="altura">True</field>
+        </record>
+        <record id='website_permiso.altura_guantes' model='requisito.requisito'>
+            <field name='name'>Guantes de Cuero</field>
+            <field name="tipo_requi_id" ref="website_permiso.epp"/>
+            <field name='tipo_permiso_id' ref="website_permiso.altura"/>
+            <field name="altura">True</field>
+        </record>
+        <record id='website_permiso.altura_tapon' model='requisito.requisito'>
+            <field name='name'>Tapon para Oido</field>
+            <field name="tipo_requi_id" ref="website_permiso.epp"/>
+            <field name='tipo_permiso_id' ref="website_permiso.altura"/>
+            <field name="altura">True</field>
+        </record>
+        <record id='website_permiso.altura_arnes' model='requisito.requisito'>
+            <field name='name'>Arnés</field>
+            <field name="tipo_requi_id" ref="website_permiso.epp"/>
+            <field name='tipo_permiso_id' ref="website_permiso.altura"/>
+            <field name="altura">True</field>
+        </record>
+        <record id='website_permiso.altura_zapatos' model='requisito.requisito'>
+            <field name='name'>Zapatos Seguridad</field>
+            <field name="tipo_requi_id" ref="website_permiso.epp"/>
+            <field name='tipo_permiso_id' ref="website_permiso.altura"/>
+            <field name="altura">True</field>
+        </record>
+        <record id='website_permiso.altura_respirador' model='requisito.requisito'>
+            <field name='name'>Respirador contra Particula</field>
+            <field name="tipo_requi_id" ref="website_permiso.epp"/>
+            <field name='tipo_permiso_id' ref="website_permiso.altura"/>
+            <field name="altura">True</field>
+        </record>
+        <record id='website_permiso.altura_linea_vida' model='requisito.requisito'>
+            <field name='name'>Uso Obligatorio de Lineas de Vida</field>
+            <field name="tipo_requi_id" ref="website_permiso.epp"/>
+            <field name='tipo_permiso_id' ref="website_permiso.altura"/>
+            <field name="altura">True</field>
+        </record>
+        <record id='website_permiso.altura_soga' model='requisito.requisito'>
+            <field name='name'>Soga y Conector</field>
+            <field name="tipo_requi_id" ref="website_permiso.epp"/>
+            <field name='tipo_permiso_id' ref="website_permiso.altura"/>
+            <field name="altura">True</field>
+        </record>
+
+        <record id='website_permiso.confinado_anteojos' model='requisito.requisito'>
+            <field name='name'>Anteojos Seguridad</field>
+            <field name="tipo_requi_id" ref="website_permiso.epp"/>
+            <field name='tipo_permiso_id' ref="website_permiso.confinado"/>
+            <field name="confinado">True</field>
+        </record>
+        <record id='website_permiso.confinado_guantes' model='requisito.requisito'>
+            <field name='name'>Guantes de Cuero</field>
+            <field name="tipo_requi_id" ref="website_permiso.epp"/>
+            <field name='tipo_permiso_id' ref="website_permiso.confinado"/>
+            <field name="confinado">True</field>
+        </record>
+        <record id='website_permiso.confinado_proteccion' model='requisito.requisito'>
+            <field name='name'>Protección Auditiva</field>
+            <field name="tipo_requi_id" ref="website_permiso.epp"/>
+            <field name='tipo_permiso_id' ref="website_permiso.confinado"/>
+            <field name="confinado">True</field>
+        </record>
+        <record id='website_permiso.confinado_respirador' model='requisito.requisito'>
+            <field name='name'>Respirador de Media Cara</field>
+            <field name="tipo_requi_id" ref="website_permiso.epp"/>
+            <field name='tipo_permiso_id' ref="website_permiso.confinado"/>
+            <field name="confinado">True</field>
+        </record>
+        <record id='website_permiso.confinado_arnes' model='requisito.requisito'>
+            <field name='name'>Arnés</field>
+            <field name="tipo_requi_id" ref="website_permiso.epp"/>
+            <field name='tipo_permiso_id' ref="website_permiso.confinado"/>
+            <field name="confinado">True</field>
+        </record>
+        <record id='website_permiso.confinado_dos_lineas' model='requisito.requisito'>
+            <field name='name'>Uso obligario de dos lineas de vida</field>
+            <field name="tipo_requi_id" ref="website_permiso.epp"/>
+            <field name='tipo_permiso_id' ref="website_permiso.confinado"/>
+            <field name="confinado">True</field>
+        </record>
+        <record id='website_permiso.confinado_potector' model='requisito.requisito'>
+            <field name='name'>Protector respiratorio con Filtro</field>
+            <field name="tipo_requi_id" ref="website_permiso.epp"/>
+            <field name='tipo_permiso_id' ref="website_permiso.confinado"/>
+            <field name="confinado">True</field>
+        </record>
+        <record id='website_permiso.confinado_casco' model='requisito.requisito'>
+            <field name='name'>Casco</field>
+            <field name="tipo_requi_id" ref="website_permiso.epp"/>
+            <field name='tipo_permiso_id' ref="website_permiso.confinado"/>
+            <field name="confinado">True</field>
+        </record>
+
+        <record id='website_permiso.electrico_casco' model='requisito.requisito'>
+            <field name='name'>Dielectrics helmets</field>
+            <field name="tipo_requi_id" ref="website_permiso.epp"/>
+            <field name='tipo_permiso_id' ref="website_permiso.electrico"/>
+            <field name="electrico">True</field>
+        </record>
+        <record id='website_permiso.electrico_anteojos' model='requisito.requisito'>
+            <field name='name'>Safety glasses</field>
+            <field name="tipo_requi_id" ref="website_permiso.epp"/>
+            <field name='tipo_permiso_id' ref="website_permiso.electrico"/>
+            <field name="electrico">True</field>
+        </record>
+        <record id='website_permiso.electrico_zapatos' model='requisito.requisito'>
+            <field name='name'>Dielectrics boots</field>
+            <field name="tipo_requi_id" ref="website_permiso.epp"/>
+            <field name='tipo_permiso_id' ref="website_permiso.electrico"/>
+            <field name="electrico">True</field>
+        </record>
+        <record id='website_permiso.electrico_guantes' model='requisito.requisito'>
+            <field name='name'>Gloves dielectrics</field>
+            <field name="tipo_requi_id" ref="website_permiso.epp"/>
+            <field name='tipo_permiso_id' ref="website_permiso.electrico"/>
+            <field name="electrico">True</field>
+        </record>
+        <record id='website_permiso.electrico_casco_uv' model='requisito.requisito'>
+            <field name='name'>Face helmets</field>
+            <field name="tipo_requi_id" ref="website_permiso.epp"/>
+            <field name='tipo_permiso_id' ref="website_permiso.electrico"/>
+            <field name="electrico">True</field>
+        </record>
+
+        <record id='website_permiso.calor_antojos' model='requisito.requisito'>
+            <field name='name'>Anteojos soldador</field>
+            <field name="tipo_requi_id" ref="website_permiso.epp"/>
+            <field name='tipo_permiso_id' ref="website_permiso.calor"/>
+            <field name="calor">True</field>
+        </record>
+        <record id='website_permiso.calor_guantes' model='requisito.requisito'>
+            <field name='name'>Guantes de cuero</field>
+            <field name="tipo_requi_id" ref="website_permiso.epp"/>
+            <field name='tipo_permiso_id' ref="website_permiso.calor"/>
+            <field name="calor">True</field>
+        </record>
+        <record id='website_permiso.calor_mandil' model='requisito.requisito'>
+            <field name='name'>Mandil de cuero</field>
+            <field name="tipo_requi_id" ref="website_permiso.epp"/>
+            <field name='tipo_permiso_id' ref="website_permiso.calor"/>
+            <field name="calor">True</field>
+        </record>
+        <record id='website_permiso.calor_escarpines' model='requisito.requisito'>
+            <field name='name'>Escarpines de cuero</field>
+            <field name="tipo_requi_id" ref="website_permiso.epp"/>
+            <field name='tipo_permiso_id' ref="website_permiso.calor"/>
+            <field name="calor">True</field>
+        </record>
+        <record id='website_permiso.calor_careta' model='requisito.requisito'>
+            <field name='name'>Careta para esmerilar</field>
+            <field name="tipo_requi_id" ref="website_permiso.epp"/>
+            <field name='tipo_permiso_id' ref="website_permiso.calor"/>
+            <field name="calor">True</field>
+        </record>
+        <record id='website_permiso.calor_respirador_activo' model='requisito.requisito'>
+            <field name='name'>Respirador con filtro de carbon activo</field>
+            <field name="tipo_requi_id" ref="website_permiso.epp"/>
+            <field name='tipo_permiso_id' ref="website_permiso.calor"/>
+            <field name="calor">True</field>
+        </record>
+        <record id='website_permiso.calor_antojos' model='requisito.requisito'>
+            <field name='name'>Anteojos soldador</field>
+            <field name="tipo_requi_id" ref="website_permiso.epp"/>
+            <field name='tipo_permiso_id' ref="website_permiso.calor"/>
+            <field name="calor">True</field>
+        </record>
+
+
+        <record id='website_permiso.herramientas' model='tipo.requisito'>
+            <field name='name'>Herramientas</field>
+        </record>
+
+        <record id='website_permiso.altura_tecle' model='requisito.requisito'>
+            <field name='name'>Tecle</field>
+            <field name="tipo_requi_id" ref="website_permiso.herramientas"/>
+            <field name='tipo_permiso_id' ref="website_permiso.altura"/>
+            <field name="altura">True</field>
+        </record>
+        <record id='website_permiso.altura_andamio' model='requisito.requisito'>
+            <field name='name'>Andamio</field>
+            <field name="tipo_requi_id" ref="website_permiso.herramientas"/>
+            <field name='tipo_permiso_id' ref="website_permiso.altura"/>
+            <field name="altura">True</field>
+        </record>
+        <record id='website_permiso.altura_escalera' model='requisito.requisito'>
+            <field name='name'>Escalera</field>
+            <field name="tipo_requi_id" ref="website_permiso.herramientas"/>
+            <field name='tipo_permiso_id' ref="website_permiso.altura"/>
+            <field name="altura">True</field>
+        </record>
+        <record id='website_permiso.altura_manlift' model='requisito.requisito'>
+            <field name='name'>Manlift</field>
+            <field name="tipo_requi_id" ref="website_permiso.herramientas"/>
+            <field name='tipo_permiso_id' ref="website_permiso.altura"/>
+            <field name="altura">True</field>
+        </record>
+        <record id='website_permiso.altura_andamio' model='requisito.requisito'>
+            <field name='name'>Andamio Colgante</field>
+            <field name="tipo_requi_id" ref="website_permiso.herramientas"/>
+            <field name='tipo_permiso_id' ref="website_permiso.altura"/>
+            <field name="altura">True</field>
+        </record>
+
+        <record id='website_permiso.electrico_alicate' model='requisito.requisito'>
+            <field name='name'>Pliers</field>
+            <field name="tipo_requi_id" ref="website_permiso.herramientas"/>
+            <field name='tipo_permiso_id' ref="website_permiso.electrico"/>
+            <field name="electrico">True</field>
+        </record>
+        <record id='website_permiso.electrico_multitester' model='requisito.requisito'>
+            <field name='name'>Multitester</field>
+            <field name="tipo_requi_id" ref="website_permiso.herramientas"/>
+            <field name='tipo_permiso_id' ref="website_permiso.electrico"/>
+            <field name="electrico">True</field>
+        </record>
+        <record id='website_permiso.electrico_pertiga' model='requisito.requisito'>
+            <field name='name'>Pole</field>
+            <field name="tipo_requi_id" ref="website_permiso.herramientas"/>
+            <field name='tipo_permiso_id' ref="website_permiso.electrico"/>
+            <field name="electrico">True</field>
+        </record>
+        <record id='website_permiso.electrico_conector' model='requisito.requisito'>
+            <field name='name'>Tension connector</field>
+            <field name="tipo_requi_id" ref="website_permiso.herramientas"/>
+            <field name='tipo_permiso_id' ref="website_permiso.electrico"/>
+            <field name="electrico">True</field>
+        </record>
+        <record id='website_permiso.electrico_megometro' model='requisito.requisito'>
+            <field name='name'>Megometer</field>
+            <field name="tipo_requi_id" ref="website_permiso.herramientas"/>
+            <field name='tipo_permiso_id' ref="website_permiso.electrico"/>
+            <field name="electrico">True</field>
+        </record>
+        <record id='website_permiso.electrico_banco_aislador' model='requisito.requisito'>
+            <field name='name'>Isolating bench</field>
+            <field name="tipo_requi_id" ref="website_permiso.herramientas"/>
+            <field name='tipo_permiso_id' ref="website_permiso.electrico"/>
+            <field name="electrico">True</field>
+        </record>
+        <record id='website_permiso.electrico_destornillador' model='requisito.requisito'>
+            <field name='name'>Screwdriver</field>
+            <field name="tipo_requi_id" ref="website_permiso.herramientas"/>
+            <field name='tipo_permiso_id' ref="website_permiso.electrico"/>
+            <field name="electrico">True</field>
+        </record>
+
+        <record id='website_permiso.calor_manoueras' model='requisito.requisito'>
+            <field name='name'>Destornillador</field>
+            <field name="tipo_requi_id" ref="website_permiso.herramientas"/>
+            <field name='tipo_permiso_id' ref="website_permiso.calor"/>
+            <field name="calor">True</field>
+        </record>
+        <record id='website_permiso.calor_uniones' model='requisito.requisito'>
+            <field name='name'>Uniones</field>
+            <field name="tipo_requi_id" ref="website_permiso.herramientas"/>
+            <field name='tipo_permiso_id' ref="website_permiso.calor"/>
+            <field name="calor">True</field>
+        </record>
+        <record id='website_permiso.calor_manometros' model='requisito.requisito'>
+            <field name='name'>Manómetros</field>
+            <field name="tipo_requi_id" ref="website_permiso.herramientas"/>
+            <field name='tipo_permiso_id' ref="website_permiso.calor"/>
+            <field name="calor">True</field>
+        </record>
+        <record id='website_permiso.calor_dispositivo' model='requisito.requisito'>
+            <field name='name'>Dispositivo retroflama</field>
+            <field name="tipo_requi_id" ref="website_permiso.herramientas"/>
+            <field name='tipo_permiso_id' ref="website_permiso.calor"/>
+            <field name="calor">True</field>
+        </record>
+        <record id='website_permiso.calor_acetileno' model='requisito.requisito'>
+            <field name='name'>Acetileno</field>
+            <field name="tipo_requi_id" ref="website_permiso.herramientas"/>
+            <field name='tipo_permiso_id' ref="website_permiso.calor"/>
+            <field name="calor">True</field>
+        </record>
+        <record id='website_permiso.calor_oxigeno' model='requisito.requisito'>
+            <field name='name'>Oxigeno</field>
+            <field name="tipo_requi_id" ref="website_permiso.herramientas"/>
+            <field name='tipo_permiso_id' ref="website_permiso.calor"/>
+            <field name="calor">True</field>
+        </record>
+        <record id='website_permiso.calor_extintor' model='requisito.requisito'>
+            <field name='name'>Extintor</field>
+            <field name="tipo_requi_id" ref="website_permiso.herramientas"/>
+            <field name='tipo_permiso_id' ref="website_permiso.calor"/>
+            <field name="calor">True</field>
+        </record>
+        <record id='website_permiso.calor_esmeril' model='requisito.requisito'>
+            <field name='name'>Esmeril</field>
+            <field name="tipo_requi_id" ref="website_permiso.herramientas"/>
+            <field name='tipo_permiso_id' ref="website_permiso.calor"/>
+            <field name="calor">True</field>
+        </record>
+        <record id='website_permiso.calor_porta' model='requisito.requisito'>
+            <field name='name'>Porta Electrodo</field>
+            <field name="tipo_requi_id" ref="website_permiso.herramientas"/>
+            <field name='tipo_permiso_id' ref="website_permiso.calor"/>
+            <field name="calor">True</field>
+        </record>
+        <record id='website_permiso.calor_cania' model='requisito.requisito'>
+            <field name='name'>Caña</field>
+            <field name="tipo_requi_id" ref="website_permiso.herramientas"/>
+            <field name='tipo_permiso_id' ref="website_permiso.calor"/>
+            <field name="calor">True</field>
+        </record>
+        <record id='website_permiso.calor_tenaza' model='requisito.requisito'>
+            <field name='name'>Tenaza de tierra</field>
+            <field name="tipo_requi_id" ref="website_permiso.herramientas"/>
+            <field name='tipo_permiso_id' ref="website_permiso.calor"/>
+            <field name="calor">True</field>
+        </record>
+        <record id='website_permiso.calor_soladura' model='requisito.requisito'>
+            <field name='name'>Soldadura tig</field>
+            <field name="tipo_requi_id" ref="website_permiso.herramientas"/>
+            <field name='tipo_permiso_id' ref="website_permiso.calor"/>
+            <field name="calor">True</field>
+        </record>
+
+
+        <record id='website_permiso.preparacion' model='tipo.requisito'>
+            <field name='name'>Preparación</field>
+        </record>
+
+        <record id='website_permiso.altura_coordinador' model='requisito.requisito'>
+            <field name='name'>Coordinador con Responsable de Area</field>
+            <field name="tipo_requi_id" ref="website_permiso.preparacion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.altura"/>
+            <field name="altura">True</field>
+        </record>
+        <record id='website_permiso.altura_aislamiento' model='requisito.requisito'>
+            <field name='name'>Aislamiento temporal de la zona ó equipo</field>
+            <field name="tipo_requi_id" ref="website_permiso.preparacion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.altura"/>
+            <field name="altura">True</field>
+        </record>
+        <record id='website_permiso.altura_proteccion' model='requisito.requisito'>
+            <field name='name'>Protección de áreas adyacentes</field>
+            <field name="tipo_requi_id" ref="website_permiso.preparacion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.altura"/>
+            <field name="altura">True</field>
+        </record>
+        <record id='website_permiso.altura_despresuarizacion' model='requisito.requisito'>
+            <field name='name'>Despresurización y purga de líneas</field>
+            <field name="tipo_requi_id" ref="website_permiso.preparacion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.altura"/>
+            <field name="altura">True</field>
+        </record>
+        <record id='website_permiso.altura_valvulas' model='requisito.requisito'>
+            <field name='name'>Válvulas cerradas y con avisos</field>
+            <field name="tipo_requi_id" ref="website_permiso.preparacion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.altura"/>
+            <field name="altura">True</field>
+        </record>
+        <record id='website_permiso.altura_superficies' model='requisito.requisito'>
+            <field name='name'>Superficies limpias</field>
+            <field name="tipo_requi_id" ref="website_permiso.preparacion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.altura"/>
+            <field name="altura">True</field>
+        </record>
+        <record id='website_permiso.altura_aberturas' model='requisito.requisito'>
+            <field name='name'>Aberturas en el piso han sido debidamente tapados y señalizados</field>
+            <field name="tipo_requi_id" ref="website_permiso.preparacion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.altura"/>
+            <field name="altura">True</field>
+        </record>
+
+        <record id='website_permiso.frio_sustancias' model='requisito.requisito'>
+            <field name='name'>Sustancias peligrosas / Tarjeta de Bloqueo</field>
+            <field name="tipo_requi_id" ref="website_permiso.preparacion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record>
+        <record id='website_permiso.frio_depresurizacion' model='requisito.requisito'>
+            <field name='name'>Depresurizacion urización y purga de lineas</field>
+            <field name="tipo_requi_id" ref="website_permiso.preparacion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record>
+        <record id='website_permiso.frio_limpieza_agua' model='requisito.requisito'>
+            <field name='name'>Limpieza con Agua</field>
+            <field name="tipo_requi_id" ref="website_permiso.preparacion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record>
+        <record id='website_permiso.frio_limpieza_soda' model='requisito.requisito'>
+            <field name='name'>Limpieza con Detersivos / Soda</field>
+            <field name="tipo_requi_id" ref="website_permiso.preparacion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record>
+        <record id='website_permiso.frio_limpieza_vaporizado' model='requisito.requisito'>
+            <field name='name'>Limpieza Vaporizado</field>
+            <field name="tipo_requi_id" ref="website_permiso.preparacion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record>
+        <record id='website_permiso.frio_limpieza_nitrogeno' model='requisito.requisito'>
+            <field name='name'>Limpieza Aire / Nitrogeno</field>
+            <field name="tipo_requi_id" ref="website_permiso.preparacion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record>
+        <record id='website_permiso.frio_limpieza_otros' model='requisito.requisito'>
+            <field name='name'>Limpieza con Otros</field>
+            <field name="tipo_requi_id" ref="website_permiso.preparacion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record>
+
+        <record id='website_permiso.confinado_valvulas' model='requisito.requisito'>
+            <field name='name'>Valvulas Cerradas</field>
+            <field name="tipo_requi_id" ref="website_permiso.preparacion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.confinado"/>
+            <field name="confinado">True</field>
+        </record>
+        <record id='website_permiso.confinado_despresurizacion' model='requisito.requisito'>
+            <field name='name'>Despresurización y purga de líneas</field>
+            <field name="tipo_requi_id" ref="website_permiso.preparacion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.confinado"/>
+            <field name="confinado">True</field>
+        </record>
+        <record id='website_permiso.confinado_cerco' model='requisito.requisito'>
+            <field name='name'>Cerco temporala del área ó equipo</field>
+            <field name="tipo_requi_id" ref="website_permiso.preparacion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.confinado"/>
+            <field name="confinado">True</field>
+        </record>
+        <record id='website_permiso.confinado_area' model='requisito.requisito'>
+            <field name='name'>Area ó equipo vacio y limpio</field>
+            <field name="tipo_requi_id" ref="website_permiso.preparacion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.confinado"/>
+            <field name="confinado">True</field>
+        </record>
+        <record id='website_permiso.confinado_ventilacion' model='requisito.requisito'>
+            <field name='name'>Ventilacion adecuada</field>
+            <field name="tipo_requi_id" ref="website_permiso.preparacion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.confinado"/>
+            <field name="confinado">True</field>
+        </record>
+
+        <record id='website_permiso.calor_limpieza_agua' model='requisito.requisito'>
+            <field name='name'>Limpieza de equipo con agua</field>
+            <field name="tipo_requi_id" ref="website_permiso.preparacion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.calor"/>
+            <field name="calor">True</field>
+        </record>
+        <record id='website_permiso.calor_limpieza_detersivos' model='requisito.requisito'>
+            <field name='name'>Limpieza de equipo con detersivos</field>
+            <field name="tipo_requi_id" ref="website_permiso.preparacion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.calor"/>
+            <field name="calor">True</field>
+        </record>
+        <record id='website_permiso.calor_limpieza_soda' model='requisito.requisito'>
+            <field name='name'>Limpieza de equipo con soda</field>
+            <field name="tipo_requi_id" ref="website_permiso.preparacion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.calor"/>
+            <field name="calor">True</field>
+        </record>
+        <record id='website_permiso.calor_limpieza_vaporizado' model='requisito.requisito'>
+            <field name='name'>Limpieza de equipo vaporizado</field>
+            <field name="tipo_requi_id" ref="website_permiso.preparacion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.calor"/>
+            <field name="calor">True</field>
+        </record>
+        <record id='website_permiso.calor_limpieza_aire' model='requisito.requisito'>
+            <field name='name'>Limpieza de equipo con aire</field>
+            <field name="tipo_requi_id" ref="website_permiso.preparacion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.calor"/>
+            <field name="calor">True</field>
+        </record>
+        <record id='website_permiso.calor_limpieza_nitrogeno' model='requisito.requisito'>
+            <field name='name'>Limpieza de equipo con nitrogeno</field>
+            <field name="tipo_requi_id" ref="website_permiso.preparacion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.calor"/>
+            <field name="calor">True</field>
+        </record>
+        <record id='website_permiso.calor_limpieza_seco' model='requisito.requisito'>
+            <field name='name'>Limpieza de equipo en seco</field>
+            <field name="tipo_requi_id" ref="website_permiso.preparacion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.calor"/>
+            <field name="calor">True</field>
+        </record>
+        <record id='website_permiso.calor_aislamiento' model='requisito.requisito'>
+            <field name='name'>Aislamiento del área</field>
+            <field name="tipo_requi_id" ref="website_permiso.preparacion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.calor"/>
+            <field name="calor">True</field>
+        </record>
+
+
+        <record id='website_permiso.ejecucion' model='tipo.requisito'>
+            <field name='name'>Cerramiento de Aberturas</field>
+        </record>
+
+        <record id='website_permiso.altura_apertura' model='requisito.requisito'>
+            <field name='name'>Opening covered by a temporary surface (supporting 100 kg)</field>
+            <field name="tipo_requi_id" ref="website_permiso.ejecucion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.altura"/>
+            <field name="altura">True</field>
+        </record>
+        <record id='website_permiso.altura_letrero' model='requisito.requisito'>
+            <field name='name'>Letrero “RIESGO DE CAÍDA A DISTINTO NIVEL”</field>
+            <field name="tipo_requi_id" ref="website_permiso.ejecucion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.altura"/>
+            <field name="altura">True</field>
+        </record>
+        <record id='website_permiso.altura_letrero_ingreso' model='requisito.requisito'>
+            <field name='name'>Letrero en el ingreso del área indicando existencia de agujero</field>
+            <field name="tipo_requi_id" ref="website_permiso.ejecucion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.altura"/>
+            <field name="altura">True</field>
+        </record>
+        <record id='website_permiso.altura_cerco' model='requisito.requisito'>
+            <field name='name'>Temporary fence around the opening</field>
+            <field name="tipo_requi_id" ref="website_permiso.ejecucion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.altura"/>
+            <field name="altura">True</field>
+        </record>
+
+        <record id='website_permiso.frio_apertura' model='requisito.requisito'>
+            <field name='name'>Opening covered by a temporary surface (supporting 100 kg)</field>
+            <field name="tipo_requi_id" ref="website_permiso.ejecucion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record>
+        <record id='website_permiso.frio_letrero' model='requisito.requisito'>
+            <field name='name'>Sign RISK OF FALLING AT A DIFFERENT LEVEL</field>
+            <field name="tipo_requi_id" ref="website_permiso.ejecucion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record>
+        <record id='website_permiso.frio_cerco' model='requisito.requisito'>
+            <field name='name'>Temporary fence around the opening</field>
+            <field name="tipo_requi_id" ref="website_permiso.ejecucion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record>
+
+        <record id='website_permiso.confinado_apertura' model='requisito.requisito'>
+            <field name='name'>Opening covered by a temporary surface (supporting 100 kg)</field>
+            <field name="tipo_requi_id" ref="website_permiso.ejecucion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.confinado"/>
+            <field name="confinado">True</field>
+        </record>
+        <record id='website_permiso.confinado_letrero' model='requisito.requisito'>
+            <field name='name'>Letrero "RIESGO DE CAIDA A BAJO NIVEL"</field>
+            <field name="tipo_requi_id" ref="website_permiso.ejecucion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.confinado"/>
+            <field name="confinado">True</field>
+        </record>
+        <record id='website_permiso.confinado_cerco' model='requisito.requisito'>
+            <field name='name'>Temporary fence around the opening</field>
+            <field name="tipo_requi_id" ref="website_permiso.ejecucion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.confinado"/>
+            <field name="confinado">True</field>
+        </record>
+
+        <record id='website_permiso.electrico_apertura' model='requisito.requisito'>
+            <field name='name'>Opening covered by a temporary surface (supporting 100 kg)</field>
+            <field name="tipo_requi_id" ref="website_permiso.ejecucion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.electrico"/>
+            <field name="electrico">True</field>
+        </record>
+        <record id='website_permiso.electrico_letrero' model='requisito.requisito'>
+            <field name='name'>Sign RISK OF FALLING AT A DIFFERENT LEVEL</field>
+            <field name="tipo_requi_id" ref="website_permiso.ejecucion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.electrico"/>
+            <field name="electrico">True</field>
+        </record>
+        <record id='website_permiso.electrico_cerco' model='requisito.requisito'>
+            <field name='name'>Temporary fence around the opening</field>
+            <field name="tipo_requi_id" ref="website_permiso.ejecucion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.electrico"/>
+            <field name="electrico">True</field>
+        </record>
+
+        <record id='website_permiso.calor_apertura' model='requisito.requisito'>
+            <field name='name'>Opening covered by a temporary surface (supporting 100 kg)</field>
+            <field name="tipo_requi_id" ref="website_permiso.ejecucion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.calor"/>
+            <field name="calor">True</field>
+        </record>
+        <record id='website_permiso.calor_letrero' model='requisito.requisito'>
+            <field name='name'>Sign RISK OF FALLING AT A DIFFERENT LEVEL</field>
+            <field name="tipo_requi_id" ref="website_permiso.ejecucion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.calor"/>
+            <field name="calor">True</field>
+        </record>
+        <record id='website_permiso.calor_cerco' model='requisito.requisito'>
+            <field name='name'>Temporary fence around the opening</field>
+            <field name="tipo_requi_id" ref="website_permiso.ejecucion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.calor"/>
+            <field name="calor">True</field>
+        </record>
+
+
+        <record id='website_permiso.condiciones' model='tipo.requisito'>
+            <field name='name'>Condiciones de Seguridad</field>
+        </record>
+
+        <record id='website_permiso.altura_capacidad_tecle' model='requisito.requisito'>
+            <field name='name'>La capacidad de carga del tecle</field>
+            <field name="tipo_requi_id" ref="website_permiso.condiciones"/>
+            <field name='tipo_permiso_id' ref="website_permiso.altura"/>
+            <field name="altura">True</field>
+        </record>
+        <record id='website_permiso.altura_probar_tecle' model='requisito.requisito'>
+            <field name='name'>Probar la carga del tecle</field>
+            <field name="tipo_requi_id" ref="website_permiso.condiciones"/>
+            <field name='tipo_permiso_id' ref="website_permiso.altura"/>
+            <field name="altura">True</field>
+        </record>
+        <record id='website_permiso.altura_area_cercada' model='requisito.requisito'>
+            <field name='name'>Que el Area de trabajo este cercada</field>
+            <field name="tipo_requi_id" ref="website_permiso.condiciones"/>
+            <field name='tipo_permiso_id' ref="website_permiso.altura"/>
+            <field name="altura">True</field>
+        </record>
+        <record id='website_permiso.altura_andamios_reverso' model='requisito.requisito'>
+            <field name='name'>Que cumpla con especificaciones para andamios en el Reverso</field>
+            <field name="tipo_requi_id" ref="website_permiso.condiciones"/>
+            <field name='tipo_permiso_id' ref="website_permiso.altura"/>
+            <field name="altura">True</field>
+        </record>
+        <record id='website_permiso.altura_plan' model='requisito.requisito'>
+            <field name='name'>Plan de Trabajo del tercero</field>
+            <field name="tipo_requi_id" ref="website_permiso.condiciones"/>
+            <field name='tipo_permiso_id' ref="website_permiso.altura"/>
+            <field name="altura">True</field>
+        </record>
+        <record id='website_permiso.altura_aseguramiento' model='requisito.requisito'>
+            <field name='name'>El aseguramiento de Herramientas y que estén en buen estado</field>
+            <field name="tipo_requi_id" ref="website_permiso.condiciones"/>
+            <field name='tipo_permiso_id' ref="website_permiso.altura"/>
+            <field name="altura">True</field>
+        </record>
+
+        <record id='website_permiso.frio_documento_grua' model='requisito.requisito'>
+            <field name='name'>Documento de autorización para Grua</field>
+            <field name="tipo_requi_id" ref="website_permiso.condiciones"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record>
+        <record id='website_permiso.frio_plan_trabajo' model='requisito.requisito'>
+            <field name='name'>Plan de Trabajo</field>
+            <field name="tipo_requi_id" ref="website_permiso.condiciones"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record>
+        <record id='website_permiso.frio_capacidad_tecle' model='requisito.requisito'>
+            <field name='name'>Capacidad de Carga (Grua / Tecle)</field>
+            <field name="tipo_requi_id" ref="website_permiso.condiciones"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record>
+        <record id='website_permiso.frio_estrobos_estado' model='requisito.requisito'>
+            <field name='name'>Estrobos, Tecles, Poleas, Grilletes, Cuerdas en buen Estado</field>
+            <field name="tipo_requi_id" ref="website_permiso.condiciones"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record>
+        <record id='website_permiso.frio_puntos_gruas' model='requisito.requisito'>
+            <field name='name'>Puntos de Apoyo de Gruas</field>
+            <field name="tipo_requi_id" ref="website_permiso.condiciones"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record>
+        <record id='website_permiso.frio_certificacion_grua' model='requisito.requisito'>
+            <field name='name'>Certificación de Operador de Grua</field>
+            <field name="tipo_requi_id" ref="website_permiso.condiciones"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record>
+        <record id='website_permiso.frio_buen_grua' model='requisito.requisito'>
+            <field name='name'>Buen Estado de la Grua</field>
+            <field name="tipo_requi_id" ref="website_permiso.condiciones"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record>
+
+        <record id='website_permiso.confinado_aviso' model='requisito.requisito'>
+            <field name='name'>Aviso colocado en el equipo en reparación</field>
+            <field name="tipo_requi_id" ref="website_permiso.condiciones"/>
+            <field name='tipo_permiso_id' ref="website_permiso.confinado"/>
+            <field name="confinado">True</field>
+        </record>
+        <record id='website_permiso.confinado_iluminacion' model='requisito.requisito'>
+            <field name='name'>Iluminación adecuada en el lugar de Trabajo</field>
+            <field name="tipo_requi_id" ref="website_permiso.condiciones"/>
+            <field name='tipo_permiso_id' ref="website_permiso.confinado"/>
+            <field name="confinado">True</field>
+        </record>
+        <record id='website_permiso.confinado_equipo' model='requisito.requisito'>
+            <field name='name'>Equipo eléctrico de baja tensión (24 V)</field>
+            <field name="tipo_requi_id" ref="website_permiso.condiciones"/>
+            <field name='tipo_permiso_id' ref="website_permiso.confinado"/>
+            <field name="confinado">True</field>
+        </record>
+        <record id='website_permiso.confinado_ventilacion_forzada' model='requisito.requisito'>
+            <field name='name'>Se dispone de ventilación forzada</field>
+            <field name="tipo_requi_id" ref="website_permiso.condiciones"/>
+            <field name='tipo_permiso_id' ref="website_permiso.confinado"/>
+            <field name="confinado">True</field>
+        </record>
+        <record id='website_permiso.confinado_conexion' model='requisito.requisito'>
+            <field name='name'>Ground connection</field>
+            <field name="tipo_requi_id" ref="website_permiso.condiciones"/>
+            <field name='tipo_permiso_id' ref="website_permiso.confinado"/>
+            <field name="confinado">True</field>
+        </record>
+        <record id='website_permiso.confinado_evaluacion' model='requisito.requisito'>
+            <field name='name'>Evaluación Plan de Trabajo</field>
+            <field name="tipo_requi_id" ref="website_permiso.condiciones"/>
+            <field name='tipo_permiso_id' ref="website_permiso.confinado"/>
+            <field name="confinado">True</field>
+        </record>
+        <record id='website_permiso.confinado_extintor' model='requisito.requisito'>
+            <field name='name'>Extintor de mano</field>
+            <field name="tipo_requi_id" ref="website_permiso.condiciones"/>
+            <field name='tipo_permiso_id' ref="website_permiso.confinado"/>
+            <field name="confinado">True</field>
+        </record>
+        <record id='website_permiso.confinado_concetracion' model='requisito.requisito'>
+            <field name='name'>Concetración de Oxigeno adecuada</field>
+            <field name="tipo_requi_id" ref="website_permiso.condiciones"/>
+            <field name='tipo_permiso_id' ref="website_permiso.confinado"/>
+            <field name="confinado">True</field>
+        </record>
+
+        <record id='website_permiso.calor_aviso_reparacion' model='requisito.requisito'>
+            <field name='name'>Aviso colocado en el equipo en reparación</field>
+            <field name="tipo_requi_id" ref="website_permiso.condiciones"/>
+            <field name='tipo_permiso_id' ref="website_permiso.calor"/>
+            <field name="calor">True</field>
+        </record>
+        <record id='website_permiso.calor_retiro' model='requisito.requisito'>
+            <field name='name'>Retiro de fusibles</field>
+            <field name="tipo_requi_id" ref="website_permiso.condiciones"/>
+            <field name='tipo_permiso_id' ref="website_permiso.calor"/>
+            <field name="calor">True</field>
+        </record>
+        <record id='website_permiso.calor_cerco_equipo' model='requisito.requisito'>
+            <field name='name'>Cerco temporal del equipo</field>
+            <field name="tipo_requi_id" ref="website_permiso.condiciones"/>
+            <field name='tipo_permiso_id' ref="website_permiso.calor"/>
+            <field name="calor">True</field>
+        </record>
+        <record id='website_permiso.calor_ventilacion' model='requisito.requisito'>
+            <field name='name'>Ventilación apropiada</field>
+            <field name="tipo_requi_id" ref="website_permiso.condiciones"/>
+            <field name='tipo_permiso_id' ref="website_permiso.calor"/>
+            <field name="calor">True</field>
+        </record>
+        <record id='website_permiso.calor_mantas' model='requisito.requisito'>
+            <field name='name'>Mantas húmedas</field>
+            <field name="tipo_requi_id" ref="website_permiso.condiciones"/>
+            <field name='tipo_permiso_id' ref="website_permiso.calor"/>
+            <field name="calor">True</field>
+        </record>
+        <record id='website_permiso.calor_mangas_conectada' model='requisito.requisito'>
+            <field name='name'>Mangas presurizada y conectada</field>
+            <field name="tipo_requi_id" ref="website_permiso.condiciones"/>
+            <field name='tipo_permiso_id' ref="website_permiso.calor"/>
+            <field name="calor">True</field>
+        </record>
+        <record id='website_permiso.calor_evaluar_trabajo' model='requisito.requisito'>
+            <field name='name'>Evaluar plan de trabajo</field>
+            <field name="tipo_requi_id" ref="website_permiso.condiciones"/>
+            <field name='tipo_permiso_id' ref="website_permiso.calor"/>
+            <field name="calor">True</field>
+        </record>
+        <record id='website_permiso.calor_extintor_mano' model='requisito.requisito'>
+            <field name='name'>Extintor de mano</field>
+            <field name="tipo_requi_id" ref="website_permiso.condiciones"/>
+            <field name='tipo_permiso_id' ref="website_permiso.calor"/>
+            <field name="calor">True</field>
+        </record>
+        <record id='website_permiso.calor_desagues' model='requisito.requisito'>
+            <field name='name'>Desagues cubiertos</field>
+            <field name="tipo_requi_id" ref="website_permiso.condiciones"/>
+            <field name='tipo_permiso_id' ref="website_permiso.calor"/>
+            <field name="calor">True</field>
+        </record>
+
+
+        <record id='website_permiso.sustancias' model='tipo.requisito'>
+            <field name='name'>Sustancias Tóxicas y Corrosivas</field>
+        </record>
+
+        <record id='website_permiso.frio_careta' model='requisito.requisito'>
+            <field name='name'>Careta Facial</field>
+            <field name="tipo_requi_id" ref="website_permiso.sustancias"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record>
+        <record id='website_permiso.frio_anteojos_seguridad' model='requisito.requisito'>
+            <field name='name'>Anteojos Seguridad</field>
+            <field name="tipo_requi_id" ref="website_permiso.sustancias"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record>
+        <record id='website_permiso.frio_proteccion_respiratoria' model='requisito.requisito'>
+            <field name='name'>Protección Respiratoria</field>
+            <field name="tipo_requi_id" ref="website_permiso.sustancias"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record>
+        <record id='website_permiso.frio_botas_jebe' model='requisito.requisito'>
+            <field name='name'>Botas de Jebe</field>
+            <field name="tipo_requi_id" ref="website_permiso.sustancias"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record>
+        <record id='website_permiso.frio_guantes_jebe' model='requisito.requisito'>
+            <field name='name'>Guantes de Jebe</field>
+            <field name="tipo_requi_id" ref="website_permiso.sustancias"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record>
+        <record id='website_permiso.frio_manguera_contraincendio' model='requisito.requisito'>
+            <field name='name'>Manguera Contraincendio</field>
+            <field name="tipo_requi_id" ref="website_permiso.sustancias"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record>
+        <record id='website_permiso.frio_mandil_antiacidos' model='requisito.requisito'>
+            <field name='name'>Mandil Antiacidos</field>
+            <field name="tipo_requi_id" ref="website_permiso.sustancias"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record>
+        <record id='website_permiso.frio_duchas_lavaojos' model='requisito.requisito'>
+            <field name='name'>Duchas Lavaojos</field>
+            <field name="tipo_requi_id" ref="website_permiso.sustancias"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record>
+
+
+        <record id='website_permiso.obras' model='tipo.requisito'>
+            <field name='name'>Obras Civiles</field>
+        </record>
+
+        <record id='website_permiso.anteojos' model='requisito.requisito'>
+            <field name='name'>Anteojos Seguridad</field>
+            <field name="tipo_requi_id" ref="website_permiso.obras"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record>
+        <record id='website_permiso.guantes' model='requisito.requisito'>
+            <field name='name'>Guantes de Cuero</field>
+            <field name="tipo_requi_id" ref="website_permiso.obras"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record>
+        <record id='website_permiso.zapatos' model='requisito.requisito'>
+            <field name='name'>Dielectrics boots</field>
+            <field name="tipo_requi_id" ref="website_permiso.obras"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record>
+        <!--record id='website_permiso.herramientas' model='requisito.requisito'>
+            <field name='name'>Herramientas</field>
+            <field name="tipo_requi_id" ref="website_permiso.obras"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record-->
+        <record id='website_permiso.botas' model='requisito.requisito'>
+            <field name='name'>Botas de Jebe</field>
+            <field name="tipo_requi_id" ref="website_permiso.obras"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record>
+        <record id='website_permiso.proteccion' model='requisito.requisito'>
+            <field name='name'>Protección Auditiva</field>
+            <field name="tipo_requi_id" ref="website_permiso.obras"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record>
+        <record id='website_permiso.respirador' model='requisito.requisito'>
+            <field name='name'>Respirador contra Particular</field>
+            <field name="tipo_requi_id" ref="website_permiso.obras"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record>
+        <record id='website_permiso.zapato' model='requisito.requisito'>
+            <field name='name'>Zapato con Punta de Acero</field>
+            <field name="tipo_requi_id" ref="website_permiso.obras"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record>
+        <record id='website_permiso.casco' model='requisito.requisito'>
+            <field name='name'>Casco</field>
+            <field name="tipo_requi_id" ref="website_permiso.obras"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record>
+        <record id='website_permiso.cerco' model='requisito.requisito'>
+            <field name='name'>Cerco Permetral</field>
+            <field name="tipo_requi_id" ref="website_permiso.obras"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record>
+
+
+        <record id='website_permiso.maniobras' model='tipo.requisito'>
+            <field name='name'>Maniobras</field>
+        </record>
+
+        <record id='website_permiso.guantes_1' model='requisito.requisito'>
+            <field name='name'>Guantes de Acero</field>
+            <field name="tipo_requi_id" ref="website_permiso.maniobras"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record>
+        <record id='website_permiso.zapatos_1' model='requisito.requisito'>
+            <field name='name'>Dielectrics boots</field>
+            <field name="tipo_requi_id" ref="website_permiso.maniobras"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record>
+        <record id='website_permiso.herramientas_1' model='requisito.requisito'>
+            <field name='name'>Herramientas</field>
+            <field name="tipo_requi_id" ref="website_permiso.maniobras"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record>
+        <record id='website_permiso.grua' model='requisito.requisito'>
+            <field name='name'>Grúa</field>
+            <field name="tipo_requi_id" ref="website_permiso.maniobras"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record>
+        <record id='website_permiso.tecle' model='requisito.requisito'>
+            <field name='name'>Tecle</field>
+            <field name="tipo_requi_id" ref="website_permiso.maniobras"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record>
+        <record id='website_permiso.casco_1' model='requisito.requisito'>
+            <field name='name'>Casco</field>
+            <field name="tipo_requi_id" ref="website_permiso.maniobras"/>
+            <field name='tipo_permiso_id' ref="website_permiso.frio"/>
+            <field name="frio">True</field>
+        </record>
+
+
+        <record id='website_permiso.desconexion' model='tipo.requisito'>
+            <field name='name'>Desconexión</field>
+        </record>
+
+        <record id='website_permiso.desconexion_4' model='requisito.requisito'>
+            <field name='name'>Disconnection at the electrical panel</field>
+            <field name="tipo_requi_id" ref="website_permiso.desconexion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.electrico"/>
+            <field name="electrico">True</field>
+        </record>
+        <record id='website_permiso.retiro' model='requisito.requisito'>
+            <field name='name'>Fuse removal</field>
+            <field name="tipo_requi_id" ref="website_permiso.desconexion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.electrico"/>
+            <field name="electrico">True</field>
+        </record>
+        <record id='website_permiso.conexion_4' model='requisito.requisito'>
+            <field name='name'>Ground connection</field>
+            <field name="tipo_requi_id" ref="website_permiso.desconexion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.electrico"/>
+            <field name="electrico">True</field>
+        </record>
+        <record id='website_permiso.verificacion' model='requisito.requisito'>
+            <field name='name'>Verification of disconnection</field>
+            <field name="tipo_requi_id" ref="website_permiso.desconexion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.electrico"/>
+            <field name="electrico">True</field>
+        </record>
+        <record id='website_permiso.desconexion_1' model='requisito.requisito'>
+            <field name='name'>Disconnection in substation</field>
+            <field name="tipo_requi_id" ref="website_permiso.desconexion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.electrico"/>
+            <field name="electrico">True</field>
+        </record>
+        <record id='website_permiso.desconexion_2' model='requisito.requisito'>
+            <field name='name'>Disconnect power from the supplier</field>
+            <field name="tipo_requi_id" ref="website_permiso.desconexion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.electrico"/>
+            <field name="electrico">True</field>
+        </record>
+
+
+        <record id='website_permiso.reconexion' model='tipo.requisito'>
+            <field name='name'>Reconexión</field>
+        </record>
+
+        <record id='website_permiso.equipos_1' model='requisito.requisito'>
+            <field name='name'>Equipment is covered or insulated</field>
+            <field name="tipo_requi_id" ref="website_permiso.reconexion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.electrico"/>
+            <field name="electrico">True</field>
+        </record>
+        <record id='website_permiso.superficies_1' model='requisito.requisito'>
+            <field name='name'>No energized or bare surfaces</field>
+            <field name="tipo_requi_id" ref="website_permiso.reconexion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.electrico"/>
+            <field name="electrico">True</field>
+        </record>
+        <record id='website_permiso.personal_1' model='requisito.requisito'>
+            <field name='name'>There are no personnel working on the equipment</field>
+            <field name="tipo_requi_id" ref="website_permiso.reconexion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.electrico"/>
+            <field name="electrico">True</field>
+        </record>
+        <record id='website_permiso.personas_1' model='requisito.requisito'>
+            <field name='name'>No people in contact or near places where there is a risk of electric shock</field>
+            <field name="tipo_requi_id" ref="website_permiso.reconexion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.electrico"/>
+            <field name="electrico">True</field>
+        </record>
+        <record id='website_permiso.interruptores_1' model='requisito.requisito'>
+            <field name='name'>The switches are open and the equipment will not emerge when proceeding to connect the selector that had been opened</field>
+            <field name="tipo_requi_id" ref="website_permiso.reconexion"/>
+            <field name='tipo_permiso_id' ref="website_permiso.electrico"/>
+            <field name="electrico">True</field>
+        </record>
+
+        <record id='website_permiso.otras' model='tipo.requisito'>
+            <field name='name'>Otras Condiciones</field>
+        </record>
+    </data>
+</odoo>

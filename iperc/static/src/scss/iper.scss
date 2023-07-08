@@ -1,0 +1,15 @@
+@media (min-width: 576px){
+  .col-sm-20{
+    flex:0 0 4%;
+    max-width: 4%;
+  }
+
+  .col-sm-19{
+    flex:0 0 12.6666%;
+    max-width: 12.6666%;
+  }
+}
+
+.supervisor_id .form-control:focus{
+  box-shadow: none !important;
+}

@@ -1,0 +1,43 @@
+<odoo>
+    <data>
+      <record id="model_access_registro_monitoreo_disergonomico_portal" model="ir.model.access">
+          <field name="name">model.access.registro.monitoreo.disergonomico.portal</field>
+          <field name="group_id" ref="base.group_portal"/>
+          <field name="model_id" ref="s3_riesgodisergonomico.model_registro_monitoreo_disergonomico"/>
+          <field name="perm_read" eval="1"/>
+          <field name="perm_create" eval="1"/>
+          <field name="perm_write" eval="1"/>
+          <field name="perm_unlink" eval="1"/>
+      </record>
+
+       <record id="model_access_agente_general_disergonomico_portal" model="ir.model.access">
+           <field name="name">model.access.agente.general.disergonomico.portal</field>
+           <field name="group_id" ref="base.group_portal"/>
+           <field name="model_id" ref="s3_riesgodisergonomico.model_agente_general_disergonomico"/>
+           <field name="perm_read" eval="1"/>
+           <field name="perm_create" eval="1"/>
+           <field name="perm_write" eval="1"/>
+           <field name="perm_unlink" eval="1"/>
+       </record>
+
+       <record id="model_access_s3_riesgo_disergonomico_portal" model="ir.model.access">
+           <field name="name">model.access.s3.riesgo.disergonomico.portal</field>
+           <field name="group_id" ref="base.group_portal"/>
+           <field name="model_id" ref="s3_riesgodisergonomico.model_s3_riesgo_disergonomico"/>
+           <field name="perm_read" eval="1"/>
+           <field name="perm_create" eval="1"/>
+           <field name="perm_write" eval="1"/>
+           <field name="perm_unlink" eval="1"/>
+       </record>
+
+       <record id="model_access_reba_reba_disergonomico_portal" model="ir.model.access">
+           <field name="name">model.access.reba.reba.disergonomico.portal</field>
+           <field name="group_id" ref="base.group_portal"/>
+           <field name="model_id" ref="s3_riesgodisergonomico.model_reba_reba_disergonomico"/>
+           <field name="perm_read" eval="1"/>
+           <field name="perm_create" eval="1"/>
+           <field name="perm_write" eval="1"/>
+           <field name="perm_unlink" eval="1"/>
+       </record>
+    </data>
+</odoo>

@@ -1,0 +1,820 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <template id="external_layout_standard">
+        <div t-attf-class="header" t-att-style="report_header_style">
+            <div class="row">
+                <div class="col-3 mb4">
+                    <!-- <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 45px;" alt-if="Logo"/> -->
+                </div>
+                <!-- <div class="col-9 text-right" style="margin-top:22px;" t-field="company.report_header" name="moto"/> -->
+            </div>
+            <!-- <div t-if="company.logo or company.report_header" class="row zero_min_height">
+                <div class="col-12">
+                    <div style="border-bottom: 1px solid black;"/>
+                </div>
+            </div> -->
+            <div class="row">
+                <div class="col-6" name="company_address">
+                    <!-- <div t-field="company.partner_id"
+                        t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'
+                    /> -->
+                </div>
+            </div>
+        </div>
+
+    <div t-attf-class="article o_report_layout_standard" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+      <t t-call="web.address_layout"/>
+      <t t-raw="0"/>
+    </div>
+
+    <div t-attf-class="footer o_standard_footer">
+      <div class="text-center">
+        <ul class="list-inline mb4">
+          <!-- using the list-inline-item class from bootstrap causes weird behaviours in pdf report adding d-inline class fixes the problem-->
+          <!-- <li t-if="company.phone" class="list-inline-item d-inline">Phone:
+            <span t-field="company.phone"/></li>
+          <li t-if="company.email" class="list-inline-item d-inline">Email:
+            <span t-field="company.email"/></li>
+          <li t-if="company.website" class="list-inline-item d-inline">Web:
+            <span t-field="company.website"/></li>
+          <li t-if="company.vat" class="list-inline-item d-inline"><t t-esc="company.country_id.vat_label or 'Tax ID'"/>:
+            <span t-field="company.vat"/></li> -->
+        </ul>
+
+        <div name="financial_infos">
+          <!-- <span t-field="company.report_footer"/> -->
+        </div>
+        <div t-if="report_type == 'pdf'" class="text-muted">
+          Pagina:
+          <span class="page"/>
+          /
+          <span class="topage"/>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template id="external_layout">
+    <t t-if="not o" t-set-if="o" t-value="doc"/>
+    <t t-call="website_permiso.external_layout_standard"><t t-raw="0"/></t>
+
+  </template>
+
+  <template id="report_continuo">
+    <t t-call="web.html_container">
+      <t t-foreach="docs" t-as="doc">
+        <t t-call="website_permiso.external_layout">
+          <div style="margin-top:20px" class="font-weight-bold"><t t-esc="doc.name"/></div>
+          <div class="text-center">
+            <h1 class="my-3 text-center font-italic">FORMATO PERMISO DE TRABAJO</h1>
+          </div>
+          <div id="sectionimprimir" class="m-5">
+            <form method="POST" class="permiso-formulario toast-notify-permisos" t-att-data-permiso_id="doc.id">
+              <div class="row mt-2">
+                <div class="col-sm-3 font-weight-bold">
+                  Estado: <span t-field="doc.estado"/>
+                </div>
+              </div>
+              <div class="row m-1">
+                <div class="col-sm-12 bg-primary text-center border border-dark">TIPO DE TRABAJO</div>
+              </div>
+              <div class="m-1 border border-dark">
+                <t t-if="doc.altura">
+                  <div class="col-4 flex">
+                    <label>Trabajo en Altura</label>
+                  </div>
+                </t>
+                <t t-if="doc.confinado">
+                  <div class="col-4 flex">
+                    <label>Trabajo en Espacios Confinados</label>
+                  </div>
+                </t>
+                <t t-if="doc.calor">
+                  <div class="col-4 flex">
+                    <label>Trabajo en Calor</label>
+                  </div>
+                </t>
+                <t t-if="doc.frio">
+                  <div class="col-4 flex">
+                    <label>Trabajo en Frio</label>
+                  </div>
+                </t>
+                <t t-if="doc.electrico">
+                  <div class="col-4 flex">
+                    <label>Trabajo Eléctrico</label>
+                  </div>
+                </t>
+              </div>
+
+              <div class="row m-1">
+                <div class="col-sm-12 bg-primary text-center border border-dark">LUGAR DE TRABAJO Y EJECUTOR</div>
+              </div>
+              <div class="row m-1">
+                <div class="col-6">
+                  <div class="col-12 border bg-secondary">AREA</div>
+                  <input class="form-control area-select" t-att-value="doc.area" type="text"/>
+                  <div class="col-12 border bg-secondary">SUB - AREA</div>
+                  <input class="form-control sub-area-select" t-att-value="doc.sub_area" type="text"/>
+                  <div class="col-12 border bg-secondary">UBICACION</div>
+                  <input class="form-control ubicacion" t-att-value="doc.ubicacion_exacta" type="text"/>
+                </div>
+                <div class="col-6">
+                  <div class="flex">
+                    <div class="col-12 border bg-secondary">CONTRATISTA</div>
+                    <input t-att-value="doc.contratista_id.name" type="text" class="form-control fecha-inicio" />
+                  </div>
+                  <div class="flex">
+                    <div class="col-12 border bg-secondary">
+                      Fecha de Inicio
+                    </div>
+                    <div class="col-12 flex">
+                      <div class="row  ">
+                        <div class="col-12 m-0 p-0">
+                          <input t-att-value="doc.fecha_inicio" type="date" class="form-control fecha-fin" placeholder="dd/mm/aaaa"/>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="flex">
+                    <div class="col-12 border bg-secondary">
+                      Fecha de Fin
+                    </div>
+                    <div class="col-12 flex">
+                      <div class="row">
+                        <div class="col-12 m-0 p-0">
+                          <input t-att-value="doc.fecha_fin" type="date" class="form-control fecha-fin" placeholder="dd/mm/aaaa"/>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <div class="row m-1">
+                <div class="col-sm-12 bg-primary text-center border border-dark">DESCRIPCIÓN DEL TRABAJO</div>
+              </div>
+              <div class="row m-1">
+                <input class="col-12 decri-trabajo form-control" rows="3" t-att-value="doc.descripcion" type="text"/>
+              </div>
+              <span t-esc="doc.descripcion"></span>
+              <t t-if="doc.altura">
+                <div class="trabajo-altura">
+                  <div class="row m-1">
+                    <div class="col-sm-12 bg-primary text-center border border-dark">Trabajo en Altura</div>
+                  </div>
+                  <div class="m-1 border border-dark">
+                    <div class="col-12 col-sm-3 border border-dark text-center align-middle bg-secondary">
+                      EPP
+                    </div>
+                    <div class="col-12 border border-dark">
+                      <t t-as="epp_altura" t-foreach="doc.epp_altura_ids">
+                        <div class="row">
+                          <div class="col-10">
+                            <span t-field="epp_altura.name"/>
+                          </div>
+                          <div class="col-2 requisito-div">
+                            <t t-if="epp_altura.check"><input class="requisito-permiso" type="checkbox" t-att-data-linea_id="epp_altura.id" checked="1"/></t>
+                            <t t-else=""><input class="requisito-permiso" t-att-data-linea_id="epp_altura.id" type="checkbox"/></t>
+                          </div>
+                        </div>
+                      </t>
+                    </div>
+                  </div>
+                  <div class="m-1 border border-dark">
+                    <div class="col-12 col-sm-3 border border-dark text-center align-middle bg-secondary">
+                      HERRAMIENTAS
+                    </div>
+                    <div class="col-12 border border-dark">
+                      <t t-as="herramientas_altura" t-foreach="doc.herramienta_altura_ids">
+                        <div class="row">
+                          <div class="col-10">
+                            <span t-field="herramientas_altura.name"/>
+                          </div>
+                          <div class="col-2 requisito-div">
+                            <t t-if="herramientas_altura.check"><input class="requisito-permiso" t-att-data-linea_id="herramientas_altura.id" type="checkbox" checked="1"/></t>
+                            <t t-else=""><input class="requisito-permiso" t-att-data-linea_id="herramientas_altura.id" type="checkbox"/></t>
+                          </div>
+                        </div>
+                      </t>
+                    </div>
+                  </div>
+                  <div class="m-1 border border-dark">
+                    <div class="col-12 col-sm-3 border border-dark text-center align-middle bg-secondary">
+                      REQUISITOS DE PREPARACIÓN
+                    </div>
+                    <div class="col-12 border border-dark">
+                      <t t-as="preparacion_altura" t-foreach="doc.preparacion_altura_ids">
+                        <div class="row">
+                          <div class="col-10">
+                            <span t-field="preparacion_altura.name"/>
+                          </div>
+                          <div class="col-2 requisito-div">
+                            <t t-if="preparacion_altura.check"><input class="requisito-permiso" t-att-data-linea_id="preparacion_altura.id" type="checkbox" checked="1"/></t>
+                            <t t-else=""><input class="requisito-permiso" t-att-data-linea_id="preparacion_altura.id" type="checkbox"/></t>
+                          </div>
+                        </div>
+                      </t>
+                    </div>
+                  </div>
+                  <div class="m-1 border border-dark">
+                    <div class="col-12 col-sm-3 border border-dark text-center align-middle bg-secondary">
+                      CERRAMIENTO DE ABERTURAS
+                    </div>
+                    <div class="col-12 border border-dark">
+                      <t t-as="cerramiento_altura" t-foreach="doc.cerramiento_altura_ids">
+                        <div class="row">
+                          <div class="col-10">
+                            <span t-field="cerramiento_altura.name"/>
+                          </div>
+                          <div class="col-2 requisito-div">
+                            <t t-if="cerramiento_altura.check"><input class="requisito-permiso" t-att-data-linea_id="cerramiento_altura.id" type="checkbox" checked="1"/></t>
+                            <t t-else=""><input class="requisito-permiso" t-att-data-linea_id="cerramiento_altura.id" type="checkbox"/></t>
+                          </div>
+                        </div>
+                      </t>
+                    </div>
+
+                  </div>
+                  <div class="m-1 border border-dark">
+                    <div class="col-12 col-sm-3 border border-dark text-center align-middle bg-secondary">
+                      CONDICIONES DE SEGURIDAD
+                    </div>
+                    <div class="col-12 border border-dark">
+                      <t t-as="seguridad_altura" t-foreach="doc.seguridad_altura_ids">
+                        <div class="row">
+                          <div class="col-10">
+                            <span t-field="seguridad_altura.name"/>
+                          </div>
+                          <div class="col-2 requisito-div">
+                            <t t-if="seguridad_altura.check"><input class="requisito-permiso" t-att-data-linea_id="seguridad_altura.id" type="checkbox" checked="1"/></t>
+                            <t t-else=""><input class="requisito-permiso" t-att-data-linea_id="seguridad_altura.id" type="checkbox"/></t>
+                          </div>
+                        </div>
+                      </t>
+                    </div>
+
+                  </div>
+                  <div class="m-1 border border-dark">
+                    <div class="col-12 col-sm-3 border border-dark text-center align-middle bg-secondary">
+                      <span class="align-middle">Otras Condiciones</span>
+                    </div>
+                    <div class="col-12 border border-dark">
+                      <t t-as="epp_altura" t-foreach="doc.otras_altura_ids">
+                        <div class="row">
+                          <div class="col-10">
+                            <span t-field="epp_altura.name"/>
+                          </div>
+                          <div class="col-2 requisito-div">
+                            <t t-if="epp_altura.check"><input class="requisito-permiso" type="checkbox" t-att-data-linea_id="epp_altura.id" checked="1"/></t>
+                            <t t-else=""><input class="requisito-permiso" t-att-data-linea_id="epp_altura.id" type="checkbox"/></t>
+                          </div>
+                        </div>
+                      </t>
+                    </div>
+                  </div>
+                </div>
+              </t>
+              <!-- espacios confinado-->
+              <t t-if="doc.confinado">
+                <div class="espacios-confinados">
+                  <div class="row m-1">
+                    <div class="col-sm-12 bg-primary text-center border border-dark">Trabajo en Espacios Confinados</div>
+                  </div>
+                  <div class="m-1 border border-dark">
+                    <div class="col-12 col-sm-3 border border-dark text-center align-middle bg-secondary">
+                      EPP
+                    </div>
+                    <div class="col-12 border border-dark">
+                      <t t-as="epp_confinado" t-foreach="doc.epp_confinado_ids">
+                        <div class="row">
+                          <div class="col-10">
+                            <span t-esc="epp_confinado.name"/>
+                          </div>
+                          <div class="col-2 requisito-div">
+                            <t t-if="epp_confinado.check"><input class="requisito-permiso" t-att-data-linea_id="epp_confinado.id" type="checkbox" checked="1"/></t>
+                            <t t-else=""><input class="requisito-permiso" t-att-data-linea_id="epp_confinado.id" type="checkbox"/></t>
+                          </div>
+                        </div>
+                      </t>
+                    </div>
+                  </div>
+                  <div class="m-1 border border-dark">
+                    <div class="col-12 col-sm-3 border border-dark text-center align-middle bg-secondary">
+                      HERRAMIENTAS
+                    </div>
+                    <div class="col-12 border border-dark">
+                      <t t-as="herramientas_altura" t-foreach="doc.herramienta_confinado_ids">
+                        <div class="row">
+                          <div class="col-10">
+                            <span t-field="herramientas_altura.name"/>
+                          </div>
+                          <div class="col-2 requisito-div">
+                            <t t-if="herramientas_altura.check"><input class="requisito-permiso" t-att-data-linea_id="herramientas_altura.id" type="checkbox" checked="1"/></t>
+                            <t t-else=""><input class="requisito-permiso" t-att-data-linea_id="herramientas_altura.id" type="checkbox"/></t>
+                          </div>
+                        </div>
+                      </t>
+                    </div>
+
+                  </div>
+                  <div class="m-1 border border-dark">
+                    <div class="col-12 col-sm-3 border border-dark text-center align-middle bg-secondary">
+                      REQUISITOS DE PREPARACIÓN
+                    </div>
+                    <div class="col-12 border border-dark">
+                      <t t-as="preparacion_altura" t-foreach="doc.preparacion_confinado_ids">
+                        <div class="row">
+                          <div class="col-10">
+                            <span t-field="preparacion_altura.name"/>
+                          </div>
+                          <div class="col-2 requisito-div">
+                            <t t-if="preparacion_altura.check"><input class="requisito-permiso" t-att-data-linea_id="preparacion_altura.id" type="checkbox" checked="1"/></t>
+                            <t t-else=""><input class="requisito-permiso" t-att-data-linea_id="preparacion_altura.id" type="checkbox"/></t>
+                          </div>
+                        </div>
+                      </t>
+                    </div>
+                  </div>
+                  <div class="m-1 border border-dark">
+                    <div class="col-12 col-sm-3 border border-dark text-center align-middle bg-secondary">
+                      CERRAMIENTO DE ABERTURAS
+                    </div>
+                    <div class="col-12 border border-dark">
+                      <t t-as="cerramiento_altura" t-foreach="doc.cerramiento_confinado_ids">
+                        <div class="row">
+                          <div class="col-10">
+                            <span t-field="cerramiento_altura.name"/>
+                          </div>
+                          <div class="col-2 requisito-div">
+                            <t t-if="cerramiento_altura.check"><input t-att-data-linea_id="cerramiento_altura.id" class="requisito-permiso" type="checkbox" checked="1"/></t>
+                            <t t-else=""><input t-att-data-linea_id="cerramiento_altura.id" class="requisito-permiso" type="checkbox"/></t>
+                          </div>
+                        </div>
+                      </t>
+                    </div>
+
+                  </div>
+                  <div class="m-1 border border-dark">
+                    <div class="col-12 col-sm-3 border border-dark text-center align-middle bg-secondary">
+                      CONDICIONES DE SEGURIDAD
+                    </div>
+                    <div class="col-12 border border-dark">
+                      <t t-as="seguridad_altura" t-foreach="doc.seguridad_confinado_ids">
+                        <div class="row">
+                          <div class="col-10">
+                            <span t-field="seguridad_altura.name"/>
+                          </div>
+                          <div class="col-2 requisito-div">
+                            <t t-if="seguridad_altura.check"><input t-att-data-linea_id="seguridad_altura.id" class="requisito-permiso" type="checkbox" checked="1"/></t>
+                            <t t-else=""><input t-att-data-linea_id="seguridad_altura.id" class="requisito-permiso" type="checkbox"/></t>
+                          </div>
+                        </div>
+                      </t>
+                    </div>
+
+                  </div>
+                  <div class="m-1 border border-dark">
+                    <div class="col-12 col-sm-3 border border-dark text-center align-middle bg-secondary">
+                      <span class="align-middle">Otras Condiciones</span>
+                    </div>
+                    <div class="col-12 border border-dark">
+                      <t t-as="epp_altura" t-foreach="doc.otras_confinado_ids">
+                        <div class="row">
+                          <div class="col-10">
+                            <span t-field="epp_altura.name"/>
+                          </div>
+                          <div class="col-2 requisito-div">
+                            <t t-if="epp_altura.check"><input class="requisito-permiso" type="checkbox" t-att-data-linea_id="epp_altura.id" checked="1"/></t>
+                            <t t-else=""><input class="requisito-permiso" t-att-data-linea_id="epp_altura.id" type="checkbox"/></t>
+                          </div>
+                        </div>
+                      </t>
+                    </div>
+                  </div>
+                </div>
+              </t>
+              <t t-if="doc.calor">
+                <div class="trabajo-caliente">
+                  <div class="row m-1">
+                    <div class="col-sm-12 bg-primary text-center border border-dark">Trabajo en Caliente</div>
+                  </div>
+                  <div class="m-1 border border-dark">
+                    <div class="col-12 col-sm-3 border border-dark text-center align-middle bg-secondary">
+                      EPP
+                    </div>
+                    <div class="col-12 border border-dark">
+                      <t t-as="epp_altura" t-foreach="doc.epp_calor_ids">
+                        <div class="row">
+                          <div class="col-10">
+                            <span t-field="epp_altura.name"/>
+                          </div>
+                          <div class="col-2 requisito-div">
+                            <t t-if="epp_altura.check"><input t-att-data-linea_id="epp_altura.id" class="requisito-permiso" type="checkbox" checked="1"/></t>
+                            <t t-else=""><input t-att-data-linea_id="epp_altura.id" class="requisito-permiso" type="checkbox"/></t>
+                          </div>
+                        </div>
+                      </t>
+                    </div>
+                  </div>
+                  <div class="m-1 border border-dark">
+                    <div class="col-12 col-sm-3 border border-dark text-center align-middle bg-secondary">
+                      HERRAMIENTAS
+                    </div>
+                    <div class="col-12 border border-dark">
+                      <t t-as="herramientas_altura" t-foreach="doc.herramienta_calor_ids">
+                        <div class="row">
+                          <div class="col-10">
+                            <span t-field="herramientas_altura.name"/>
+                          </div>
+                          <div class="col-2 requisito-div">
+                            <t t-if="herramientas_altura.check"><input t-att-data-linea_id="herramientas_altura.id" class="requisito-permiso" type="checkbox" checked="1"/></t>
+                            <t t-else=""><input t-att-data-linea_id="herramientas_altura.id" class="requisito-permiso" type="checkbox"/></t>
+                          </div>
+                        </div>
+                      </t>
+                    </div>
+                  </div>
+                  <div class="m-1 border border-dark">
+                    <div class="col-12 col-sm-3 border border-dark text-center align-middle bg-secondary">
+                      REQUISITOS DE PREPARACIÓN
+                    </div>
+                    <div class="col-12 border border-dark">
+                      <t t-as="preparacion_altura" t-foreach="doc.preparacion_calor_ids">
+                        <div class="row">
+                          <div class="col-10">
+                            <span t-field="preparacion_altura.name"/>
+                          </div>
+                          <div class="col-2 requisito-div">
+                            <t t-if="preparacion_altura.check"><input t-att-data-linea_id="preparacion_altura.id" class="requisito-permiso" type="checkbox" checked="1"/></t>
+                            <t t-else=""><input t-att-data-linea_id="preparacion_altura.id" class="requisito-permiso" type="checkbox"/></t>
+                          </div>
+                        </div>
+                      </t>
+                    </div>
+                  </div>
+                  <div class="m-1 border border-dark">
+                    <div class="col-12 col-sm-3 border border-dark text-center align-middle bg-secondary">
+                      CERRAMIENTO DE ABERTURAS
+                    </div>
+                    <div class="col-12 border border-dark">
+                      <t t-as="cerramiento_altura" t-foreach="doc.cerramiento_calor_ids">
+                        <div class="row">
+                          <div class="col-10">
+                            <span t-field="cerramiento_altura.name"/>
+                          </div>
+                          <div class="col-2 requisito-div">
+                            <t t-if="cerramiento_altura.check"><input t-att-data-linea_id="cerramiento_altura.id" class="requisito-permiso" type="checkbox" checked="1"/></t>
+                            <t t-else=""><input t-att-data-linea_id="cerramiento_altura.id" class="requisito-permiso" type="checkbox"/></t>
+                          </div>
+                        </div>
+                      </t>
+                    </div>
+
+                  </div>
+                  <div class="m-1 border border-dark">
+                    <div class="col-12 col-sm-3 border border-dark text-center align-middle bg-secondary">
+                      CONDICIONES DE SEGURIDAD
+                    </div>
+                    <div class="col-12 border border-dark">
+                      <t t-as="seguridad_altura" t-foreach="doc.seguridad_calor_ids">
+                        <div class="row">
+                          <div class="col-10">
+                            <span t-field="seguridad_altura.name"/>
+                          </div>
+                          <div class="col-2 requisito-div">
+                            <t t-if="seguridad_altura.check"><input t-att-data-linea_id="seguridad_altura.id" class="requisito-permiso" type="checkbox" checked="1"/></t>
+                            <t t-else=""><input t-att-data-linea_id="seguridad_altura.id" class="requisito-permiso" type="checkbox"/></t>
+                          </div>
+                        </div>
+                      </t>
+                    </div>
+
+                  </div>
+                  <div class="m-1 border border-dark">
+                    <div class="col-12 col-sm-3 border border-dark text-center align-middle bg-secondary">
+                      <span class="align-middle">Otras Condiciones</span>
+                    </div>
+                    <div class="col-12 border border-dark">
+                      <t t-as="epp_altura" t-foreach="doc.otras_calor_ids">
+                        <div class="row">
+                          <div class="col-10">
+                            <span t-field="epp_altura.name"/>
+                          </div>
+                          <div class="col-2 requisito-div">
+                            <t t-if="epp_altura.check"><input class="requisito-permiso" type="checkbox" t-att-data-linea_id="epp_altura.id" checked="1"/></t>
+                            <t t-else=""><input class="requisito-permiso" t-att-data-linea_id="epp_altura.id" type="checkbox"/></t>
+                          </div>
+                        </div>
+                      </t>
+                    </div>
+                  </div>
+                </div>
+              </t>
+              <t t-if="doc.frio">
+                <div class="trabajo-frio">
+                  <div class="row m-1">
+                    <div class="col-sm-12 bg-primary text-center border border-dark">Trabajo en Frio</div>
+                  </div>
+                  <div class="m-1 border border-dark">
+                    <div class="col-12 col-sm-3 border border-dark text-center align-middle bg-secondary">
+                      EPP
+                    </div>
+                    <div class="col-12 border border-dark">
+                      <t t-as="epp_altura" t-foreach="doc.epp_frio_ids">
+                        <div class="row">
+                          <div class="col-10">
+                            <span t-field="epp_altura.name"/>
+                          </div>
+                          <div class="col-2 requisito-div">
+                            <t t-if="epp_altura.check"><input t-att-data-linea_id="epp_altura.id" class="requisito-permiso" type="checkbox" checked="1"/></t>
+                            <t t-else=""><input t-att-data-linea_id="epp_altura.id" class="requisito-permiso" type="checkbox"/></t>
+                          </div>
+                        </div>
+                      </t>
+                    </div>
+                  </div>
+                  <div class="m-1 border border-dark">
+                    <div class="col-12 col-sm-3 border border-dark text-center align-middle bg-secondary">
+                      HERRAMIENTAS
+                    </div>
+                    <div class="col-12 border border-dark">
+                      <t t-as="herramientas_altura" t-foreach="doc.herramienta_frio_ids">
+                        <div class="row">
+                          <div class="col-10">
+                            <span t-field="herramientas_altura.name"/>
+                          </div>
+                          <div class="col-2 requisito-div">
+                            <t t-if="herramientas_altura.check"><input t-att-data-linea_id="herramientas_altura.id" class="requisito-permiso" type="checkbox" checked="1"/></t>
+                            <t t-else=""><input t-att-data-linea_id="herramientas_altura.id" class="requisito-permiso" type="checkbox"/></t>
+                          </div>
+                        </div>
+                      </t>
+                    </div>
+
+                  </div>
+                  <div class="m-1 border border-dark">
+                    <div class="col-12 col-sm-3 border border-dark text-center align-middle bg-secondary">
+                      REQUISITOS DE PREPARACIÓN
+                    </div>
+                    <div class="col-12 border border-dark">
+                      <t t-as="preparacion_altura" t-foreach="doc.preparacion_frio_ids">
+                        <div class="row">
+                          <div class="col-10">
+                            <span t-field="preparacion_altura.name"/>
+                          </div>
+                          <div class="col-2 requisito-div">
+                            <t t-if="preparacion_altura.check"><input t-att-data-linea_id="preparacion_altura.id" class="requisito-permiso" type="checkbox" checked="1"/></t>
+                            <t t-else=""><input t-att-data-linea_id="preparacion_altura.id" class="requisito-permiso" type="checkbox"/></t>
+                          </div>
+                        </div>
+                      </t>
+                    </div>
+                  </div>
+                  <div class="m-1 border border-dark">
+                    <div class="col-12 col-sm-3 border border-dark text-center align-middle bg-secondary">
+                      CERRAMIENTO DE ABERTURAS
+                    </div>
+                    <div class="col-12 border border-dark">
+                      <t t-as="cerramiento_altura" t-foreach="doc.cerramiento_frio_ids">
+                        <div class="row">
+                          <div class="col-10">
+                            <span t-field="cerramiento_altura.name"/>
+                          </div>
+                          <div class="col-2 requisito-div">
+                            <t t-if="cerramiento_altura.check"><input t-att-data-linea_id="cerramiento_altura.id" class="requisito-permiso" type="checkbox" checked="1"/></t>
+                            <t t-else=""><input t-att-data-linea_id="cerramiento_altura.id" class="requisito-permiso" type="checkbox"/></t>
+                          </div>
+                        </div>
+                      </t>
+                    </div>
+
+                  </div>
+                  <div class="m-1 border border-dark">
+                    <div class="col-12 col-sm-3 border border-dark text-center align-middle bg-secondary">
+                      CONDICIONES DE SEGURIDAD
+                    </div>
+                    <div class="col-12 border border-dark">
+                      <t t-as="seguridad_altura" t-foreach="doc.seguridad_frio_ids">
+                        <div class="row">
+                          <div class="col-10">
+                            <span t-field="seguridad_altura.name"/>
+                          </div>
+                          <div class="col-2 requisito-div">
+                            <t t-if="seguridad_altura.check"><input t-att-data-linea_id="seguridad_altura.id" class="requisito-permiso" type="checkbox" checked="1"/></t>
+                            <t t-else=""><input t-att-data-linea_id="seguridad_altura.id" class="requisito-permiso" type="checkbox"/></t>
+                          </div>
+                        </div>
+                      </t>
+                    </div>
+
+                  </div>
+                  <div class="m-1 border border-dark">
+                    <div class="col-12 col-sm-3 border border-dark text-center align-middle bg-secondary">
+                      <span class="align-middle">Otras Condiciones</span>
+                    </div>
+                    <div class="col-12 border border-dark">
+                      <t t-as="epp_altura" t-foreach="doc.otras_frio_ids">
+                        <div class="row">
+                          <div class="col-10">
+                            <span t-field="epp_altura.name"/>
+                          </div>
+                          <div class="col-2 requisito-div">
+                            <t t-if="epp_altura.check"><input class="requisito-permiso" type="checkbox" t-att-data-linea_id="epp_altura.id" checked="1"/></t>
+                            <t t-else=""><input class="requisito-permiso" t-att-data-linea_id="epp_altura.id" type="checkbox"/></t>
+                          </div>
+                        </div>
+                      </t>
+                    </div>
+                  </div>
+
+                </div>
+              </t>
+              <t t-if="doc.electrico">
+                <div class="trabajo-electrico">
+                  <div class="row m-1">
+                    <div class="col-sm-12 bg-primary text-center border border-dark">Trabajo Eléctrico</div>
+                  </div>
+                  <div class="m-1 border border-dark">
+                    <div class="col-12 col-sm-3 border border-dark text-center align-middle bg-secondary">
+                      EPP
+                    </div>
+                    <div class="col-12 border border-dark">
+                      <t t-as="epp_altura" t-foreach="doc.epp_electrico_ids">
+                        <div class="row">
+                          <div class="col-10">
+                            <span t-field="epp_altura.name"/>
+                          </div>
+                          <div class="col-2 requisito-div">
+                            <t t-if="epp_altura.check"><input t-att-data-linea_id="epp_altura.id" class="requisito-permiso" type="checkbox" checked="1"/></t>
+                            <t t-else=""><input t-att-data-linea_id="epp_altura.id" class="requisito-permiso" type="checkbox"/></t>
+                          </div>
+                        </div>
+                      </t>
+                    </div>
+                  </div>
+                  <div class="m-1 border border-dark">
+                    <div class="col-12 col-sm-3 border border-dark text-center align-middle bg-secondary">
+                      HERRAMIENTAS
+                    </div>
+                    <div class="col-12 border border-dark">
+                      <t t-as="herramientas_altura" t-foreach="doc.herramienta_electrico_ids">
+                        <div class="row">
+                          <div class="col-10">
+                            <span t-field="herramientas_altura.name"/>
+                          </div>
+                          <div class="col-2 requisito-div">
+                            <t t-if="herramientas_altura.check"><input t-att-data-linea_id="herramientas_altura.id" class="requisito-permiso" type="checkbox" checked="1"/></t>
+                            <t t-else=""><input t-att-data-linea_id="herramientas_altura.id" class="requisito-permiso" type="checkbox"/></t>
+                          </div>
+                        </div>
+                      </t>
+                    </div>
+                  </div>
+                  <div class="m-1 border border-dark">
+                    <div class="col-12 col-sm-3 border border-dark text-center align-middle bg-secondary">
+                      REQUISITOS DE PREPARACIÓN
+                    </div>
+                    <div class="col-12 border border-dark">
+                      <t t-as="preparacion_altura" t-foreach="doc.preparacion_electrico_ids">
+                        <div class="row">
+                          <div class="col-10">
+                            <span t-field="preparacion_altura.name"/>
+                          </div>
+                          <div class="col-2 requisito-div">
+                            <t t-if="preparacion_altura.check"><input t-att-data-linea_id="preparacion_altura.id" class="requisito-permiso" type="checkbox" checked="1"/></t>
+                            <t t-else=""><input t-att-data-linea_id="preparacion_altura.id" class="requisito-permiso" type="checkbox"/></t>
+                          </div>
+                        </div>
+                      </t>
+                    </div>
+                  </div>
+                  <div class="m-1 border border-dark">
+                    <div class="col-12 col-sm-3 border border-dark text-center align-middle bg-secondary">
+                      CERRAMIENTO DE ABERTURAS
+                    </div>
+                    <div class="col-12 border border-dark">
+                      <t t-as="cerramiento_altura" t-foreach="doc.cerramiento_electrico_ids">
+                        <div class="row">
+                          <div class="col-10">
+                            <span t-field="cerramiento_altura.name"/>
+                          </div>
+                          <div class="col-2 requisito-div">
+                            <t t-if="cerramiento_altura.check"><input t-att-data-linea_id="cerramiento_altura.id" class="requisito-permiso" type="checkbox" checked="1"/></t>
+                            <t t-else=""><input t-att-data-linea_id="cerramiento_altura.id" class="requisito-permiso" type="checkbox"/></t>
+                          </div>
+                        </div>
+                      </t>
+                    </div>
+
+                  </div>
+                  <div class="m-1 border border-dark">
+                    <div class="col-12 col-sm-3 border border-dark text-center align-middle bg-secondary">
+                      CONDICIONES DE SEGURIDAD
+                    </div>
+                    <div class="col-12 border border-dark">
+                      <t t-as="seguridad_altura" t-foreach="doc.seguridad_electrico_ids">
+                        <div class="row">
+                          <div class="col-10">
+                            <span t-field="seguridad_altura.name"/>
+                          </div>
+                          <div class="col-2 requisito-div">
+                            <t t-if="seguridad_altura.check"><input t-att-data-linea_id="seguridad_altura.id" class="requisito-permiso" type="checkbox" checked="1"/></t>
+                            <t t-else=""><input t-att-data-linea_id="seguridad_altura.id" class="requisito-permiso" type="checkbox"/></t>
+                          </div>
+                        </div>
+                      </t>
+                    </div>
+                  </div>
+
+                  <div class="m-1 border border-dark">
+                    <div class="col-12 col-sm-3 border border-dark text-center align-middle bg-secondary">
+                      <span class="align-middle">Otras Condiciones</span>
+                    </div>
+                    <div class="col-12 border border-dark">
+                      <t t-as="epp_altura" t-foreach="doc.otras_electrico_ids">
+                        <div class="row">
+                          <div class="col-10">
+                            <span t-field="epp_altura.name"/>
+                          </div>
+                          <div class="col-2 requisito-div">
+                            <t t-if="epp_altura.check"><input class="requisito-permiso" type="checkbox" t-att-data-linea_id="epp_altura.id" checked="1"/></t>
+                            <t t-else=""><input class="requisito-permiso" t-att-data-linea_id="epp_altura.id" type="checkbox"/></t>
+                          </div>
+                        </div>
+                      </t>
+                    </div>
+                  </div>
+                </div>
+              </t>
+              <div>
+                <div class="row m-1 permiso-40">
+                  <div class="col-12 col-sm-9 bg-primary text-center border border-dark">TRABAJADORES</div>
+                </div>
+                <div class="m-1 border border-dark">
+                  <t t-as="empleado" t-foreach="doc.empleados_ids">
+                    <div class="col-12">
+                      <span t-field="empleado.trabajador_id.name"/>
+                    </div>
+                  </t>
+                </div>
+              </div>
+              <t t-if="doc.observacion_auto or doc.observacion_apro">
+                <div class="row m-1">
+                  <div class="col-12 bg-primary text-center border border-dark">COMENTARIOS</div>
+                </div>
+                <div class="row m-1">
+                  <div class="col-6 bg-primary text-center border border-dark">AUTORIZADOR</div>
+                  <div class="col-6 bg-primary text-center border border-dark">APROBADOR</div>
+                </div>
+                <div class="row m-1">
+                  <div class="col-6  text-center border border-dark">
+                    <span t-field="doc.observacion_auto"/></div>
+                  <div class="col-6  text-center border border-dark">
+                    <span t-field="doc.observacion_apro"/></div>
+                </div>
+              </t>
+
+              <div>
+                <div class="row m-1">
+                  <div class="px-0 col-4 bg-primary text-center border border-dark">SOLICITANTE</div>
+                  <div class="px-0 col-4 bg-primary text-center border border-dark">AUTORIZADOR</div>
+                  <div class="px-0 col-4 bg-primary text-center border border-dark">APROBADOR</div>
+                </div>
+                <div class="row m-1">
+                  <div class="col-4 text-center border border-dark px-0">
+                    <span t-field="doc.solicitante_id.name"/>
+                  </div>
+                  <div class="col-4 text-center border border-dark px-0">
+                    <span t-field="doc.autorizador_id.name"/>
+                  </div>
+                  <div class="col-4 text-center border border-dark px-0">
+                    <span t-field="doc.aprobador_id.name"/>
+                  </div>
+                </div>
+                <div class="row m-1">
+                  <div class="col-4 text-center border border-dark px-0">
+                    <t t-if="doc.solicitante_id.signature_binary">
+                      <img style="width:100%" t-attf-src="data:image/png;base64, #{doc.solicitante_id.signature_binary}"/>
+                    </t>
+                  </div>
+                  <div class="col-4 text-center border border-dark px-0">
+                    <t t-if="doc.autorizador_id.signature_binary">
+                      <img style="width:100%" t-attf-src="data:image/png;base64, #{doc.autorizador_id.signature_binary}"/>
+                    </t>
+                  </div>
+                  <div class="col-4 text-center border border-dark px-0">
+                    <t t-if="doc.aprobador_id.signature_binary">
+                      <img style="width:100%" t-attf-src="data:image/png;base64, #{doc.autorizador_id.signature_binary}"/>
+                    </t>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </t>
+      </t>
+    </t>
+  </template>
+</odoo>

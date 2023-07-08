@@ -1,0 +1,31 @@
+<odoo>
+    <data>
+         <record  id="category_permisos_trabajo" model="ir.module.category">
+            <field name="name">Permios de Trabajo</field>
+        </record>
+
+        <record id="group_permiso_soli" model="res.groups">
+            <field name="name">Solicitante</field>
+            <field name="category_id" ref="category_permisos_trabajo" />
+        </record>
+
+        <record id="group_permiso_aut" model="res.groups">
+            <field name="name">Autorizador </field>
+            <field name="category_id" ref="category_permisos_trabajo" />
+        </record>
+
+        <record id="group_permiso_apro" model="res.groups">
+            <field name="name">Aprobador</field>
+            <field name="category_id" ref="category_permisos_trabajo" />
+        </record>
+
+        <record id="group_permiso_admin" model="res.groups">
+            <field name="name">Administrador</field>
+            <field name="category_id" ref="category_permisos_trabajo" />
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+
+      
+
+    </data>
+</odoo>

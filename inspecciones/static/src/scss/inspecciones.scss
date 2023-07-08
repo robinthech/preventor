@@ -1,0 +1,70 @@
+.consolidado_inspeccion_substandar{
+  .search-section-reporte{
+      background: #1A4668;
+      padding: 2rem;
+  }
+  .wrn-btn-reporte{
+      width: 100%;
+      font-size: 16px;
+      font-weight: 400;
+      text-transform: capitalize;
+       height: calc(3rem + 2px) !important;
+       border-radius:0;
+       background-color:  #00d084;
+  }
+  .loading-learning {
+    display: flex;
+    background-color: rgb(238, 231, 213);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40vh;
+    margin: 0;
+  }
+
+  .circle-loading {
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 50%;
+    margin: 3px;
+    animation: jump 0.5s ease-in infinite;
+  }
+
+  .circle-loading:nth-of-type(1) {
+    background-color: rgb(20, 101, 106);
+  }
+
+  .circle-loading:nth-of-type(2) {
+    animation-delay: 0.1s;
+    background-color: rgb(250, 114, 104);
+  }
+
+  .circle-loading:nth-of-type(3) {
+    animation-delay: 0.2s;
+    background-color: rgb(148, 219, 223);
+  }
+
+  @keyframes jump {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+}
+.color-inspeccion-1{
+  background-color: #ffddc1;
+}
+
+.color-inspeccion-2{
+  background-color: #ffff72;
+}
+
+.color-inspeccion-3{
+  background-color: #80e27e;
+}
+.color-inspeccion-4{
+  background-color: #67daff;
+}

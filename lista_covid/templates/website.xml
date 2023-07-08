@@ -1,0 +1,416 @@
+<odoo>
+  <template id="lista_vigilancia_covid" name="Lista de Chequeo">
+    <t t-call="website.layout">
+      <t t-set="no_header" t-value="True"/>
+      <t t-set="no_footer" t-value="True"/>
+      <nav class="navbar navbar-expand-md navbar-dark bg-primary accidente">
+        <div class="container">
+
+          <button type="button" id="sidebarCollapse1" class="btn btn-info display-block">
+            <i class="fa fa-arrow-right"></i>
+          </button>
+          <a class="navbar-brand text-white d-flex align-items-center" href="/">
+            <img src="/registro_accidente/static/description/preventor isotipo.png" width="30" height="30" class="d-inline-block align-top mr-1" alt=""/>
+            PREVENTOR
+          </a>
+          <div id="top_menu_collapse" aria-expanded="false">
+            <ul class="nav ml-auto text-right" id="top_menu">
+              <li class="nav-item divider"></li>
+              <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle align-items-center d-flex" data-toggle="dropdown">
+                  <i class="fa fa-user-circle mr-1"></i>
+                  <b>
+                    <span t-esc="user_id.name[:23] + '...' if user_id.name and len(user_id.name) &gt; 25 else user_id.name"/>
+                  </b>
+                </a>
+                <div class="dropdown-menu js_usermenu" role="menu">
+
+                  <a class="dropdown-item" t-attf-href="/usuarios" role="menuitem">Panel de control</a>
+                  <a id="o_logout" class="dropdown-item" role="menuitem" href="/web/session/logout?redirect=https://softwaresst.com/">Cerrar sesión</a>
+                </div>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="wrapper modulo-wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar" class="bg-info">
+          <ul class="list-unstyled components">
+            <p class="bg-success text-center" style="height:60px;">
+              <strong>MODULO DE LISTA DE CHEQUEO DE VIGILANCIA DE LA COVID-19</strong>
+            </p>
+            <li>
+              <a class="" href="/lista_covid">LISTA DE CHEQUEOS</a>
+            </li>
+            <li>
+              <a href="/lista_covid/guia">INSTRUCCIONES</a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content" class="list-anexo-cuatro" t-att-data-empresa_id="empresa.id">
+          <button type="button" id="sidebarCollapse" class="btn btn-info display-none">
+            <i class="fa fa-align-left"></i>
+          </button>
+          <div class="row py-2">
+            <div class="col-12">
+              <div class="alert alert-primary text-center" role="alert">
+                <h4>LISTA DE CHEQUEOS DE VIGILANCIA DE LA COVID-19
+                </h4>
+              </div>
+              <button type="button" class="btn bg-success" data-toggle="modal" t-attf-data-target="#crearregistro">NUEVO REGISTRO</button>
+              <div class="modal fade" t-attf-id="crearregistro" t-att-aria-hidden="true" tabindex="-1" role="dialog" aria-labelledby="exampleModalTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">NUEVO REGISTRO</h5>
+                    </div>
+                    <div class="modal-body">
+                      FECHA
+                      <input class="form-control col-12" t-att-value="fecha_actual" name="new-registro-fecha" type="date"/>
+                      EMPRESA
+                      <input class="form-control col-12" name="new-registro-empresa" type="text"/>
+                      RUC
+                      <input class="form-control col-12" name="new-registro-ruc" type="text"/>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Descartar</button>
+                      <!--Guardar requiere de js-->
+                      <button type="button" class="btn btn-primary botton-chequeo-vigilancia">Guardar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <hr/>
+              <div class="table-responsive">
+                <table id="modulo-anexo-cuatro" class="table table-hover responsive nowrap" style="width:100%; text-align: center;" t-att-data-plan_id="plan.id">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th>REGISTRO</th>
+                      <th>FECHA</th>
+                      <th>EDITAR</th>
+                      <th>
+                        EXCEL
+                      </th>
+                      <th>
+                        ELIMINAR
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody >
+                    <t t-set="contador" t-value="0"/>
+
+                    <t t-foreach="registros" t-as="registro">
+                      <t t-set="contador" t-value="contador + 1"/>
+                      <tr>
+                        <td>
+                          <div>
+                            <span t-field="registro.sequence"/>
+                          </div>
+                        </td>
+                        <td >
+                          <span t-field="registro.fecha"/>
+                        </td>
+                        <td >
+                          <a class="btn btn-success" t-att-href="'/lista_covid/%s' % (registro.id)" role="button">
+                            <i class="fa fa-pencil-square-o" style="font-size:20px"></i>
+
+                          </a>
+                        </td>
+                        <!-- <t t-if="registro.txt_binary_excel_cal">
+                          <t t-if="(plan.report_excel or contador==1)">
+                            <td >
+                              <a class="btn btn-info" role="button" t-attf-href="/web/content?model=covid.anexo&amp;field=txt_binary_excel_cal&amp;id={{registro.id}}&amp;filename={{registro.txt_excel_cal}}&amp;download=true">
+                                <i class="fa fa-file-excel-o" style="font-size:20px"></i>
+                              </a>
+                            </td>
+                          </t>
+                          <t t-else="">
+                            <td class="line-excel">
+                              <a class="btn btn-info text-light file-gratis">
+                                <i class="fa fa-file-excel-o" style="font-size:20px"></i>
+                              </a>
+                            </td>
+
+                          </t>
+                        </t>
+                        <t t-else="">
+                          <td class="line-excel"></td>
+                        </t> -->
+                        <td >
+                          <a class="btn btn-info" role="button" t-attf-href="/web/content?model=covid.anexo&amp;field=txt_binary_excel_cal&amp;id={{registro.id}}&amp;filename={{registro.txt_excel_cal}}&amp;download=true">
+                            <i class="fa fa-file-excel-o" style="font-size:20px"></i>
+                          </a>
+                        </td>
+                        <td>
+                          <div >
+                            <button type="button" class="btn btn-danger" data-toggle="modal" t-attf-data-target="#lista-{{registro.id}}">
+                              <i class="fa fa-trash" style="font-size:20px"></i>
+
+                            </button>
+                            <div class="modal fade" t-attf-id="lista-{{registro.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                  </div>
+                                  <div class="modal-body">
+                                    <div class="alert alert-danger" role="alert">
+                                      ESTA SEGURO DE ELIMINAR
+                                    </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                                    <button type="button" class="btn btn-secondary botton-eliminar-chequeo-vigilancia" t-att-data-registro_id="registro.id">ELIMINAR</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                        </td>
+                      </tr>
+                    </t>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </t>
+  </template>
+
+  <template id="lista_covid_form" name="CHEQUEO DE VIGILANCIA">
+    <t t-call="website.layout">
+      <t t-set="no_header" t-value="True"/>
+      <t t-set="no_footer" t-value="True"/>
+      <nav class="navbar navbar-expand-md navbar-dark bg-primary accidente">
+        <div class="container">
+
+          <button type="button" id="sidebarCollapse1" class="btn btn-info display-block">
+            <i class="fa fa-arrow-right"></i>
+          </button>
+          <a class="navbar-brand text-white d-flex align-items-center" href="/">
+            <img src="/registro_accidente/static/description/preventor isotipo.png" width="30" height="30" class="d-inline-block align-top mr-1" alt=""/>
+            PREVENTOR
+          </a>
+          <div id="top_menu_collapse" aria-expanded="false">
+            <ul class="nav ml-auto text-right" id="top_menu">
+              <li class="nav-item divider"></li>
+              <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle align-items-center d-flex" data-toggle="dropdown">
+                  <i class="fa fa-user-circle mr-1" style="font-size: 1.5rem"></i>
+                  <b>
+                    <span t-esc="user_id.name[:23] + '...' if user_id.name and len(user_id.name) &gt; 25 else user_id.name"/>
+                  </b>
+                </a>
+                <div class="dropdown-menu js_usermenu" role="menu">
+
+                  <a class="dropdown-item" t-attf-href="/usuarios" role="menuitem">Panel de control</a>
+                  <a id="o_logout" class="dropdown-item" role="menuitem" href="/web/session/logout?redirect=https://softwaresst.com/">Cerrar sesión</a>
+                </div>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="wrapper modulo-accidente">
+        <!-- Sidebar -->
+        <nav id="sidebar" class="bg-info">
+          <ul class="list-unstyled components">
+            <p class="bg-success" style="height:60px;">
+              <strong>MODULO DE LISTA DE CHEQUEO DE VIGILANCIA DE LA COVID-19</strong>
+            </p>
+            <li>
+              <a class="" href="/lista_covid">LISTA DE CHEQUEOS</a>
+            </li>
+            <li>
+              <a href="/lista_covid/guia">INSTRUCCIONES</a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content" class="width-content mx-auto">
+          <div class="form-lista-covid" t-att-data-registro_id="registro.id">
+
+            <div class="row" style="height: 10px;"></div>
+            <div class="alert alert-primary text-center" role="alert">
+              <h4>LISTA DE CHEQUEOS DE VIGILANCIA DE LA COVID-19
+              </h4>
+            </div>
+            <form action="">
+              <div class="form-group row align-items-center">
+                <label for="fecha_fin" class="control-label mr-3 col-sm-2 text-black">FECHA DE EVALUACIÓN:
+                </label>
+                <input name="fecha" type="date" t-att-value="registro.fecha" class="col-sm-2 mr-3 form-control fecha_fin registro-fecha-evaluacion" placeholder="dd/mm/aaaa"/>
+                <label for="fecha_fin" class="mr-3 col-form-label text-black">CÓDIGO:
+                </label>
+                <label class="col-form-label text-black"><t t-esc="registro.sequence"/></label>
+                <!-- <div class="col form-row align-items-center"> </div> -->
+              </div>
+              <div class="form-group row align-items-center">
+                <label for="company" class="control-label col-sm-2 text-black">EMPRESA EVALUADA:</label>
+                <div class="col-sm-10">
+                  <input type="text" name="empresa" t-att-value="registro.empresa" class="form-control registro-empresa" placeholder="" required="required"/>
+                </div>
+              </div>
+              <div class="form-group row align-items-center">
+                <label for="user" class="control-label col-sm-2 text-black">EVALUADO POR:</label>
+                <div class="col-sm-10">
+                  <input type="text" name="evaluado" t-att-value="registro.evaluado" class="form-control registro-evaluado" placeholder="" required="required"/>
+                </div>
+              </div>
+              <div class="form-group row align-items-center">
+                <label for="point" class="control-label col-sm-2 text-black">PUNTAJE OBTENIDO:</label>
+                <div class="col-sm-10">
+                  <input type="text" name="puntaje" t-att-value="registro.puntaje" class="form-control registro-evaluado" placeholder="" readonly="readonly" required="required"/>
+
+                </div>
+              </div>
+
+            </form>
+            <table class="table table-hover  responsive nowrap tabla-registro-accidente-form" style="width:100%; text-align: center;">
+              <thead class="bg-primary">
+                <tr class="bg-secondary">
+                  <th >ELEMENTO</th>
+                  <th >CUMPLE (SI/NO)</th>
+                  <th >DETALLES / PENDIENTES / POR MEJORAR</th>
+                </tr>
+
+              </thead>
+              <tbody >
+                    <t t-set="contador" t-value="0"/>
+                <t t-foreach="registro.lista_ids" t-as="linea">
+                  <tr >
+
+                    <td class="change-linea-anexo m-0 p-0" style="width:60%">
+                      <input class="form-control linea-field-name" style="font-weight:bold;" name="name" t-att-value="linea.name" type="text" t-att-data-linea_id="linea.id"/>
+                    </td>
+                    <td class="change-linea-anexo m-0 p-0 align-items-center w-8">
+
+                      <t t-if="linea.cumplimiento">
+                        <div class='checkbox-container' style="font-size:2em" >
+                            <input class="checkbox linea-field-cumplimiento" type="checkbox" name="cumplimiento" t-att-value="linea.cumplimiento" t-att-data-linea_id="linea.id" checked="1" />
+                            <div class="checkbox-visual">
+                              <div></div>
+                            </div>
+                          </div>
+
+                      </t>
+                      <t t-else="">
+                        <div class='checkbox-container' style="font-size:2em" >
+                            <input class="checkbox linea-field-cumplimiento" type="checkbox" name="cumplimiento" t-att-value="linea.cumplimiento" t-att-data-linea_id="linea.id" />
+                            <div class="checkbox-visual">
+                              <div></div>
+                            </div>
+                          </div>
+
+
+                      </t>
+
+
+                    </td>
+                    <td class="change-linea-anexo m-0 p-0 w-30">
+                      <input class="form-control linea-field-detalles " style="font-weight:bold;" name="detalles" t-att-value="linea.detalles" type="text" t-att-data-linea_id="linea.id"/>
+                    </td>
+                    <t t-if="contador!=0 and contador!=1">
+                      <td class="change-linea-anexo m-0 p-0">
+                        <button type="button" class="btn btn-primary font-weight-bold" data-toggle="modal" t-attf-data-target="#general-{{linea.id}}">
+                          <strong>+</strong>
+                        </button>
+                        <div class="modal fade" t-attf-id="general-{{linea.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">NUEVO ELEMENTO</h5>
+                              </div>
+                              <div class="modal-body">
+                                <strong>ELEMENTO</strong>
+                                <input class="col-12 form-control mt-1" name="new-objetivo-especifico" type="text"/>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                                <button type="button" t-att-data-general_id="linea.id" class="btn btn-primary nuevo-objetivo-especifico">GUARDAR</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </t>
+                  </tr>
+                  <t t-foreach="linea.sublista_ids" t-as="sublista">
+                    <tr>
+                      <td class="change-sublista-anexo m-0 p-0 w-62">
+                        <input class="form-control linea-field-name" name="name" t-att-value="sublista.name" type="text" t-att-data-linea_id="sublista.id"/>
+                      </td>
+                      <td class="change-sublista-anexo m-0 p-0 align-items-center  w-8">
+                        <t t-if="sublista.cumplimiento">
+                          <div class='checkbox-container' style="font-size:2em" >
+                              <input class="checkbox linea-field-cumplimiento" type="checkbox" name="cumplimiento" t-att-value="sublista.cumplimiento" t-att-data-linea_id="sublista.id" checked="1" />
+                              <div class="checkbox-visual">
+                                <div></div>
+                              </div>
+                            </div>
+
+
+                        </t>
+                        <t t-else="">
+                          <div class='checkbox-container' style="font-size:2em" >
+                              <input class="checkbox linea-field-cumplimiento" type="checkbox" name="cumplimiento" t-att-value="sublista.cumplimiento" t-att-data-linea_id="sublista.id"  />
+                              <div class="checkbox-visual">
+                                <div></div>
+                              </div>
+                            </div>
+
+                        </t>
+                      </td>
+                      <td class="change-sublista-anexo m-0 p-0  w-30">
+                        <input class="form-control linea-field-detalles" name="detalles" t-att-value="sublista.detalles" type="text" t-att-data-linea_id="sublista.id"/>
+                      </td>
+                    </tr>
+                  </t>
+                    <t t-set="contador" t-value="contador + 1"/>
+                </t>
+              </tbody>
+            </table>
+            <button type="button" class="btn bg-success" data-toggle="modal" t-attf-data-target="#crearregistro">NUEVO ELEMENTO</button>
+            <div class="modal fade" t-attf-id="crearregistro" t-att-aria-hidden="true" tabindex="-1" role="dialog" aria-labelledby="exampleModalTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">NUEVO ELEMENTO</h5>
+                  </div>
+                  <div class="modal-body">
+                    ELEMENTO
+                    <input class="form-control col-12" name="new-registro-name" type="text"/>
+                    CUMPLIMIENTO
+                    <input class="form-control col-12" name="new-registro-cumplimiento" type="checkbox"/>
+                    DETALLES
+                    <input class="form-control col-12" name="new-registro-detalles" type="text"/>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Descartar</button>
+                    <!--Guardar requiere de js-->
+                    <button type="button" class="btn btn-primary botton-elemento-vigilancia">Guardar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </t>
+  </template>
+
+</odoo>

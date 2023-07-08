@@ -1,0 +1,985 @@
+<odoo>
+  <template id="registro_incidente" name="Registro de enfermedades ocupacionales">
+    <t t-call="website.layout">
+      <t t-set="no_header" t-value="True"/>
+      <t t-set="no_footer" t-value="True"/>
+      <header>
+        <nav class="navbar navbar-expand-md navbar-dark bg-primary accidente">
+        <div class="container">
+          <a class="navbar-brand logo" href="https://softwaresst.com">
+            <img src="/web/image/website/1/logo/PREVENTOR?unique=43ff1c1" class="img img-fluid" alt=""/>
+          </a>
+          <div id="top_menu_collapse" aria-expanded="false">
+            <ul class="nav ml-auto text-right" id="top_menu">
+              <li class="nav-item divider"></li>
+              <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle align-items-center d-flex" data-toggle="dropdown">
+                  <i class="fa fa-user-circle mr-1"></i>
+                  <b>
+                    <span t-esc="user_id.name[:23] + '...' if user_id.name and len(user_id.name) &gt; 25 else user_id.name"/>
+                  </b>
+                </a>
+                <div class="dropdown-menu js_usermenu" role="menu">
+
+                  <a class="dropdown-item" t-attf-href="/usuarios" role="menuitem">Panel de control</a>
+                  <a id="o_logout" class="dropdown-item" role="menuitem" href="/web/session/logout?redirect=https://softwaresst.com/">Cerrar sesión</a>
+                </div>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+      </nav>
+      </header>
+      <div class="wrapper modulo-wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar" class="bg-info">
+          <ul class="list-unstyled components">
+            <p class="bg-success text-center">
+              <strong>MODULO DE ENFERMEDADES OCUPACIONALES</strong>
+            </p>
+            <li class="nav-item divider"></li>
+          </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content" class="registro-incidente">
+          <button type="button" id="sidebarCollapse" class="btn btn-info display-none">
+            <i class="fa fa-align-left"></i>
+          </button>
+          <div class="row py-2">
+            <div class="col-12">
+              <div class="alert alert-primary text-center" role="alert">
+                <h4>LISTADO DE ENFERMEDADES OCUPACIONALES</h4>
+              </div>
+              <div class="table-responsive">
+                <table id="modulo-lista-verificacion" class="table table-hover responsive nowrap text-center">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th>INCIDENTE</th>
+                      <th>EMPRESA</th>
+                      <th>RUC</th>
+                      <th>EDITAR</th>
+                      <th>ELIMINAR</th>
+                    </tr>
+                  </thead>
+                  <tbody >
+                    <t t-set="contador" t-value="0"/>
+                    <t t-foreach="verificaciones" t-as="verificacion">
+                      <t t-set="contador" t-value="contador + 1"/>
+                      <tr>
+                        <td>
+                          <div>
+                            <span t-field="verificacion.sequence"/>
+                          </div>
+                        </td>
+                        <td>
+                          <span t-field="verificacion.razon"/>
+                        </td>
+                        <td>
+                          <span t-field="verificacion.ruc"/>
+                        </td>
+                        <td>
+                          <a class="btn btn-success" t-att-href="'/enfermedades-ocupacionales/%s' % (verificacion.id)" role="button">
+                            <i class="fa fa-pencil-square-o"></i>
+
+                          </a>
+                        </td>
+                        <td>
+                          <div>
+                            <button type="button" class="btn btn-danger" data-toggle="modal" t-attf-data-target="#trabajador-{{verificacion.id}}">
+                              <i class="fa fa-trash"></i>
+                            </button>
+                            <div class="modal fade" t-attf-id="trabajador-{{verificacion.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                  </div>
+                                  <div class="modal-body">
+                                    <div class="alert alert-danger" role="alert">
+                                      ESTA SEGURO DE ELIMINAR
+                                    </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                                    <button type="button" class="btn btn-secondary botton-eliminar-verificacion" t-att-data-verificacion_id="verificacion.id">ELIMINAR</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                        </td>
+                      </tr>
+                    </t>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-center">
+
+            <button type="button" class="btn btn-success font-weight-bold" data-toggle="modal" data-target="#new_trabajadores">
+              <strong>Crear enfermedades ocupacionales</strong>
+            </button>
+            <div class="modal fade" id="new_trabajadores" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">NUEVO REGISTRO DE ENFERMEDADES OCUPACIONALES</h5>
+                  </div>
+                  <div class="modal-body">
+                    RUC
+                    <input class="col-12 form-control mt-1 mb-3" name="new-accidente-ruc" type="text"/>
+                    RAZON SOCIAL
+                    <input class="col-12 form-control mt-1 mb-3" name="new-accidente-razon" type="text"/>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                    <button type="button" class="btn btn-primary nuevo-registro-incidente">GUARDAR</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </t>
+  </template>
+  <template id="formulario_accidente" name="Registro de enfermedades ocupacionales">
+      <t t-call="website.layout">
+          <t t-set="no_header" t-value="True"/>
+          <t t-set="no_footer" t-value="True"/>
+          <header>
+            <nav class="navbar navbar-expand-md navbar-dark bg-primary accidente">
+            <div class="container">
+              <a class="navbar-brand logo" href="https://softwaresst.com">
+                <img src="/web/image/website/1/logo/PREVENTOR?unique=43ff1c1" class="img img-fluid" alt=""/>
+              </a>
+              <div id="top_menu_collapse" aria-expanded="false">
+                  <ul class="nav navbar-nav ml-auto text-right" id="top_menu">
+                  <li class="nav-item dropdown flot-right">
+                  </li>
+
+                  <li class="nav-item divider"></li>
+                  <li class="nav-item dropdown">
+                      <a href="#" class="nav-link dropdown-toggle align-items-center d-flex" data-toggle="dropdown"><i class="fa fa-user-circle mr-1" style="font-size: 1.5rem"></i>
+                      <b>
+                          <span t-esc="user_id.name[:23] + '...' if user_id.name and len(user_id.name) &gt; 25 else user_id.name"/>
+                      </b>
+                      </a>
+                      <div class="dropdown-menu js_usermenu" role="menu">
+
+                      <a class="dropdown-item" t-attf-href="/usuarios" role="menuitem">Panel de control</a>
+                      <a id="o_logout" class="dropdown-item" role="menuitem" href="/web/session/logout?redirect=https://softwaresst.com/">Cerrar sesión</a>
+                      </div>
+                  </li>
+
+                  </ul>
+              </div>
+              </div>
+          </nav>
+          </header>
+          <div class="wrapper modulo-wrapper" style="position:relative">
+          <!-- Sidebar -->
+              <nav id="sidebar" class="bg-info">
+              <ul class="list-unstyled components">
+                  <p class="bg-success" style="height:60px;">
+                  <strong>MODULO DE ENFERMEDADES OCUPACIONALES</strong>
+                  </p>
+                  <li>
+                    <a href="/enfermedades-ocupacionales">REGISTROS DE ENFERMEDADES OCUPACIONALES</a>
+                  </li>
+                  <li>
+                    <a href="/enfermedades-ocupacionales/configuracion">AGREGAR RESPONSABLE</a>
+                  </li>
+              </ul>
+              </nav>
+
+              <div id="content" class="section_enfermedades">
+                  <div class="mx-auto accidente_id" style="width:85%" t-att-data-accidente_id="incidente.id">
+                      <!-- <h1>AUDITORIA INTERNA</h1> -->
+                      <div class="row font-weight-bold bg-primary" style="height: 80px;">
+                          <div class="col-3 border border-dark p-2 d-flex align-items-center">
+                              <h5>N° REGISTRO:<br/><span t-field="incidente.sequence"/></h5>
+                          </div>
+                          <div class="col-9 border border-dark text-center p-2 d-flex align-items-center justify-content-center">
+                              <h3>REGISTRO DE ENFERMEDADES OCUPACIONALES</h3>
+                          </div>
+                      </div>
+                      <div class="row my-2">
+                          <div class="col-12 p-2 font-weight-bold border border-dark bg-secondary d-flex align-items-center shadow" style="height:30px;">
+                              <h6 class="mb-0">DATOS DEL EMPLEADOR</h6>
+                          </div>
+                      </div>
+                      <div class="row font-weight-bold  bg-primary text-center" style="height:80px">
+                          <div class="col-3 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              RAZÓN SOCIAL O DENOMINACIÓN SOCIAL
+                          </div>
+                          <div class="col-2 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              RUC
+                          </div>
+                          <div class="col-3 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              DOMICILIO (Dirección, distrito, departamento, provincia)
+                          </div>
+                          <div class="col-2 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              ACTIVIDAD ECONÓMICA
+                          </div>
+                          <div class="col-2 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              Nº TRABAJADORES EN EL CENTRO LABORAL
+                          </div>
+                      </div>
+                      <div class="row font-weight-bold text-center" style="height:40px">
+                          <div class="col-3 px-0 border border-dark d-flex align-items-center justify-content-center">
+                              <input type="text" name="razon" class="form-control h-100 linea_accidente" placeholder="Razon social" t-att-value="incidente.razon" style="border-radius:0px"/>
+                          </div>
+                          <div class="col-2 px-0 border border-dark d-flex align-items-center justify-content-center">
+                              <input type="text" name="ruc" class="form-control h-100 linea_accidente" placeholder="RUC" t-att-value="incidente.ruc" style="border-radius:0px"/>
+                          </div>
+                          <div class="col-3 px-0 border border-dark d-flex align-items-center justify-content-center">
+                              <input type="text" name="domicilio" class="form-control h-100 linea_accidente" placeholder="Domicilio" t-att-value="incidente.domicilio" style="border-radius:0px"/>
+                          </div>
+                          <div class="col-2 px-0 border border-dark d-flex align-items-center justify-content-center">
+                              <input type="text"  name="actividad" class="form-control h-100 linea_accidente" placeholder="Actividad" t-att-value="incidente.actividad" style="border-radius:0px"/>
+                          </div>
+                          <div class="col-2 px-0 border border-dark d-flex align-items-center justify-content-center">
+                              <input type="number" name="trabajadores" class="form-control h-100 linea_accidente" t-att-value="incidente.trabajadores" oninput="this.value = Math.abs(this.value)" style="border-radius:0px"/>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-12 p-2 font-weight-bold border border-dark d-flex align-items-center justify-content-center my-2 shadow" style="height:30px;">
+                              <h6 class="mb-0">COMPLETAR SÓLO EN CASO QUE LAS ACTIVIDADES DEL EMPLEADOR SEAN CONSIDERADAS DE ALTO RIESGO</h6>
+                          </div>
+                      </div>
+                      <div class="row font-weight-bold  bg-primary text-center" style="height:80px">
+                          <div class="col-3 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              N° TRABAJADORES AFILIADOS AL SCTR
+                          </div>
+                          <div class="col-3 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              N° TRABAJADORES NO AFILIADOS AL SCTR
+                          </div>
+                          <div class="col-6 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              NOMBRE DE LA ASEGURADORA
+                          </div>
+                      </div>
+                      <div class="row font-weight-bold text-center" style="height:40px">
+                          <div class="col-3 px-0 border border-dark d-flex align-items-center justify-content-center">
+                              <input type="number" name="trabajadores_afiliados" class="form-control h-100 linea_accidente" oninput="this.value = Math.abs(this.value)"  t-att-value="incidente.trabajadores_afiliados" style="border-radius:0px"/>
+                          </div>
+                          <div class="col-3 px-0 border border-dark d-flex align-items-center justify-content-center">
+                              <input type="number" name="trabajadores_no_afiliados" class="form-control h-100 linea_accidente" oninput="this.value = Math.abs(this.value)"  t-att-value="incidente.trabajadores_no_afiliados" style="border-radius:0px"/>
+                          </div>
+                          <div class="col-6 px-0 border border-dark d-flex align-items-center justify-content-center">
+                              <input type="text" name="aseguradora" class="form-control h-100 linea_accidente" placeholder="Aseguradora" t-att-value="incidente.aseguradora" style="border-radius:0px"/>
+                          </div>
+                      </div>
+                      <div class="row font-weight-bold  bg-primary text-center" style="height:50px">
+                          <div class="col-3 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              AÑO DE INICIO DE LA ACTIVIDAD
+                          </div>
+                          <div class="col-9 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              LÍNEAS DE PRODUCCIÓN Y/O SERVICIOS
+                          </div>
+                      </div>
+                      <div class="row font-weight-bold text-center auditoria-interna" style="height:90px">
+                          <div class="col-3 border border-dark px-0 d-flex align-items-center justify-content-center">
+                            <input type="number" oninput="this.value = Math.abs(this.value)" name="año" t-att-value="incidente.año" class="linea_accidente form-control h-100 form-control h-100 text-center font-weight-bold" style="border-radius:0px;font-size: 2.75rem;"/>
+                          </div>
+                          <div class="col-9 border border-dark px-0 justify-content-center">
+                            <textarea id="list" class="form-control h-100 linea_accidente" name="servicios" t-att-value="incidente.servicios" placeholder="Líneas de producción y servicios"/>
+                          </div>
+                      </div>
+                      <div id="accordion">
+                        <div class="card row my-3">
+                          <div class="card-header" id="headingOne">
+                            <h5 class="mb-0">
+                              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                <h6 class="mb-0">Completar sólo si contrata servicios de intermediación o tercerización:</h6>
+                              </button>
+                            </h5>
+                          </div>
+                          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div class="card-body">
+                              <div class="row">
+                                  <div class="col-12 p-2 font-weight-bold border border-dark bg-secondary d-flex align-items-center shadow my-2" style="height:30px;">
+                                      <h6 class="mb-0">DATOS DEL EMPLEADOR DE TERCERIZACIÓN</h6>
+                                  </div>
+                              </div>
+                              <div class="row font-weight-bold  bg-primary text-center" style="height:80px">
+                                  <div class="col-3 border border-dark p-2 d-flex align-items-center justify-content-center">
+                                      RAZÓN SOCIAL O DENOMINACIÓN SOCIAL
+                                  </div>
+                                  <div class="col-2 border border-dark p-2 d-flex align-items-center justify-content-center">
+                                      RUC
+                                  </div>
+                                  <div class="col-3 border border-dark p-2 d-flex align-items-center justify-content-center">
+                                      DOMICILIO (Dirección, distrito, departamento, provincia)
+                                  </div>
+                                  <div class="col-2 border border-dark p-2 d-flex align-items-center justify-content-center">
+                                      ACTIVIDAD ECONÓMICA
+                                  </div>
+                                  <div class="col-2 border border-dark p-2 d-flex align-items-center justify-content-center">
+                                      Nº TRABAJADORES EN EL CENTRO LABORAL
+                                  </div>
+                              </div>
+                              <div class="row font-weight-bold text-center" style="height:40px">
+                                  <div class="col-3 px-0 border border-dark d-flex align-items-center justify-content-center">
+                                      <input type="text" name="razon_terciario" class="form-control h-100 linea_accidente" placeholder="Razon social" t-att-value="incidente.razon_terciario" style="border-radius:0px"/>
+                                  </div>
+                                  <div class="col-2 px-0 border border-dark d-flex align-items-center justify-content-center">
+                                      <input type="text" name="ruc_terciario" class="form-control h-100 linea_accidente" placeholder="RUC" t-att-value="incidente.ruc_terciario" style="border-radius:0px"/>
+                                  </div>
+                                  <div class="col-3 px-0 border border-dark d-flex align-items-center justify-content-center">
+                                      <input type="text" name="domicilio_terciario" class="form-control h-100 linea_accidente" placeholder="Domicilio" t-att-value="incidente.domicilio_terciario" style="border-radius:0px"/>
+                                  </div>
+                                  <div class="col-2 px-0 border border-dark d-flex align-items-center justify-content-center">
+                                      <input type="text"  name="actividad_terciario" class="form-control h-100 linea_accidente" placeholder="Actividad" t-att-value="incidente.actividad_terciario" style="border-radius:0px"/>
+                                  </div>
+                                  <div class="col-2 px-0 border border-dark d-flex align-items-center justify-content-center">
+                                      <input type="number" name="trabajadores_terciario" class="form-control h-100 linea_accidente" t-att-value="incidente.trabajadores_terciario" oninput="this.value = Math.abs(this.value)" style="border-radius:0px"/>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-12 p-2 font-weight-bold border border-dark d-flex align-items-center justify-content-center my-2 shadow" style="height:30px;">
+                                      <h6 class="mb-0">COMPLETAR SÓLO EN CASO QUE LAS ACTIVIDADES DEL EMPLEADOR SEAN CONSIDERADAS DE ALTO RIESGO</h6>
+                                  </div>
+                              </div>
+                              <div class="row font-weight-bold  bg-primary text-center" style="height:80px">
+                                  <div class="col-3 border border-dark p-2 d-flex align-items-center justify-content-center">
+                                      N° TRABAJADORES AFILIADOS AL SCTR
+                                  </div>
+                                  <div class="col-3 border border-dark p-2 d-flex align-items-center justify-content-center">
+                                      N° TRABAJADORES NO AFILIADOS AL SCTR
+                                  </div>
+                                  <div class="col-6 border border-dark p-2 d-flex align-items-center justify-content-center">
+                                      NOMBRE DE LA ASEGURADORA
+                                  </div>
+                              </div>
+                              <div class="row font-weight-bold text-center" style="height:40px">
+                                  <div class="col-3 px-0 border border-dark d-flex align-items-center justify-content-center">
+                                      <input type="number" name="trabajadores_afiliados_terciario" class="form-control h-100 linea_accidente" oninput="this.value = Math.abs(this.value)"  t-att-value="incidente.trabajadores_afiliados_terciario" style="border-radius:0px"/>
+                                  </div>
+                                  <div class="col-3 px-0 border border-dark d-flex align-items-center justify-content-center">
+                                      <input type="number" name="trabajadores_no_afiliados_terciario" class="form-control h-100 linea_accidente" oninput="this.value = Math.abs(this.value)"  t-att-value="incidente.trabajadores_no_afiliados_terciario" style="border-radius:0px"/>
+                                  </div>
+                                  <div class="col-6 px-0 border border-dark d-flex align-items-center justify-content-center">
+                                      <input type="text" name="aseguradora_terciario" placeholder="Aseguradora" class="form-control h-100 linea_accidente" t-att-value="incidente.aseguradora_terciario" style="border-radius:0px"/>
+                                  </div>
+                              </div>
+                              <div class="row font-weight-bold  bg-primary text-center" style="height:50px">
+                                  <div class="col-3 border border-dark p-2 d-flex align-items-center justify-content-center">
+                                      AÑO DE INICIO DE LA ACTIVIDAD
+                                  </div>
+                                  <div class="col-9 border border-dark p-2 d-flex align-items-center justify-content-center">
+                                      LÍNEAS DE PRODUCCIÓN Y/O SERVICIOS
+                                  </div>
+                              </div>
+                              <div class="row font-weight-bold text-center auditoria-interna" style="height:90px">
+                                  <div class="col-3 border border-dark px-0 d-flex align-items-center justify-content-center">
+                                    <input type="number" oninput="this.value = Math.abs(this.value)" name="año_terciario" t-att-value="incidente.año_terciario" class="linea_accidente form-control h-100 form-control h-100 text-center font-weight-bold" style="border-radius:0px;font-size: 2.75rem;"/>
+                                  </div>
+                                  <div class="col-9 border border-dark px-0 justify-content-center">
+                                    <textarea id="list" class="form-control h-100 linea_accidente" name="servicios_terciario" t-att-value="incidente.servicios_terciario" placeholder="Líneas de producción y servicios"/>
+                                  </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row my-2">
+                          <div class="col-12 p-2 font-weight-bold border border-dark bg-secondary d-flex align-items-center shadow" style="height:30px;">
+                              <h6 class="mb-0">DATOS REFERENTES A LA ENFERMEDAD OCUPACIONAL</h6>
+                          </div>
+                      </div>
+                      <div class="row my-2">
+                        <table class="table table-bordered" style="table-layout:auto">
+                          <thead class="bg-primary">
+                            <tr>
+                              <td class="py-0" style="position:absolute;border:0px">
+                                <button type="button" class="btn btn-primary font-weight-bold agregar_datos enfermedad_id" data-toggle="modal" style="position:absolute;left:-45px" t-att-data-enfermedad_id="incidente.id">
+                                  <strong>+</strong>
+                                </button>
+                              </td>
+                            </tr>
+                            <tr class="text-center">
+                              <th scope="col" class="align-middle" rowspan="2">TIPO DE AGENTE</th>
+                              <th scope="col" class="align-middle" rowspan="2">AGENTE</th>
+                              <th scope="col" class="align-middle" colspan="12" width="10%">N° ENFERMEDADES PRESENTADAS POR MES</th>
+                              <th scope="col" class="align-middle" rowspan="2" width="10%">ENFERMEDAD OCUPACIONAL</th>
+                              <th scope="col" class="align-middle" rowspan="2" width="10%">PARTE DEL CUERPO</th>
+                              <th scope="col" class="align-middle" rowspan="2" width="10%">Nº TRABAJADORES</th>
+                            </tr>
+                            <tr class="text-center">
+                              <td class="p-0">
+                                <strong>E</strong>
+                              </td>
+                              <td class="p-0">
+                                <strong>F</strong>
+                              </td>
+                              <td class="p-0">
+                                <strong>M</strong>
+                              </td>
+                              <td class="p-0">
+                                <strong>A</strong>
+                              </td>
+                              <td class="p-0">
+                                <strong>M</strong>
+                              </td>
+                              <td class="p-0">
+                                <strong>J</strong>
+                              </td>
+                              <td class="p-0">
+                                <strong>J</strong>
+                              </td>
+                              <td class="p-0">
+                                <strong>A</strong>
+                              </td>
+                              <td class="p-0">
+                                <strong>S</strong>
+                              </td>
+                              <td class="p-0">
+                                <strong>O</strong>
+                              </td>
+                              <td class="p-0">
+                                <strong>N</strong>
+                              </td>
+                              <td class="p-0" style="border-top-right-radius:0px;border-bottom-right-radius:0px;">
+                                <strong>D</strong>
+                              </td>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <t t-foreach="incidente.enfermedad_ids" t-as="enfermedad">
+                              <tr class="enfermedad_id" t-att-data-enfermedad_id="enfermedad.id">
+                                <td rowspan="2">
+                                  <select name="responsable" class="form-control tipo_peligro">
+                                    <t t-if="enfermedad.agente.agente == 'F'">
+                                      <option value="F" selected="selected">Fisico</option>
+                                      <option value="Q">Quimico</option>
+                                      <option value="B">Biológico</option>
+                                      <option value="D">Disergónomico</option>
+                                      <option value="P">Psicosocial</option>
+                                    </t>
+                                    <t t-elif="enfermedad.agente.agente == 'Q'">
+                                      <option value="F">Fisico</option>
+                                      <option value="Q" selected="selected">Quimico</option>
+                                      <option value="B">Biológico</option>
+                                      <option value="D">Disergónomico</option>
+                                      <option value="P">Psicosocial</option>
+                                    </t>
+                                    <t t-elif="enfermedad.agente.agente == 'B'">
+                                      <option value="F">Fisico</option>
+                                      <option value="Q">Quimico</option>
+                                      <option value="B" selected="selected">Biológico</option>
+                                      <option value="D">Disergónomico</option>
+                                      <option value="P">Psicosocial</option>
+                                    </t>
+                                    <t t-elif="enfermedad.agente.agente == 'D'">
+                                      <option value="F">Fisico</option>
+                                      <option value="Q">Quimico</option>
+                                      <option value="B">Biológico</option>
+                                      <option value="D" selected="selected">Disergónomico</option>
+                                      <option value="P">Psicosocial</option>
+                                    </t>
+                                    <t t-else="">
+                                      <option value="F">Fisico</option>
+                                      <option value="Q">Quimico</option>
+                                      <option value="B">Biológico</option>
+                                      <option value="D">Disergónomico</option>
+                                      <option value="P" selected="selected">Psicosocial</option>
+                                    </t>
+                                  </select>
+                                </td>
+                                <td rowspan="2">
+                                  <select name="agente" class="form-control linea_enfermedad"  t-attf-id="descripcion-{{enfermedad.id}}">
+                                    <t t-foreach="tipos" t-as="tipo">
+                                      <t t-if="enfermedad.agente.agente == tipo.agente">
+                                        <t t-if="tipo.id == enfermedad.agente.id">
+                                          <option t-att-value="'%s' % (tipo.id)" t-esc="tipo.name" selected="selected"/>
+                                        </t>
+                                        <t t-else="">
+                                          <option t-att-value="'%s' % (tipo.id)" t-esc="tipo.name"/>
+                                        </t>
+                                      </t>
+                                    </t>
+                                  </select>
+                                </td>
+                                <td data-table-header="ENERO" class="p-0">
+                                  <div class="checkesperado">
+                                    <input t-attf-id="actividadenero-{{enfermedad.id}}" class="linea_enfermedad" type="checkbox" name="enero_p" tipo="programado" t-attf-registro_id="{{enfermedad.id}}" t-att-checked="enfermedad.enero_p"/>
+                                    <label t-attf-for="actividadenero-{{enfermedad.id}}"></label>
+                                  </div>
+                                </td>
+                                <td data-table-header="FEBRERO" class="p-0">
+                                  <div class="checkesperado">
+                                    <input t-attf-id="actividadfebrero-{{enfermedad.id}}" class="linea_enfermedad" type="checkbox" name="febrero_p" tipo="programado" t-attf-registro_id="{{enfermedad.id}}" t-att-checked="enfermedad.febrero_p"/>
+                                    <label t-attf-for="actividadfebrero-{{enfermedad.id}}"></label>
+                                  </div>
+                                </td>
+                                <td data-table-header="MARZO" class="p-0">
+                                  <div class="checkesperado">
+                                    <input t-attf-id="actividadmarzo-{{enfermedad.id}}" class="linea_enfermedad" type="checkbox" name="marzo_p" tipo="programado" t-attf-registro_id="{{enfermedad.id}}" t-att-checked="enfermedad.marzo_p"/>
+                                    <label t-attf-for="actividadmarzo-{{enfermedad.id}}"></label>
+                                  </div>
+                                </td>
+                                <td data-table-header="ABRIL" class="p-0">
+                                  <div class="checkesperado">
+                                    <input t-attf-id="actividadabril-{{enfermedad.id}}" class="linea_enfermedad" type="checkbox" name="abril_p" tipo="programado" t-attf-registro_id="{{enfermedad.id}}" t-att-checked="enfermedad.abril_p"/>
+                                    <label t-attf-for="actividadabril-{{enfermedad.id}}"></label>
+                                  </div>
+                                </td>
+                                <td data-table-header="MAYO" class="p-0">
+                                  <div class="checkesperado">
+                                    <input t-attf-id="actividadmayo-{{enfermedad.id}}" class="linea_enfermedad" type="checkbox" name="mayo_p" tipo="programado" t-attf-registro_id="{{enfermedad.id}}" t-att-checked="enfermedad.mayo_p"/>
+                                    <label t-attf-for="actividadmayo-{{enfermedad.id}}"></label>
+                                  </div>
+                                </td>
+                                <td data-table-header="JUNIO" class="p-0">
+                                  <div class="checkesperado">
+                                    <input t-attf-id="actividadjunio-{{enfermedad.id}}" class="linea_enfermedad" type="checkbox" name="junio_p" tipo="programado" t-attf-registro_id="{{enfermedad.id}}" t-att-checked="enfermedad.junio_p"/>
+                                    <label t-attf-for="actividadjunio-{{enfermedad.id}}"></label>
+                                  </div>
+                                </td>
+                                <td data-table-header="JULIO" class="p-0">
+                                  <div class="checkesperado">
+                                    <input t-attf-id="actividadjulio-{{enfermedad.id}}" class="linea_enfermedad" type="checkbox" name="julio_p" tipo="programado" t-attf-registro_id="{{enfermedad.id}}" t-att-checked="enfermedad.julio_p"/>
+                                    <label t-attf-for="actividadjulio-{{enfermedad.id}}"></label>
+                                  </div>
+                                </td>
+                                <td data-table-header="AGOSTO" class="p-0">
+                                  <div class="checkesperado">
+                                    <input t-attf-id="actividadagosto-{{enfermedad.id}}" class="linea_enfermedad" type="checkbox" name="agosto_p" tipo="programado" t-attf-registro_id="{{enfermedad.id}}" t-att-checked="enfermedad.agosto_p"/>
+                                    <label t-attf-for="actividadagosto-{{enfermedad.id}}"></label>
+                                  </div>
+                                </td>
+                                <td data-table-header="SETIEMBRE" class="p-0">
+                                  <div class="checkesperado">
+                                    <input t-attf-id="actividadseptiembre-{{enfermedad.id}}" class="linea_enfermedad" type="checkbox" name="septiembre_p" tipo="programado" t-attf-registro_id="{{enfermedad.id}}" t-att-checked="enfermedad.septiembre_p"/>
+                                    <label t-attf-for="actividadseptiembre-{{enfermedad.id}}"></label>
+                                  </div>
+                                </td>
+                                <td data-table-header="OCTUBRE" class="p-0">
+                                  <div class="checkesperado">
+                                    <input t-attf-id="actividadoctubre-{{enfermedad.id}}" class="linea_enfermedad" type="checkbox" name="octubre_p" tipo="programado" t-attf-registro_id="{{enfermedad.id}}" t-att-checked="enfermedad.octubre_p"/>
+                                    <label t-attf-for="actividadoctubre-{{enfermedad.id}}"></label>
+                                  </div>
+                                </td>
+                                <td data-table-header="NOVIEMBRE" class="p-0">
+                                  <div class="checkesperado">
+                                    <input t-attf-id="actividadnoviembre-{{enfermedad.id}}" class="linea_enfermedad" type="checkbox" name="noviembre_p" tipo="programado" t-attf-registro_id="{{enfermedad.id}}" t-att-checked="enfermedad.noviembre_p"/>
+                                    <label t-attf-for="actividadnoviembre-{{enfermedad.id}}"></label>
+                                  </div>
+                                </td>
+                                <td data-table-header="DICIEMBRE" class="p-0">
+                                  <div class="checkesperado">
+                                    <input t-attf-id="actividaddiciembre-{{enfermedad.id}}" class="linea_enfermedad" type="checkbox" name="diciembre_p" tipo="programado" t-attf-registro_id="{{enfermedad.id}}" t-att-checked="enfermedad.diciembre_p"/>
+                                    <label t-attf-for="actividaddiciembre-{{enfermedad.id}}"></label>
+                                  </div>
+                                </td>
+                                <td rowspan="2"><input type="text" name="name" placeholder="Enfermedad" class="form-control h-100 linea_enfermedad border-0" t-att-value="enfermedad.name" style="border-radius:0px"/></td>
+                                <td rowspan="2"><input type="text" name="cuerpo" placeholder="Cuerpo" class="form-control h-100 linea_enfermedad border-0" t-att-value="enfermedad.cuerpo" style="border-radius:0px"/></td>
+                                <td rowspan="2"><input type="number" name="trabajadores" class="form-control h-100 linea_enfermedad border-0" t-att-value="enfermedad.trabajadores" style="border-radius:0px"/></td>
+                              </tr>
+                              <tr class="enfermedad_id" t-att-data-enfermedad_id="enfermedad.id">
+                                  <td class="p-0">
+                                    <div class="checkesperado">
+                                      <input class="linea_enfermedad form-control border-0 p-0 text-center" type="number" name="enero_value" t-attf-registro_id="{{enfermedad.id}}" t-att-value="enfermedad.enero_value"/>
+                                    </div>
+                                  </td>
+                                  <td class="p-0">
+                                    <div class="checkesperado">
+                                      <input class="linea_enfermedad form-control border-0 p-0 text-center" type="number" name="febrero_value" t-attf-registro_id="{{enfermedad.id}}" t-att-value="enfermedad.febrero_value"/>
+                                    </div>
+                                  </td>
+                                  <td class="p-0">
+                                    <div class="checkesperado">
+                                      <input class="linea_enfermedad form-control border-0 p-0 text-center" type="number" name="marzo_value" t-attf-registro_id="{{enfermedad.id}}" t-att-value="enfermedad.marzo_value"/>
+                                    </div>
+                                  </td>
+                                  <td class="p-0">
+                                    <div class="checkesperado">
+                                      <input class="linea_enfermedad form-control border-0 p-0 text-center" type="number" name="abril_value" t-attf-registro_id="{{enfermedad.id}}" t-att-value="enfermedad.abril_value"/>
+                                    </div>
+                                  </td>
+                                  <td class="p-0">
+                                    <div class="checkesperado">
+                                      <input class="linea_enfermedad form-control border-0 p-0 text-center" type="number" name="mayo_value" t-attf-registro_id="{{enfermedad.id}}" t-att-value="enfermedad.mayo_value"/>
+                                    </div>
+                                  </td>
+                                  <td class="p-0">
+                                    <div class="checkesperado">
+                                      <input class="linea_enfermedad form-control border-0 p-0 text-center" type="number" name="junio_value" t-attf-registro_id="{{enfermedad.id}}" t-att-value="enfermedad.junio_value"/>
+                                    </div>
+                                  </td>
+                                  <td class="p-0">
+                                    <div class="checkesperado">
+                                      <input class="linea_enfermedad form-control border-0 p-0 text-center" type="number" name="julio_value" t-attf-registro_id="{{enfermedad.id}}" t-att-value="enfermedad.julio_value"/>
+                                    </div>
+                                  </td>
+                                  <td class="p-0">
+                                    <div class="checkesperado">
+                                      <input class="linea_enfermedad form-control border-0 p-0 text-center" type="number" name="agosto_value" t-attf-registro_id="{{enfermedad.id}}" t-att-value="enfermedad.agosto_value"/>
+                                    </div>
+                                  </td>
+                                  <td class="p-0">
+                                    <div class="checkesperado">
+                                      <input class="linea_enfermedad form-control border-0 p-0 text-center" type="number" name="septiembre_value" t-attf-registro_id="{{enfermedad.id}}" t-att-value="enfermedad.septiembre_value"/>
+                                    </div>
+                                  </td>
+                                  <td class="p-0">
+                                    <div class="checkesperado">
+                                      <input class="linea_enfermedad form-control border-0 p-0 text-center" type="number" name="octubre_value" t-attf-registro_id="{{enfermedad.id}}" t-att-value="enfermedad.octubre_value"/>
+                                    </div>
+                                  </td>
+                                  <td class="p-0">
+                                    <div class="checkesperado">
+                                      <input class="linea_enfermedad form-control border-0 p-0 text-center" type="number" name="noviembre_value" t-attf-registro_id="{{enfermedad.id}}" t-att-value="enfermedad.noviembre_value"/>
+                                    </div>
+                                  </td>
+                                  <td class="p-0">
+                                    <div class="checkesperado">
+                                      <input class="linea_enfermedad form-control border-0 p-0 text-center" type="number" name="diciembre_value" t-attf-registro_id="{{enfermedad.id}}" t-att-value="enfermedad.diciembre_value"/>
+                                    </div>
+                                  </td>
+                                </tr>
+                            </t>
+                          </tbody>
+                          </table>
+                      </div>
+
+                      <div class="row my-2">
+                          <div class="col-12 p-2 font-weight-bold border border-dark bg-secondary d-flex align-items-center shadow" style="height:30px;">
+                              <h6 class="mb-0">TABLA REFERENCIAL 1: TIPOS DE AGENTES</h6>
+                          </div>
+                      </div>
+                      <div class="row my-2">
+                        <div class="col-2 px-0">
+                        <table class="table table-bordered table-hover" style="table-layout:auto">
+                          <thead class="bg-primary">
+                            <tr>
+                              <th colspan="2" scope="col">FÍSICO</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <t t-foreach="tipos" t-as="tipo">
+                              <t t-if="tipo.agente == 'F'" >
+                                <tr>
+                                  <td><t t-esc="tipo.name"/></td>
+                                  <td><t t-esc="tipo.codigo"/></td>
+                                </tr>
+                              </t>
+                            </t>
+                          </tbody>
+                          </table>
+                        </div>
+                        <div class="col-2 px-0">
+                          <table class="table table-bordered table-hover" style="table-layout:auto">
+                            <thead class="bg-primary">
+                              <tr>
+                                <th colspan="2" scope="col">QUÍMICO</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <t t-foreach="tipos" t-as="tipo">
+                                <t t-if="tipo.agente == 'Q'" >
+                                  <tr>
+                                    <td><t t-esc="tipo.name"/></td>
+                                    <td><t t-esc="tipo.codigo"/></td>
+                                  </tr>
+                                </t>
+                              </t>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div class="col-2 px-0">
+                          <table class="table table-bordered table-hover" style="table-layout:auto">
+                            <thead class="bg-primary">
+                              <tr>
+                                <th colspan="2" scope="col">BIOLÓGICO</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <t t-foreach="tipos" t-as="tipo">
+                                <t t-if="tipo.agente == 'B'" >
+                                  <tr>
+                                    <td><t t-esc="tipo.name"/></td>
+                                    <td><t t-esc="tipo.codigo"/></td>
+                                  </tr>
+                                </t>
+                              </t>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div class="col-3 px-0">
+                          <table class="table table-bordered table-hover" style="table-layout:auto">
+                            <thead class="bg-primary">
+                              <tr>
+                                <th colspan="2" scope="col">DISERGONÓMICO</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <t t-foreach="tipos" t-as="tipo">
+                                <t t-if="tipo.agente == 'D'" >
+                                  <tr>
+                                    <td><t t-esc="tipo.name"/></td>
+                                    <td><t t-esc="tipo.codigo"/></td>
+                                  </tr>
+                                </t>
+                              </t>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div class="col-3 px-0">
+                          <table class="table table-bordered table-hover" style="table-layout:auto">
+                            <thead class="bg-primary">
+                              <tr>
+                                <th colspan="2" scope="col">PSICOSOCIALES</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <t t-foreach="tipos" t-as="tipo">
+                                <t t-if="tipo.agente == 'P'" >
+                                  <tr>
+                                    <td><t t-esc="tipo.name"/></td>
+                                    <td><t t-esc="tipo.codigo"/></td>
+                                  </tr>
+                                </t>
+                              </t>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      <div class="row my-2">
+                          <div class="col-12 p-2 font-weight-bold border border-dark bg-secondary d-flex align-items-center shadow" style="height:30px;">
+                              <h6 class="mb-0">COMPLETAR SÓLO EN CASO DE EMPLEO DE SUSTANCIAS CANCERIGENAS  (Ref. D.S. 039-93-PCM / D.S. 015-2005-SA)</h6>
+                          </div>
+                      </div>
+                      <div class="row font-weight-bold  bg-primary text-center" style="height:80px;position:relative">
+                          <button type="button" class="btn btn-primary font-weight-bold nueva_relacion" data-toggle="modal" style="position:absolute;left:-40px">
+                          <strong>+</strong>
+                          </button>
+                          <div class="col-9 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              RELACIÓN DE SUSTANCIAS CANCERIGENAS
+                          </div>
+                          <div class="col-3 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              SE HAN REALIZADO MONITOREOS DE LOS AGENTES PRESENTES EN EL AMBIENTE
+                          </div>
+                      </div>
+                      <t t-foreach="incidente.relacion_ids" t-as="relacion">
+                        <div class="row font-weight-bold text-center relacion_id" t-att-data-relacion_id="relacion.id" style="height:40px">
+                            <div class="col-9 px-0 border border-dark d-flex align-items-center justify-content-center">
+                                <input type="text" class="form-control h-100 linea_relacion" name="name" t-att-value="relacion.name" style="border-radius:0px"/>
+                            </div>
+                            <div class="col-3 px-0 border border-dark d-flex align-items-center justify-content-center">
+                              <t t-if="relacion.monitoreo">
+                                <input type="checkbox" class="form-check-input linea_relacion" name="monitoreo" checked="checked"/>
+                              </t>
+                              <t t-else="">
+                                <input type="checkbox" class="form-check-input linea_relacion" name="monitoreo"/>
+                              </t>
+
+                            </div>
+                          </div>
+                      </t>
+                      <div class="row my-2">
+                          <div class="col-12 p-2 font-weight-bold border border-dark bg-secondary d-flex align-items-center shadow" style="height:30px;">
+                              <h6 class="mb-0">MEDIDAS CORRECTIVAS</h6>
+                          </div>
+                      </div>
+                      <div class="row font-weight-bold  bg-primary text-center" style="height:80px;position:relative">
+                          <button type="button" class="btn btn-primary font-weight-bold nueva_medida" data-toggle="modal" style="position:absolute;left:-40px">
+                          <strong>+</strong>
+                          </button>
+                          <div class="col-6 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              DESCRIPCIÓN DE LA MEDIDA CORRECTIVA
+                          </div>
+                          <div class="col-2 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              RESPONSABLE
+                          </div>
+                          <div class="col-2 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              FECHA DE EJECUCIÓN
+                          </div>
+                          <div class="col-2 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              ESTADO
+                          </div>
+                      </div>
+                      <t t-foreach="incidente.medida_ids" t-as="medida">
+                        <div class="row font-weight-bold text-center medida_id" t-att-data-medida_id="medida.id" style="height:40px">
+                            <div class="col-6 px-0 border border-dark d-flex align-items-center justify-content-center">
+                                <input type="text" class="form-control h-100 linea_medida" name="name" t-att-value="medida.name" style="border-radius:0px"/>
+                            </div>
+                            <div class="col-2 px-0 border border-dark d-flex align-items-center justify-content-center">
+                              <select name="responsable" class="form-control linea_medida">
+                                <t t-foreach="responsables" t-as="res">
+                                  <t t-if="res.id == medida.responsable.id ">
+                                    <option t-att-value="'%s' % (res.id)" t-esc="res.name" selected="selected"/>
+                                  </t>
+                                  <t t-else="">
+                                    <option t-att-value="'%s' % (res.id)" t-esc="res.name"/>
+                                  </t>
+                                </t>
+                              </select>
+                            </div>
+                            <div class="col-2 px-0 border border-dark d-flex align-items-center justify-content-center">
+                                <input type="date" class="form-control h-100 linea_medida" name="fecha_ejecucion" t-att-value="medida.fecha_ejecucion"  style="border-radius:0px"/>
+                            </div>
+                            <div class="col-2 px-0 border border-dark d-flex align-items-center justify-content-center">
+                                <t t-if="'P' == medida.estado">
+                                  <select name="estado" class="form-control linea_medida h-100 bg-danger border-0">
+                                    <option value="P" selected="selected">Pendiente</option>
+                                    <option value="E">En ejecucion</option>
+                                    <option value="R">Realizado</option>
+                                  </select>
+                                </t>
+                                <t t-elif="'E' == medida.estado">
+                                  <select name="estado" class="form-control linea_medida h-100 bg-warning border-0">
+                                    <option value="P">Pendiente</option>
+                                    <option value="E" selected="selected">En ejecucion</option>
+                                    <option value="R">Realizado</option>
+                                  </select>
+                                </t>
+                                <t t-elif="'R' == medida.estado">
+                                  <select name="estado" class="form-control linea_medida h-100 bg-success border-0">
+                                    <option value="P">Pendiente</option>
+                                    <option value="E">En ejecucion</option>
+                                    <option value="R" selected="selected">Realizado</option>
+                                  </select>
+                                </t>
+                            </div>
+                        </div>
+                      </t>
+                      <div class="row my-2" style="position:relative">
+                          <button type="button" class="btn btn-primary font-weight-bold nuevo_responsable" style="position:absolute;left:-40px">
+                            <strong>+</strong>
+                          </button>
+                          <div class="col-12 p-2 font-weight-bold border border-dark bg-secondary d-flex align-items-center shadow" style="height:30px;">
+                              <h6 class="mb-0">RESPONSABLES DEL REGISTRO Y DE LA INVESTIGACIÓN</h6>
+                          </div>
+                      </div>
+                      <t t-foreach="incidente.responsable_ids" t-as="responsable">
+                        <div class="row font-weight-bold text-center responsable_id" t-att-data-responsable_id="responsable.id" style="height:40px">
+                            <div class="col-4 px-0 border border-dark d-flex align-items-center justify-content-center">
+                                <input type="text" class="form-control h-100 linea_responsable" name="name" t-att-value="responsable.name" style="border-radius:0px"/>
+                            </div>
+                            <div class="col-4 px-0 border border-dark d-flex align-items-center justify-content-center">
+                                <input type="text" class="form-control h-100 linea_responsable" name="cargo" t-att-value="responsable.cargo"  placeholder="Cargo" style="border-radius:0px"/>
+                            </div>
+                            <div class="col-4 px-0 border border-dark d-flex align-items-center justify-content-center">
+                                <input type="date" class="form-control h-100 linea_responsable" name="fecha" t-att-value="responsable.fecha"  style="border-radius:0px"/>
+                            </div>
+                        </div>
+                      </t>
+
+                </div>
+              </div>
+          </div>
+      </t>
+  </template>
+  <template id="configuracion_registro_incidente" name="Registro de enfermedades ocupacionales">
+    <t t-call="website.layout">
+      <t t-set="no_header" t-value="True"/>
+      <t t-set="no_footer" t-value="True"/>
+      <header>
+        <nav class="navbar navbar-expand-md navbar-dark bg-primary accidente">
+        <div class="container">
+          <a class="navbar-brand logo" href="https://softwaresst.com">
+            <img src="/web/image/website/1/logo/PREVENTOR?unique=43ff1c1" class="img img-fluid" alt=""/>
+          </a>
+          <div id="top_menu_collapse" aria-expanded="false">
+            <ul class="nav ml-auto text-right" id="top_menu">
+              <li class="nav-item divider"></li>
+              <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle align-items-center d-flex" data-toggle="dropdown">
+                  <i class="fa fa-user-circle mr-1"></i>
+                  <b>
+                    <span t-esc="user_id.name[:23] + '...' if user_id.name and len(user_id.name) &gt; 25 else user_id.name"/>
+                  </b>
+                </a>
+                <div class="dropdown-menu js_usermenu" role="menu">
+
+                  <a class="dropdown-item" t-attf-href="/usuarios" role="menuitem">Panel de control</a>
+                  <a id="o_logout" class="dropdown-item" role="menuitem" href="/web/session/logout?redirect=https://softwaresst.com/">Cerrar sesión</a>
+                </div>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+      </nav>
+      </header>
+      <div class="wrapper modulo-wrapper section_enfermedades">
+        <!-- Sidebar -->
+        <nav id="sidebar" class="bg-info">
+          <ul class="list-unstyled components pt-0">
+            <p class="bg-success p-4 d-flex align-items-center">
+              <strong>MODULO DE ENFERMEDADES OCUPACIONALES</strong>
+            </p>
+            <li class="nav-item divider"></li>
+            <li>
+              <a href="/enfermedades-ocupacionales">REGISTROS DE ENFERMEDADES OCUPACIONALES</a>
+            </li>
+            <li>
+              <a href="/enfermedades-ocupacionales/configuracion">AGREGAR RESPONSABLE</a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content">
+          <button type="button" id="sidebarCollapse" class="btn btn-info display-none">
+            <i class="fa fa-align-left"></i>
+          </button>
+          <div class="py-2 mx-auto">
+            <div class="text-center mb-5">
+              <h1>LISTADO DE RESPONSABLES</h1>
+            </div>
+            <table id="resumen" class="table table-hover responsive nowrap w-100 text-center">
+              <thead class="thead-dark">
+                <tr>
+                  <th>#</th>
+                  <th>RESPONSABLE DE MEDIDA CORRECTIVA</th>
+                </tr>
+              </thead>
+              <tbody>
+                <t t-set="counter" t-value="0"/>
+                <t t-foreach="responsables" t-as="responsable">
+                  <t t-set="counter" t-value="counter + 1"/>
+                  <tr></tr>
+                  <td><t t-esc="counter"/></td>
+                  <td><span t-field="responsable.name"/></td>
+                </t>
+              </tbody>
+            </table>
+
+            <div class="d-flex justify-content-center float-left">
+              <button type="button" class="btn btn-primary font-weight-bold" data-toggle="modal" data-target="#new_tipo_peligro">
+                AGREGAR RESPONSABLE
+              </button>
+              <div class="modal fade" id="new_tipo_peligro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">NUEVO RESPONSABLE</h5>
+                    </div>
+                    <div class="modal-body">
+                      NOMBRE
+                      <input class="form-control col-12" name="new-responsable-name" type="text"/>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                      <button type="button" class="btn btn-primary nuevo_responsable_configuracion">GUARDAR</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </t>
+  </template>
+
+</odoo>

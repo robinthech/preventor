@@ -1,0 +1,13 @@
+<odoo>
+    <template id="assets_lista_covid" inherit_id="website.assets_frontend">
+        <xpath expr="script[last()]" position="after">
+          <script src="/lista_covid/static/src/js/lista_covid.js" type="text/javascript"/>
+        </xpath>
+        <xpath expr="link[last()]" position="after">
+          <link href="/lista_covid/static/src/css/style.scss" type="text/scss"  rel="stylesheet" />
+          <link href="/lista_covid/static/src/css/checkmark.scss" type="text/scss"  rel="stylesheet" />
+        </xpath>
+    </template>
+
+
+</odoo>

@@ -1,0 +1,239 @@
+<odoo>
+
+
+	<template id="template_inspecciones" name="Inspecciones">
+		<t t-call="inspecciones.sidebar_inspecciones">
+			<div class="principal-inspecciones-general">
+
+				<div class="main-inspecciones">
+					<div id="content" class=" p-3 planid mx-auto">
+						<div class="form-group " id="formulario_editar_inspecciones" t-att-data-model_id="model" t-att-data-record_id="registro.id">
+							<div class="alert alert-primary text-center" role="alert">
+								<h4>FORMATO RESUMEN DE LA INSPECCION DE SEGURIDAD</h4>
+							</div>
+								<div class="font-weight-bold mb-3">
+								<button type="button" t-att-data-empresa_id="usuario.empresa_id.id" t-att-data-record_id="registro.id" t-att-data-usuario_id="usuario.id" class="btn btn-gamma font-weight-bold float-right button-guardar-inspeccion">GUARDAR</button>
+							</div>
+
+							<table class="table table-bordered" style="table-layout: auto;border-bottom:0px;border-left:0px">
+								<thead>
+									<tr>
+										<th colspan="2" class=" text-center">
+											FECHA
+										</th>
+										<th colspan="4" class=" text-center">
+											<input id="fecha" type="date" name="fecha" class="border-0 form-control field-odoo" t-att-value="fecha" t-att-data-record_id="registro.id" t-att-data-model_id="registro._name"/>
+										</th>
+									</tr>
+									<tr>
+										<th colspan="2" class=" text-center">
+											AREA
+										</th>
+										<th colspan="4" class=" text-center">
+											<input id="area" type="text" name="area" class="border-0 form-control field-odoo" t-att-value="registro.area" t-att-data-record_id="registro.id" t-att-data-model_id="registro._name"/>
+										</th>
+									</tr>
+
+									<!-- <tr class="text-center "> <th colspan="2" scope="col" t-att-rowspan="len(registro.inspectores_ids)">INSPECTORES</th> </tr> -->
+								</thead>
+								<tbody>
+									<t t-foreach="registro.inspectores_ids" t-as="inspector">
+										<tr class="">
+											<td colspan="6">
+												<input type="text" name="area" class="border-0 form-control" t-att-value="inspector.name"/>
+											</td>
+										</tr>
+									</t>
+									<t t-set="contador_condicion" t-value="1"/>
+									<t t-foreach="registro.condiciones_ids" t-as="condicion">
+										<tr class="bg-primary">
+											<td colspan="1" class="my-0 py-0 align-middle">
+												<span t-esc="contador_condicion"></span>
+											</td>
+											<td colspan="3" class="my-0 py-0 align-middle">
+												<span t-esc="condicion.name"></span>
+											</td>
+											<td class="my-0 py-0 align-middle">
+												<span t-esc="condicion.sub_total_max"></span>
+											</td>
+											<td class="my-0 py-0 align-middle">
+												<span t-esc="condicion.sub_total_log"></span>
+											</td>
+										</tr>
+										<t t-set="contador_sub_condicion" t-value="contador_condicion + 0.1"/>
+										<t t-foreach="condicion.sub_condiciones_ids" t-as="sub_condiciones">
+											<tr class="">
+												<td colspan="1" class="my-0 py-0 align-middle">
+													<span t-esc="contador_sub_condicion" t-options='{"widget": "float", "precision": 1}'></span>
+												</td>
+												<td colspan="3" class="my-0 py-0 align-middle">
+													<span t-esc="sub_condiciones.name"></span>
+												</td>
+												<td class="my-0 py-0 align-middle">
+													<span t-esc="sub_condiciones.puntaje_maximo"></span>
+												</td>
+												<td class="my-0 py-0 align-middle">
+													<input type="number" name="puntaje_logrado" class="border-0 form-control field-odoo" t-att-data-model_id="sub_condiciones._name" t-att-data-record_id="sub_condiciones.id" t-att-value="sub_condiciones.puntaje_logrado" t-attf-oninput="if(value>{{sub_condiciones.puntaje_maximo}}){value=1}else{value=Math.abs(value)}"/>
+												</td>
+											</tr>
+											<t t-set="contador_sub_condicion" t-value="contador_sub_condicion + 0.1"/>
+
+										</t>
+										<t t-set="contador_condicion" t-value="contador_condicion + 1"/>
+
+									</t>
+
+								</tbody>
+							</table>
+							<table class="table table-bordered">
+								<thead class="table-primary">
+									<tr>
+										<th>
+											PUNTAJE MÀXIMO
+										</th>
+										<th>
+											PUNTAJE LOGRADO
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<span t-esc="registro.sub_total_max"></span>
+										</td>
+										<td>
+											<span t-esc="registro.sub_total_log"></span>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+		</t>
+
+	</template>
+
+	<template id="template_formato_inspecciones" name="Formato Inspecciones">
+		<t t-call="inspecciones.sidebar_inspecciones">
+			<div class="principal-inspecciones-general">
+
+				<div class="main-inspecciones">
+					<div id="content" class=" p-3 planid mx-auto">
+						<div class="form-group " id="formulario_editar_inspecciones" t-att-data-model_id="model" t-att-data-record_id="registro.id">
+							<div class="alert alert-primary text-center" role="alert">
+								<h4>FORMATO RESUMEN DE LA INSPECCION DE SEGURIDAD</h4>
+							</div>
+								<div class="font-weight-bold mb-3">
+								<button type="button" t-att-data-empresa_id="usuario.empresa_id.id" t-att-data-record_id="registro.id" t-att-data-usuario_id="usuario.id" class="btn btn-gamma font-weight-bold float-right button-guardar-inspeccion">GUARDAR</button>
+							</div>
+
+							<table class="table table-bordered" style="table-layout: auto;border-bottom:0px;border-left:0px">
+								<thead>
+									<tr>
+										<th colspan="2" class=" text-center">
+											FECHA
+										</th>
+										<th colspan="4" class=" text-center">
+											<input id="fecha" type="date" name="fecha" class="border-0 form-control field-odoo" t-att-value="fecha" t-att-data-record_id="registro.id" t-att-data-model_id="registro._name"/>
+										</th>
+									</tr>
+									<tr>
+										<th colspan="2" class=" text-center">
+											AREA
+										</th>
+										<th colspan="4" class=" text-center">
+											<input id="area" type="text" name="area" class="border-0 form-control field-odoo" t-att-value="registro.area" t-att-data-record_id="registro.id" t-att-data-model_id="registro._name"/>
+										</th>
+									</tr>
+
+									<!-- <tr class="text-center "> <th colspan="2" scope="col" t-att-rowspan="len(registro.inspectores_ids)">INSPECTORES</th> </tr> -->
+								</thead>
+								<tbody>
+									<t t-foreach="registro.inspectores_ids" t-as="inspector">
+										<tr class="">
+											<td colspan="6">
+												<input type="text" name="area" class="border-0 form-control" t-att-value="inspector.name"/>
+											</td>
+										</tr>
+									</t>
+									<t t-set="contador_condicion" t-value="1"/>
+									<t t-foreach="registro.condiciones_ids" t-as="condicion">
+										<tr class="bg-primary">
+											<td colspan="1" class="my-0 py-0 align-middle">
+												<span t-esc="contador_condicion"></span>
+											</td>
+											<td colspan="3" class="my-0 py-0 align-middle">
+												<span t-esc="condicion.name"></span>
+											</td>
+											<td class="my-0 py-0 align-middle">
+												<span t-esc="condicion.sub_total_max"></span>
+											</td>
+											<td class="my-0 py-0 align-middle">
+												<span t-esc="condicion.sub_total_log"></span>
+											</td>
+										</tr>
+										<t t-set="contador_sub_condicion" t-value="contador_condicion + 0.1"/>
+										<t t-foreach="condicion.sub_condiciones_ids" t-as="sub_condiciones">
+											<tr class="">
+												<td colspan="1" class="my-0 py-0 align-middle">
+													<span t-esc="contador_sub_condicion" t-options='{"widget": "float", "precision": 1}'></span>
+												</td>
+												<td colspan="3" class="my-0 py-0 align-middle">
+													<span t-esc="sub_condiciones.name"></span>
+												</td>
+												<td class="my-0 py-0 align-middle">
+													<span t-esc="sub_condiciones.puntaje_maximo"></span>
+												</td>
+												<td class="my-0 py-0 align-middle">
+													<input type="number" name="puntaje_logrado" class="border-0 form-control field-odoo" t-att-data-model_id="sub_condiciones._name" t-att-data-record_id="sub_condiciones.id" t-att-value="sub_condiciones.puntaje_logrado" t-attf-oninput="if(value>{{sub_condiciones.puntaje_maximo}}){value=1}else{value=Math.abs(value)}"/>
+												</td>
+											</tr>
+											<t t-set="contador_sub_condicion" t-value="contador_sub_condicion + 0.1"/>
+
+										</t>
+										<t t-set="contador_condicion" t-value="contador_condicion + 1"/>
+
+									</t>
+
+								</tbody>
+							</table>
+							<table class="table table-bordered">
+								<thead class="table-primary">
+									<tr>
+										<th>
+											PUNTAJE MÀXIMO
+										</th>
+										<th>
+											PUNTAJE LOGRADO
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<span t-esc="registro.sub_total_max"></span>
+										</td>
+										<td>
+											<span t-esc="registro.sub_total_log"></span>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+		</t>
+
+	</template>
+
+
+</odoo>

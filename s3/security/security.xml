@@ -1,0 +1,246 @@
+<odoo>
+    <data>
+        <record  id="category_registros_dosimetria" model="ir.module.category">
+            <field name="name">S3</field>
+        </record>
+
+        <record id="group_registros_user" model="res.groups">
+            <field name="name">Usuario</field>
+            <field name="category_id" ref="category_registros_dosimetria" />
+        </record>
+
+        <record id="group_registros_manager" model="res.groups">
+            <field name="name">Responsable</field>
+            <field name="implied_ids" eval="[(4, ref('group_registros_user'))]" />
+            <field name="category_id" ref="category_registros_dosimetria"/>
+        </record>
+
+        <record id="group_registros_admin" model="res.groups">
+            <field name="name">Administrator</field>
+            <field name="implied_ids" eval="[(4, ref('group_registros_manager'))]" />
+            <field name="category_id" ref="category_registros_dosimetria"/>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+
+        <record id="model_access_registro" model="ir.model.access">
+            <field name="name">model.access.registros.user</field>
+            <field name="group_id" ref="s3.group_registros_user"/>
+            <field name="model_id" ref="s3.model_registro_monitoreo"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_riesgo_disergonomico" model="ir.model.access">
+            <field name="name">model.access.registros.user</field>
+            <field name="group_id" ref="s3.group_registros_admin"/>
+            <field name="model_id" ref="s3.model_riesgo_disergonomico"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+        <record id="model_access_riesgo_disergonomico_portal" model="ir.model.access">
+            <field name="name">model.access.registros.user</field>
+            <field name="group_id" ref="base.group_portal"/>
+            <field name="model_id" ref="s3.model_riesgo_disergonomico"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_agentes" model="ir.model.access">
+            <field name="name">model.access.agentes.user</field>
+            <field name="group_id" ref="s3.group_registros_user"/>
+            <field name="model_id" ref="s3.model_agente_general"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_iluminacion" model="ir.model.access">
+            <field name="name">model.access.iluminacion.user</field>
+            <field name="group_id" ref="s3.group_registros_user"/>
+            <field name="model_id" ref="s3.model_iluminacion_iluminacion"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_dosimetria" model="ir.model.access">
+            <field name="name">model.access.dosimetria.user</field>
+            <field name="group_id" ref="s3.group_registros_user"/>
+            <field name="model_id" ref="s3.model_ruido_dosimetria"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_sonometria" model="ir.model.access">
+            <field name="name">model.access.sonometria.user</field>
+            <field name="group_id" ref="s3.group_registros_user"/>
+            <field name="model_id" ref="s3.model_ruido_sonometria"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_respi" model="ir.model.access">
+            <field name="name">model.access.respi.user</field>
+            <field name="group_id" ref="s3.group_registros_user"/>
+            <field name="model_id" ref="s3.model_polvo_respirable"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_inha" model="ir.model.access">
+            <field name="name">model.access.inha.user</field>
+            <field name="group_id" ref="s3.group_registros_user"/>
+            <field name="model_id" ref="s3.model_polvo_inhalable"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_reba" model="ir.model.access">
+            <field name="name">model.access.reba.user</field>
+            <field name="group_id" ref="s3.group_registros_user"/>
+            <field name="model_id" ref="s3.model_reba_reba"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_niosh" model="ir.model.access">
+            <field name="name">model.access.niosh.user</field>
+            <field name="group_id" ref="s3.group_registros_user"/>
+            <field name="model_id" ref="s3.model_niosh_niosh"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_rosa" model="ir.model.access">
+            <field name="name">model.access.rosa.user</field>
+            <field name="group_id" ref="s3.group_registros_user"/>
+            <field name="model_id" ref="s3.model_rosa_rosa"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+
+
+      <record id="model_access_registro_p" model="ir.model.access">
+            <field name="name">model.access.registros.user.p</field>
+            <field name="group_id" ref="base.group_portal"/>
+            <field name="model_id" ref="s3.model_registro_monitoreo"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_agentes_p" model="ir.model.access">
+            <field name="name">model.access.agentes.user.p</field>
+            <field name="group_id" ref="base.group_portal"/>
+            <field name="model_id" ref="s3.model_agente_general"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_iluminacion_p" model="ir.model.access">
+            <field name="name">model.access.iluminacion.user.p</field>
+            <field name="group_id" ref="base.group_portal"/>
+            <field name="model_id" ref="s3.model_iluminacion_iluminacion"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_dosimetria_p" model="ir.model.access">
+            <field name="name">model.access.dosimetria.user.p</field>
+            <field name="group_id" ref="base.group_portal"/>
+            <field name="model_id" ref="s3.model_ruido_dosimetria"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_sonometria_p" model="ir.model.access">
+            <field name="name">model.access.sonometria.user.p</field>
+            <field name="group_id" ref="base.group_portal"/>
+            <field name="model_id" ref="s3.model_ruido_sonometria"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_respi_p" model="ir.model.access">
+            <field name="name">model.access.respi.user.p</field>
+            <field name="group_id" ref="base.group_portal"/>
+            <field name="model_id" ref="s3.model_polvo_respirable"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_inha_p" model="ir.model.access">
+            <field name="name">model.access.inha.user.p</field>
+            <field name="group_id" ref="s3.group_registros_user"/>
+            <field name="model_id" ref="s3.model_polvo_inhalable"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_reba_p" model="ir.model.access">
+            <field name="name">model.access.reba.user.p</field>
+            <field name="group_id" ref="base.group_portal"/>
+            <field name="model_id" ref="s3.model_reba_reba"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_niosh_p" model="ir.model.access">
+            <field name="name">model.access.niosh.user.p</field>
+            <field name="group_id" ref="base.group_portal"/>
+            <field name="model_id" ref="s3.model_niosh_niosh"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+        
+        <record id="model_access_rosa_p" model="ir.model.access">
+            <field name="name">model.access.rosa.user.p</field>
+            <field name="group_id" ref="base.group_portal"/>
+            <field name="model_id" ref="s3.model_rosa_rosa"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+    </data>
+</odoo>

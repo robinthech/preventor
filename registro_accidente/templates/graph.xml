@@ -1,0 +1,61 @@
+<odoo>
+  <template id="report_accidentes" name="N° Accidentes">
+    <t t-call="registro_accidente.sidebar_accidente">
+      <div class="wrapper modulo-wrapper">
+        <!-- Sidebar -->
+
+        <!-- Page Content -->
+        <div id="content" class="graph-registro-accidente" t-att-data-empresa_id="empresa.id">
+          <div class="container">
+            <div class="row">
+              <div class="col select-accidentes">
+                <select class="select-dom" name="slct" id="slct">
+                  <option value="1" selected="selected">N° ACCIDENTE MORTAL</option>
+                  <option value="2">N° ACCIDENTE DE TRABAJO LEVE</option>
+                  <option value="3">N° ACCIDENTES DE TRABAJO INCAPACITANTES</option>
+                  <option value="4">N° ENFERMEDAD OCUPACIONAL</option>
+                  <option value="5">N° INCIDENTES PELIGROSOS</option>
+                  <option value="6">N° INCIDENTES</option>
+                </select>
+              </div>
+            </div>
+            <canvas id="bar-chart" width="800" height="450"></canvas>
+          </div>
+
+        </div>
+      </div>
+    </t>
+  </template>
+
+  <template id="list_accidentes_guia" name="Guia">
+    <t t-call="registro_accidente.sidebar_accidente">
+      <div class="wrapper modulo-wrapper">
+        <!-- Sidebar -->
+        <div id="content">
+          <t t-if="len(producto.solve_file_ids)>0">
+            <div class="container">
+              <div class="mx-auto row-center">
+                <object t-att-data="pdf" type="application/pdf" width="100%" height="600px" class="display-none"/>
+                <a class="btn btn-primary display-block-guia font-weight-bold justify-content-center button-pdf" t-att-href="pdf">Visualizar PDF<span></span></a>
+                <!-- <object t-att-data="pdf" type="application/pdf" width="100%" height="600px"/> -->
+              </div>
+            </div>
+          </t>
+          <t t-else="">
+            <div class="card text-center">
+              <div class="card-header  bg-warning">
+                ALERTA
+              </div>
+              <div class="card-body">
+                <p class="card-text">No se ha publicado el pdf</p>
+              </div>
+              <div class="card-footer text-muted"></div>
+            </div>
+          </t>
+        </div>
+
+      </div>
+
+    </t>
+  </template>
+</odoo>

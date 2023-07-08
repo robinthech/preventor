@@ -1,0 +1,10 @@
+<odoo>
+    <template id="s3_riesgodisergonomico.assets_frontend" inherit_id="website.assets_frontend">
+        <xpath expr="//script[last()]" position="after">
+            <script src="/s3_riesgodisergonomico/static/src/js/niosh.js" type="text/javascript"/>
+        </xpath>
+        <xpath expr="//link[last()]" position="after">
+            <link href="/s3_riesgodisergonomico/static/src/css/s3.scss" type="text/scss" rel="stylesheet"/>
+        </xpath>
+    </template>
+</odoo>

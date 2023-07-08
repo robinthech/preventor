@@ -1,0 +1,73 @@
+<odoo>
+    <data>
+      <record  id="category_registro_incidente" model="ir.module.category">
+         <field name="name">Registro de incidente</field>
+     </record>
+
+     <record id="group_registro_incidente" model="res.groups">
+         <field name="name">Registrador</field>
+         <field name="category_id" ref="category_registro_incidente" />
+     </record>
+
+
+      <record id="model_access_registro_incidente_interno" model="ir.model.access">
+          <field name="name">model.access.registro.incidente.interno</field>
+          <field name="group_id" ref="incidente.group_registro_incidente"/>
+          <field name="model_id" ref="incidente.model_registro_incidente"/>
+          <field name="perm_read" eval="1"/>
+          <field name="perm_create" eval="1"/>
+          <field name="perm_write" eval="1"/>
+          <field name="perm_unlink" eval="1"/>
+      </record>
+
+       <record id="model_access_medida_incidente_interno" model="ir.model.access">
+           <field name="name">model.access.medida.incidente.interno</field>
+           <field name="group_id" ref="incidente.group_registro_incidente"/>
+           <field name="model_id" ref="incidente.model_medida_incidente"/>
+           <field name="perm_read" eval="1"/>
+           <field name="perm_create" eval="1"/>
+           <field name="perm_write" eval="1"/>
+           <field name="perm_unlink" eval="1"/>
+       </record>
+
+       <record id="model_access_medida_incidente_default_interno" model="ir.model.access">
+           <field name="name">model.access.medida.incidente.default.interno</field>
+           <field name="group_id" ref="incidente.group_registro_incidente"/>
+           <field name="model_id" ref="incidente.model_medida_incidente_default"/>
+           <field name="perm_read" eval="1"/>
+           <field name="perm_create" eval="1"/>
+           <field name="perm_write" eval="1"/>
+           <field name="perm_unlink" eval="1"/>
+       </record>
+
+       <record id="model_access_incidente_responsable_interno" model="ir.model.access">
+           <field name="name">model.access.incidente.responsable.interno</field>
+           <field name="group_id" ref="incidente.group_registro_incidente"/>
+           <field name="model_id" ref="incidente.model_incidente_responsable"/>
+           <field name="perm_read" eval="1"/>
+           <field name="perm_create" eval="1"/>
+           <field name="perm_write" eval="1"/>
+           <field name="perm_unlink" eval="1"/>
+       </record>
+
+       <record id="model_access_incidente_responsable_final_interno" model="ir.model.access">
+           <field name="name">model.access.incidente.responsable.final.interno</field>
+           <field name="group_id" ref="incidente.group_registro_incidente"/>
+           <field name="model_id" ref="incidente.model_incidente_responsable_final"/>
+           <field name="perm_read" eval="1"/>
+           <field name="perm_create" eval="1"/>
+           <field name="perm_write" eval="1"/>
+           <field name="perm_unlink" eval="1"/>
+       </record>
+
+       <record id="model_access_incidente_responsable_final_default_interno" model="ir.model.access">
+           <field name="name">model.access.incidente.responsable.final.default.interno</field>
+           <field name="group_id" ref="incidente.group_registro_incidente"/>
+           <field name="model_id" ref="incidente.model_incidente_responsable_final_default"/>
+           <field name="perm_read" eval="1"/>
+           <field name="perm_create" eval="1"/>
+           <field name="perm_write" eval="1"/>
+           <field name="perm_unlink" eval="1"/>
+       </record>
+    </data>
+</odoo>

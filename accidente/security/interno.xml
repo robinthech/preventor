@@ -1,0 +1,63 @@
+<odoo>
+    <data>
+      <record  id="category_registro_accidente" model="ir.module.category">
+         <field name="name">Registro de accidente</field>
+     </record>
+
+     <record id="group_registro_accidente" model="res.groups">
+         <field name="name">Registrador</field>
+         <field name="category_id" ref="category_registro_accidente" />
+     </record>
+
+
+      <record id="model_access_registro_accidente_interno" model="ir.model.access">
+          <field name="name">model.access.registro.accidente.interno</field>
+          <field name="group_id" ref="accidente.group_registro_accidente"/>
+          <field name="model_id" ref="accidente.model_registro_accidente_final"/>
+          <field name="perm_read" eval="1"/>
+          <field name="perm_create" eval="1"/>
+          <field name="perm_write" eval="1"/>
+          <field name="perm_unlink" eval="1"/>
+      </record>
+
+       <record id="model_access_medida_correctiva_interno" model="ir.model.access">
+           <field name="name">model.access.medida.correctiva.interno</field>
+           <field name="group_id" ref="accidente.group_registro_accidente"/>
+           <field name="model_id" ref="accidente.model_medida_correctiva"/>
+           <field name="perm_read" eval="1"/>
+           <field name="perm_create" eval="1"/>
+           <field name="perm_write" eval="1"/>
+           <field name="perm_unlink" eval="1"/>
+       </record>
+
+       <record id="model_access_medida_correctiva_default_interno" model="ir.model.access">
+           <field name="name">model.access.medida.correctiva.default.interno</field>
+           <field name="group_id" ref="accidente.group_registro_accidente"/>
+           <field name="model_id" ref="accidente.model_medida_correctiva_default"/>
+           <field name="perm_read" eval="1"/>
+           <field name="perm_create" eval="1"/>
+           <field name="perm_write" eval="1"/>
+           <field name="perm_unlink" eval="1"/>
+       </record>
+
+       <record id="model_access_accidente_responsable_interno" model="ir.model.access">
+           <field name="name">model.access.accidente.responsable.interno</field>
+           <field name="group_id" ref="accidente.group_registro_accidente"/>
+           <field name="model_id" ref="accidente.model_accidente_responsable"/>
+           <field name="perm_read" eval="1"/>
+           <field name="perm_create" eval="1"/>
+           <field name="perm_write" eval="1"/>
+           <field name="perm_unlink" eval="1"/>
+       </record>
+
+       <record id="model_access_accidente_responsable_final_interno" model="ir.model.access">
+           <field name="name">model.access.accidente.responsable.final.interno</field>
+           <field name="group_id" ref="accidente.group_registro_accidente"/>
+           <field name="model_id" ref="accidente.model_accidente_responsable_final"/>
+           <field name="perm_read" eval="1"/>
+           <field name="perm_create" eval="1"/>
+           <field name="perm_write" eval="1"/>
+           <field name="perm_unlink" eval="1"/>
+       </record>
+    </data>
+</odoo>

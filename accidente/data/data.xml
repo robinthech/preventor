@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+        <record id='medida_correctiva_default_1' model='medida.correctiva.default'>
+            <field name='name'>Medida 1</field>
+            <field name="fecha_ejecucion" eval="(DateTime.today()).strftime('%Y-%m-%d')"></field>
+        </record>
+        <record id='accidente_responsable_default_1' model='accidente.responsable'>
+            <field name='name'>Responsable 1</field>
+        </record>
+        <record id='accidente_responsable_default_2' model='accidente.responsable'>
+            <field name='name'>Responsable 2</field>
+        </record>
+    </data>
+</odoo>

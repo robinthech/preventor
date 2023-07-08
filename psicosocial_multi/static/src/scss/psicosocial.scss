@@ -1,0 +1,108 @@
+.psicosocial-multicompany{
+  background: url('/psicosocial_multi/static/src/img/background.jpg') no-repeat fixed 0 0;
+  background-size: cover;
+}
+.psicosocial-multicompany #content{
+  margin-left: 2vw !important;
+  margin-right: 2vw !important;
+  padding: 3vw !important;
+}
+
+.display-none{
+  // display: block !important;
+}
+
+.display-block{
+  display: none !important;
+}
+
+@media only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px){
+  .display-none{
+    display: none !important;
+  }
+  .display-block{
+    display: flex !important;
+  }
+}
+
+form label{
+  font-weight: normal !important;
+}
+.matriz-basica .alto{
+  background:red;
+  color:white;
+}
+
+.matriz-basica .medio{
+  background:yellow;
+}
+
+.matriz-basica .bajo{
+  background:#00FF00;
+}
+
+.bg-psicosocial{
+  background: #e4f1fa;
+}
+
+.relative-psicosocial{
+  position:relative;
+}
+
+.absolute-psicosocial{
+  position:absolute;
+  left:-2vw;
+
+  h4{
+    font-weight: 700;
+  }
+}
+
+.matriz-basica .vertical{
+  writing-mode: vertical-lr;
+  transform: rotate(-90deg);
+}
+
+.matriz-basica td{
+	border: 1px solid black;
+}
+
+
+@media only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px){
+  .matriz-basica .display-none-continuo{
+  	display: none;
+  }
+}
+
+.eliminar span{
+  background-image:url('/iperc_continuo/static/src/icon/trash-alt-red.svg');
+  display:inline-block;
+  width:23px;
+  margin-left: 10px;
+  height: 65%;
+  background-repeat: no-repeat;
+  cursor:pointer;
+}
+
+
+.tooltip_continuo .tooltiptext {
+  visibility: hidden;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+.tooltip_continuo:hover .tooltiptext {
+  visibility: visible;
+}

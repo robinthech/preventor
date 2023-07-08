@@ -1,0 +1,452 @@
+<odoo>
+  <template id="template_inspecciones_criticos" name="Sub Estandar">
+    <t t-call="inspecciones.sidebar_inspecciones">
+      <div class="principal-inspecciones-criticos">
+
+        <div class="main-inspecciones">
+          <div id="content" class=" p-3 planid mx-auto">
+            <div class="form-group" id="formulario_editar_inspecciones" t-att-data-model_id="model" t-att-data-record_id="registro.id">
+              <div class="alert alert-primary text-center" role="alert">
+                <h4>FORMATO DE INSPECCIÓN PLANEADA DE ÍTEMS CRITICOS</h4>
+              </div>
+              <div class="font-weight-bold mb-3">
+                <button type="button" t-att-data-empresa_id="usuario.empresa_id.id" t-att-data-record_id="registro.id" t-att-data-usuario_id="usuario.id" class="btn btn-gamma font-weight-bold float-right button-guardar-inspeccion">GUARDAR</button>
+              </div>
+              <table class="table table-bordered" style="table-layout: auto;border-bottom:0px;border-left:0px">
+                <thead>
+                  <tr>
+                    <th colspan="2" class=" text-center">
+                      FECHA
+                    </th>
+                    <th colspan="3" class=" text-center">
+                      <input id="fecha" type="date" name="fecha" class="border-0 form-control" t-att-value="registro.fecha" t-att-data-record_id="registro.id" t-att-data-model_id="registro._name"/>
+                    </th>
+                    <th colspan="2" class=" text-center">
+                      AREA
+                    </th>
+                    <th colspan="3" class=" text-center">
+                      <input id="area" type="text" name="area" class="border-0 form-control" t-att-value="registro.area" t-att-data-record_id="registro.id" t-att-data-model_id="registro._name"/>
+                    </th>
+                  </tr>
+
+                </thead>
+                <tbody>
+                  <t t-foreach="registro.inspectores_ids" t-as="inspector">
+                    <tr class="">
+                      <td colspan="6">
+                        <input type="text" name="area" class="border-0 form-control" t-att-value="inspector.name"/>
+                      </td>
+                    </tr>
+                  </t>
+                  <tr class="bg-primary">
+                    <td>
+                      Nº
+                    </td>
+                    <td>
+                    CONDICIÓN
+                    </td>
+                    <td>
+                    CLASIFICACIÓN
+                    </td>
+                    <td>
+                    ACCIÓN CORRECTIVA
+                    </td>
+                    <td class=" my-0 align-middle">
+                      <span>
+                        RESPONSABLE</span>
+                    </td>
+                    <td class=" my-0 align-middle">
+                      <span>
+                        FECHA LÍMITE</span>
+                    </td>
+                    <td class=" my-0 align-middle">
+                      <span>
+                        FECHA CIERRE</span>
+                    </td>
+                    <td class=" my-0 align-middle">
+                      <span>
+                        ESTADO</span>
+                    </td>
+                  </tr>
+                  <t t-set="contador_condicion" t-value="1"/>
+                  <t t-foreach="registro.condiciones_ids" t-as="condicion">
+                    <tr >
+                      <td  class="m-0 p-0 align-middle">
+                        <span t-esc="contador_condicion"></span>
+                      </td>
+                      <td  class="m-0 p-0 align-middle">
+                        <span t-esc="condicion.name"></span>
+                      </td>
+                      <td class="m-0 p-0 align-middle">
+                        <select name="rango_peligro" class="form-control field-odoo" t-att-data-record_id="condicion.id" t-att-data-model_id="condicion._name">
+                          <t t-if="'A' == condicion.rango_peligro">
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                          </t>
+                          <t t-if="'B' == condicion.rango_peligro">
+                            <option value="A">A</option>
+                            <option value="B" selected="selected">B</option>
+                            <option value="C">C</option>
+                          </t>
+                          <t t-if="'C' == condicion.rango_peligro">
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C" selected="selected">C</option>
+                          </t>
+
+                        </select>
+                      </td>
+                      <td class="m-0 p-0 align-middle">
+                        <input type="text" name="accion_correctiva" class="form-control field-odoo" t-att-value="condicion.accion_correctiva" t-att-data-record_id="condicion.id" t-att-data-model_id="condicion._name"/>
+                      </td>
+                      <td class="m-0 p-0 align-middle">
+                        <select class="form-control field-odoo" type="select" name="responsable_id" t-att-data-record_id="condicion.id" t-att-data-model_id="condicion._name">
+                          <t t-foreach="trabajadores" t-as="v">
+                            <t t-if="v.id == condicion.responsable_id.id ">
+                              <option t-att-value="'%s' % (v.id)" t-esc="v.name" selected="selected"/>
+                            </t>
+                            <t t-else="">
+                              <option t-att-value="'%s' % (v.id)" t-esc="v.name"/>
+                            </t>
+                          </t>
+                        </select>
+                      </td>
+                      <td class="m-0 p-0 align-middle">
+                        <input type="date" name="fecha_limite" class="form-control field-odoo" t-att-value="condicion.fecha_limite" t-att-data-record_id="condicion.id" t-att-data-model_id="condicion._name"/>
+                      </td>
+                      <td class="m-0 p-0 align-middle">
+                        <input type="date" name="fecha_cierre" class="form-control field-odoo" t-att-value="condicion.fecha_cierre" t-att-data-record_id="condicion.id" t-att-data-model_id="condicion._name"/>
+                      </td>
+                      <t t-if="condicion.estado=='1'">
+                        <td class="m-0 p-0 color-inspeccion-1">
+                          <select name="estado" class="form-control field-odoo color-inspeccion-1" t-att-data-record_id="condicion.id" t-att-data-model_id="condicion._name">
+                            <t t-if="'1' == condicion.estado">
+                              <option value="1" selected="selected">PENDIENTE</option>
+                              <option value="2">PROCESO</option>
+                              <option value="3">CERRADO</option>
+                            </t>
+                          </select>
+                        </td>
+                      </t>
+                      <t t-if="condicion.estado=='2'">
+                        <td class="m-0 p-0 color-inspeccion-2">
+                          <select name="estado" class="form-control field-odoo color-inspeccion-2" t-att-data-record_id="condicion.id" t-att-data-model_id="condicion._name">
+                            <t t-if="'2' == condicion.estado">
+                              <option value="1">PENDIENTE</option>
+                              <option value="2" selected="selected">PROCESO</option>
+                              <option value="3">CERRADO</option>
+                            </t>
+                          </select>
+                        </td>
+                      </t>
+                      <t t-if="condicion.estado=='3'">
+                        <td class="m-0 p-0 color-inspeccion-3">
+                          <select name="estado" class="form-control field-odoo color-inspeccion-3" t-att-data-record_id="condicion.id" t-att-data-model_id="condicion._name">
+                            <t t-if="'3' == condicion.estado">
+                              <option value="1">PENDIENTE</option>
+                              <option value="2">PROCESO</option>
+                              <option value="3" selected="selected">CERRADO</option>
+                            </t>
+                          </select>
+                        </td>
+                      </t>
+                    </tr>
+                    <t t-set="contador_sub_condicion" t-value="contador_condicion + 0.1"/>
+
+
+                    <t t-set="contador_condicion" t-value="contador_condicion + 1"/>
+
+                  </t>
+                  <tr>
+                    <td colspan="8">
+                      <div class="font-weight-bold mb-3">
+                        <button type="button" class="btn btn-primary font-weight-bold" style="border-radius:50%" data-toggle="modal" t-attf-data-target="#new_condicion_{{registro.id}}">+</button>
+                        AGREGAR CONDICION
+                      </div>
+
+                      <div class="modal fade" t-attf-id="new_condicion_{{registro.id}}" t-att-aria-hidden="true" tabindex="-1" role="dialog" aria-labelledby="exampleModalTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title">NUEVO REGISTRO</h5>
+                            </div>
+                            <div class="modal-body">
+                              NOMBRE
+                              <input class="form-control col-12" t-att-value="name" name="new-registro-name" type="char"/>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Descartar</button>
+                              <button type="button" t-att-data-inspeccion_id="registro.id" class="btn btn-primary botton-nueva-condicion-criticos">CREAR</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table class="table table-bordered text-center">
+                <thead class="">
+                  <tr >
+                    <th colspan="2">
+                      RESUMEN
+                    </th>
+
+                  </tr>
+                  <tr>
+                    <th>
+                      Estado
+                    </th>
+                    <th>
+                      Cantidad
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="color-inspeccion-1">
+                    <td>
+                      PENDIENTE
+                    </td>
+                    <td>
+                      <span t-esc="registro.total_pendiente"></span>
+                    </td>
+                  </tr>
+                  <tr class="color-inspeccion-2">
+                    <td>
+                      PROCESO
+                    </td>
+                    <td>
+                      <span t-esc="registro.total_proceso"></span>
+                    </td>
+                  </tr>
+                  <tr class="color-inspeccion-3">
+                    <td>
+                      CERRADO
+                    </td>
+                    <td>
+                      <span t-esc="registro.total_cerrado"></span>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </t>
+
+  </template>
+
+  <template id="template_formato_inspecciones_criticos" name="Formato Inspecciones">
+    <t t-call="inspecciones.sidebar_inspecciones">
+      <div class="formato-principal-inspecciones-criticos">
+
+        <div class="main-inspecciones">
+          <div id="content" class=" p-3 planid mx-auto">
+            <div class="form-group" id="formulario_editar_inspecciones" t-att-data-model_id="model" t-att-data-record_id="registro.id">
+              <div class="alert alert-primary text-center" role="alert">
+                <h4>FORMATO DE INSPECCIÓN PLANEADA DE ÍTEMS CRITICOS</h4>
+              </div>
+              <div class="font-weight-bold mb-3">
+                <button type="button" t-att-data-empresa_id="usuario.empresa_id.id" t-att-data-record_id="registro.id" t-att-data-usuario_id="usuario.id" class="btn btn-gamma font-weight-bold float-right button-guardar-inspeccion">GUARDAR</button>
+              </div>
+              <table class="table table-bordered" style="table-layout: auto;border-bottom:0px;border-left:0px">
+                <thead>
+                  <tr>
+                    <th colspan="2" class=" text-center">
+                      FECHA
+                    </th>
+                    <th colspan="3" class=" text-center">
+                      <input id="fecha" type="date" name="fecha" class="border-0 form-control" t-att-value="registro.fecha" t-att-data-record_id="registro.id" t-att-data-model_id="registro._name"/>
+                    </th>
+                    <th colspan="2" class=" text-center">
+                      AREA
+                    </th>
+                    <th colspan="3" class=" text-center">
+                      <input id="area" type="text" name="area" class="border-0 form-control" t-att-value="registro.area" t-att-data-record_id="registro.id" t-att-data-model_id="registro._name"/>
+                    </th>
+                  </tr>
+
+                </thead>
+                <tbody>
+                  <t t-foreach="registro.inspectores_ids" t-as="inspector">
+                    <tr class="">
+                      <td colspan="6">
+                        <input type="text" name="area" class="border-0 form-control" t-att-value="inspector.name"/>
+                      </td>
+                    </tr>
+                  </t>
+                  <tr class="bg-primary">
+                    <td class="my-0 py-0 align-middle">
+                      Nº
+                    </td>
+                    <td class="my-0 py-0 align-middle">
+                    CONDICIÓN
+                    </td>
+                    <td class="my-0 py-0 align-middle">
+                    CLASIFICACIÓN
+                    </td>
+                    <td class="my-0 py-0 align-middle">
+                    ACCIÓN CORRECTIVA
+                    </td>
+                    <td class="my-0 py-0 align-middle">
+                      <span>
+                        RESPONSABLE</span>
+                    </td>
+                    <td class="my-0 py-0 align-middle">
+                      <span>
+                        FECHA LÍMITE</span>
+                    </td>
+                    <td class="my-0 py-0 align-middle">
+                      <span>
+                        FECHA CIERRE</span>
+                    </td>
+                    <td class="my-0 py-0 align-middle">
+                      <span>
+                        ESTADO</span>
+                    </td>
+                  </tr>
+                  <t t-set="contador_condicion" t-value="1"/>
+                  <t t-foreach="registro.condiciones_ids" t-as="condicion">
+                    <tr class="">
+                      <td colspan="1" class="my-0 py-0 align-middle">
+                        <span t-esc="contador_condicion"></span>
+                      </td>
+                      <td  class="my-0 py-0 align-middle">
+                        <span t-esc="condicion.name"></span>
+                      </td>
+                      <td class="my-0 py-0 align-middle">
+                        <select name="rango_peligro" class="form-control field-odoo" t-att-data-record_id="condicion.id" t-att-data-model_id="condicion._name">
+                          <t t-if="'A' == condicion.rango_peligro">
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                          </t>
+                          <t t-if="'B' == condicion.rango_peligro">
+                            <option value="A">A</option>
+                            <option value="B" selected="selected">B</option>
+                            <option value="C">C</option>
+                          </t>
+                          <t t-if="'C' == condicion.rango_peligro">
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C" selected="selected">C</option>
+                          </t>
+
+                        </select>
+                      </td>
+                      <td class="my-0 py-0 align-middle">
+                        <input type="text" name="accion_correctiva" class="form-control field-odoo" t-att-value="condicion.accion_correctiva" t-att-data-record_id="condicion.id" t-att-data-model_id="condicion._name"/>
+                      </td>
+                      <td class="my-0 py-0 align-middle">
+                        <select class="m-0 p-0 form-control field-odoo" type="select" name="responsable_id" t-att-data-record_id="condicion.id" t-att-data-model_id="condicion._name">
+                          <t t-foreach="trabajadores" t-as="v">
+                            <t t-if="v.id == condicion.responsable_id.id ">
+                              <option t-att-value="'%s' % (v.id)" t-esc="v.name" selected="selected"/>
+                            </t>
+                            <t t-else="">
+                              <option t-att-value="'%s' % (v.id)" t-esc="v.name"/>
+                            </t>
+                          </t>
+                        </select>
+                      </td>
+                      <td class="my-0 py-0 align-middle">
+                        <input type="date" name="fecha_limite" class="form-control field-odoo" t-att-value="condicion.fecha_limite" t-att-data-record_id="condicion.id" t-att-data-model_id="condicion._name"/>
+                      </td>
+                      <td class="my-0 py-0 align-middle">
+                        <input type="date" name="fecha_cierre" class="form-control field-odoo" t-att-value="condicion.fecha_cierre" t-att-data-record_id="condicion.id" t-att-data-model_id="condicion._name"/>
+                      </td>
+                      <t t-if="condicion.estado=='1'">
+                        <td class="my-0 py-0 color-inspeccion-1">
+                          <select name="estado" class="form-control field-odoo color-inspeccion-1" t-att-data-record_id="condicion.id" t-att-data-model_id="condicion._name">
+                            <t t-if="'1' == condicion.estado">
+                              <option value="1" selected="selected">PENDIENTE</option>
+                              <option value="2">PROCESO</option>
+                              <option value="3">CERRADO</option>
+                            </t>
+                          </select>
+                        </td>
+
+                      </t>
+                      <t t-if="condicion.estado=='2'">
+                        <td class="my-0 py-0 color-inspeccion-2">
+                          <select name="estado" class="form-control field-odoo color-inspeccion-2" t-att-data-record_id="condicion.id" t-att-data-model_id="condicion._name">
+                            <t t-if="'2' == condicion.estado">
+                              <option value="1">PENDIENTE</option>
+                              <option value="2" selected="selected">PROCESO</option>
+                              <option value="3">CERRADO</option>
+                            </t>
+                          </select>
+                        </td>
+                      </t>
+                      <t t-if="condicion.estado=='3'">
+                        <td class="my-0 py-0 color-inspeccion-3">
+                          <select name="estado" class="form-control field-odoo color-inspeccion-3" t-att-data-record_id="condicion.id" t-att-data-model_id="condicion._name">
+                            <t t-if="'3' == condicion.estado">
+                              <option value="1">PENDIENTE</option>
+                              <option value="2">PROCESO</option>
+                              <option value="3" selected="selected">CERRADO</option>
+                            </t>
+                          </select>
+                        </td>
+                      </t>
+
+                    </tr>
+                    <t t-set="contador_sub_condicion" t-value="contador_condicion + 0.1"/>
+
+
+                    <t t-set="contador_condicion" t-value="contador_condicion + 1"/>
+
+                  </t>
+                  <tr>
+                    <t t-if="'1' == registro.origen">
+
+                    </t>
+                    <t t-if="'2' == registro.origen">
+
+                    <td colspan="8">
+                      <div class="font-weight-bold mb-3">
+                        <button type="button" class="btn btn-primary font-weight-bold" style="border-radius:50%" data-toggle="modal" t-attf-data-target="#new_condicion_{{registro.id}}">+</button>
+                        AGREGAR CONDICION
+                      </div>
+
+                      <div class="modal fade" t-attf-id="new_condicion_{{registro.id}}" t-att-aria-hidden="true" tabindex="-1" role="dialog" aria-labelledby="exampleModalTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title">NUEVO REGISTRO</h5>
+                            </div>
+                            <div class="modal-body">
+                              NOMBRE
+                              <input class="form-control col-12" t-att-value="name" name="new-registro-name" type="char"/>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Descartar</button>
+                              <button type="button" t-att-data-inspeccion_id="registro.id" class="btn btn-primary botton-nueva-condicion-criticos">CREAR</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </t>
+
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </t>
+
+  </template>
+
+</odoo>

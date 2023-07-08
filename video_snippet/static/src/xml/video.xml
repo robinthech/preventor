@@ -1,0 +1,76 @@
+<templates>
+    <t t-name="video_snippet.video_1">
+        <div t-attf-id="selector{{widget.id}}" class="pt32 pb32">
+        <div class="container outside">
+            <div class="row align-items-center">
+                <div class="container-imagen pt16 pb16 col-lg-4">
+                    <img class="img img-fluid mx-auto change_video" t-att-src="widget.imagen" t-att-alt="widget.nombre" data-toggle="modal" t-attf-data-target="#wew{{widget.id}}"/>
+                    <div class="overlay" data-toggle="modal" t-attf-data-target="#wew{{widget.id}}">
+                      <div class="text"><i class="fa fa-eye"></i> Vista previa</div>
+                    </div>
+                </div>
+                <div class="modal fade" t-attf-id="wew{{widget.id}}" t-att-tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" t-att-aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document" style="overflow:hidden">
+                        <div class="modal-content">
+                        <div class="pb-4 bg-white">
+                            <iframe t-att-id="widget.id" class="embed-responsive-item ancho" t-att-src="widget.url" height="360"  width="640" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                            <div class="container-fluid">
+                                <div class="row d-flex justify-content-around align-items-center my-3">
+                                    <a t-att-href="widget.website_url" class="style_h3 cambio col-6"><t t-esc="widget.nombre"/></a>
+                                    <a href="/shop/payment" type="button" class="btn btn-primary d-flex align-items-center font-weight-bold style_button">
+                                    Comprar Ahora
+                                  </a>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt16 pb16 col-lg-8">
+                    <div class="col-lg-8 pl-0">
+                        <h2><t t-esc="widget.nombre"/></h2>
+                        <p><t t-esc="widget.description"/></p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <div class="s_btn text-left pt0 pb0">
+                            <a t-att-href="widget.website_url" class="btn btn-primary">VER MAS+</a>
+                        </div>
+                        <div class="s_btn text-left pt0 pb0">
+                            <a t-att-href="widget.modulo" class="btn btn-warning font-weight-bold">Ingresar al módulo</a>
+                        </div>
+                    </div>
+                    <div class="s_rating row mt-2">
+                        <div class="col-lg-12 s_rating_stars s_rating_5 s_rating_1x pt8 pb0">
+                            <h4>Calidad</h4>
+                            <i class="fa fa-1x"/>
+                            <i class="fa fa-1x"/>
+                            <i class="fa fa-1x"/>
+                            <i class="fa fa-1x"/>
+                            <i class="fa fa-1x"/>
+                            <div class="s_rating_bar"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-center">
+              <div class="col-lg-4 d-flex justify-content-around">
+                <div class="s_btn text-left pb16">
+                  <button class="btn btn-outline-primary style_button d-flex align-items-center compra" t-att-data-product_id="widget.id">
+                  <!-- <t t-esc="widget.sale_qty"/> -->
+                  <t t-if="widget.sale_qty>0">
+                    <i class="fa fa-check-circle fa-2x"></i>
+                  </t>
+                  <t t-else="">
+                    <i class="fa fa-shopping-cart fa-2x"></i>
+                  </t>
+                  </button>
+                </div>
+                <div class="s_btn text-left pb16">
+                    <a href="/shop/payment" class="btn btn-outline-primary style_button d-flex align-items-center">Comprar Ahora</a>
+                </div>
+              </div>
+            </div>
+        </div>
+        </div>
+    </t>
+</templates>

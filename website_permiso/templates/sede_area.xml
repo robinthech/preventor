@@ -1,0 +1,117 @@
+<odoo>
+  <template id="form_sede_sede" name="Sede">
+    <t t-call="website_permiso.perfil_usuario">
+      <div class="formulario_sede_area" t-att-data-sede_id="sede.id">
+        <div class="alert alert-primary text-center" role="alert">
+          <h4>DESCRIPCIÓN DE LA SEDE</h4>
+        </div>
+        <div class="row py-2">
+          <div class="col-12">
+            NOMBRE DE SEDE
+            <input class="form-control mb-2 col-12 field-odoo" t-att-value="sede.name" name="name" type="text"/>
+            CANTIDAD DE TRABAJADORES
+            <input class="form-control mb-2 col-12 field-odoo" t-att-value="sede.trabajadores" oninput="this.value = Math.abs(this.value)" name="trabajadores" type="number"/>
+            ENCARGADO DE SEDE
+            <select class="form-control mb-2 col-12 edit-encargado field-odoo" name="encargado">
+              <t t-foreach="secundarios" t-as="v">
+                <t t-if="v.id == sede.encargado.id ">
+                  <option t-att-value="'%s' % (v.id)" t-esc="v.name" selected="selected"/>
+                </t>
+                <t t-else="">
+                  <option t-att-value="'%s' % (v.id)" t-esc="v.name"/>
+                </t>
+              </t>
+            </select>
+            DNI
+            <input class="form-control mb-2 col-12 field-odoo" t-att-value="sede.dni" name="dni" type="text"/>
+            PUESTO DE TRABAJO
+            <input class="form-control mb-2 col-12 field-odoo" t-att-value="sede.puesto" name="puesto" type="text"/>
+          </div>
+        </div>
+        <br/>
+        <t t-if="usuario.perfil=='1'">
+          <div class="font-weight-bold mb-3">
+            <button type="button" class="btn btn-primary font-weight-bold" style="border-radius:50%" data-toggle="modal" data-target="#new_requisito">+</button>
+            AGREGAR AREA
+            <button type="button" t-att-data-empresa_id="usuario.empresa_id.id" t-att-data-usuario_id="usuario.id" class="btn btn-gamma font-weight-bold float-right button-guardar-sede">GUARDAR</button>
+          </div>
+        </t>
+
+        <h3>AREAS</h3>
+        <div class="table-responsive mb-4">
+          <t t-if="usuario.perfil=='1'">
+            <table id="formulario_editar_field_requisito" class="table table-hover responsive nowrap w-100 text-center mb-4">
+              <thead class="thead-dark">
+                <tr>
+                  <th>N°</th>
+                  <th>AREAS</th>
+                  <th class="no-sort">ELIMINAR</th>
+                </tr>
+              </thead>
+              <tbody>
+                <t t-set="counter" t-value="0"/>
+                <t t-foreach="sede.area_ids" t-as="area">
+                  <t t-set="counter" t-value="counter + 1"/>
+                  <tr>
+                    <td><t t-esc="counter"/></td>
+                    <td><t t-esc="area.name"/></td>
+
+                    <td>
+                      <div>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" t-attf-data-target="#area-{{area.id}}">
+                          <i class="fa fa-trash" style="font-size:20px"></i>
+                        </button>
+                        <div class="modal fade" t-attf-id="area-{{area.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                              </div>
+                              <div class="modal-body">
+                                <div class="alert alert-danger" role="alert">
+                                  ESTA SEGURO DE ELIMINAR
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                                <button type="button" class="btn btn-secondary botton-eliminar-area" t-att-data-requisito_id="area.id">ELIMINAR</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </t>
+              </tbody>
+            </table>
+          </t>
+
+        </div>
+
+
+        <div class="modal fade" id="new_requisito" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">NUEVO AREA</h5>
+              </div>
+              <div class="modal-body">
+                AREA
+                <input class="form-control mb-2 col-12" name="new-area-nombre" type="text"/>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                <button type="button" t-att-data-empresa_id="usuario.empresa_id.id" t-att-data-usuario_id="usuario.id" class="btn btn-primary button-nuevo-area">GUARDAR</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+    </t>
+  </template>
+
+</odoo>

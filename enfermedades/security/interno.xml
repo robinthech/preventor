@@ -1,0 +1,124 @@
+<odoo>
+    <data>
+      <record  id="category_enfermedades_ocupacionales" model="ir.module.category">
+         <field name="name">Registro de enfermedades ocupacionales</field>
+     </record>
+
+     <record id="group_enfermedades_ocupacionales" model="res.groups">
+         <field name="name">Registrador</field>
+         <field name="category_id" ref="category_enfermedades_ocupacionales" />
+     </record>
+
+
+      <record id="model_access_enfermedades_ocupacionales_interno" model="ir.model.access">
+          <field name="name">model.access.enfermedades.ocupacionales.interno</field>
+          <field name="group_id" ref="enfermedades.group_enfermedades_ocupacionales"/>
+          <field name="model_id" ref="enfermedades.model_enfermedades_ocupacionales"/>
+          <field name="perm_read" eval="1"/>
+          <field name="perm_create" eval="1"/>
+          <field name="perm_write" eval="1"/>
+          <field name="perm_unlink" eval="1"/>
+      </record>
+
+       <record id="model_access_medida_enfermedades_interno" model="ir.model.access">
+           <field name="name">model.access.medida.enfermedades.interno</field>
+           <field name="group_id" ref="enfermedades.group_enfermedades_ocupacionales"/>
+           <field name="model_id" ref="enfermedades.model_medida_enfermedades"/>
+           <field name="perm_read" eval="1"/>
+           <field name="perm_create" eval="1"/>
+           <field name="perm_write" eval="1"/>
+           <field name="perm_unlink" eval="1"/>
+       </record>
+
+       <record id="model_access_medida_enfermedades_default_interno" model="ir.model.access">
+           <field name="name">model.access.medida.enfermedades.default.interno</field>
+           <field name="group_id" ref="enfermedades.group_enfermedades_ocupacionales"/>
+           <field name="model_id" ref="enfermedades.model_medida_enfermedades_default"/>
+           <field name="perm_read" eval="1"/>
+           <field name="perm_create" eval="1"/>
+           <field name="perm_write" eval="1"/>
+           <field name="perm_unlink" eval="1"/>
+       </record>
+
+       <record id="model_access_enfermedades_responsable_interno" model="ir.model.access">
+           <field name="name">model.access.enfermedades.responsable.interno</field>
+           <field name="group_id" ref="enfermedades.group_enfermedades_ocupacionales"/>
+           <field name="model_id" ref="enfermedades.model_enfermedades_responsable"/>
+           <field name="perm_read" eval="1"/>
+           <field name="perm_create" eval="1"/>
+           <field name="perm_write" eval="1"/>
+           <field name="perm_unlink" eval="1"/>
+       </record>
+
+       <record id="model_access_enfermedades_responsable_final_interno" model="ir.model.access">
+           <field name="name">model.access.enfermedades.responsable.final.interno</field>
+           <field name="group_id" ref="enfermedades.group_enfermedades_ocupacionales"/>
+           <field name="model_id" ref="enfermedades.model_enfermedades_responsable_final"/>
+           <field name="perm_read" eval="1"/>
+           <field name="perm_create" eval="1"/>
+           <field name="perm_write" eval="1"/>
+           <field name="perm_unlink" eval="1"/>
+       </record>
+
+       <record id="model_access_enfermedades_responsable_final_default_interno" model="ir.model.access">
+           <field name="name">model.access.enfermedades.responsable.final.default.interno</field>
+           <field name="group_id" ref="enfermedades.group_enfermedades_ocupacionales"/>
+           <field name="model_id" ref="enfermedades.model_enfermedades_responsable_final_default"/>
+           <field name="perm_read" eval="1"/>
+           <field name="perm_create" eval="1"/>
+           <field name="perm_write" eval="1"/>
+           <field name="perm_unlink" eval="1"/>
+       </record>
+
+       <record id="model_access_datos_enfermedad_interno" model="ir.model.access">
+           <field name="name">model.access.datos.enfermedad.interno</field>
+           <field name="group_id" ref="enfermedades.group_enfermedades_ocupacionales"/>
+           <field name="model_id" ref="enfermedades.model_datos_enfermedad"/>
+           <field name="perm_read" eval="1"/>
+           <field name="perm_create" eval="1"/>
+           <field name="perm_write" eval="1"/>
+           <field name="perm_unlink" eval="1"/>
+       </record>
+
+       <record id="model_access_tipo_agente_interno" model="ir.model.access">
+           <field name="name">model.access.tipo.agente.interno</field>
+           <field name="group_id" ref="enfermedades.group_enfermedades_ocupacionales"/>
+           <field name="model_id" ref="enfermedades.model_tipo_agente"/>
+           <field name="perm_read" eval="1"/>
+           <field name="perm_create" eval="1"/>
+           <field name="perm_write" eval="1"/>
+           <field name="perm_unlink" eval="1"/>
+       </record>
+
+       <record id="model_access_relacion_sustancias_default_interno" model="ir.model.access">
+           <field name="name">model.access.relacion.sustancias.default.interno</field>
+           <field name="group_id" ref="enfermedades.group_enfermedades_ocupacionales"/>
+           <field name="model_id" ref="enfermedades.model_relacion_sustancias_default"/>
+           <field name="perm_read" eval="1"/>
+           <field name="perm_create" eval="1"/>
+           <field name="perm_write" eval="1"/>
+           <field name="perm_unlink" eval="1"/>
+       </record>
+
+       <record id="model_access_relacion_sustancias_interno" model="ir.model.access">
+           <field name="name">model.access.relacion.sustancias.interno</field>
+           <field name="group_id" ref="enfermedades.group_enfermedades_ocupacionales"/>
+           <field name="model_id" ref="enfermedades.model_relacion_sustancias"/>
+           <field name="perm_read" eval="1"/>
+           <field name="perm_create" eval="1"/>
+           <field name="perm_write" eval="1"/>
+           <field name="perm_unlink" eval="1"/>
+       </record>
+
+       <record id="model_access_relacion_sustancias_default_interno" model="ir.model.access">
+           <field name="name">model.access.relacion.sustancias.default.interno</field>
+           <field name="group_id" ref="enfermedades.group_enfermedades_ocupacionales"/>
+           <field name="model_id" ref="enfermedades.model_relacion_sustancias_default"/>
+           <field name="perm_read" eval="1"/>
+           <field name="perm_create" eval="1"/>
+           <field name="perm_write" eval="1"/>
+           <field name="perm_unlink" eval="1"/>
+       </record>
+
+    </data>
+</odoo>

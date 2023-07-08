@@ -1,0 +1,181 @@
+<odoo>
+    <data>
+        <record  id="category_inspecciones" model="ir.module.category">
+           <field name="name">Inspecciones</field>
+       </record>
+
+       <record id="group_inspecciones" model="res.groups">
+           <field name="name">Registrador</field>
+           <field name="category_id" ref="category_inspecciones"/>
+       </record>
+
+       <!-- Inspecciones -->
+        <record id="model_access_inspecciones" model="ir.model.access">
+            <field name="name">model.access.inspecciones</field>
+            <field name="group_id" ref="inspecciones.group_inspecciones"/>
+            <field name="model_id" ref="inspecciones.model_inspeccion"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_inspecciones_portal" model="ir.model.access">
+            <field name="name">model.access.inspecciones.portal</field>
+            <field name="group_id" ref="base.group_portal"/>
+            <field name="model_id" ref="inspecciones.model_inspeccion"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+
+        <!-- FORMATO Inspecciones -->
+        <record id="model_access_formato_inspeccion" model="ir.model.access">
+            <field name="name">model.access.formato.inspeccion</field>
+            <field name="group_id" ref="inspecciones.group_inspecciones"/>
+            <field name="model_id" ref="inspecciones.model_formato_inspeccion"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_formato_inspeccion_portal" model="ir.model.access">
+            <field name="name">model.access.formato.inspeccion.portal</field>
+            <field name="group_id" ref="base.group_portal"/>
+            <field name="model_id" ref="inspecciones.model_formato_inspeccion"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <!-- FORMATO CONDICION -->
+        <record id="model_access_formato_condicion" model="ir.model.access">
+            <field name="name">model.access.formato.condicion</field>
+            <field name="group_id" ref="inspecciones.group_inspecciones"/>
+            <field name="model_id" ref="inspecciones.model_formato_condicion"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_formato_condicion_portal" model="ir.model.access">
+            <field name="name">model.access.formato.condicion.portal</field>
+            <field name="group_id" ref="base.group_portal"/>
+            <field name="model_id" ref="inspecciones.model_formato_condicion"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+          <!-- FORMATO SUB CONDICION -->
+          <record id="model_access_formato_sub_condicion" model="ir.model.access">
+              <field name="name">model.access.formato.sub.condicion</field>
+              <field name="group_id" ref="inspecciones.group_inspecciones"/>
+              <field name="model_id" ref="inspecciones.model_formato_sub_condicion"/>
+              <field name="perm_read" eval="1"/>
+              <field name="perm_create" eval="1"/>
+              <field name="perm_write" eval="1"/>
+              <field name="perm_unlink" eval="1"/>
+          </record>
+
+          <record id="model_access_formato_sub_condicion_portal" model="ir.model.access">
+              <field name="name">model.access.formato.sub.condicion.portal</field>
+              <field name="group_id" ref="base.group_portal"/>
+              <field name="model_id" ref="inspecciones.model_formato_sub_condicion"/>
+              <field name="perm_read" eval="1"/>
+              <field name="perm_create" eval="1"/>
+              <field name="perm_write" eval="1"/>
+              <field name="perm_unlink" eval="1"/>
+          </record>
+
+          <!-- FORMATO inspector -->
+          <record id="model_access_inspector" model="ir.model.access">
+              <field name="name">model.access.inspector</field>
+              <field name="group_id" ref="inspecciones.group_inspecciones"/>
+              <field name="model_id" ref="inspecciones.model_inspector"/>
+              <field name="perm_read" eval="1"/>
+              <field name="perm_create" eval="1"/>
+              <field name="perm_write" eval="1"/>
+              <field name="perm_unlink" eval="1"/>
+          </record>
+
+          <record id="model_access_inspector_portal" model="ir.model.access">
+              <field name="name">model.access.inspector.portal</field>
+              <field name="group_id" ref="base.group_portal"/>
+              <field name="model_id" ref="inspecciones.model_inspector"/>
+              <field name="perm_read" eval="1"/>
+              <field name="perm_create" eval="1"/>
+              <field name="perm_write" eval="1"/>
+              <field name="perm_unlink" eval="1"/>
+          </record>
+
+          <!-- FORMATO inspector.inspeccion -->
+          <record id="model_access_inspector_inspeccion" model="ir.model.access">
+              <field name="name">model.access.inspector.inspeccion</field>
+              <field name="group_id" ref="inspecciones.group_inspecciones"/>
+              <field name="model_id" ref="inspecciones.model_inspector_inspeccion"/>
+              <field name="perm_read" eval="1"/>
+              <field name="perm_create" eval="1"/>
+              <field name="perm_write" eval="1"/>
+              <field name="perm_unlink" eval="1"/>
+          </record>
+
+          <record id="model_access_inspector_inspeccion_portal" model="ir.model.access">
+              <field name="name">model.access.inspector.inspeccion.portal</field>
+              <field name="group_id" ref="base.group_portal"/>
+              <field name="model_id" ref="inspecciones.model_inspector_inspeccion"/>
+              <field name="perm_read" eval="1"/>
+              <field name="perm_create" eval="1"/>
+              <field name="perm_write" eval="1"/>
+              <field name="perm_unlink" eval="1"/>
+          </record>
+
+          <!-- FORMATO condicion.inspeccion -->
+          <record id="model_access_condicion_inspeccion" model="ir.model.access">
+              <field name="name">model.access.condicion.inspeccion</field>
+              <field name="group_id" ref="inspecciones.group_inspecciones"/>
+              <field name="model_id" ref="inspecciones.model_condicion_inspeccion"/>
+              <field name="perm_read" eval="1"/>
+              <field name="perm_create" eval="1"/>
+              <field name="perm_write" eval="1"/>
+              <field name="perm_unlink" eval="1"/>
+          </record>
+
+          <record id="model_access_condicion_inspeccion_portal" model="ir.model.access">
+              <field name="name">model.access.condicion.inspeccion.portal</field>
+              <field name="group_id" ref="base.group_portal"/>
+              <field name="model_id" ref="inspecciones.model_condicion_inspeccion"/>
+              <field name="perm_read" eval="1"/>
+              <field name="perm_create" eval="1"/>
+              <field name="perm_write" eval="1"/>
+              <field name="perm_unlink" eval="1"/>
+          </record>
+
+          <!-- FORMATO sub.condicion -->
+          <record id="model_access_sub_condicion" model="ir.model.access">
+              <field name="name">model.access.sub.condicion</field>
+              <field name="group_id" ref="inspecciones.group_inspecciones"/>
+              <field name="model_id" ref="inspecciones.model_sub_condicion"/>
+              <field name="perm_read" eval="1"/>
+              <field name="perm_create" eval="1"/>
+              <field name="perm_write" eval="1"/>
+              <field name="perm_unlink" eval="1"/>
+          </record>
+
+          <record id="model_access_sub_condicion_portal" model="ir.model.access">
+              <field name="name">model.access.sub.condicion.portal</field>
+              <field name="group_id" ref="base.group_portal"/>
+              <field name="model_id" ref="inspecciones.model_sub_condicion"/>
+              <field name="perm_read" eval="1"/>
+              <field name="perm_create" eval="1"/>
+              <field name="perm_write" eval="1"/>
+              <field name="perm_unlink" eval="1"/>
+          </record>
+    </data>
+</odoo>

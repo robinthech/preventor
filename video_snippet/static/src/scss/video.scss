@@ -1,0 +1,77 @@
+.modal-backdrop{
+    // position: relative !important;
+}
+.style_button{
+  padding-left: 40px;
+  padding-right: 40px;
+  height: 48px;
+  border-radius: 0px;
+}
+
+#selector2,#selector4 {
+  background-color: #dee2e6;
+}
+
+.style_h3{
+  margin-bottom: 0px !important;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.style_h3:hover{
+  color: var(--secondary);
+}
+.style_button:hover{
+  background-color: var(--secondary);
+  border-color:var(--secondary);
+}
+
+.ancho {
+  width: 100%;
+}
+@media (min-width: 576px){
+  .modal-dialog {
+    max-width: 640px !important;
+    // margin: 1.75rem auto;
+  }
+  .ancho {
+    width: 640px;
+  }
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin:16px;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: rgba(0,0,0,0.8);
+}
+
+.text {
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.container-imagen:hover .overlay {
+  opacity: 0.9;
+}
+
+.cc-logo {
+    width: auto;
+    height: 16px;
+
+}

@@ -1,0 +1,104 @@
+<odoo>
+    <data>
+      <record id="model_access_enfermedades_ocupacionales_portal" model="ir.model.access">
+          <field name="name">model.access.enfermedades.ocupacionales.portal</field>
+          <field name="group_id" ref="base.group_portal"/>
+          <field name="model_id" ref="enfermedades.model_enfermedades_ocupacionales"/>
+          <field name="perm_read" eval="1"/>
+          <field name="perm_create" eval="1"/>
+          <field name="perm_write" eval="1"/>
+          <field name="perm_unlink" eval="1"/>
+      </record>
+
+       <record id="model_access_medida_enfermedades_portal" model="ir.model.access">
+           <field name="name">model.access.medida.enfermedades.portal</field>
+           <field name="group_id" ref="base.group_portal"/>
+           <field name="model_id" ref="enfermedades.model_medida_enfermedades"/>
+           <field name="perm_read" eval="1"/>
+           <field name="perm_create" eval="1"/>
+           <field name="perm_write" eval="1"/>
+           <field name="perm_unlink" eval="1"/>
+       </record>
+
+       <record id="model_access_medida_enfermedades_default_portal" model="ir.model.access">
+           <field name="name">model.access.medida.enfermedades.default.portal</field>
+           <field name="group_id" ref="base.group_portal"/>
+           <field name="model_id" ref="enfermedades.model_medida_enfermedades_default"/>
+           <field name="perm_read" eval="1"/>
+           <field name="perm_create" eval="1"/>
+           <field name="perm_write" eval="1"/>
+           <field name="perm_unlink" eval="1"/>
+       </record>
+
+       <record id="model_access_enfermedades_responsable_portal" model="ir.model.access">
+           <field name="name">model.access.enfermedades.responsable.portal</field>
+           <field name="group_id" ref="base.group_portal"/>
+           <field name="model_id" ref="enfermedades.model_enfermedades_responsable"/>
+           <field name="perm_read" eval="1"/>
+           <field name="perm_create" eval="1"/>
+           <field name="perm_write" eval="1"/>
+           <field name="perm_unlink" eval="1"/>
+       </record>
+
+       <record id="model_access_enfermedades_responsable_final_portal" model="ir.model.access">
+           <field name="name">model.access.enfermedades.responsable.final.portal</field>
+           <field name="group_id" ref="base.group_portal"/>
+           <field name="model_id" ref="enfermedades.model_enfermedades_responsable_final"/>
+           <field name="perm_read" eval="1"/>
+           <field name="perm_create" eval="1"/>
+           <field name="perm_write" eval="1"/>
+           <field name="perm_unlink" eval="1"/>
+       </record>
+
+       <record id="model_access_enfermedades_responsable_final_default_portal" model="ir.model.access">
+           <field name="name">model.access.enfermedades.responsable.final.default.portal</field>
+           <field name="group_id" ref="base.group_portal"/>
+           <field name="model_id" ref="enfermedades.model_enfermedades_responsable_final_default"/>
+           <field name="perm_read" eval="1"/>
+           <field name="perm_create" eval="1"/>
+           <field name="perm_write" eval="1"/>
+           <field name="perm_unlink" eval="1"/>
+       </record>
+
+       <record id="model_access_datos_enfermedad_portal" model="ir.model.access">
+           <field name="name">model.access.datos.enfermedad.portal</field>
+           <field name="group_id" ref="base.group_portal"/>
+           <field name="model_id" ref="enfermedades.model_datos_enfermedad"/>
+           <field name="perm_read" eval="1"/>
+           <field name="perm_create" eval="1"/>
+           <field name="perm_write" eval="1"/>
+           <field name="perm_unlink" eval="1"/>
+       </record>
+
+       <record id="model_access_tipo_agente_portal" model="ir.model.access">
+           <field name="name">model.access.tipo.agente.portal</field>
+           <field name="group_id" ref="base.group_portal"/>
+           <field name="model_id" ref="enfermedades.model_tipo_agente"/>
+           <field name="perm_read" eval="1"/>
+           <field name="perm_create" eval="1"/>
+           <field name="perm_write" eval="1"/>
+           <field name="perm_unlink" eval="1"/>
+       </record>
+
+       <record id="model_access_relacion_sustancias_portal" model="ir.model.access">
+           <field name="name">model.access.relacion.sustancias.portal</field>
+           <field name="group_id" ref="base.group_portal"/>
+           <field name="model_id" ref="enfermedades.model_relacion_sustancias"/>
+           <field name="perm_read" eval="1"/>
+           <field name="perm_create" eval="1"/>
+           <field name="perm_write" eval="1"/>
+           <field name="perm_unlink" eval="1"/>
+       </record>
+
+       <record id="model_access_relacion_sustancias_default_portal" model="ir.model.access">
+           <field name="name">model.access.relacion.sustancias.default.portal</field>
+           <field name="group_id" ref="base.group_portal"/>
+           <field name="model_id" ref="enfermedades.model_relacion_sustancias_default"/>
+           <field name="perm_read" eval="1"/>
+           <field name="perm_create" eval="1"/>
+           <field name="perm_write" eval="1"/>
+           <field name="perm_unlink" eval="1"/>
+       </record>
+
+    </data>
+</odoo>

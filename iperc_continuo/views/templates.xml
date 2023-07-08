@@ -1,0 +1,835 @@
+<odoo>
+  <template id="list_iperc_continuo" name="IPERC continuo">
+    <t t-call="iperc_continuo.sidebar_iperc_continuo">
+      <div class="wrapper modulo-wrapper">
+        <!-- Sidebar -->
+        <!-- Page Content -->
+        <div id="content" class="iperc-continuo">
+          <div class="row py-2">
+            <div class="col-12">
+              <div class="alert alert-primary text-center" role="alert">
+                <h4>IPERC CONTINUO</h4>
+              </div>
+              <table id="modulo-iperc-continuo" class="table table-hover responsive nowrap w-100 text-center" t-att-data-plan_id="plan.id">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>CÓDIGO</th>
+                    <th>RUC</th>
+                    <th>EMPRESA</th>
+                    <th>SEDE</th>
+                    <th>EDITAR</th>
+                    <!-- <th>ACTUALIZAR EXCEL</th> -->
+                    <th>
+                      REPORTE
+                    </th>
+                    <th>
+                      ELIMINAR
+                    </th>
+                  </tr>
+                </thead>
+                <tbody >
+                  <t t-set="contador" t-value="0"/>
+                  <t t-foreach="registros" t-as="registro">
+                    <t t-set="contador" t-value="contador + 1"/>
+                    <tr>
+                      <td>
+                        <div>
+                          <span t-esc="registro.name"/>
+                        </div>
+                      </td>
+                      <td>
+                        <div>
+                          <span t-field="registro.ruc"/>
+                        </div>
+                      </td>
+                      <td >
+                        <span t-field="registro.cliente"/>
+                      </td>
+                      <td >
+                        <span t-field="registro.sede"/>
+                      </td>
+                      <td >
+                        <a class="btn btn-success" t-att-href="'/iperc-continuo/%s' % (registro.id)" role="button">
+                          <i class="fa fa-pencil-square-o"></i>
+
+                        </a>
+                      </td>
+                      <td></td>
+                      <td>
+                        <div>
+                          <button type="button" class="btn btn-danger" data-toggle="modal" t-attf-data-target="#continuo-{{registro.id}}">
+                            <i class="fa fa-trash"></i>
+
+                          </button>
+                          <div class="modal fade" t-attf-id="continuo-{{registro.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                </div>
+                                <div class="modal-body">
+                                  <div class="alert alert-danger" role="alert">
+                                    ESTA SEGURO DE ELIMINAR
+                                  </div>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                                  <button type="button" class="btn btn-secondary botton-eliminar-continuo" t-att-data-continuo_id="registro.id">ELIMINAR</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                      </td>
+                    </tr>
+                  </t>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="d-flex justify-content-center">
+
+            <button type="button" class="btn btn-success font-weight-bold" data-toggle="modal" data-target="#new_continuo">
+              <strong>Crear IPERC continuo</strong>
+            </button>
+            <div class="modal fade" id="new_continuo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">NUEVO IPERC CONTINUO</h5>
+                  </div>
+                  <div class="modal-body">
+                    RUC
+                    <input class="col-12 form-control mt-1 mb-3" name="new-continuo-ruc" type="text"/>
+                    EMPRESA
+                    <input class="col-12 form-control mt-1 mb-3" name="new-continuo-empresa" type="text"/>
+                    SEDE
+                    <input class="col-12 form-control mt-1 mb-3" name="new-continuo-sede" type="text"/>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                    <button type="button" class="btn btn-primary nuevo-continuo">GUARDAR</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </t>
+  </template>
+
+  <template id="form_iperc_continuo" name="IPERC continuo">
+    <t t-call="iperc_continuo.sidebar_iperc_continuo">
+      <div class="wrapper modulo-wrapper continuo_id" t-att-data-continuo_id="registro.id">
+        <!-- Page Content -->
+        <div id="content" class="iperc-continuo">
+          <div class="py-2 mx-auto">
+            <div class="text-center">
+              <h1 class="my-3 text-center font-italic">FORMATO IPERC CONTINUO</h1>
+            </div>
+            <div class="row float-right mx-0 mb-3">
+              <a t-att-href="'/pdf/download/%s' % (registro.id)" name="print_report" type="object" class="btn btn-primary font-weight-bold" t-att-data-iperc_id="registro.id">IMPRIMIR</a>
+            </div>
+            <table class="table table-bordered">
+              <thead>
+                <tr class="bg-primary">
+                  <th colspan="5" class="">
+                    <h3>FECHA, LUGAR Y DATOS DE TRABAJADORES:</h3>
+                  </th>
+                </tr>
+                <tr class="display bg-secondary text-center font-weight-bold">
+                  <th>
+                    Fecha
+                  </th>
+                  <td>
+                    Área de trabajo
+                  </td>
+                  <td>
+                    Nombre
+                  </td>
+                  <td>
+                    DNI
+                  </td>
+                  <td>
+                    Firma
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <t t-foreach="registro.trabajador_ids" t-as="trabajador">
+                  <tr class="display text-center trabajadores_id" t-att-data-trabajadores_id="trabajador.id">
+                    <td class="p-0">
+                      <input type="date" name="fecha" class="change_trabajadores border-0 form-control" t-att-value="trabajador.fecha"/>
+                    </td>
+                    <td class="p-0">
+                      <input type="text" name="area" class="change_trabajadores border-0 form-control" t-att-value="trabajador.area" placeholder="Área"/>
+                    </td>
+                    <td class="p-0">
+                      <input type="text" name="name" class="change_trabajadores border-0 form-control" t-att-value="trabajador.name" placeholder="Nombre"/>
+                    </td>
+                    <td class="p-0">
+                      <input type="text" name="dni" class="change_trabajadores border-0 form-control" t-att-value="trabajador.dni" placeholder="DNI"/>
+                    </td>
+                    <td></td>
+                  </tr>
+
+                </t>
+
+              </tbody>
+            </table>
+            <button class="btn btn-primary font-weight-bold mt-3" data-toggle="modal" data-target="#nuevo_trabajador">AGREGAR TRABAJADOR</button>
+            <div class="modal fade trabajador" id="nuevo_trabajador" tabindex="-1" role="dialog" aria-labelledby="trabajadorModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content text-dark text-left">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="trabajadorModalLabel">NUEVO TRABAJADOR</h5>
+                  </div>
+                  <div class="modal-body">
+                    NOMBRE
+                    <input class="col-12 form-control mt-1 mb-3" name="new-trabajador-nombre" type="text"/>
+                    DNI
+                    <input class="col-12 form-control mt-1 mb-3" name="new-trabajador-dni" type="text"/>
+                    FECHA
+                    <input class="col-12 form-control mt-1 mb-3" name="new-trabajador-fecha" t-att-value="fecha_actual" type="date"/>
+                    AREA
+                    <input class="col-12 form-control mt-1 mb-3" name="new-trabajador-area" type="text"/>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                    <button type="button" t-att-data-iperc_id="registro.id" class="btn btn-primary nuevo-trabajador">GUARDAR</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-5 w-100 mx-auto">
+              <div class="col-sm-12 bg-primary text-left border p-3 d-flex align-items-center">
+                <h4 class="mb-0">EVALUACIÓN DE RIESGOS:</h4>
+                <a class="ml-auto btn btn-info font-weight-bold hint--medium hint--bounce hint--error hint--bottom" href="/iperc-continuo/configuracion" data-hint="Agregarás nuevos tipos de peligro">AGREGAR TIPO DE PELIGRO</a>
+              </div>
+              <div class="row w-100 mx-auto">
+                <div class="col-sm-2 bg-secondary p-2 text-center border align-items-center d-flex justify-content-center">
+                  <strong>Tipo de peligro</strong>
+                </div>
+                <div class="col-sm-2 bg-secondary p-2 text-center border align-items-center d-flex justify-content-center">
+                  <strong>Descripción del peligro</strong>
+                </div>
+                <div class="col-sm-2 bg-secondary p-2 text-center border align-items-center d-flex justify-content-center">
+                  <strong>Riesgo</strong>
+                </div>
+                <div class="col-sm-1 bg-secondary p-2 text-center border align-items-center d-flex justify-content-center">
+                  <strong>Calificación</strong>
+                </div>
+                <div class="col-sm-1 bg-secondary p-2 text-center border align-items-center d-flex justify-content-center">
+                  <strong>Nivel de riesgo</strong>
+                </div>
+                <div class="col-sm-2 bg-secondary p-2 text-center border align-items-center d-flex justify-content-center">
+                  <strong>Medidas de control a implementar</strong>
+                </div>
+                <div class="col-sm-1 bg-secondary p-2 text-center border align-items-center d-flex justify-content-center">
+                  <strong>Calificación</strong>
+                </div>
+                <div class="col-sm-1 bg-secondary p-2 text-center border align-items-center d-flex justify-content-center">
+                  <strong>Nivel de riesgo residual</strong>
+                </div>
+              </div>
+              <t t-set="counter" t-value="0"/>
+              <t t-foreach="registro.evaluacion_ids" t-as="evaluacion">
+                <t t-set="counter" t-value="counter + 1"/>
+                <div class="row w-100 mx-auto evaluacion_id" t-att-data-evaluacion_id="evaluacion.id">
+                  <div class="col-sm-2 p-0 text-center justify-content-center border align-items-center d-flex border">
+                    <select name="empresa-trabajador-select" class="form-control tipo_peligro">
+                      <t t-foreach="tipos" t-as="tipo">
+                        <t t-if="tipo.id == evaluacion.type_id.id ">
+                          <option t-att-value="'%s' % (tipo.id)" t-esc="tipo.name" selected="selected"/>
+                        </t>
+                        <t t-else="">
+                          <option t-att-value="'%s' % (tipo.id)" t-esc="tipo.name"/>
+                        </t>
+                      </t>
+                    </select>
+                  </div>
+                  <div class="col-sm-2 p-0 text-center justify-content-center border align-items-center d-flex border">
+                    <select t-attf-id="descripcion-{{evaluacion.id}}" class="form-control">
+                      <t t-foreach="riesgos" t-as="riesgo">
+                        <t t-if="riesgo.name == evaluacion.name">
+                          <option t-att-value="'%s' % (riesgo.id)" t-esc="riesgo.name" selected="selected"/>
+                        </t>
+                        <t t-else="">
+                          <t t-if="riesgo.descripcion_id.id == evaluacion.type_id.id">
+                            <option t-att-value="'%s' % (riesgo.id)" t-esc="riesgo.name"/>
+                          </t>
+                        </t>
+                      </t>
+                    </select>
+                  </div>
+                  <!-- <div class="col-sm-2"><span t-field="evaluacion.name"/></div> -->
+                  <div t-attf-class="col-sm-2 p-0 text-center justify-content-center border align-items-center d-flex border hint--medium hint--bounce hint--error {{ 'hint--bottom' if evaluacion.riesgo else ''}}" t-att-data-hint="evaluacion.riesgo">
+                    <input type="text" name="riesgo" class="evaluacion_riesgo border-0 form-control" t-att-value="evaluacion.riesgo" placeholder="Riesgo"/>
+                  </div>
+                  <div class="p-0 evaluacion col-sm-1" t-att-data-continuo_id="evaluacion.id">
+                    <select class="form-control h-100">
+                      <t t-if="evaluacion.evaluacion=='Alto'">
+                        <option selected="selected">Alto</option>
+                        <option>Medio</option>
+                        <option>Bajo</option>
+                      </t>
+                      <t t-elif="evaluacion.evaluacion=='Medio'">
+                        <option>Alto</option>
+                        <option selected="selected">Medio</option>
+                        <option>Bajo</option>
+                      </t>
+                      <t t-elif="evaluacion.evaluacion=='Bajo'">
+                        <option>Alto</option>
+                        <option>Medio</option>
+                        <option selected="selected">Bajo</option>
+                      </t>
+                      <t t-else="">
+                        <option selected="selected" disabled="disabled">Elegir...</option>
+                        <option>Alto</option>
+                        <option>Medio</option>
+                        <option>Bajo</option>
+                      </t>
+                    </select>
+                  </div>
+                  <t t-if="evaluacion.evaluacion=='Alto'">
+                    <div t-attf-class="border col-sm-1 evaluacion-alto-{{evaluacion.id}}" style="background:red"></div>
+                  </t>
+                  <t t-elif="evaluacion.evaluacion=='Medio'">
+                    <div t-attf-class="border col-sm-1 evaluacion-alto-{{evaluacion.id}}" style="background:yellow"></div>
+                  </t>
+                  <t t-elif="evaluacion.evaluacion=='Bajo'">
+                    <div t-attf-class="border col-sm-1 evaluacion-alto-{{evaluacion.id}}" style="background:#00FF00"></div>
+                  </t>
+                  <t t-else="">
+                    <div t-attf-class="border col-sm-1 evaluacion-alto-{{evaluacion.id}}"></div>
+                  </t>
+                  <div t-attf-class="col-sm-2 p-0 text-center justify-content-center border align-items-center d-flex border hint--medium hint--bounce hint--error {{ 'hint--bottom' if evaluacion.medidas else ''}}" t-att-data-hint="evaluacion.medidas">
+                    <input type="text" name="medidas" class="evaluacion_riesgo border-0 form-control" t-att-value="evaluacion.medidas" placeholder="Medidas"/>
+                  </div>
+                  <div class="p-0 riesgo col-sm-1" t-att-data-continuo_id="evaluacion.id">
+                    <select class="form-control h-100">
+                      <t t-if="evaluacion.riesgo_residual=='Alto'">
+                        <option selected="selected">Alto</option>
+                        <option>Medio</option>
+                        <option>Bajo</option>
+                      </t>
+                      <t t-elif="evaluacion.riesgo_residual=='Medio'">
+                        <option>Alto</option>
+                        <option selected="selected">Medio</option>
+                        <option>Bajo</option>
+                      </t>
+                      <t t-elif="evaluacion.riesgo_residual=='Bajo'">
+                        <option>Alto</option>
+                        <option>Medio</option>
+                        <option selected="selected">Bajo</option>
+                      </t>
+                      <t t-else="">
+                        <option selected="selected" disabled="disabled">Elegir...</option>
+                        <option>Alto</option>
+                        <option>Medio</option>
+                        <option>Bajo</option>
+                      </t>
+                    </select>
+                  </div>
+                  <t t-if="evaluacion.riesgo_residual=='Alto'">
+                    <div t-attf-class="border col-sm-1 riesgo-alto-{{evaluacion.id}}" style="background:red"></div>
+                  </t>
+                  <t t-elif="evaluacion.riesgo_residual=='Medio'">
+                    <div t-attf-class="border col-sm-1 riesgo-alto-{{evaluacion.id}}" style="background:yellow"></div>
+                  </t>
+                  <t t-elif="evaluacion.riesgo_residual=='Bajo'">
+                    <div t-attf-class="border col-sm-1 riesgo-alto-{{evaluacion.id}}" style="background:#00FF00"></div>
+                  </t>
+                  <t t-else="">
+                    <div t-attf-class="border col-sm-1 riesgo-alto-{{evaluacion.id}}"></div>
+                  </t>
+                </div>
+              </t>
+            </div>
+            <button class="btn btn-primary font-weight-bold mt-3 nuevo-riesgo" t-att-data-iperc_id="registro.id">AGREGAR RIESGO</button>
+
+            <div class="row mt-5 w-100 mx-auto">
+              <div class="col-sm-12 bg-primary text-left border p-3 d-flex align-items-center">
+                <h4 class="mb-0">SECUENCIA PARA CONTROLAR EL PELIGRO Y REDUCIR EL RIESGO:</h4>
+              </div>
+
+              <t t-set="counter" t-value="0"/>
+              <t t-foreach="registro.control_ids" t-as="control">
+                <t t-set="counter" t-value="counter + 1"/>
+                <div class="row w-100 mx-auto control_id" t-att-data-control_id="control.id">
+                  <div class="col-sm-1 p-0 text-center justify-content-center border align-items-center d-flex border">
+                    <t t-esc="counter"/>
+                  </div>
+                  <div class="col-sm-11 p-0 text-center justify-content-center border align-items-center d-flex border">
+                    <input type="text" name="name" class="border-0 form-control change_secuencia" t-att-value="control.name" placeholder="Secuencia para el control"/>
+                  </div>
+                </div>
+              </t>
+            </div>
+            <button class="btn btn-primary font-weight-bold mt-3" data-toggle="modal" data-target="#nueva_secuencia">AGREGAR SECUENCIA</button>
+            <div class="modal fade secuencia" id="nueva_secuencia" tabindex="-1" role="dialog" aria-labelledby="secuenciaModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content text-dark text-left">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="trabajadorModalLabel">NUEVA SECUENCIA</h5>
+                  </div>
+                  <div class="modal-body">
+                    DESCRIPCIÓN
+                    <input class="col-12 form-control mt-1 mb-3" name="new-secuencia-descripcion" type="text"/>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                    <button type="button" t-att-data-iperc_id="registro.id" class="btn btn-primary nueva-secuencia">GUARDAR</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mt-5 w-100 mx-auto">
+              <div class="col-sm-12 bg-primary text-left border p-3 d-flex align-items-center">
+                <h4 class="mb-0">DATOS DE LOS RESPONSABLES:</h4>
+              </div>
+            </div>
+
+            <div class="row w-100 mx-auto">
+              <div class="col-sm-3 bg-secondary p-2 text-center border">
+                <strong>Fecha y Hora</strong>
+              </div>
+              <div class="col-sm-6 bg-secondary p-2 text-center border">
+                <strong>Nombre</strong>
+              </div>
+              <div class="col-sm-3 bg-secondary p-2 text-center border">
+                <strong>Firma</strong>
+              </div>
+            </div>
+
+            <t t-set="contadorsupervisor" t-value="0"/>
+            <t t-foreach="registro.supervisor_ids" t-as="supervisor">
+              <div class="row w-100 mx-auto supervisor_id" t-att-data-supervisor_id="supervisor.id">
+                <div class="col-sm-3 p-0 text-center border">
+                  <input type="datetime-local" name="fecha" class="border-0 form-control change_supervisor" t-att-value="fechas[contadorsupervisor]"/>
+                </div>
+                <div class="col-sm-6 p-0 text-center border">
+                  <input type="text" name="name" class="border-0 form-control change_supervisor" t-att-value="supervisor.name" placeholder=""/>
+                </div>
+                <div class="col-sm-3 p-0 text-center border eliminar d-flex justify-content-between px-5 align-items-center">
+                  <p></p>
+                  <strong>Firma</strong>
+                  <span data-toggle="modal" t-attf-data-target="#continuo-{{supervisor.id}}"></span>
+                </div>
+                <div class="modal fade" t-attf-id="continuo-{{supervisor.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"></h5>
+                      </div>
+                      <div class="modal-body">
+                        <div class="alert alert-danger text-center" role="alert">
+                          ESTA SEGURO DE ELIMINAR
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                        <button type="button" class="btn btn-secondary botton-eliminar-supervisor" t-att-data-supervisor_id="supervisor.id">ELIMINAR</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <t t-set="contadorsupervisor" t-value="contadorsupervisor + 1"/>
+            </t>
+
+            <button class="btn btn-primary font-weight-bold ml-auto mt-3" data-toggle="modal" data-target="#nuevo_supervisor">AGREGAR RESPONSABLE</button>
+            <div class="modal fade supervisor" id="nuevo_supervisor" tabindex="-1" role="dialog" aria-labelledby="supervisorModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content text-dark text-left">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="supervisorModalLabel">NUEVO SUPERVISOR</h5>
+                  </div>
+                  <div class="modal-body">
+                    NOMBRE
+                    <input class="col-12 form-control mt-1 mb-3" name="new-supervisor-name" type="text"/>
+                    FECHA
+                    <input class="col-12 form-control mt-1 mb-3" name="new-supervisor-fecha" t-att-value="today_inicio" type="datetime-local"/>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                    <button type="button" t-att-data-iperc_id="registro.id" class="btn btn-primary nuevo-supervisor">GUARDAR</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </t>
+  </template>
+
+  <template id="tablas_iperc_continuo" name="IPERC continuo">
+    <t t-call="iperc_continuo.sidebar_iperc_continuo">
+      <div class="wrapper modulo-wrapper">
+        <!-- Page Content -->
+        <div id="content" class="iperc-continuo">
+          <div class="py-2 mx-auto">
+            <div class="text-center mb-5">
+              <h1>MATRIZ BÁSICA DE EVALUACIÓN DE RIESGOS</h1>
+            </div>
+            <div class="row mx-0 mb-5">
+              <div class="col-12 col-lg-7 font-weight-bold text-center matriz-basica table-responsive">
+                <table class="table">
+                  <thead></thead>
+                  <tbody>
+                    <tr>
+                      <td rowspan="5" class="vertical p-0 display-none-continuo">SEVERIDAD</td>
+                      <td scope="col">Catastrófico</td>
+                      <td scope="col">1</td>
+                      <td scope="col" class="alto">1</td>
+                      <td scope="col" class="alto">2</td>
+                      <td scope="col" class="alto">4</td>
+                      <td scope="col" class="alto">7</td>
+                      <td scope="col" class="medio">11</td>
+                    </tr>
+                    <tr>
+                      <td scope="row">Mortalidad</td>
+                      <td>2</td>
+                      <td class="alto">3</td>
+                      <td class="alto">5</td>
+                      <td class="alto">8</td>
+                      <td class="medio">12</td>
+                      <td class="bajo">16</td>
+                    </tr>
+                    <tr>
+                      <td scope="row">Permanente</td>
+                      <td>3</td>
+                      <td class="alto">6</td>
+                      <td class="medio">9</td>
+                      <td class="medio">13</td>
+                      <td class="bajo">17</td>
+                      <td class="bajo">20</td>
+                    </tr>
+                    <tr>
+                      <td scope="row">Temporal</td>
+                      <td>4</td>
+                      <td class="medio">10</td>
+                      <td class="medio">14</td>
+                      <td class="bajo">18</td>
+                      <td class="bajo">21</td>
+                      <td class="bajo">23</td>
+                    </tr>
+                    <tr>
+                      <td scope="row">Menor</td>
+                      <td>5</td>
+                      <td class="medio">15</td>
+                      <td class="bajo">19</td>
+                      <td class="bajo">22</td>
+                      <td class="bajo">24</td>
+                      <td class="bajo">25</td>
+                    </tr>
+                    <tr>
+                      <td class="display-none" style="border:0px solid white"></td>
+                      <td style="border:0px solid white"></td>
+                      <td style="border:0px solid white"></td>
+                      <td>A</td>
+                      <td>B</td>
+                      <td>C</td>
+                      <td>D</td>
+                      <td>E</td>
+                    </tr>
+                    <tr>
+                      <td class="display-none" style="border:0px solid white"></td>
+                      <td style="border:0px solid white"></td>
+                      <td style="border:0px solid white"></td>
+                      <td class="p-1">Común</td>
+                      <td class="p-1">Ha sucedido</td>
+                      <td class="p-1">Podría suceder</td>
+                      <td class="p-1">Raro que suceda</td>
+                      <td class="p-1">Practicamente imposible que suceda</td>
+                    </tr>
+                    <tr>
+                      <td class="display-none" style="border:0px solid white"></td>
+                      <td style="border:0px solid white"></td>
+                      <td style="border:0px solid white"></td>
+                      <td colspan="5">FRECUENCIA</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-12 col-lg-5 table-responsive matriz-basica font-weight-bold">
+                <table class="table">
+                  <tbody>
+                    <tr class="text-center">
+                      <td colspan="2" class="p-0">Nivel de riesgo</td>
+                      <td class="p-0">Descripción</td>
+                      <td class="p-0">Plazo de medida correctiva</td>
+                    </tr>
+                    <tr>
+                      <td class="alto"></td>
+                      <td>Alto</td>
+                      <td>Riesgo intolerable, requiere controles inmediatos. Si no se puede controlar el PELIGRO se paralizan los trabajos operacionales en la labor.</td>
+                      <td>0-24 HORAS</td>
+                    </tr>
+                    <tr>
+                      <td class="medio"></td>
+                      <td>Medio</td>
+                      <td>Iniciar medidas para eliminar/reducir el riesgo. Evaluar si la acción se puede ejecutar de manera inmediata</td>
+                      <td>0-72 HORAS</td>
+                    </tr>
+                    <tr>
+                      <td class="bajo" style="height:120px"></td>
+                      <td>Bajo</td>
+                      <td>Este riesgo puede ser tolerable.</td>
+                      <td>1 MES</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="text-center mb-5">
+              <h1>TABLAS DE SEVERIDAD</h1>
+            </div>
+            <div class="row mx-0">
+              <table class="table matriz-basica">
+                <thead>
+                  <tr>
+                    <td colspan="2" style="border: 0px"></td>
+                    <td class="text-center font-weight-bold bg-primary h3" colspan="3">CRITERIOS</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="font-weight-bold text-center bg-primary h5">
+                    <td scope="col" colspan="2">SEVERIDAD</td>
+                    <td scope="col">Lesión personal</td>
+                    <td scope="col">Daño a la propiedad</td>
+                    <td scope="col">Daño al proceso</td>
+                  </tr>
+                  <tr>
+                    <td scope="col">1</td>
+                    <td scope="col">Catastrófico</td>
+                    <td scope="col">Varias fatalidades. Varias personas con lesiones permanentes.</td>
+                    <td scope="col">Pérdidas por un monto mayor a US$ 100,000</td>
+                    <td scope="col">Paralización del proceso de más de 1 mes o paralización definitiva.</td>
+                  </tr>
+                  <tr>
+                    <td scope="col">2</td>
+                    <td scope="col">Mortalidad (Pérdida mayor)</td>
+                    <td scope="col">Una mortalidad. Estado vegetal.</td>
+                    <td scope="col">Pérdidas por un monto entre US$ 10,001 y US$ 100,000</td>
+                    <td scope="col">Paralización del proceso de más de 1 semana y menos de 1 mes.</td>
+                  </tr>
+                  <tr>
+                    <td scope="col">3</td>
+                    <td scope="col">Pérdida permanente</td>
+                    <td scope="col">Lesiones que incapacitan a Ia persona para su actividad normal de por vida. Enfermedades ocupacionales avanzadas.</td>
+                    <td scope="col">Pérdida por un monto entre US$ 5,001 y US$ 10,000</td>
+                    <td scope="col">Paralización del proceso de más de 1 día hasta 1 semana.</td>
+                  </tr>
+                  <tr>
+                    <td scope="col">4</td>
+                    <td scope="col">Pérdida temporal</td>
+                    <td scope="col">Lesiones que incapacitan a Ia persona temporalmente. Lesiones por posicion ergonómica.</td>
+                    <td scope="col">Pérdida por monto mayor o igual a US$ 1,000 y menor a US$ 5,000</td>
+                    <td scope="col">Paralización de 1 día.</td>
+                  </tr>
+                  <tr>
+                    <td scope="col">5</td>
+                    <td scope="col">Pérdida menor</td>
+                    <td scope="col">Lesión que no incapacita a Ia persona. Lesiones leves.</td>
+                    <td scope="col">Pérdida por monto menor a US$ 1,000</td>
+                    <td scope="col">Paralización menor de 1 día.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="text-center mb-5">
+              <h1>TABLAS DE FRECUENCIA</h1>
+            </div>
+            <div class="row mx-0 mb-5">
+              <table class="table matriz-basica">
+                <thead>
+                  <tr>
+                    <td colspan="2" style="border: 0px"></td>
+                    <td class="text-center font-weight-bold bg-primary h3" colspan="3">PROBABILIDAD</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="font-weight-bold text-center bg-primary h5">
+                    <td scope="col" colspan="2">PROBABILIDAD</td>
+                    <td scope="col">Probabilidad de frecuencia</td>
+                    <td scope="col">Frecuencia de exposición</td>
+                  </tr>
+                  <tr>
+                    <td scope="col">A</td>
+                    <td scope="col">Común (muy probable)</td>
+                    <td scope="col">Sucede con demasiada frecuencia.</td>
+                    <td scope="col">Muchas (6 o más) personas expuestas. Varias veces al día.</td>
+                  </tr>
+                  <tr>
+                    <td scope="col">B</td>
+                    <td scope="col">Ha sucedido (probable)</td>
+                    <td scope="col">Sucede con frecuencia.</td>
+                    <td scope="col">Moderado (3 a 5) personas expuestas varias veces al día.</td>
+                  </tr>
+                  <tr>
+                    <td scope="col">C</td>
+                    <td scope="col">Podría suceder (posible)</td>
+                    <td scope="col">Sucede ocasionalmente.</td>
+                    <td scope="col">Pocas (1 a 2) personas expuestas varias veces al día. Muchas personas expuestas ocasionaImente.</td>
+                  </tr>
+                  <tr>
+                    <td scope="col">D</td>
+                    <td scope="col">Raro que suceda (poco probable)</td>
+                    <td scope="col">Rara vez ocurre. No es muy probable que ocurra.</td>
+                    <td scope="col">Moderado (3 a 5) personas expuestas ocasionaImente.</td>
+                  </tr>
+                  <tr>
+                    <td scope="col">E</td>
+                    <td scope="col">Prácticamente imposible que suceda.</td>
+                    <td scope="col">Muy rara vez ocurre. lmposible que ocurra.</td>
+                    <td scope="col">Pocas (1 a 2) personas expuestas ocasionaImente.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </t>
+  </template>
+
+  <template id="configuracion_iperc_continuo" name="IPERC continuo">
+    <t t-call="iperc_continuo.sidebar_iperc_continuo">
+      <div class="wrapper modulo-wrapper">
+        <!-- Page Content -->
+        <div id="content" class="iperc-continuo">
+          <div class="py-2 mx-auto">
+            <div class="text-center mb-5">
+              <h1>LISTADO DE TIPOS DE PELIGROS</h1>
+            </div>
+            <table id="resumen" class="table table-hover responsive nowrap w-100 text-center">
+              <thead class="thead-dark">
+                <tr>
+                  <th>#</th>
+                  <th>TIPO DE PELIGRO</th>
+                  <th>DESCRIPCIÓN DE PELIGRO</th>
+                </tr>
+              </thead>
+              <tbody>
+                <t t-set="counter" t-value="0"/>
+                <t t-foreach="tipos" t-as="tipo">
+                  <t t-set="counter" t-value="counter + 1"/>
+                  <tr></tr>
+                  <td><t t-esc="counter"/></td>
+                  <td><span t-field="tipo.name"/></td>
+                  <td>
+                    <div>
+                      <button type="button" class="btn bg-success" data-toggle="modal" t-attf-data-target="#tipoeditar-{{tipo.id}}">
+                        <i class="fa fa-pencil-square-o"></i>
+                      </button>
+                      <div class="modal fade" t-attf-id="tipoeditar-{{tipo.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title font-weight-bold" id="exampleModalLabel">TIPO DE PELIGRO:
+                                <t t-esc="tipo.name"/></h5>
+                            </div>
+                            <div class="modal-body text-left">
+                              <t t-set="counterdescription" t-value="0"/>
+                              <t t-foreach="tipo.descripcion_ids" t-as="descripcion">
+                                <t t-set="counterdescription" t-value="counterdescription + 1"/>
+                                <div class="row py-2 mx-auto align-items-center">
+                                  <div class="col-1"><t t-esc="counterdescription"/></div>
+                                  <div class="col-9"><span t-field="descripcion.name"/></div>
+                                  <div class="col-2">
+                                    <button type="button" class="btn btn-danger descripcion_id" t-att-data-descripcion_id="descripcion.id">
+                                      <i class="fa fa-trash"></i>
+                                    </button>
+                                  </div>
+                                </div>
+
+                              </t>
+                              <div class="row py-2 mx-auto align-items-center">
+                                <div class="col-1">#</div>
+                                <div class="col-7"><input class="form-control col-12" name="new-tipo-descripcion" type="text"/></div>
+                                <div class="col-4"></div>
+                              </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                              <button type="button" class="btn btn-secondary agregar_descripcion" t-att-data-tipo_id="tipo.id">AGREGAR</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </t>
+              </tbody>
+            </table>
+
+            <div class="d-flex justify-content-center float-left">
+
+              <button type="button" class="btn btn-primary font-weight-bold" data-toggle="modal" data-target="#new_tipo_peligro">
+                AGREGAR TIPO DE PELIGRO
+              </button>
+              <div class="modal fade" id="new_tipo_peligro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">NUEVO TIPO DE PELIGRO</h5>
+                    </div>
+                    <div class="modal-body">
+                      NOMBRE
+                      <input class="form-control col-12" name="new-tipo-peligro" type="text"/>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                      <button type="button" class="btn btn-primary nuevo-tipo-peligro">GUARDAR</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </t>
+  </template>
+
+  <template id="iperc_continuo_guia" name="Guia">
+    <t t-call="iperc_continuo.sidebar_iperc_continuo">
+      <div class="wrapper modulo-wrapper">
+        <!-- Sidebar -->
+        <!-- Page Content -->
+        <div id="content" class="iperc-continuo">
+          <t t-if="len(producto.solve_file_ids)>0">
+            <div class="container">
+              <div class="mx-auto row-center">
+                <object t-att-data="pdf" type="application/pdf" width="100%" height="600px" class="display-none"/>
+                <a class="btn btn-primary display-block-guia font-weight-bold justify-content-center button-pdf" t-att-href="pdf">Visualizar PDF<span></span>
+                </a>
+                <!-- <object t-att-data="pdf" type="application/pdf" width="100%" height="600px"/> -->
+              </div>
+            </div>
+          </t>
+          <t t-else="">
+            <div class="card text-center">
+              <div class="card-header  bg-warning">
+                ALERTA
+              </div>
+              <div class="card-body">
+                <p class="card-text">No se ha publicado el pdf</p>
+              </div>
+              <div class="card-footer text-muted"></div>
+            </div>
+          </t>
+        </div>
+      </div>
+    </t>
+  </template>
+
+</odoo>

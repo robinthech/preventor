@@ -1,0 +1,178 @@
+<odoo>
+    <data>
+        <record id='medida_correctiva_default_1' model='medida.enfermedades.default'>
+            <field name='name'>Medida 1</field>
+            <field name="fecha_ejecucion" eval="(DateTime.today()).strftime('%Y-%m-%d')"></field>
+        </record>
+        <record id='relacion_sustancias_default_1' model='relacion.sustancias.default'>
+            <field name='name'>Relacion de sustancias</field>
+            <field name="monitoreo" eval="False"></field>
+        </record>
+        <record id='accidente_responsable_default_1' model='enfermedades.responsable'>
+            <field name='name'>Responsable 1</field>
+        </record>
+        <record id='accidente_responsable_default_2' model='enfermedades.responsable'>
+            <field name='name'>Responsable 2</field>
+        </record>
+        <record id='accidente_responsable_final_default_1' model='enfermedades.responsable.final.default'>
+            <field name='name'>Responsable</field>
+            <field name='cargo'>Cargo</field>
+            <field name="fecha" eval="(DateTime.today()).strftime('%Y-%m-%d')"></field>
+        </record>
+        <record id='tipo_agente_1' model='tipo.agente'>
+            <field name='name'>Ruido</field>
+            <field name='codigo'>F1</field>
+            <field name='agente'>F</field>
+        </record>
+        <record id='tipo_agente_2' model='tipo.agente'>
+            <field name='name'>Vibración</field>
+            <field name='codigo'>F2</field>
+            <field name='agente'>F</field>
+        </record>
+        <record id='tipo_agente_3' model='tipo.agente'>
+            <field name='name'>Iluminación</field>
+            <field name='codigo'>F3</field>
+            <field name='agente'>F</field>
+        </record>
+        <record id='tipo_agente_4' model='tipo.agente'>
+            <field name='name'>Ventilación</field>
+            <field name='codigo'>F4</field>
+            <field name='agente'>F</field>
+        </record>
+        <record id='tipo_agente_5' model='tipo.agente'>
+            <field name='name'>Presión alta o baja</field>
+            <field name='codigo'>F5</field>
+            <field name='agente'>F</field>
+        </record>
+        <record id='tipo_agente_6' model='tipo.agente'>
+            <field name='name'>Temperatura (Calor o frío)</field>
+            <field name='codigo'>F6</field>
+            <field name='agente'>F</field>
+        </record>
+        <record id='tipo_agente_7' model='tipo.agente'>
+            <field name='name'>Humedad</field>
+            <field name='codigo'>F7</field>
+            <field name='agente'>F</field>
+        </record>
+        <record id='tipo_agente_8' model='tipo.agente'>
+            <field name='name'>Radiacón en general</field>
+            <field name='codigo'>F8</field>
+            <field name='agente'>F</field>
+        </record>
+        <record id='tipo_agente_9' model='tipo.agente'>
+            <field name='name'>Gases</field>
+            <field name='codigo'>Q1</field>
+            <field name='agente'>Q</field>
+        </record>
+        <record id='tipo_agente_10' model='tipo.agente'>
+            <field name='name'>Vapores</field>
+            <field name='codigo'>Q2</field>
+            <field name='agente'>Q</field>
+        </record>
+        <record id='tipo_agente_11' model='tipo.agente'>
+            <field name='name'>Neblinas</field>
+            <field name='codigo'>Q3</field>
+            <field name='agente'>Q</field>
+        </record>
+        <record id='tipo_agente_12' model='tipo.agente'>
+            <field name='name'>Rocío</field>
+            <field name='codigo'>Q4</field>
+            <field name='agente'>Q</field>
+        </record>
+        <record id='tipo_agente_13' model='tipo.agente'>
+            <field name='name'>Polvo</field>
+            <field name='codigo'>Q5</field>
+            <field name='agente'>Q</field>
+        </record>
+        <record id='tipo_agente_14' model='tipo.agente'>
+            <field name='name'>Humos</field>
+            <field name='codigo'>Q6</field>
+            <field name='agente'>Q</field>
+        </record>
+        <record id='tipo_agente_15' model='tipo.agente'>
+            <field name='name'>Líquidos</field>
+            <field name='codigo'>Q7</field>
+            <field name='agente'>Q</field>
+        </record>
+        <record id='tipo_agente_16' model='tipo.agente'>
+            <field name='name'>Virus</field>
+            <field name='codigo'>B1</field>
+            <field name='agente'>B</field>
+        </record>
+        <record id='tipo_agente_17' model='tipo.agente'>
+            <field name='name'>Bacilos</field>
+            <field name='codigo'>B2</field>
+            <field name='agente'>B</field>
+        </record>
+        <record id='tipo_agente_18' model='tipo.agente'>
+            <field name='name'>Bacterias</field>
+            <field name='codigo'>B3</field>
+            <field name='agente'>B</field>
+        </record>
+        <record id='tipo_agente_19' model='tipo.agente'>
+            <field name='name'>Hongos</field>
+            <field name='codigo'>B4</field>
+            <field name='agente'>B</field>
+        </record>
+        <record id='tipo_agente_20' model='tipo.agente'>
+            <field name='name'>Parásitos</field>
+            <field name='codigo'>B5</field>
+            <field name='agente'>B</field>
+        </record>
+        <record id='tipo_agente_21' model='tipo.agente'>
+            <field name='name'>Insectos</field>
+            <field name='codigo'>B6</field>
+            <field name='agente'>B</field>
+        </record>
+        <record id='tipo_agente_22' model='tipo.agente'>
+            <field name='name'>Roedores</field>
+            <field name='codigo'>B7</field>
+            <field name='agente'>B</field>
+        </record>
+        <record id='tipo_agente_23' model='tipo.agente'>
+            <field name='name'>Manipulación inadecuada de carga</field>
+            <field name='codigo'>D1</field>
+            <field name='agente'>D</field>
+        </record>
+        <record id='tipo_agente_24' model='tipo.agente'>
+            <field name='name'>Diseño de puesto inadecuado</field>
+            <field name='codigo'>D2</field>
+            <field name='agente'>D</field>
+        </record>
+        <record id='tipo_agente_25' model='tipo.agente'>
+            <field name='name'>Posturas inadecuadas</field>
+            <field name='codigo'>D3</field>
+            <field name='agente'>D</field>
+        </record>
+        <record id='tipo_agente_26' model='tipo.agente'>
+            <field name='name'>Trabajos repetitivos</field>
+            <field name='codigo'>D4</field>
+            <field name='agente'>D</field>
+        </record>
+        <record id='tipo_agente_27' model='tipo.agente'>
+            <field name='name'>Hostigamiento psicológico</field>
+            <field name='codigo'>P1</field>
+            <field name='agente'>P</field>
+        </record>
+        <record id='tipo_agente_28' model='tipo.agente'>
+            <field name='name'>Estrés laboral</field>
+            <field name='codigo'>P2</field>
+            <field name='agente'>P</field>
+        </record>
+        <record id='tipo_agente_29' model='tipo.agente'>
+            <field name='name'>Turno rotativo</field>
+            <field name='codigo'>P3</field>
+            <field name='agente'>P</field>
+        </record>
+        <record id='tipo_agente_30' model='tipo.agente'>
+            <field name='name'>Falta de comunicación y entrenamiento</field>
+            <field name='codigo'>P4</field>
+            <field name='agente'>P</field>
+        </record>
+        <record id='tipo_agente_31' model='tipo.agente'>
+            <field name='name'>Autoritarismo</field>
+            <field name='codigo'>P5</field>
+            <field name='agente'>P</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,168 @@
+$background: #1f2227;
+$input-width: 300px;
+$input-height: 55px;
+$border-width: 3px;
+
+
+.sidebar-mapa_riesgo {
+  height: 100%;
+  width: 100px;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  background-color: #120048;
+  overflow-x: hidden;
+  }
+
+.sidebar-mapa_riesgo a {
+  padding: 2px;
+  text-decoration: none;
+  color: #1F0001;
+  display: block;
+
+  margin: 7px;
+}
+
+.sidebar-mapa_riesgo a:hover {
+  color: #3D0067;
+  font-weight: bold;
+}
+
+
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+
+
+.imagen_senal_fire {
+  border-width: 1px;
+  border-style: solid;
+  background-color: #FCB528;
+}
+.imagen_senal_prohibicion {
+  border-width: 1px;
+  border-style: solid;
+  background-color: #FFD2C5;
+}
+
+.imagen_senal_advertencia {
+  border-width: 1px;
+  border-style: solid;
+  background-color: #F4E975;
+}
+
+.imagen_senal_obligacion {
+  border-width: 1px;
+  border-style: solid;
+  background-color: #75D9F4;
+}
+.imagen_senal {
+  width:40px;
+  height:40px;
+  display:block;
+  margin:auto;
+
+}
+
+
+
+.texto_senal {
+  font-size: 12px;
+  text-align: center;
+}
+
+
+
+.sidebar-mapa_riesgo_senal {
+  height: 100%;
+  width: 150px;
+  position: fixed;
+  z-index: 1;
+  left: 100px;
+  background-color: #120000;
+  overflow-x: hidden;
+  }
+
+
+.main-mapa_riesgo {
+  margin-left: 250px;
+  margin-right:100px;
+  padding: 10px;
+  height: 100%;
+  position: relative;
+  bottom: 0;
+}
+
+.container_mapa_riesgo {
+    background-color: #ccc;
+    margin: 10px;
+    height: 100%;
+    position: relative;
+    bottom: 0;
+    min-width: 650px;
+    max-width: 1240px;
+    min-height: 650px;
+    max-height: 1240px;
+
+}
+
+#mapa_riesgo{
+  margin: auto;
+  padding: 10px;
+}
+
+
+#d{
+}
+  //  right bar mapa de riesgo
+
+  .odinMainContainer
+  {
+    width:98%;
+    min-width:98%;
+    max-width:98%;
+    height:90%;
+    height:95vh;
+    min-height:95%;
+    overflow:hidden;
+    padding:1%;
+    margin:0;
+    display: -webkit-flex;
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    justify-content:flex-start;
+    align-self:auto;
+    align-items:flex-start;
+    align-content:flex-start;
+    background-color:grey;
+  }
+
+
+
+  .odinRightSidebarContainer
+  {
+    width:28%;
+    min-width:28%;
+    max-width:28%;
+    height:96.5%;
+    min-height:96.5%;
+    overflow:hidden;
+    padding:1%;
+    margin:0;
+    background-color:blue;
+  }
+
+  .odinMainContentContainer
+  {
+    width:68%;
+    min-width:68%;
+    max-width:68%;
+    height:96.5%;
+    min-height:96.5%;
+    overflow:hidden;
+    padding:1%;
+    margin:0;
+    background-color:yellow;
+  }

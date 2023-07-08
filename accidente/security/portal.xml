@@ -1,0 +1,64 @@
+<odoo>
+    <data>
+        <record id="model_access_registro_accidente" model="ir.model.access">
+            <field name="name">model.access.registro.accidente.portal</field>
+            <field name="group_id" ref="base.group_portal"/>
+            <field name="model_id" ref="accidente.model_registro_accidente_final"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+
+         <record id="model_access_medida_correctiva_portal" model="ir.model.access">
+             <field name="name">model.access.medida.correctiva.portal</field>
+             <field name="group_id" ref="base.group_portal"/>
+             <field name="model_id" ref="accidente.model_medida_correctiva"/>
+             <field name="perm_read" eval="1"/>
+             <field name="perm_create" eval="1"/>
+             <field name="perm_write" eval="1"/>
+             <field name="perm_unlink" eval="1"/>
+         </record>
+
+         <record id="model_access_medida_correctiva_default_portal" model="ir.model.access">
+             <field name="name">model.access.medida.correctiva.default.portal</field>
+             <field name="group_id" ref="base.group_portal"/>
+             <field name="model_id" ref="accidente.model_medida_correctiva_default"/>
+             <field name="perm_read" eval="1"/>
+             <field name="perm_create" eval="1"/>
+             <field name="perm_write" eval="1"/>
+             <field name="perm_unlink" eval="1"/>
+         </record>
+
+         <record id="model_access_accidente_responsable_portal" model="ir.model.access">
+             <field name="name">model.access.accidente.responsable.portal</field>
+             <field name="group_id" ref="base.group_portal"/>
+             <field name="model_id" ref="accidente.model_accidente_responsable"/>
+             <field name="perm_read" eval="1"/>
+             <field name="perm_create" eval="1"/>
+             <field name="perm_write" eval="1"/>
+             <field name="perm_unlink" eval="1"/>
+         </record>
+
+         <record id="model_access_accidente_responsable_final_portal" model="ir.model.access">
+             <field name="name">model.access.accidente.responsable.final.portal</field>
+             <field name="group_id" ref="base.group_portal"/>
+             <field name="model_id" ref="accidente.model_accidente_responsable_final"/>
+             <field name="perm_read" eval="1"/>
+             <field name="perm_create" eval="1"/>
+             <field name="perm_write" eval="1"/>
+             <field name="perm_unlink" eval="1"/>
+         </record>
+
+         <record id="model_access_ir_attachment_portal" model="ir.model.access">
+             <field name="name">model.access.ir.attachment.portal</field>
+             <field name="group_id" ref="base.group_portal"/>
+             <field name="model_id" ref="base.model_ir_attachment"/>
+             <field name="perm_read" eval="1"/>
+             <field name="perm_create" eval="1"/>
+             <field name="perm_write" eval="1"/>
+             <field name="perm_unlink" eval="1"/>
+         </record>
+    </data>
+</odoo>

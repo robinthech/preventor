@@ -1,0 +1,835 @@
+<odoo>
+  <template name="principal" id="principal">
+    <t t-call="website.layout">
+      <t t-set="no_header" t-value="True"/>
+      <t t-set="no_footer" t-value="True"/>
+      <header>
+        <nav class="navbar navbar-expand-md navbar-dark bg-primary accidente">
+          <div class="container">
+            <a class="navbar-brand logo" href="https://softwaresst.com">
+              <img src="/web/image/website/1/logo/PREVENTOR?unique=43ff1c1" class="img img-fluid" alt=""/>
+            </a>
+            <div id="top_menu_collapse" aria-expanded="false">
+              <ul class="nav ml-auto text-right" id="top_menu">
+                <li class="nav-item divider"></li>
+                <li class="nav-item dropdown">
+                  <a href="#" class="nav-link dropdown-toggle align-items-center d-flex" data-toggle="dropdown">
+                    <i class="fa fa-user-circle mr-1"></i>
+                    <b>
+                      <span t-esc="user_id.name[:23] + '...' if user_id.name and len(user_id.name) &gt; 25 else user_id.name"/>
+                    </b>
+                  </a>
+                  <div class="dropdown-menu js_usermenu" role="menu">
+
+                    <a class="dropdown-item" t-attf-href="/usuarios" role="menuitem">Panel de control</a>
+                    <a id="o_logout" class="dropdown-item" role="menuitem" href="/web/session/logout?redirect=https://softwaresst.com/">Cerrar sesión</a>
+                  </div>
+                </li>
+
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <div class="mx-auto" style="width:85%">
+        <div class="mt-5 table_programa programa_id sectiontextarea" t-att-data-programa_id="programa_anual.id">
+          <div class="table-programa-anual">
+            <h1 class="display-button">PROGRAMA ANUAL DE SEGURIDAD Y SALUD EN EL TRABAJO</h1>
+            <table class="table table-bordered" style="table-layout: auto;border-bottom:0px;border-left:0px">
+              <thead>
+                <tr>
+                  <th colspan="8" class="bg-primary text-center">
+                    <h3>PROGRAMA ANUAL DE SEGURIDAD Y SALUD EN EL TRABAJO</h3>
+                  </th>
+                </tr>
+                <tr>
+                  <th colspan="8" class="bg-success text-left">DATOS DEL EMPLEADOR</th>
+                </tr>
+                <tr class="text-center bg-primary">
+                  <th scope="col" rowspan="2" colspan="2" style="width:25%;vertical-align:middle">RAZÓN SOCIAL</th>
+                  <th scope="col" rowspan="2" style="width:13%;vertical-align:middle">RUC</th>
+                  <th scope="col" rowspan="2" colspan="2" style="width:20%;vertical-align:middle">DOMICILIO</th>
+                  <th scope="col" rowspan="2" colspan="2" style="width:45%;vertical-align:middle">ACTIVIDAD ECONÓMICA</th>
+                  <th scope="col" rowspan="2" style="width:10%;vertical-align:middle">NÚMERO DE TRABAJADORES</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="bg-primary">
+                  <td data-table-header="RAZÓN SOCIAL" colspan="2"><input type="text" name="cliente" class="border-0 form-control linea_programa" t-att-value="programa_anual.cliente"/></td>
+                  <td data-table-header="RUC"><input type="text" name="ruc" class="border-0 form-control linea_programa" t-att-value="programa_anual.ruc"/></td>
+                  <td data-table-header="DOMICILIO" colspan="2"><input type="text" name="domicilio" class="border-0 form-control linea_programa" t-att-value="programa_anual.domicilio"/></td>
+                  <td data-table-header="ACT. ECONÓMICA" colspan="2"><input type="text" name="actividad" class="border-0 form-control linea_programa" t-att-value="programa_anual.actividad"/></td>
+                  <td data-table-header="TRABAJADORES"><input type="number" min="0" name="trabajadores" class="border-0 form-control linea_programa" t-att-value="programa_anual.trabajadores" oninput="this.value = Math.abs(this.value)"/></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <table style="table-layout: auto;border-bottom:0px;border-left:0px">
+            <tbody>
+              <tr>
+                <td style="position:relative;border:0px" class="px-0">
+                  <button type="button" class="btn btn-primary font-weight-bold mb-3" data-toggle="modal" data-target="#new_general">
+                    <strong>+ OBJETIVO GENERAL</strong>
+                  </button>
+                  <div class="modal fade" id="new_general" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">NUEVO OBJETIVO GENERAL</h5>
+                        </div>
+                        <div class="modal-body">
+                          <strong>Objetivo General</strong>
+                          <input class="col-12 form-control mt-1" name="new-objetivo-general" type="text"/>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                          <button type="button" t-att-data-programa_anual_id="programa_anual.id" class="btn btn-primary nuevo-objetivo-general">GUARDAR</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <t t-set="counter" t-value="0"/>
+              <t t-foreach="programa_anual.objetivo_ids" t-as="general">
+                <t t-set="counter" t-value="counter + 1"/>
+                <table class="table table-bordered general_id" style="table-layout: auto;;border-left:0px" t-att-data-general_id="general.id">
+                  <tbody>
+                    <tr class="border">
+                      <td colspan="2" class="bg-secondary" style="width:15%;border-top-left-radius:0px;border-bottom-left-radius:0px;">
+                        <strong>Objetivo General
+                          <t t-esc="counter"/></strong>
+                      </td>
+                      <td class="p-0" colspan="5">
+                        <input type="text" name="general" class="border-0 form-control" t-att-value="general.name"/>
+                      </td>
+                    </tr>
+                    <tr style="border:0px">
+                      <td style="border:0px" class="px-0">
+                        <button type="button" class="btn btn-primary font-weight-bold" data-toggle="modal" t-attf-data-target="#general-{{general.id}}">
+                          <strong>+ OBJETIVO ESPECIFICO</strong>
+                        </button>
+                        <div class="modal fade" t-attf-id="general-{{general.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">NUEVO OBJETIVO ESPECÍFICO</h5>
+                              </div>
+                              <div class="modal-body">
+                                <strong>Objetivo Específico</strong>
+                                <input class="col-12 form-control mt-1" name="new-objetivo-especifico" type="text"/>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                                <button type="button" t-att-data-general_id="general.id" class="btn btn-primary nuevo-objetivo-especifico">GUARDAR</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <t t-set="counterespecifico" t-value="0"/>
+                    <t t-foreach="general.especifico_ids" t-as="especifico">
+                      <t t-set="counterespecifico" t-value="counterespecifico + 1"/>
+                      <tr class="border">
+                        <t t-if="counterespecifico==1">
+                          <td t-att-rowspan="len(general.especifico_ids)" colspan="2" class="bg-secondary" style="vertical-align:middle;width:15%;border-top-left-radius:0px;border-bottom-left-radius:0px;">
+                            <strong>Obj. Específicos</strong>
+                          </td>
+                        </t>
+                        <!-- <td colspan="2" class="bg-secondary" style="width:15%;border-top-left-radius:0px;border-bottom-left-radius:0px;"><strong>Objetivo Específico <t t-esc="counterespecifico"/></strong></td> -->
+                        <td class="p-0 m-0 d-flex align-items-center border-0" colspan="6">
+                          <input type="text" name="name" class="border-0 form-control linea_especifico" t-att-data-especifico_id="especifico.id" t-att-value="especifico.name"/>
+                          <button type="button" class="btn btn-danger" data-toggle="modal" t-attf-data-target="#especificoeliminar-{{especifico.id}}">
+                            <i class="fa fa-trash"></i>
+                          </button>
+                          <div class="modal fade" t-attf-id="especificoeliminar-{{especifico.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                </div>
+                                <div class="modal-body">
+                                  <div class="alert alert-danger" role="alert">
+                                    ESTA SEGURO DE ELIMINAR
+                                  </div>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                                  <button type="button" class="btn btn-secondary botton-eliminar-especifico" t-att-data-especifico_id="especifico.id">ELIMINAR</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </t>
+                    <tr>
+                      <td colspan="2" class="bg-secondary" style="width:15%;border-top-left-radius:0px;border-bottom-left-radius:0px;">
+                        <strong>Meta</strong>
+                      </td>
+                      <td class="p-0" colspan="6"><input type="text" name="meta" class="border-0 form-control linea_general" t-att-value="general.meta"/></td>
+                    </tr>
+                    <tr>
+                      <td colspan="2" class="bg-secondary" style="width:15%;border-top-left-radius:0px;border-bottom-left-radius:0px;">
+                        <strong>Indicador</strong>
+                      </td>
+                      <td class="p-0" colspan="6"><input type="text" name="indicador" class="border-0 form-control linea_general" t-att-value="general.indicador"/></td>
+                    </tr>
+                    <tr>
+                      <td colspan="2" class="bg-secondary" style="width:15%;border-top-left-radius:0px;border-bottom-left-radius:0px;">
+                        <strong>Presupuesto</strong>
+                      </td>
+                      <td class="p-0" colspan="6">
+                        <strong><input type="text" name="presupuesto" class="border-0 form-control linea_general" t-att-value="general.presupuesto"/></strong>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="2" class="bg-secondary" style="width:15%;border-top-left-radius:0px;border-bottom-left-radius:0px;">
+                        <strong>Recursos</strong>
+                      </td>
+                      <td class="p-0" colspan="6"><input type="text" name="recurso" class="border-0 form-control linea_general" t-att-value="general.recurso"/></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <tr>
+                  <div class="table-programa-anual">
+                    <button type="button" class="display-button btn btn-primary font-weight-bold mb-3" data-toggle="modal" t-attf-data-target="#actividad-{{general.id}}">
+                      <strong>+ ACTIVIDAD</strong>
+                    </button>
+                    <table class="table table-bordered actividad" style="table-layout: auto;">
+                      <thead class="text-center bg-primary">
+                        <tr>
+                          <td class="py-0" style="position:absolute;border:0px">
+                            <button type="button" class="btn btn-primary font-weight-bold" data-toggle="modal" style="position:absolute;left:-45px" t-attf-data-target="#actividad-{{general.id}}">
+                              <strong>+</strong>
+                            </button>
+                            <div class="modal fade" t-attf-id="actividad-{{general.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content text-dark">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">NUEVA ACTIVIDAD</h5>
+                                  </div>
+                                  <div class="modal-body text-left">
+                                    <strong>Descripción de la actividad</strong>
+                                    <input class="col-12 form-control my-2" name="new-actividad-name" type="text"/>
+                                    <strong>Responsable de la ejecución</strong>
+                                    <input class="col-12 form-control my-2" name="new-actividad-responsable" type="text"/>
+                                    <strong>Área</strong>
+                                    <input class="col-12 form-control my-2" name="new-actividad-area" type="text"/>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                                    <button type="button" t-att-data-general_id="general.id" class="btn btn-primary nueva-actividad">GUARDAR</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td rowspan="2" class="p-0" style="border-top-left-radius:0px;border-bottom-left-radius:0px;">
+                            <strong>N</strong>
+                          </td>
+                          <td rowspan="2" class="p-0">
+                            <strong>Descripcion de la Actividad</strong>
+                          </td>
+                          <td rowspan="2" class="p-0">
+                            <strong>Responsable de ejecucion</strong>
+                          </td>
+                          <td rowspan="2" class="p-0">
+                            <strong>Area</strong>
+                          </td>
+                          <td rowspan="2" class="p-0">
+                            <strong>Indicador</strong>
+                          </td>
+                          <td rowspan="2" class="p-0">
+                            <strong>Meta</strong>
+                          </td>
+                          <td colspan="2" rowspan="2" class="p-0">
+                            <strong>Avance</strong>
+                          </td>
+                          <td colspan="12" class="p-0">
+                            <strong>Año: 2020</strong>
+                          </td>
+                          <td rowspan="2">
+                            <strong>Estado</strong>
+                          </td>
+                          <td rowspan="2" style="border-top-right-radius:0px;border-bottom-right-radius:0px;">
+                            <strong>Observaciones</strong>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="p-0" style="border-top-left-radius:0px;border-bottom-left-radius:0px;">
+                            <strong>E</strong>
+                          </td>
+                          <td class="p-0">
+                            <strong>F</strong>
+                          </td>
+                          <td class="p-0">
+                            <strong>M</strong>
+                          </td>
+                          <td class="p-0">
+                            <strong>A</strong>
+                          </td>
+                          <td class="p-0">
+                            <strong>M</strong>
+                          </td>
+                          <td class="p-0">
+                            <strong>J</strong>
+                          </td>
+                          <td class="p-0">
+                            <strong>J</strong>
+                          </td>
+                          <td class="p-0">
+                            <strong>A</strong>
+                          </td>
+                          <td class="p-0">
+                            <strong>S</strong>
+                          </td>
+                          <td class="p-0">
+                            <strong>O</strong>
+                          </td>
+                          <td class="p-0">
+                            <strong>N</strong>
+                          </td>
+                          <td class="p-0" style="border-top-right-radius:0px;border-bottom-right-radius:0px;">
+                            <strong>D</strong>
+                          </td>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <t t-set="contadoractividad" t-value="0"/>
+                        <t t-foreach="general.actividad_ids" t-as="actividad">
+                          <t t-set="contadoractividad" t-value="contadoractividad + 1"/>
+                          <tr class="display bg-info text-center actividad_id">
+                            <th>
+                              ACTIVIDAD Nº<t t-esc="contadoractividad"/>
+                            </th>
+                          </tr>
+                          <tr class="text-center actividad_id" t-att-data-actividad_id="actividad.id">
+                            <td rowspan="2" class="hide-sm p-0">
+                              <strong><t t-esc="contadoractividad"/></strong>
+                            </td>
+                            <td data-table-header="DESCRIPCIÓN" rowspan="2"><input type="text" name="name" class="border-0 form-control linea_actividad" t-att-value="actividad.name"/></td>
+                            <td data-table-header="RESPONSABLE" rowspan="2"><input type="text" name="responsable" class="border-0 form-control linea_actividad" t-att-value="actividad.responsable"/></td>
+                            <td data-table-header="ÁREA" rowspan="2"><input type="text" name="area" class="border-0 form-control linea_actividad" t-att-value="actividad.area"/></td>
+                            <td data-table-header="INDICADOR" rowspan="2"><input type="text" name="indicador" class="border-0 form-control linea_actividad" t-att-value="actividad.indicador"/></td>
+                            <td data-table-header="META" rowspan="2"><input type="text" name="meta" class="border-0 form-control linea_actividad" t-att-value="actividad.meta"/></td>
+                            <th class="display bg-info text-center actividad_id">
+                              AVANCE PRONOSTICADO:
+                              <t t-esc="actividad.avance_p"/>
+                            </th>
+                            <td class="hide-sm">
+                              <strong>P</strong>
+                            </td>
+                            <td class="hide-sm" t-attf-id="pronosticado-{{actividad.id}}">
+                              <strong><t t-esc="actividad.avance_p"/></strong>
+                            </td>
+                            <td data-table-header="ENERO" class="p-0">
+                              <div class="checkesperado">
+                                <input t-attf-id="actividadenero-{{actividad.id}}" type="checkbox" name="enero_p" tipo="programado" t-attf-registro_id="{{actividad.id}}" t-att-checked="actividad.enero_p"/>
+                                <label t-attf-for="actividadenero-{{actividad.id}}"></label>
+                              </div>
+                            </td>
+                            <td data-table-header="FEBRERO" class="p-0">
+                              <div class="checkesperado">
+                                <input t-attf-id="actividadfebrero-{{actividad.id}}" type="checkbox" name="febrero_p" tipo="programado" t-attf-registro_id="{{actividad.id}}" t-att-checked="actividad.febrero_p"/>
+                                <label t-attf-for="actividadfebrero-{{actividad.id}}"></label>
+                              </div>
+                            </td>
+                            <td data-table-header="MARZO" class="p-0">
+                              <div class="checkesperado">
+                                <input t-attf-id="actividadmarzo-{{actividad.id}}" type="checkbox" name="marzo_p" tipo="programado" t-attf-registro_id="{{actividad.id}}" t-att-checked="actividad.marzo_p"/>
+                                <label t-attf-for="actividadmarzo-{{actividad.id}}"></label>
+                              </div>
+                            </td>
+                            <td data-table-header="ABRIL" class="p-0">
+                              <div class="checkesperado">
+                                <input t-attf-id="actividadabril-{{actividad.id}}" type="checkbox" name="abril_p" tipo="programado" t-attf-registro_id="{{actividad.id}}" t-att-checked="actividad.abril_p"/>
+                                <label t-attf-for="actividadabril-{{actividad.id}}"></label>
+                              </div>
+                            </td>
+                            <td data-table-header="MAYO" class="p-0">
+                              <div class="checkesperado">
+                                <input t-attf-id="actividadmayo-{{actividad.id}}" type="checkbox" name="mayo_p" tipo="programado" t-attf-registro_id="{{actividad.id}}" t-att-checked="actividad.mayo_p"/>
+                                <label t-attf-for="actividadmayo-{{actividad.id}}"></label>
+                              </div>
+                            </td>
+                            <td data-table-header="JUNIO" class="p-0">
+                              <div class="checkesperado">
+                                <input t-attf-id="actividadjunio-{{actividad.id}}" type="checkbox" name="junio_p" tipo="programado" t-attf-registro_id="{{actividad.id}}" t-att-checked="actividad.junio_p"/>
+                                <label t-attf-for="actividadjunio-{{actividad.id}}"></label>
+                              </div>
+                            </td>
+                            <td data-table-header="JULIO" class="p-0">
+                              <div class="checkesperado">
+                                <input t-attf-id="actividadjulio-{{actividad.id}}" type="checkbox" name="julio_p" tipo="programado" t-attf-registro_id="{{actividad.id}}" t-att-checked="actividad.julio_p"/>
+                                <label t-attf-for="actividadjulio-{{actividad.id}}"></label>
+                              </div>
+                            </td>
+                            <td data-table-header="AGOSTO" class="p-0">
+                              <div class="checkesperado">
+                                <input t-attf-id="actividadagosto-{{actividad.id}}" type="checkbox" name="agosto_p" tipo="programado" t-attf-registro_id="{{actividad.id}}" t-att-checked="actividad.agosto_p"/>
+                                <label t-attf-for="actividadagosto-{{actividad.id}}"></label>
+                              </div>
+                            </td>
+                            <td data-table-header="SETIEMBRE" class="p-0">
+                              <div class="checkesperado">
+                                <input t-attf-id="actividadseptiembre-{{actividad.id}}" type="checkbox" name="septiembre_p" tipo="programado" t-attf-registro_id="{{actividad.id}}" t-att-checked="actividad.septiembre_p"/>
+                                <label t-attf-for="actividadseptiembre-{{actividad.id}}"></label>
+                              </div>
+                            </td>
+                            <td data-table-header="OCTUBRE" class="p-0">
+                              <div class="checkesperado">
+                                <input t-attf-id="actividadoctubre-{{actividad.id}}" type="checkbox" name="octubre_p" tipo="programado" t-attf-registro_id="{{actividad.id}}" t-att-checked="actividad.octubre_p"/>
+                                <label t-attf-for="actividadoctubre-{{actividad.id}}"></label>
+                              </div>
+                            </td>
+                            <td data-table-header="NOVIEMBRE" class="p-0">
+                              <div class="checkesperado">
+                                <input t-attf-id="actividadnoviembre-{{actividad.id}}" type="checkbox" name="noviembre_p" tipo="programado" t-attf-registro_id="{{actividad.id}}" t-att-checked="actividad.noviembre_p"/>
+                                <label t-attf-for="actividadnoviembre-{{actividad.id}}"></label>
+                              </div>
+                            </td>
+                            <td data-table-header="DICIEMBRE" class="p-0">
+                              <div class="checkesperado">
+                                <input t-attf-id="actividaddiciembre-{{actividad.id}}" type="checkbox" name="diciembre_p" tipo="programado" t-attf-registro_id="{{actividad.id}}" t-att-checked="actividad.diciembre_p"/>
+                                <label t-attf-for="actividaddiciembre-{{actividad.id}}"></label>
+                              </div>
+                            </td>
+                            <td rowspan="2" class="p-0 hide-sm" t-attf-id="estado-{{actividad.id}}">
+                              <strong><t t-esc="actividad.estado"/></strong>
+                            </td>
+                            <td rowspan="2" class="p-0 linea_actividad_observaciones hide-sm">
+                              <textarea name="observaciones" style="position:relative;height:100px"><t t-esc="actividad.observaciones"/></textarea>
+                            </td>
+                          </tr>
+                          <tr class="text-center actividad_id" t-att-data-actividad_id="actividad.id">
+                            <th class="display bg-info text-center actividad_id">
+                              AVANCE ESPERADO:
+                              <t t-esc="actividad.avance_e"/>
+                            </th>
+                            <td class="hide-sm">
+                              <strong>E</strong>
+                            </td>
+                            <td class="hide-sm" t-attf-id="esperado-{{actividad.id}}">
+                              <strong><t t-esc="actividad.avance_e"/></strong>
+                            </td>
+                            <td data-table-header="ENERO" class="p-0">
+                              <div class="checkBtn">
+                                <input t-attf-id="esperadoenero-{{actividad.id}}" type="checkbox" name="enero_e" tipo="ejecutado" t-attf-registro_id="{{actividad.id}}" t-att-checked="actividad.enero_e"/>
+                                <label t-attf-for="esperadoenero-{{actividad.id}}"></label>
+                              </div>
+                            </td>
+                            <td data-table-header="FEBRERO" class="p-0">
+                              <div class="checkBtn">
+                                <input t-attf-id="esperadofebrero-{{actividad.id}}" type="checkbox" name="febrero_e" tipo="ejecutado" t-attf-registro_id="{{actividad.id}}" t-att-checked="actividad.febrero_e"/>
+                                <label t-attf-for="esperadofebrero-{{actividad.id}}"></label>
+                              </div>
+                            </td>
+                            <td data-table-header="MARZO" class="p-0">
+                              <div class="checkBtn">
+                                <input t-attf-id="esperadomarzo-{{actividad.id}}" type="checkbox" name="marzo_e" tipo="ejecutado" t-attf-registro_id="{{actividad.id}}" t-att-checked="actividad.marzo_e"/>
+                                <label t-attf-for="esperadomarzo-{{actividad.id}}"></label>
+                              </div>
+                            </td>
+                            <td data-table-header="ABRIL" class="p-0">
+                              <div class="checkBtn">
+                                <input t-attf-id="esperadoabril-{{actividad.id}}" type="checkbox" name="abril_e" tipo="ejecutado" t-attf-registro_id="{{actividad.id}}" t-att-checked="actividad.marzo_e"/>
+                                <label t-attf-for="esperadoabril-{{actividad.id}}"></label>
+                              </div>
+                            </td>
+                            <td data-table-header="MAYO" class="p-0">
+                              <div class="checkBtn">
+                                <input t-attf-id="esperadomayo-{{actividad.id}}" type="checkbox" name="mayo_e" tipo="ejecutado" t-attf-registro_id="{{actividad.id}}" t-att-checked="actividad.mayo_e"/>
+                                <label t-attf-for="esperadomayo-{{actividad.id}}"></label>
+                              </div>
+                            </td>
+                            <td data-table-header="JUNIO" class="p-0">
+                              <div class="checkBtn">
+                                <input t-attf-id="esperadojunio-{{actividad.id}}" type="checkbox" name="junio_e" tipo="ejecutado" t-attf-registro_id="{{actividad.id}}" t-att-checked="actividad.junio_e"/>
+                                <label t-attf-for="esperadojunio-{{actividad.id}}"></label>
+                              </div>
+                            </td>
+                            <td data-table-header="JULIO" class="p-0">
+                              <div class="checkBtn">
+                                <input t-attf-id="esperadojulio-{{actividad.id}}" type="checkbox" name="julio_e" tipo="ejecutado" t-attf-registro_id="{{actividad.id}}" t-att-checked="actividad.julio_e"/>
+                                <label t-attf-for="esperadojulio-{{actividad.id}}"></label>
+                              </div>
+                            </td>
+                            <td data-table-header="AGOSTO" class="p-0">
+                              <div class="checkBtn">
+                                <input t-attf-id="esperadoagosto-{{actividad.id}}" type="checkbox" name="agosto_e" tipo="ejecutado" t-attf-registro_id="{{actividad.id}}" t-att-checked="actividad.agosto_e"/>
+                                <label t-attf-for="esperadoagosto-{{actividad.id}}"></label>
+                              </div>
+                            </td>
+                            <td data-table-header="SETIEMBRE" class="p-0">
+                              <div class="checkBtn">
+                                <input t-attf-id="esperadoseptiembre-{{actividad.id}}" type="checkbox" name="septiembre_e" tipo="ejecutado" t-attf-registro_id="{{actividad.id}}" t-att-checked="actividad.septiembre_e"/>
+                                <label t-attf-for="esperadoseptiembre-{{actividad.id}}"></label>
+                              </div>
+                            </td>
+                            <td data-table-header="OCTUBRE" class="p-0">
+                              <div class="checkBtn">
+                                <input t-attf-id="esperadooctubre-{{actividad.id}}" type="checkbox" name="octubre_e" tipo="ejecutado" t-attf-registro_id="{{actividad.id}}" t-att-checked="actividad.octubre_e"/>
+                                <label t-attf-for="esperadooctubre-{{actividad.id}}"></label>
+                              </div>
+                            </td>
+                            <td data-table-header="NOVIEMBRE" class="p-0">
+                              <div class="checkBtn">
+                                <input t-attf-id="esperadonoviembre-{{actividad.id}}" type="checkbox" name="noviembre_e" tipo="ejecutado" t-attf-registro_id="{{actividad.id}}" t-att-checked="actividad.noviembre_e"/>
+                                <label t-attf-for="esperadonoviembre-{{actividad.id}}"></label>
+                              </div>
+                            </td>
+                            <td data-table-header="DICIEMBRE" class="p-0">
+                              <div class="checkBtn">
+                                <input t-attf-id="esperadodiciembre-{{actividad.id}}" type="checkbox" name="diciembre_e" tipo="ejecutado" t-attf-registro_id="{{actividad.id}}" t-att-checked="actividad.diciembre_e"/>
+                                <label t-attf-for="esperadodiciembre-{{actividad.id}}"></label>
+                              </div>
+                            </td>
+                          </tr>
+                        </t>
+                      </tbody>
+                    </table>
+                  </div>
+                </tr>
+              </t>
+            </tbody>
+          </table>
+          <a href="/programa_anual/success" type="button" class="btn btn-primary float-right font-weight-bold mb-3">GUARDAR</a>
+        </div>
+      </div>
+    </t>
+  </template>
+
+  <template id="vista" name="Programa anual">
+    <t t-call="website.layout">
+      <t t-set="no_header" t-value="True"/>
+      <t t-set="no_footer" t-value="True"/>
+      <header>
+        <nav class="navbar navbar-expand-md navbar-dark bg-primary accidente">
+          <div class="container">
+            <a class="navbar-brand logo" href="https://softwaresst.com">
+              <img src="/web/image/website/1/logo/PREVENTOR?unique=43ff1c1" class="img img-fluid" alt=""/>
+            </a>
+            <div id="top_menu_collapse" aria-expanded="false">
+              <ul class="nav ml-auto text-right" id="top_menu">
+                <li class="nav-item divider"></li>
+                <li class="nav-item dropdown">
+                  <a href="#" class="nav-link dropdown-toggle align-items-center d-flex" data-toggle="dropdown">
+                    <i class="fa fa-user-circle mr-1"></i>
+                    <b>
+                      <span t-esc="user_id.name[:23] + '...' if user_id.name and len(user_id.name) &gt; 25 else user_id.name"/>
+                    </b>
+                  </a>
+                  <div class="dropdown-menu js_usermenu" role="menu">
+
+                    <a class="dropdown-item" t-attf-href="/usuarios" role="menuitem">Panel de control</a>
+                    <a id="o_logout" class="dropdown-item" role="menuitem" href="/web/session/logout?redirect=https://softwaresst.com/">Cerrar sesión</a>
+                  </div>
+                </li>
+
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <div class="wrapper modulo-wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar" class="bg-info">
+          <ul class="list-unstyled components">
+            <p class="bg-success">
+              <strong>MODULO DE PROGRAMA ANUAL</strong>
+            </p>
+            <li class="nav-item divider"></li>
+            <li>
+              <a href="/programa-anual/guia">INSTRUCCIONES</a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content" class="programa-anual">
+          <button type="button" id="sidebarCollapse" class="btn btn-info display-none">
+            <i class="fa fa-arrow-left"></i>
+          </button>
+          <div class="row py-2">
+
+            <div class="col-12">
+              <div class="alert alert-primary text-center" role="alert">
+                <h4>LISTADO DE PROGRAMAS ANUALES DE SST</h4>
+              </div>
+              <div class="table-responsive">
+                <table id="modulo-programa-anual" class="table table-hover responsive nowrap w-100 text-center" t-att-data-plan_id="plan.id">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th>PROGRAMA</th>
+                      <th>RAZON SOCIAL</th>
+                      <th>RUC</th>
+                      <th>DOMICILIO</th>
+                      <th>ACTIVIDAD</th>
+                      <th>EDITAR</th>
+                      <!-- <th>ACTUALIZAR EXCEL</th> -->
+                      <th>
+                        REPORTE
+                      </th>
+                      <th>
+                        ELIMINAR
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody >
+                    <t t-set="contador" t-value="0"/>
+                    <t t-foreach="programa_anual" t-as="programa">
+                      <t t-set="contador" t-value="contador + 1"/>
+                      <tr>
+                        <td>
+                          <span t-field="programa.sequence"/>
+                        </td>
+                        <td>
+                          <div>
+                            <span t-field="programa.cliente"/>
+                          </div>
+                        </td>
+                        <td >
+                          <span t-field="programa.ruc"/>
+                        </td>
+                        <td >
+                          <span t-field="programa.domicilio"/>
+                        </td>
+                        <td >
+                          <span t-field="programa.actividad"/>
+                        </td>
+                        <td >
+                          <a class="btn btn-success" t-att-href="'/programa_anual/%s' % (programa.id)" role="button">
+                            <i class="fa fa-pencil-square-o"></i>
+
+                          </a>
+                        </td>
+                        <t t-if="programa.excel_pa_binary">
+                          <td>
+                            <t t-if="plan.report_excel or contador==1">
+                              <a class="btn btn-info" role="button" t-attf-href="/web/content?model=programa.anual&amp;field=excel_pa_binary&amp;id={{programa.id}}&amp;filename={{programa.excel_pa}}&amp;download=true">
+                                <i class="fa fa-file-excel-o"></i>
+                              </a>
+                            </t>
+                            <t t-else="">
+                              <a class="btn btn-info text-light file-gratis">
+                                <i class="fa fa-file-excel-o"></i>
+                              </a>
+                            </t>
+                          </td>
+                        </t>
+                        <t t-else="">
+                          <td class="line-excel"></td>
+                        </t>
+                        <td>
+                          <div>
+                            <button type="button" class="btn btn-danger" data-toggle="modal" t-attf-data-target="#trabajador-{{programa.id}}">
+                              <i class="fa fa-trash"></i>
+
+                            </button>
+                            <div class="modal fade" t-attf-id="trabajador-{{programa.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                  </div>
+                                  <div class="modal-body">
+                                    <div class="alert alert-danger" role="alert">
+                                      ESTA SEGURO DE ELIMINAR
+                                    </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                                    <button type="button" class="btn btn-secondary botton-eliminar-programa" t-att-data-programa_id="programa.id">ELIMINAR</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </t>
+                  </tbody>
+                </table>
+
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-center">
+
+            <button type="button" class="btn btn-primary font-weight-bold" data-toggle="modal" data-target="#new_trabajadores">
+              <strong>Crear Programa anual</strong>
+            </button>
+            <div class="modal fade" id="new_trabajadores" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">NUEVO PROGRAMA ANUAL</h5>
+                  </div>
+                  <div class="modal-body">
+                    RAZON SOCIAL
+                    <input class="col-12 form-control mb-2" name="new-lista-cliente" type="text"/>
+                    RUC
+                    <input class="col-12 form-control mb-2" name="new-lista-ruc" type="text"/>
+                    DOMICILIO
+                    <input class="col-12 form-control mb-2" name="new-lista-domicilio" type="text"/>
+                    ACTIVIDAD ECONÓMICA
+                    <input class="col-12 form-control" name="new-lista-actividad" type="text"/>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                    <button type="button" class="btn btn-primary nuevo-programa-anual">GUARDAR</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </t>
+  </template>
+
+  <template id="success" name="Programa Guardado">
+    <t t-call="website.layout">
+      <t t-set="no_header" t-value="True"/>
+      <t t-set="no_footer" t-value="True"/>
+      <header>
+        <nav class="navbar navbar-expand-md navbar-dark bg-primary accidente">
+          <div class="container">
+            <a class="navbar-brand logo" href="https://softwaresst.com">
+              <img src="/web/image/website/1/logo/PREVENTOR?unique=43ff1c1" class="img img-fluid" alt=""/>
+            </a>
+            <div id="top_menu_collapse" aria-expanded="false">
+              <ul class="nav ml-auto text-right" id="top_menu">
+                <li class="nav-item divider"></li>
+                <li class="nav-item dropdown">
+                  <a href="#" class="nav-link dropdown-toggle align-items-center d-flex" data-toggle="dropdown">
+                    <i class="fa fa-user-circle mr-1"></i>
+                    <b>
+                      <span t-esc="user_id.name[:23] + '...' if user_id.name and len(user_id.name) &gt; 25 else user_id.name"/>
+                    </b>
+                  </a>
+                  <div class="dropdown-menu js_usermenu" role="menu">
+
+                    <a class="dropdown-item" t-attf-href="/usuarios" role="menuitem">Panel de control</a>
+                    <a id="o_logout" class="dropdown-item" role="menuitem" href="/web/session/logout?redirect=https://softwaresst.com/">Cerrar sesión</a>
+                  </div>
+                </li>
+
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <div class="wrapper modulo-wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar" class="bg-info">
+          <ul class="list-unstyled components">
+            <p class="bg-success">
+              <strong>MODULO DE PROGRAMA ANUAL</strong>
+            </p>
+            <li class="nav-item divider"></li>
+            <li>
+              <a href="/programa-anual/guia">INSTRUCCIONES</a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content" class="eliminar-registro lista-verificacion">
+          <button type="button" id="sidebarCollapse" class="btn btn-info display-none">
+            <i class="fa fa-arrow-left"></i>
+          </button>
+          <div class="container">
+            <div class="row py-5 d-flex justify-content-center">
+              <div class="alert alert-primary" role="alert">
+                <h5>EL PROGRAMA ANUAL HA SIDO GUARDADO EXITOSAMENTE
+                </h5>
+              </div>
+            </div>
+            <!-- <div class="row py-5 d-flex justify-content-center"> -->
+            <a href="/programa_anual" type="button" class="btn btn-primary font-weight-bold float-right">Siguiente &#62;</a>
+            <!-- </div> -->
+          </div>
+        </div>
+      </div>
+    </t>
+  </template>
+
+  <template id="programa_anual_guia" name="Guia">
+    <t t-call="website.layout">
+      <t t-set="no_header" t-value="True"/>
+      <t t-set="no_footer" t-value="True"/>
+      <header>
+        <nav class="navbar navbar-expand-md navbar-dark bg-primary accidente">
+          <div class="container">
+            <a class="navbar-brand logo" href="https://softwaresst.com">
+              <img src="/web/image/website/1/logo/PREVENTOR?unique=43ff1c1" class="img img-fluid" alt=""/>
+            </a>
+            <div id="top_menu_collapse" aria-expanded="false">
+              <ul class="nav ml-auto text-right" id="top_menu">
+                <li class="nav-item divider"></li>
+                <li class="nav-item dropdown">
+                  <a href="#" class="nav-link dropdown-toggle align-items-center d-flex" data-toggle="dropdown">
+                    <i class="fa fa-user-circle mr-1"></i>
+                    <b>
+                      <span t-esc="user_id.name[:23] + '...' if user_id.name and len(user_id.name) &gt; 25 else user_id.name"/>
+                    </b>
+                  </a>
+                  <div class="dropdown-menu js_usermenu" role="menu">
+
+                    <a class="dropdown-item" t-attf-href="/usuarios" role="menuitem">Panel de control</a>
+                    <a id="o_logout" class="dropdown-item" role="menuitem" href="/web/session/logout?redirect=https://softwaresst.com/">Cerrar sesión</a>
+                  </div>
+                </li>
+
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <div class="wrapper modulo-wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar" class="bg-info">
+          <ul class="list-unstyled components">
+            <p class="bg-success">
+              <strong>MODULO DE PROGRAMA ANUAL</strong>
+            </p>
+            <li class="nav-item divider"></li>
+            <li>
+              <a href="/programa-anual/guia">INSTRUCCIONES</a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content" class="programa-anual">
+          <t t-if="len(producto.solve_file_ids)>0">
+            <div class="container">
+              <div class="mx-auto row-center">
+                <object t-att-data="pdf" type="application/pdf" width="100%" height="600px" class="display-none"/>
+                <a class="btn btn-primary display-block-guia font-weight-bold justify-content-center button-pdf" t-att-href="pdf">Visualizar PDF<span></span></a>
+                <!-- <object t-att-data="pdf" type="application/pdf" width="100%" height="600px"/> -->
+              </div>
+            </div>
+          </t>
+          <t t-else="">
+            <div class="card text-center">
+              <div class="card-header  bg-warning">
+                ALERTA
+              </div>
+              <div class="card-body">
+                <p class="card-text">No se ha publicado el pdf</p>
+              </div>
+              <div class="card-footer text-muted"></div>
+            </div>
+          </t>
+        </div>
+        </div>
+      </t>
+    </template>
+  </odoo>

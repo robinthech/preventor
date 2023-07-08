@@ -1,0 +1,343 @@
+<odoo>
+  <template id="perfil_usuario" name="Detalle">
+    <t t-call="website.layout">
+      <t t-set="no_header" t-value="True"/>
+      <t t-set="no_footer" t-value="True"/>
+      <header>
+          <nav class="navbar navbar-expand-md navbar-dark bg-primary accidente">
+            <div class="ml-auto">
+            <a class="navbar-brand logo" href="https://softwaresst.com">
+              <img src="/web/image/website/1/logo/PREVENTOR?unique=43ff1c1" class="img img-fluid" style="height:120px" alt="logo-preventor"/>
+            </a>
+          </div>
+          </nav>
+      </header>
+      <div class="perfil_alumno">
+        <div class="page-wrapper chiller-theme toggled">
+          <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+            <i class="fa fa-bars"></i>
+          </a>
+          <nav id="sidebar" class="sidebar-wrapper pt-5">
+            <div class="sidebar-content">
+              <div class="sidebar-brand h4">
+                <a href="#" class="text-white text-center">PANEL DE USUARIO</a>
+                <div id="close-sidebar">
+                  <i class="fa fa-times"></i>
+                </div>
+              </div>
+              <div class="sidebar-header">
+                <div class="user-pic">
+                  <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg" alt="User picture"/></div>
+                <div class="user-info">
+                  <span class="user-name">
+                    <!-- <strong t-field="user.name"></strong> -->
+                  </span>
+                  <span class="user-role"></span>
+                  <span class="user-status d-flex align-items-center">
+                    <i class="fa fa-circle"></i>
+                    <span class="text-white font-weight-bold h6 mb-0" t-esc="user_id.name[:23] + '...' if user_id.name and len(user_id.name) &gt; 25 else user_id.name"/>
+                  </span>
+                </div>
+              </div>
+              <!-- sidebar-search -->
+              <div class="sidebar-menu">
+                <ul>
+                  <li class="header-menu">
+                    <span>General</span>
+                  </li>
+                  <li class="sidebar-dropdown">
+                    <a href="/usuarios-general" class="sidebar-dropdown-activate">
+                      <i class="fa fa-home"></i>
+                      <span>DESCRIPCIÓN GENERAL</span>
+                    </a>
+                    <!-- <div class="sidebar-submenu" style="display: none;">
+                      <ul>
+                        <li>
+                          <a href="/evaluaciones">PARA HOY
+                          </a>
+                        </li>
+                        <li>
+                          <a href="/evaluacionespro">PROGRAMADAS</a>
+                        </li>
+                        <li>
+                          <a href="/evaluacionescer">CERRADAS</a>
+                        </li>
+                      </ul>
+                    </div> -->
+                  </li>
+                  <li>
+                    <a href="/usuarios">
+                      <i class="fa fa-mortar-board "></i>
+                      <span>MÓDULOS SOFTWARE SST</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/usuarios-personal">
+                      <i class="fa fa-users"></i>
+                      <span>GESTIÓN DE PERSONAL</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/usuarios-contratista">
+                      <i class="fa fa-users"></i>
+                      <span>GESTIÓN DE CONTRATISTAS</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/usuarios">
+                      <i class="fa fa-book"></i>
+                      <span>GESTIÓN DE DOCUMENTOS</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/gestion-requisitos">
+                      <i class="fa fa-check"></i>
+                      <span>GESTIÓN DE REQUISITOS</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <!-- sidebar-menu -->
+            </div>
+            <!-- sidebar-content -->
+            <div class="sidebar-footer">
+              <a href="/chat_lms">
+                <i class="fa fa-bell"></i>
+                <span class="badge badge-pill badge-warning notification">3</span>
+              </a>
+              <a href="#">
+                <i class="fa fa-envelope"></i>
+                <span class="badge badge-pill badge-success notification">7</span>
+              </a>
+              <a href="#">
+                <i class="fa fa-cog"></i>
+                <span class="badge-sonar"></span>
+              </a>
+              <a href="#" class="nav-link dropdown-toggle align-items-center d-flex" data-toggle="dropdown">
+                <i class="fa fa-user-circle mr-1"></i>
+              </a>
+              <div class="dropdown-menu js_usermenu" role="menu">
+                <a class="dropdown-item" t-attf-href="/usuarios" role="menuitem">Panel de control</a>
+                <a id="o_logout" class="dropdown-item" role="menuitem" href="/web/session/logout?redirect=https://softwaresst.com/">Cerrar sesión</a>
+              </div>
+            </div>
+          </nav>
+          <!-- sidebar-wrapper -->
+          <main class="page-content">
+            <div class="container-fluid">
+
+              <t t-raw="0"/>
+
+
+            </div>
+
+          </main>
+          <!-- page-content" -->
+        </div>
+      </div>
+    </t>
+  </template>
+  <template id="sidebar_permiso" name="Detalle">
+      <t t-call="website.layout">
+        <t t-set="no_header" t-value="True"/>
+        <t t-set="no_footer" t-value="True"/>
+        <header>
+            <nav class="navbar navbar-expand-md navbar-dark bg-primary accidente">
+              <div class="ml-auto">
+              <a class="navbar-brand logo" href="https://softwaresst.com">
+                <img src="/web/image/website/1/logo/PREVENTOR?unique=43ff1c1" class="img img-fluid" style="height:120px" alt="logo-preventor"/>
+              </a>
+            </div>
+            </nav>
+        </header>
+        <div class="perfil_alumno">
+          <div class="page-wrapper chiller-theme toggled">
+            <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+              <i class="fa fa-bars"></i>
+            </a>
+            <nav id="sidebar" class="sidebar-wrapper pt-5">
+              <div class="sidebar-content">
+                <div class="sidebar-brand h4">
+                  <a href="#" class="text-white text-center">PERMIT TO WORK MODULE</a>
+                  <div id="close-sidebar">
+                    <i class="fa fa-times"></i>
+                  </div>
+                </div>
+                <div class="sidebar-header">
+                  <div class="user-pic">
+                    <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg" alt="User picture"/></div>
+                  <div class="user-info">
+                    <span class="user-name">
+                      <!-- <strong t-field="user.name"></strong> -->
+                    </span>
+                    <span class="user-role"></span>
+                    <span class="user-status d-flex align-items-center">
+                      <i class="fa fa-circle"></i>
+                      <span class="text-white font-weight-bold h6 mb-0" t-esc="user_id.name[:23] + '...' if user_id.name and len(user_id.name) &gt; 25 else user_id.name"/>
+                    </span>
+                  </div>
+                </div>
+                <!-- sidebar-search -->
+                <div class="sidebar-menu">
+                  <ul>
+                    <li class="sidebar-dropdown active">
+                      <a href="#" class="sidebar-dropdown-activate">
+                        <i class="fa fa-home"></i>
+                        <span>GENERAL DATA</span>
+                      </a>
+                      <div class="sidebar-submenu" style="display: block;">
+                        <ul>
+                          <li data-toggle="modal" data-target="#exampleModalCenter">
+                            <a>CHARACTERISTICS</a>
+                          </li>
+                          <li>
+                            <a href="/permiso/guia">INSTRUCTIVE</a>
+                          </li>
+                          <li>
+                            <a href="/slides" target="_blank">TRAININGS</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </li>
+                    <li class="sidebar-dropdown">
+                      <a href="#" class="sidebar-dropdown-activate">
+                        <i class="fa fa-home"></i>
+                        <span>SPECIFIC DATA</span>
+                      </a>
+                      <div class="sidebar-submenu" style="display: none;">
+                        <ul>
+                          <li>
+                            <a href="/usuarios-contratista" target="_blank">CONTRACTORS
+                            </a>
+                          </li>
+                          <li>
+                            <a href="/usuarios-personal" target="_blank">WORKERS</a>
+                          </li>
+                          <li>
+                            <a href="/permiso/plantilla">PERMITS TEMPLATE</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </li>
+                    <li class="sidebar-dropdown">
+                      <a href="#" class="sidebar-dropdown-activate">
+                        <i class="fa fa-home"></i>
+                        <span>PERMIT MANAGEMENT</span>
+                      </a>
+                      <div class="sidebar-submenu" style="display: none;">
+                        <ul>
+                          <li>
+                            <a href="/permiso/solicitar">REQUEST
+                            </a>
+                          </li>
+                          <t t-if="user_id.perfil_permiso == '2' or user_id.perfil_permiso == '3'">
+                            <li>
+                              <a href="/permiso/autorizar">AUTHORIZE</a>
+                            </li>
+                          </t>
+                          <t t-if="user_id.perfil_permiso == '3'">
+                            <li>
+                              <a href="/permiso/aprobar">APPROVE</a>
+                            </li>
+                          </t>
+                        </ul>
+                      </div>
+                    </li>
+                    <t t-if="user_id.perfil == '1'">
+                      <li class="sidebar-dropdown">
+                        <a href="/permiso/roles" class="sidebar-dropdown-activate">
+                          <i class="fa fa-shield"></i>
+                          <span>RESPONSIBLE MANAGEMENT</span>
+                        </a>
+                      </li>
+                      <li class="sidebar-dropdown">
+                        <a href="#" class="sidebar-dropdown-activate">
+                          <i class="fa fa-home"></i>
+                          <span>REPORTS</span>
+                        </a>
+                        <div class="sidebar-submenu" style="display: none;">
+                          <ul>
+                            <li>
+                              <a href="/permiso/grafico">Graphics</a>
+                            </li>
+                            <li>
+                              <a href="/permiso/historial">History</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </li>
+                    </t>
+                  </ul>
+                </div>
+                <!-- sidebar-menu -->
+              </div>
+
+              <!-- sidebar-content -->
+              <div class="sidebar-footer">
+                <ul class="nav nav-pills">
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                      <span t-esc="list(filter(lambda lg : lg[0] == lang, languages))[0][2].split('/').pop()"/>
+                    <span class="caret ml4"/>
+                  </a>
+                      <div class="dropdown-menu" role="menu">
+                          <t t-foreach="languages" t-as="lg">
+                              <a t-att-href="url_for(request.httprequest.path + '?' + keep_query(), lang_code=lg[0])"
+                                 class="dropdown-item js_change_lang"
+                                 t-att-data-url_code="lg[1]">
+                                  <t t-esc="lg[2].split('/').pop()"/>
+                              </a>
+                          </t>
+                      </div>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link dropdown-toggle align-items-center d-flex text-white" data-toggle="dropdown">
+                      <i class="fa fa-user-circle mr-1"></i>
+                    </a>
+                    <div class="dropdown-menu js_usermenu" role="menu">
+                      <a class="dropdown-item" t-attf-href="/usuarios" role="menuitem">Panel de control</a>
+                      <a id="o_logout" class="dropdown-item" role="menuitem" href="/web/session/logout?redirect=https://softwaresst.com/">Cerrar sesión</a>
+                    </div>
+                  </li>
+              </ul>
+              </div>
+            </nav>
+            <!-- sidebar-wrapper -->
+            <main class="page-content">
+              <div class="container-fluid">
+
+                <t t-raw="0"/>
+
+
+              </div>
+
+            </main>
+            <!-- page-content" -->
+          </div>
+        </div>
+
+          <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Características</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">x
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <ul>
+                    <li>Optimiza los tiempos de autorización.</li>
+                    <li>Estandariza los permisos de trabajo.</li>
+                    <li>Permite programar con anticipación los diferentes permisos de trabajo.</li>
+                    <li>Permite gestionar el historial de los permisos de trabajo.</li>
+                    <li>Permite descargar los Permisos de trabajo en formato Excel y PDF.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+      </t>
+    </template>
+</odoo>

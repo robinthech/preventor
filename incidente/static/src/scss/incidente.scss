@@ -1,0 +1,114 @@
+.table td {
+    vertical-align: middle !important;
+    position: relative;
+}
+.sectiontextarea textarea {
+    padding: 0.75rem !important;
+    position:absolute;
+    height:100%;
+    top:0;
+    left:0;
+    width:100%;
+    resize:none;
+    border:0px;
+    color:#212529
+}
+textarea:focus {
+    border-color: var(--primary);
+    outline: 0;
+}
+
+.display-block-guia span{
+  background-image:url('/lista_verificacion/static/src/icon/file-pdf-regular.svg');
+  display:inline-block;
+  width:23px;
+  margin-left: 10px;
+  height: auto;
+  background-repeat: no-repeat;
+}
+// .linea_datos_otros .linea_datos_otros{
+//   background-image: url('/lista_verificacion/static/description/preventor isotipo.png');
+// }
+
+.table-lista-verificacion{
+
+
+  h1 {
+    font-size: 200%;
+    font-weight: bold;
+    text-decoration: underline;
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+}
+
+th {
+  // background: #333;
+  color: white;
+  font-weight: bold;
+  padding: 6px;
+  border: 1px solid #ccc;
+}
+
+td {
+  padding: 6px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
+@media only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	/* Force table to not be like tables anymore */
+	table.table, .table thead, .table tbody, .table th, .table td, .table tr {
+		display: block;
+	}
+
+	/* Hide table headers (but not display: none;, for accessibility) */
+	.table thead tr {
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+
+	.table tr { border: 1px solid #ccc; }
+
+	.table td {
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee;
+		position: relative;
+		padding-left: 50%;
+	}
+
+	.table td:before {
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%;
+		padding-right: 10px;
+		white-space: nowrap;
+	}
+
+  textarea {
+    position: relative !important;
+    padding: 0px !important;
+  }
+
+	/*
+	Label the data
+	*/
+	.table td:before {
+    content: attr(data-table-header);
+    font-weight: bold;
+  }
+}
+
+}

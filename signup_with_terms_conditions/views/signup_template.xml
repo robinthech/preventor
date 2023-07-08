@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="signup_with_terms_and_conditions" inherit_id="auth_signup.signup">
+        <xpath expr="//div[hasclass('oe_login_buttons')]" position="before">
+            <t t-if="enable_terms_of_service">
+                <b>By clicking Sign up, you agree to our <a href="/conditions" class="btn-link" target="_blank">Terms of Service</a><t t-if="enable_privacy_policy"> and <a href="/privacy-policy" class="btn-link" target="_blank">Privacy Policy</a></t>.</b>
+            </t>
+        </xpath>
+    </template>
+
+</odoo>

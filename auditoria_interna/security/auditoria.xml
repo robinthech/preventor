@@ -1,0 +1,192 @@
+<odoo>
+    <data>
+      <record id="model_access_auditoria_interna" model="ir.model.access">
+          <field name="name">model.access.auditoria.interna.portal</field>
+          <field name="group_id" ref="base.group_portal"/>
+          <field name="model_id" ref="auditoria_interna.model_auditoria_interna"/>
+          <field name="perm_read" eval="1"/>
+          <field name="perm_create" eval="1"/>
+          <field name="perm_write" eval="1"/>
+          <field name="perm_unlink" eval="1"/>
+      </record>
+
+      <record  id="category_auditoria_interna" model="ir.module.category">
+         <field name="name">Auditoria Interna</field>
+     </record>
+
+     <record id="group_auditoria_interna" model="res.groups">
+         <field name="name">Registrador</field>
+         <field name="category_id" ref="category_auditoria_interna" />
+     </record>
+
+        <record  id="category_auditor" model="ir.module.category">
+            <field name="name">Auditor</field>
+        </record>
+
+        <record id="group_auditor_user" model="res.groups">
+            <field name="name">Usuario</field>
+            <field name="category_id" ref="category_auditor" />
+        </record>
+
+        <record  id="category_inspector" model="ir.module.category">
+            <field name="name">Inspector</field>
+        </record>
+
+        <record id="group_inspector_user" model="res.groups">
+            <field name="name">Usuario</field>
+            <field name="category_id" ref="category_inspector" />
+        </record>
+
+        <record id="model_access_auditoria_interna" model="ir.model.access">
+            <field name="name">model.access.auditoria.interna.portal</field>
+            <field name="group_id" ref="base.group_portal"/>
+            <field name="model_id" ref="auditoria_interna.model_auditoria_interna"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+      <record id="model_access_auditor_auditor" model="ir.model.access">
+          <field name="name">model.access.auditor.auditor.portal</field>
+          <field name="group_id" ref="base.group_portal"/>
+          <field name="model_id" ref="auditoria_interna.model_auditor_auditor"/>
+          <field name="perm_read" eval="1"/>
+          <field name="perm_create" eval="0"/>
+          <field name="perm_write" eval="0"/>
+          <field name="perm_unlink" eval="1"/>
+      </record>
+
+      <record id="model_access_registro_auditoria" model="ir.model.access">
+          <field name="name">model.access.registro.auditoria.portal</field>
+          <field name="group_id" ref="base.group_portal"/>
+          <field name="model_id" ref="auditoria_interna.model_registro_auditoria"/>
+          <field name="perm_read" eval="1"/>
+          <field name="perm_create" eval="0"/>
+          <field name="perm_write" eval="0"/>
+          <field name="perm_unlink" eval="1"/>
+      </record>
+
+
+      <record id="model_access_no_conformidad" model="ir.model.access">
+          <field name="name">model.access.no.conformidad.portal</field>
+          <field name="group_id" ref="base.group_portal"/>
+          <field name="model_id" ref="auditoria_interna.model_no_conformidad"/>
+          <field name="perm_read" eval="1"/>
+          <field name="perm_create" eval="0"/>
+          <field name="perm_write" eval="0"/>
+          <field name="perm_unlink" eval="1"/>
+      </record>
+
+        <record id="model_access_auditoria_interna_user" model="ir.model.access">
+            <field name="name">model.access.auditoria.interna</field>
+            <field name="group_id" ref="auditoria_interna.group_auditoria_interna"/>
+            <field name="model_id" ref="auditoria_interna.model_auditoria_interna"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+        <record id="model_access_auditor_auditor_user" model="ir.model.access">
+            <field name="name">model.access.auditor.auditor</field>
+            <field name="group_id" ref="auditoria_interna.group_auditoria_interna"/>
+            <field name="model_id" ref="auditoria_interna.model_auditor_auditor"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+        <record id="model_access_registro_auditoria_user" model="ir.model.access">
+            <field name="name">model.access.registro.auditoria</field>
+            <field name="group_id" ref="auditoria_interna.group_auditoria_interna"/>
+            <field name="model_id" ref="auditoria_interna.model_registro_auditoria"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+        <record id="model_access_no_conformidad_user" model="ir.model.access">
+            <field name="name">model.access.no.conformidad</field>
+            <field name="group_id" ref="auditoria_interna.group_auditoria_interna"/>
+            <field name="model_id" ref="auditoria_interna.model_no_conformidad"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_auditoria_interna_auditor" model="ir.model.access">
+            <field name="name">model.access.auditoria.interna.auditor</field>
+            <field name="group_id" ref="auditoria_interna.group_auditor_user"/>
+            <field name="model_id" ref="auditoria_interna.model_auditoria_interna"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+        <record id="model_access_auditor_auditor_auditor" model="ir.model.access">
+            <field name="name">model.access.auditor.auditor.auditor</field>
+            <field name="group_id" ref="auditoria_interna.group_auditor_user"/>
+            <field name="model_id" ref="auditoria_interna.model_auditor_auditor"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+        <record id="model_access_registro_auditoria_auditor" model="ir.model.access">
+            <field name="name">model.access.registro.auditoria.auditor</field>
+            <field name="group_id" ref="auditoria_interna.group_auditor_user"/>
+            <field name="model_id" ref="auditoria_interna.model_registro_auditoria"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+        <record id="model_access_no_conformidad_auditor" model="ir.model.access">
+            <field name="name">model.access.no.conformidad.auditor</field>
+            <field name="group_id" ref="auditoria_interna.group_auditor_user"/>
+            <field name="model_id" ref="auditoria_interna.model_no_conformidad"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_auditoria_interna_inspector" model="ir.model.access">
+            <field name="name">model.access.auditoria.interna.inspector</field>
+            <field name="group_id" ref="auditoria_interna.group_inspector_user"/>
+            <field name="model_id" ref="auditoria_interna.model_auditoria_interna"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+        <record id="model_access_auditor_auditor_inspector" model="ir.model.access">
+            <field name="name">model.access.auditor.auditor.inspector</field>
+            <field name="group_id" ref="auditoria_interna.group_inspector_user"/>
+            <field name="model_id" ref="auditoria_interna.model_auditor_auditor"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+        <record id="model_access_registro_auditoria_inspector" model="ir.model.access">
+            <field name="name">model.access.registro.auditoria.inspector</field>
+            <field name="group_id" ref="auditoria_interna.group_inspector_user"/>
+            <field name="model_id" ref="auditoria_interna.model_registro_auditoria"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+        <record id="model_access_no_conformidad_inspector" model="ir.model.access">
+            <field name="name">model.access.no.conformidad.inspector</field>
+            <field name="group_id" ref="auditoria_interna.group_inspector_user"/>
+            <field name="model_id" ref="auditoria_interna.model_no_conformidad"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+    </data>
+</odoo>

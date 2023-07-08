@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+  <t t-name="list_trabajador_preventor">
+
+    <div class="container trabajador-form">
+      <div class="row py-5">
+        <div class="col-12">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#new_trabajadores">
+            NUEVO TRABAJADOR
+          </button>
+          <div class="modal fade" id="new_trabajadores" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">NUEVO TRABAJADOR</h5>
+                </div>
+                <div class="modal-body">
+                  NOMBRES
+                  <input class="col-12" name="new-trabajador-name" type="text"/>
+                  APELLIDOS
+                  <input class="col-12" name="new-trabajador-apellido" type="text"/>
+                  DNI
+                  <input class="col-12" name="new-trabajador-dni" type="number" min="8" max="8"/>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                  <button type="button" class="btn btn-primary nuevo-trabajador">GUARDAR</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <table id="resumen" class="table table-hover responsive nowrap text-center">
+            <thead class="thead-dark">
+              <tr>
+                <th>NOMBRE</th>
+                <th>DNI</th>
+                <th>EMPRESA</th>
+                <th>EDITAR</th>
+              </tr>
+            </thead>
+            <tbody>
+              <t t-foreach="trabajadores" t-as="trabajador">
+                <tr>
+                  <td>
+                    <div>
+                      <span t-field="trabajador.name"/>
+                    </div>
+                  </td>
+                  <td >
+                    <span t-field="trabajador.dni"/>
+                  </td>
+                  <td >
+                    <span t-field="trabajador.empresa_id.name"/>
+                  </td>
+                  <td class="editar-trabajador">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" t-attf-data-target="#trabajador-{{trabajador.id}}">
+                      EDITAR
+                    </button>
+                      <div class="modal fade" t-attf-id="trabajador-{{trabajador.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">TRABAJADOR</h5>
+                            </div>
+                            <div class="modal-body">
+                              NOMBRES
+                              <input class="col-12" t-attf-value="{{trabajador.name}}" name="trabajador-name" type="text"/>
+                              APELLIDOS
+                              <input class="col-12" t-attf-value="{{trabajador.apellido}}" name="trabajador-apellido" type="text"/>
+                              DNI
+                              <input class="col-12" t-attf-value="{{trabajador.dni}}" name="trabajador-dni" type="number"/>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                              <button type="button" t-att-data-trabajador_id="trabajador.id" class="btn btn-primary guardar-trabajador">GUARDAR</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  </td>
+                </tr>
+              </t>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </t>
+
+
+
+  <t t-name="website_permiso.table_list_permiso">
+    <div>
+      <table class="table table-hover responsive nowrap text-center">
+        <thead class="thead-dark">
+          <tr>
+            <th>#</th>
+            <th>PERMISO</th>
+            <th width="20%">ESTADO</th>
+          </tr>
+        </thead>
+        <tbody>
+          <t t-set="contador" t-value="0"/>
+          <t t-foreach="matriz" t-as="permiso">
+            <t t-set="contador" t-value="contador + 1"/>
+            <tr>
+              <td><t t-esc="contador"/></td>
+              <td>
+                <div>
+                  <span t-esc="permiso[1]"/>
+                </div>
+              </td>
+              <t t-if="permiso[2]=='1'">
+                <td class="color-permiso-1">
+                  Borrador
+                </td>
+              </t>
+              <t t-if="permiso[2]=='2'">
+                <td class="color-permiso-2">
+                  Solicitado
+                </td>
+              </t>
+              <t t-if="permiso[2]=='3'">
+                <td class="color-permiso-3">
+                  Autorizado
+                </td>
+              </t>
+              <t t-if="permiso[2]=='4'">
+                <td class="color-permiso-4">
+                  Aprobado
+                </td>
+              </t>
+              <t t-if="permiso[2]=='5'">
+                <td class="color-permiso-5">
+                  Cerrado
+                </td>
+              </t>
+              <t t-if="permiso[2]=='6'">
+                <td class="color-permiso-6">
+                  Observado
+                </td>
+              </t>
+              <t t-if="permiso[2]=='7'">
+                <td class="color-permiso-7">
+                  Cancelado
+                </td>
+              </t>
+            </tr>
+          </t>
+        </tbody>
+      </table>
+
+    </div>
+  </t>
+
+</templates>

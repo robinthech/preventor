@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <template id="external_layout_standard">
+        <div t-attf-class="header o_company_#{company.id}_layout" t-att-style="report_header_style">
+            <div class="row">
+                <div class="col-3 mb4">
+                    <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 45px;" alt="Logo"/>
+                </div>
+                <div class="col-9 text-right" style="margin-top:22px;" t-field="company.report_header" name="moto"/>
+            </div>
+            <div t-if="company.logo or company.report_header" class="row zero_min_height">
+                <div class="col-12">
+                    <div style="border-bottom: 1px solid black;"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6" name="company_address">
+                    <!-- <div t-field="company.partner_id"
+                        t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'
+                    /> -->
+                </div>
+            </div>
+        </div>
+
+    <div t-attf-class="article o_report_layout_standard o_company_#{company.id}_layout" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+      <t t-call="web.address_layout"/>
+      <t t-raw="0"/>
+    </div>
+
+    <div t-attf-class="footer o_standard_footer o_company_#{company.id}_layout">
+      <div class="text-center">
+        <ul class="list-inline mb4">
+          <!-- using the list-inline-item class from bootstrap causes weird behaviours in pdf report adding d-inline class fixes the problem-->
+          <!-- <li t-if="company.phone" class="list-inline-item d-inline">Phone:
+            <span t-field="company.phone"/></li>
+          <li t-if="company.email" class="list-inline-item d-inline">Email:
+            <span t-field="company.email"/></li>
+          <li t-if="company.website" class="list-inline-item d-inline">Web:
+            <span t-field="company.website"/></li>
+          <li t-if="company.vat" class="list-inline-item d-inline"><t t-esc="company.country_id.vat_label or 'Tax ID'"/>:
+            <span t-field="company.vat"/></li> -->
+        </ul>
+
+        <div name="financial_infos">
+          <span t-field="company.report_footer"/>
+        </div>
+        <div t-if="report_type == 'pdf'" class="text-muted">
+          Pagina:
+          <span class="page"/>
+          /
+          <span class="topage"/>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template id="external_layout">
+    <t t-if="not o" t-set="o" t-value="doc"/>
+
+    <t t-if="not company">
+      <!-- Multicompany -->
+      <t t-if="company_id">
+        <t t-set="company" t-value="company_id"/>
+      </t>
+      <t t-elif="o and 'company_id' in o">
+        <t t-set="company" t-value="o.company_id.sudo()"/>
+      </t>
+      <t t-else="else">
+        <t t-set="company" t-value="res_company"/>
+      </t>
+    </t>
+
+    <t t-if="company.external_report_layout_id" t-call="{{company.external_report_layout_id.key}}"><t t-raw="0"/></t>
+    <t t-else="else" t-call="iperc_continuo.external_layout_standard"><t t-raw="0"/></t>
+
+  </template>
+
+  <template id="report_iperc">
+    <t t-call="web.html_container">
+      <t t-foreach="docs" t-as="doc">
+        <t t-call="iperc_continuo.external_layout">
+          <div class="py-2 mx-auto iper_id">
+            <div class="text-center">
+              <h1 class="my-3 text-center">IDENTIFICACIÓN DE PELIGROS Y EVALUACIÓN DE RIESGOS LABORALES</h1>
+            </div>
+            <div class="row">
+              <div class="col-12 bg-primary py-3">
+                <h4>I. DATOS GENERALES DE LA EMPRESA O INSTITUCIÓN</h4>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-6 col-sm-3 py-2 border border-dark row mx-0 align-items-center font-weight-bold bg-secondary">
+                RAZON SOCIAL
+              </div>
+              <div class="col-6 col-sm-3 py-2 border border-dark">
+                <t t-esc="doc.cliente"/>
+              </div>
+              <div class="col-3 py-2 border border-dark row mx-0 align-items-center font-weight-bold bg-secondary">
+                RUC
+              </div>
+              <div class="col-3 py-2 border border-dark">
+                <t t-esc="doc.ruc"/>
+              </div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3 py-2 border border-dark row mx-0 align-items-center font-weight-bold bg-secondary">
+                RESPONSABLE DE LA EMPRESA
+              </div>
+              <div class="col-3 py-2 border border-dark">
+                <t t-esc="doc.responsable"/>
+              </div>
+              <div class="col-3 py-2 border border-dark row mx-0 align-items-center font-weight-bold bg-secondary">
+                DNI
+              </div>
+              <div class="col-3 py-2 border border-dark">
+                <t t-esc="doc.dni"/>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-2 py-2 border border-dark row mx-0 align-items-center font-weight-bold bg-secondary">
+                DIRECCIÓN
+              </div>
+              <div class="col-2 py-2 border border-dark">
+                <t t-esc="doc.direccion"/>
+              </div>
+              <div class="col-2 py-2 border border-dark row mx-0 align-items-center font-weight-bold bg-secondary">
+                Telef.
+              </div>
+              <div class="col-2 py-2 border border-dark">
+                <t t-esc="doc.dni"/>
+              </div>
+              <div class="col-2 py-2 border border-dark row mx-0 align-items-center font-weight-bold bg-secondary">
+                E-mail
+              </div>
+              <div class="col-2 py-2 border border-dark">
+                <t t-esc="doc.email"/>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-2 py-2 border border-dark row mx-0 align-items-center font-weight-bold bg-secondary">
+                DISTRITO
+              </div>
+              <div class="col-2 py-2 border border-dark">
+                <t t-esc="doc.distrito"/>
+              </div>
+              <div class="col-2 py-2 border border-dark row mx-0 align-items-center font-weight-bold bg-secondary">
+                PROVINCIA
+              </div>
+              <div class="col-2 py-2 border border-dark">
+                <t t-esc="doc.provincia"/>
+              </div>
+              <div class="col-2 py-2 border border-dark row mx-0 align-items-center font-weight-bold bg-secondary">
+                REGIÓN
+              </div>
+              <div class="col-2 py-2 border border-dark">
+                <t t-esc="doc.region"/>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-2 py-2 border border-dark row mx-0 align-items-center font-weight-bold bg-secondary">
+                ACTIVIDAD ECONÓMICA
+              </div>
+              <div class="col-2 py-2 border border-dark">
+                <t t-esc="doc.actividad"/>
+              </div>
+              <div class="col-2 py-2 border border-dark row mx-0 align-items-center font-weight-bold bg-secondary">
+                CIIU
+              </div>
+              <div class="col-2 py-2 border border-dark">
+                <t t-esc="doc.ciiu"/>
+              </div>
+              <div class="col-2 py-2 border border-dark row mx-0 align-items-center font-weight-bold bg-secondary">
+                FECHA
+              </div>
+              <div class="col-2 py-2 border border-dark">
+                <t t-esc="doc.fecha"/>
+              </div>
+            </div>
+            <div class="mt-5">
+              <div class="col-12 bg-primary py-3 row mx-0">
+                <div class="col-6">
+                  <h4>II. PROCESO DE IDENTIFICACIÓN, EVALUACIÓN Y CONTROL DE RIESGOS OCUPACIONALES</h4>
+                </div>
+              </div>
+            </div>
+            <table class="table table-bordered">
+              <thead>
+                <tr class="bg-secondary text-center font-weight-bold">
+                  <td>Area</td>
+                  <td>Puesto</td>
+                  <td width="10%">Peligro</td>
+                  <td>Descripción</td>
+                  <td>Riesgo</td>
+                  <td>Consecuencia</td>
+                  <td>Causas</td>
+                  <td>Cumplimiento Legal</td>
+                  <td>Calificación</td>
+                  <td width="5%">Nivel de riesgo</td>
+                  <td>Controles adicionales</td>
+                  <td>Calificación</td>
+                  <td width="5%">Nivel de riesgo</td>
+                </tr>
+              </thead>
+              <tbody>
+              <t t-set="counter" t-value="0"/>
+              <t t-foreach="doc.evaluacion_ids" t-as="evaluacion">
+                <t t-set="counter" t-value="counter + 1"/>
+                <tr class="evaluacion_id" t-att-data-evaluacion_id="evaluacion.id">
+                  <td class="px-0">
+                    <t t-esc="evaluacion.area"/>
+                  </td>
+                  <td class="px-0">
+                    <t t-esc="evaluacion.puesto"/>
+                  </td>
+                  <td class="px-0">
+                    <t t-esc="evaluacion.type_id.name"/>
+                  </td>
+                  <td class="px-0">
+                    <t t-esc="evaluacion.name"/>
+                  </td>
+                  <td class="px-0">
+                    <t t-esc="evaluacion.riesgo"/>
+                  </td>
+                  <td class="px-0">
+                    <t t-esc="evaluacion.consecuencia"/>
+                  </td>
+                  <td class="px-0">
+                    <t t-esc="evaluacion.causas"/>
+                  </td>
+                  <td class="px-0">
+                    <t t-esc="evaluacion.cumplimiento"/>
+                  </td>
+                  <td class="evaluacion px-0" t-att-data-continuo_id="evaluacion.id">
+                    <t t-esc="evaluacion.evaluacion"/>
+                  </td>
+                  <t t-if="evaluacion.evaluacion=='Alto'">
+                    <td t-attf-class="evaluacion-alto-{{evaluacion.id}}" style="background:red"></td>
+                  </t>
+                  <t t-elif="evaluacion.evaluacion=='Medio'">
+                    <td t-attf-class="evaluacion-alto-{{evaluacion.id}}" style="background:yellow"></td>
+                  </t>
+                  <t t-elif="evaluacion.evaluacion=='Bajo'">
+                    <td t-attf-class="evaluacion-alto-{{evaluacion.id}}" style="background:#00FF00"></td>
+                  </t>
+                  <t t-else="">
+                    <td t-attf-class="evaluacion-alto-{{evaluacion.id}}"></td>
+                  </t>
+                  <td class="px-0">
+                    <t t-esc="evaluacion.medidas"/>
+                  </td>
+                  <td class="riesgo px-0" t-att-data-continuo_id="evaluacion.id">
+                    <t t-esc="evaluacion.riesgo_residual"/>
+                  </td>
+                  <t t-if="evaluacion.riesgo_residual=='Alto'">
+                    <td t-attf-class="riesgo-alto-{{evaluacion.id}} eliminar" style="background:red;position:relative"></td>
+                  </t>
+                  <t t-elif="evaluacion.riesgo_residual=='Medio'">
+                    <td t-attf-class="riesgo-alto-{{evaluacion.id}} eliminar" style="background:yellow"></td>
+                  </t>
+                  <t t-elif="evaluacion.riesgo_residual=='Bajo'">
+                    <td t-attf-class="riesgo-alto-{{evaluacion.id}} eliminar" style="background:#00FF00"></td>
+                  </t>
+                  <t t-else="">
+                    <td t-attf-class="riesgo-alto-{{evaluacion.id}} eliminar"></td>
+                  </t>
+                </tr>
+              </t>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="row mt-5 w-100 mx-auto">
+            <div class="col-sm-12 bg-primary text-left border p-3 d-flex align-items-center">
+              <h4 class="mb-0">DATOS DE LOS RESPONSABLES:</h4>
+            </div>
+          </div>
+
+          <div class="row w-100 mx-auto">
+            <div class="col-9 bg-secondary p-2 text-center border">
+              <strong>Nombre</strong>
+            </div>
+            <div class="col-3 bg-secondary p-2 text-center border">
+              <strong>Firma</strong>
+            </div>
+          </div>
+          <t t-set="contadorsupervisor" t-value="0"/>
+          <t t-foreach="doc.supervisor_ids" t-as="supervisor">
+            <div class="row w-100 mx-auto supervisor_id" style="max-height:50px">
+              <div class="col-9 p-0 text-center border">
+                <t t-esc="supervisor.responsable.name"/>
+              </div>
+              <div class="col-3 p-0 text-center border d-flex justify-content-between align-items-center">
+                <t t-if="supervisor.responsable.signature_binary">
+                  <img t-attf-src="data:image/png;base64, #{supervisor.responsable.signature_binary}" style="max-height:50px"/>
+                </t>
+                <t t-else="">
+                  <img class="image_file_input firma-responsable"/>
+                </t>
+              </div>
+            </div>
+          </t>
+
+
+        </t>
+      </t>
+    </t>
+  </template>
+</odoo>

@@ -1,0 +1,113 @@
+<odoo>
+  <data>
+    <record  id="category_registro_equipos" model="ir.module.category">
+       <field name="name">Registro de equipos de Seguridad</field>
+   </record>
+
+   <record id="group_registro_equipos" model="res.groups">
+       <field name="name">Registrador</field>
+       <field name="category_id" ref="category_registro_equipos" />
+   </record>
+
+
+    <record id="model_access_equipos_seguridad_interno" model="ir.model.access">
+        <field name="name">model.access.equipos.seguridad.interno</field>
+        <field name="group_id" ref="equipo_seguridad.group_registro_equipos"/>
+        <field name="model_id" ref="equipo_seguridad.model_equipos_seguridad"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="model_access_equipo_proteccion_default_interno" model="ir.model.access">
+        <field name="name">model.access.equipo.proteccion.default.interno</field>
+        <field name="group_id" ref="equipo_seguridad.group_registro_equipos"/>
+        <field name="model_id" ref="equipo_seguridad.model_equipo_proteccion_default"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="model_access_equipo_proteccion_interno" model="ir.model.access">
+        <field name="name">model.access.equipo.proteccion.interno</field>
+        <field name="group_id" ref="equipo_seguridad.group_registro_equipos"/>
+        <field name="model_id" ref="equipo_seguridad.model_equipo_proteccion"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="model_access_equipo_emergencia_default_interno" model="ir.model.access">
+        <field name="name">model.access.equipo.emergencia.default.interno</field>
+        <field name="group_id" ref="equipo_seguridad.group_registro_equipos"/>
+        <field name="model_id" ref="equipo_seguridad.model_equipo_emergencia_default"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="model_access_equipo_emergencia_interno" model="ir.model.access">
+        <field name="name">model.access.equipo.emergencia.interno</field>
+        <field name="group_id" ref="equipo_seguridad.group_registro_equipos"/>
+        <field name="model_id" ref="equipo_seguridad.model_equipo_emergencia"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="model_access_seguridad_responsable_interno" model="ir.model.access">
+        <field name="name">model.access.seguridad.responsable.interno</field>
+        <field name="group_id" ref="equipo_seguridad.group_registro_equipos"/>
+        <field name="model_id" ref="equipo_seguridad.model_seguridad_responsable"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="model_access_seguridad_responsable_default_interno" model="ir.model.access">
+        <field name="name">model.access.seguridad.responsable.default.interno</field>
+        <field name="group_id" ref="equipo_seguridad.group_registro_equipos"/>
+        <field name="model_id" ref="equipo_seguridad.model_seguridad_responsable_default"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="model_access_equipo_trabajadores_interno" model="ir.model.access">
+        <field name="name">model.access.equipo.trabajadores.interno</field>
+        <field name="group_id" ref="equipo_seguridad.group_registro_equipos"/>
+        <field name="model_id" ref="equipo_seguridad.model_equipo_trabajadores"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="model_access_equipo_trabajadores_default_interno" model="ir.model.access">
+        <field name="name">model.access.equipo.trabajadores.default.interno</field>
+        <field name="group_id" ref="equipo_seguridad.group_registro_equipos"/>
+        <field name="model_id" ref="equipo_seguridad.model_equipo_trabajadores_default"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="model_access_equipo_trabajadores_trabajadores_interno" model="ir.model.access">
+        <field name="name">model.access.equipo.trabajadores.trabajadores.interno</field>
+        <field name="group_id" ref="equipo_seguridad.group_registro_equipos"/>
+        <field name="model_id" ref="equipo_seguridad.model_equipo_trabajadores_trabajadores"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+  </data>
+</odoo>

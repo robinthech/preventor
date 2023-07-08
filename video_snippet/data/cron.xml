@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record forcecreate="True" id="ir_cron_plan_gratis" model="ir.cron">
+            <field name="name">Asignar a los antiguos usuarios los modulos con plan gratis</field>
+            <field name="model_id" ref="model_res_users_plan"/>
+            <field name="state">code</field>
+            <field name="code">model.cron_plan_gratis()</field>
+            <field name="interval_number">24</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+        </record>
+    </data>
+</odoo>

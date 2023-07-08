@@ -1,0 +1,69 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+
+
+    <record model="ir.ui.view" id="programa_anual_tree">
+      <field name="name">programa.anual.tree</field>
+      <field name="model">programa.anual</field>
+      <field name="arch" type="xml">
+        <tree>
+            <field name="name"/>
+            <field name="sequence"/>
+            <field name="cliente"/>
+            <field name="ruc"/>
+            <field name="actividad"/>
+            <field name="objetivo_ids"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="programa_anual_form">
+      <field name="name">programa.anual.form</field>
+      <field name="model">programa.anual</field>
+      <field name="arch" type="xml">
+        <form>
+          <!-- <header>
+            <button name="file_excel" type="object" string="EXCEL" class="btn btn-primary"/>
+          </header> -->
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="sequence"/>
+              <field name="cliente"/>
+              <field name="ruc"/>
+              <field name="actividad"/>
+              <field name="objetivo_ids"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="programa_accion">
+      <field name="name">Programa</field>
+      <field name="res_model">programa.anual</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    <!-- <record model="ir.actions.act_window" id="lista_verificacion.action_window"> <field name="name">lista_verificacion window</field> <field name="res_model">lista_verificacion.lista_verificacion</field> <field name="view_mode">tree,form</field>
+    </record> -->
+
+    <!-- server action to the one above -->
+    <!-- <record model="ir.actions.server" id="lista_verificacion.action_server"> <field name="name">lista_verificacion server</field> <field name="model_id" ref="model_lista_verificacion_lista_verificacion"/> <field name="state">code</field> <field
+    name="code"> action = { "type": "ir.actions.act_window", "view_mode": "tree,form", "res_model": model._name, } </field> </record> -->
+
+    <!-- Top menu item -->
+    <!-- <menuitem name="lista_verificacion" id="lista_verificacion.menu_root"/> -->
+    <!-- menu categories -->
+    <!-- <menuitem name="Menu 1" id="lista_verificacion.menu_1" parent="lista_verificacion.menu_root"/> <menuitem name="Menu 2" id="lista_verificacion.menu_2" parent="lista_verificacion.menu_root"/> -->
+    <!-- actions -->
+    <!-- <menuitem name="List" id="lista_verificacion.menu_1_list" parent="lista_verificacion.menu_1" action="lista_verificacion.action_window"/> <menuitem name="Server to list" id="lista_verificacion" parent="lista_verificacion.menu_2"
+    action="lista_verificacion.action_server"/> -->
+
+    <!-- <menuitem name="Listas de Verificacion"  id="lista_verificacion.menu_principal"/> -->
+    <menuitem name="Programa"  action="programa_anual.programa_accion" id="programa_anual.menu_principal"/>
+
+  </data>
+</odoo>
+

@@ -1,0 +1,1377 @@
+<odoo>
+  <template id="list_registros" name="Riesgo Disergonomico">
+    <t t-call="website.layout">
+    <t t-set="no_header" t-value="True"/>
+    <t t-set="no_footer" t-value="True"/>
+    <header>
+      <nav class="navbar navbar-expand-md navbar-dark bg-primary accidente">
+        <div class="container">
+          <a class="navbar-brand logo" href="https://softwaresst.com">
+            <img src="/web/image/website/1/logo/PREVENTOR?unique=43ff1c1" class="img img-fluid" alt=""/>
+          </a>
+          <div id="top_menu_collapse" aria-expanded="false">
+            <ul class="nav ml-auto text-right" id="top_menu">
+              <li class="nav-item divider"></li>
+              <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle align-items-center d-flex" data-toggle="dropdown">
+                  <i class="fa fa-user-circle mr-1" style="font-size: 1.5rem"></i>
+                  <b>
+                    <span t-esc="user_id.name[:23] + '...' if user_id.name and len(user_id.name) &gt; 25 else user_id.name"/>
+                  </b>
+                </a>
+                <div class="dropdown-menu js_usermenu" role="menu">
+
+                  <a class="dropdown-item" t-attf-href="/usuarios" role="menuitem">Panel de control</a>
+                  <a id="o_logout" class="dropdown-item" role="menuitem" href="/web/session/logout?redirect=https://softwaresst.com/">Cerrar sesión</a>
+                </div>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <div class="wrapper modulo-s3-disergonomico" style="position:relative">
+      <!-- Sidebar -->
+      <nav id="sidebar" class="bg-info">
+        <ul class="list-unstyled components">
+          <p class="bg-success text-center" style="height:60px;">
+            <strong>MODULO DE RIESGO DISERGONOMICO</strong>
+          </p>
+          <li class="active">
+            <a class="" href="/riesgo-disergonomico">VISTA PRINCIPAL</a>
+          </li>
+          <li class="nav-item divider"></li>
+        </ul>
+      </nav>
+      <div id="content" class="evapro">
+        <button type="button" id="sidebarCollapse" class="btn btn-info display-none">
+          <i class="fa fa-align-left"></i>
+        </button>
+        <div class="row py-2">
+          <div class="col-12">
+            <div class="alert alert-primary text-center" role="alert">
+              <h4>REGISTROS DE RIESGOS DISERGONOMICOS</h4>
+            </div>
+            <div class="table-responsive">
+              <table id="modulo-registro-s3" class="table table-hover responsive nowrap" style="width:100%; text-align: center;">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>REGISTRO</th>
+                    <th>RAZON SOCIAL</th>
+                    <th>FECHA DE INICIO</th>
+                    <th>FECHA DE FIN</th>
+                    <th>EDITAR</th>
+                    <th>ELIMINAR</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <t t-foreach="registros" t-as="registro">
+                    <tr>
+                      <td>
+                        <div>
+                          <span t-field="registro.sequence"/>
+                        </div>
+                      </td>
+                      <td >
+                        <span t-field="registro.cliente"/>
+                      </td>
+                      <td >
+                        <span t-field="registro.fecha_monitoreo"/>
+                      </td>
+                      <td >
+                        <span t-field="registro.fecha_monitoreo_fin"/>
+                      </td>
+                      <td>
+                        <a class="btn btn-success" t-att-href="'/riesgo-disergonomico/%s' % (registro.id)" role="button">
+                          <i class="fa fa-pencil-square-o" style="font-size:20px"></i>
+                        </a>
+                      </td>
+                      <td>
+                        <div>
+                          <button type="button" class="btn btn-danger" data-toggle="modal" t-attf-data-target="#registro-{{registro.id}}">
+                            <i class="fa fa-trash" style="font-size:20px"></i>
+                          </button>
+                          <div class="modal fade" t-attf-id="registro-{{registro.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                </div>
+                                <div class="modal-body">
+                                  <div class="alert alert-danger" role="alert">
+                                    ESTA SEGURO DE ELIMINAR
+                                  </div>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                                  <button type="button" class="btn btn-secondary botton-eliminar-registro" t-att-data-registro_id="registro.id">ELIMINAR</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </t>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center">
+          <button type="button" class="btn btn-success font-weight-bold" data-toggle="modal" t-attf-data-target="#exampleModal">
+            <strong>Crear registro</strong>
+          </button>
+        </div>
+      </div>
+      <div class="modal fade" t-attf-id="exampleModal" t-att-aria-hidden="true" tabindex="-1" role="dialog" aria-labelledby="exampleModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalTitle">NUEVO RIESGO DISERGONOMICO</h5>
+            </div>
+            <div class="modal-body">
+              <form class="registro_moni">
+                <div class="form-group row">
+                  <label for="ruc" class="col-sm-2 col-form-label">RUC</label>
+                  <div class="col-sm-10">
+                    <input name="ruc" type="text" class="form-control ruc" placeholder="RUC"/>
+                  </div>
+                  <label for="cliente" class="col-sm-2 col-form-label">Razon Social</label>
+                  <div class="col-sm-10">
+                    <input name="cliente" type="text" class="form-control cliente mt-2" placeholder="Razon Social"/>
+                  </div>
+                  <label for="puntos" class="col-sm-2 col-form-label">Puntos Máximos por Agente</label>
+                  <div class="col-sm-10">
+                    <input name="puntos" type="number" class="form-control puntos" placeholder="3" t-att-value="3" disabled="disabled"/>
+                  </div>
+                  <label for="fecha_ini" class="col-sm-2 col-form-label">Fecha Inicio del Monitoreo</label>
+                  <div class="col-sm-10">
+                    <input name="fecha_ini" type="date" class="form-control fecha_ini" placeholder="dd/mm/aaaa"/>
+                  </div>
+                  <label for="fecha_fin" class="col-sm-2 col-form-label">Fecha Fin del Monitoreo</label>
+                  <div class="col-sm-10">
+                    <input name="fecha_fin" type="date" class="form-control fecha_fin" placeholder="dd/mm/aaaa"/>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Descartar</button>
+              <!--Guardar requiere de js-->
+              <button type="button" class="btn btn-primary botton-crear-registro">Guardar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </t>
+  </template>
+  <template id="form_registros" name="Riesgo Disergonomico">
+    <t t-call="website.layout">
+      <t t-set="no_header" t-value="True"/>
+      <t t-set="no_footer" t-value="True"/>
+      <header>
+        <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+          <div class="container">
+            <a class="navbar-brand logo" href="https://softwaresst.com">
+              <img src="/web/image/website/1/logo/PREVENTOR?unique=43ff1c1" class="img img-fluid" alt=""/>
+            </a>
+            <div id="top_menu_collapse" aria-expanded="false">
+              <ul class="nav ml-auto text-right" id="top_menu">
+                <li class="nav-item divider"></li>
+                <li class="nav-item dropdown">
+                  <a href="#" class="nav-link dropdown-toggle align-items-center d-flex" data-toggle="dropdown">
+                    <i class="fa fa-user-circle mr-1" style="font-size: 1.5rem"></i>
+                    <b>
+                      <span t-esc="user_id.name[:23] + '...' if user_id.name and len(user_id.name) &gt; 25 else user_id.name"/>
+                    </b>
+                  </a>
+                  <div class="dropdown-menu js_usermenu" role="menu">
+
+                    <a class="dropdown-item" t-attf-href="/usuarios" role="menuitem">Panel de control</a>
+                    <a id="o_logout" class="dropdown-item" role="menuitem" href="/web/session/logout?redirect=https://softwaresst.com/">Cerrar sesión</a>
+                  </div>
+                </li>
+
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+        <!-- Sidebar -->
+        <div class="wrapper" style="position:relative">
+          <nav id="sidebar" class="bg-info">
+            <ul class="list-unstyled components">
+              <p class="bg-success text-center" style="height:60px;">
+                <strong>MODULO DE RIESGO DISERGONOMICO</strong>
+              </p>
+              <li>
+                <a class="" href="/riesgo-disergonomico">VISTA PRINCIPAL</a>
+              </li>
+              <li class="active">
+                <a class="" t-att-href="'/riesgo-disergonomico/%s' % (registro.id)">RIESGOS DISERGONOMICOS</a>
+              </li>
+              <li class="nav-item divider"></li>
+            </ul>
+          </nav>
+          <div id="content" class="width-table p-3 mx-auto my-2 botones">
+            <button type="button" id="sidebarCollapse" class="btn btn-info display-none">
+              <i class="fa fa-align-left"></i>
+            </button>
+            <form method="POST">
+            <div class="row m-1">
+              <div class="col-sm-12 bg-primary text-center border border-dark">
+                <strong>EVALUACION DE RIESGOS DISERGONOMICOS</strong>
+              </div>
+            </div>
+
+            <p></p>
+
+            <div class="row m-1">
+              <div class="col-sm-4 bg-primary text-center border border-dark">
+                <strong>RUC</strong>
+              </div>
+              <div class="col-sm-8 text-center border border-dark">
+                <strong><span t-field="registro.ruc"/></strong>
+              </div>
+            </div>
+            <div class="row m-1">
+              <div class="col-sm-4 bg-primary text-center border border-dark">
+                <strong>RAZON SOCIAL</strong>
+              </div>
+              <div class="col-sm-8 text-center border border-dark">
+                <strong><span t-field="registro.cliente"/></strong>
+              </div>
+            </div>
+
+            <p></p>
+
+            <div class="row m-1">
+              <div class="col-sm-4 bg-primary text-center border border-dark">
+                <strong>TOTAL DE PUNTOS EVALUADOS</strong>
+              </div>
+              <div class="col-sm-4 bg-primary text-center border border-dark">
+                <strong>FECHA INICIO</strong>
+              </div>
+              <div class="col-sm-4 bg-primary text-center border border-dark">
+                <strong>FECHA FIN</strong>
+              </div>
+            </div>
+            <div class="row m-1">
+              <div class="col-sm-4 text-center border border-dark">
+                <strong><span t-esc="total_puntos"/></strong>
+              </div>
+              <div class="col-sm-4 text-center border border-dark">
+                <strong><span t-field="registro.fecha_monitoreo"/></strong>
+              </div>
+              <div class="col-sm-4 text-center border border-dark">
+                <strong><span t-field="registro.fecha_monitoreo_fin"/></strong>
+              </div>
+            </div>
+
+            <p></p>
+            <div class="row m-1">
+              <a class="col-sm-3 btn btn-secondary text-center shadow botones-s3 border" t-att-href="'/riesgo-disergonomico/reba/%s' % (registro.id)">
+                REBA
+              </a>
+              <div class="d-flex col-sm-1 text-center border border-dark align-items-center justify-content-center">
+                <strong><span t-field="registro.puntos_reba"/></strong>
+              </div>
+              <a class="col-sm-3 btn btn-secondary text-center shadow botones-s3 border text-white hint--medium hint--bounce hint--error hint--bottom" data-hint="Disponible para plan corporativo">
+                OCRA
+              </a>
+              <div class="col-sm-1 text-center border border-dark">
+                <strong>0</strong>
+              </div>
+              <a class="col-sm-3 btn btn-secondary text-center shadow botones-s3 border" t-att-href="'/riesgo-disergonomico/rosa/%s' % (registro.id)">
+                ROSA
+              </a>
+              <div class="col-sm-1 text-center border border-dark">
+                <strong><span t-field="registro.puntos_rosa"/></strong>
+              </div>
+            </div>
+
+            <div class="row my-3 mx-1">
+              <a class="col-sm-3 btn btn-secondary text-center shadow botones-s3 border" t-att-href="'/riesgo-disergonomico/niosh/%s' % (registro.id)">
+                NIOSH
+              </a>
+              <div class="col-sm-1 text-center border border-dark">
+                <strong>0</strong>
+              </div>
+              <a class="col-sm-3 btn btn-secondary text-center shadow botones-s3 border text-white hint--medium hint--bounce hint--error hint--bottom" data-hint="Disponible para plan corporativo">
+                RULA
+              </a>
+              <div class="col-sm-1 text-center border border-dark">
+                <strong>0</strong>
+              </div>
+              <a class="col-sm-3 btn btn-secondary text-center shadow botones-s3 border text-white hint--medium hint--bounce hint--error hint--bottom" data-hint="Disponible para plan corporativo">
+                IBV
+              </a>
+              <div class="col-sm-1 text-center border border-dark">
+                <strong>0</strong>
+              </div>
+            </div>
+            <p></p>
+            <div class="row m-1">
+              <div class="col-sm-4 text-center">
+                <strong></strong>
+              </div>
+              <div class="col-sm-4 text-center">
+                <strong></strong>
+              </div>
+              <div class="col-sm-4 text-center px-0">
+                <a class="float-right btn btn-secondary" t-att-href="'/riesgo-disergonomico'" role="button">REGRESAR</a>
+              </div>
+            </div>
+          </form>
+          </div>
+        </div>
+    </t>
+  </template>
+  <template id="ventana_navegacion_menu" name="Registros de Monitoreo">
+    <t t-call="website.layout">
+      <t t-set="no_header" t-value="True"/>
+      <t t-set="no_footer" t-value="True"/>
+      <header>
+        <nav class="navbar navbar-expand-md navbar-dark bg-primary accidente">
+        <div class="container">
+          <a class="navbar-brand logo" href="https://softwaresst.com">
+            <img src="/web/image/website/1/logo/PREVENTOR?unique=43ff1c1" class="img img-fluid" alt=""/>
+          </a>
+          <div id="top_menu_collapse" aria-expanded="false">
+            <ul class="nav ml-auto text-right" id="top_menu">
+              <li class="nav-item divider"></li>
+              <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle align-items-center d-flex" data-toggle="dropdown">
+                  <i class="fa fa-user-circle mr-1" style="font-size: 1.5rem"></i>
+                  <b>
+                    <span t-esc="user_id.name[:23] + '...' if user_id.name and len(user_id.name) &gt; 25 else user_id.name"/>
+                  </b>
+                </a>
+                <div class="dropdown-menu js_usermenu" role="menu">
+
+                  <a class="dropdown-item" t-attf-href="/usuarios" role="menuitem">Panel de control</a>
+                  <a id="o_logout" class="dropdown-item" role="menuitem" href="/web/session/logout?redirect=https://softwaresst.com/">Cerrar sesión</a>
+                </div>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+      </nav>
+      </header>
+      <div class="wrapper modulo-s3-disergonomico">
+        <nav id="sidebar" class="bg-info">
+          <ul class="list-unstyled components">
+            <p class="bg-success text-center" style="height:60px;">
+              <strong>MODULO DE RIESGOS DISERGONOMICOS</strong>
+            </p>
+            <li>
+              <a class="" href="/riesgo-disergonomico">VISTA PRINCIPAL</a>
+            </li>
+            <li>
+              <a class="" t-att-href="'/riesgo-disergonomico/%s' % (registro.id)">RIESGOS DISERGONOMICOS</a>
+            </li>
+            <li class="nav-item divider"></li>
+          </ul>
+        </nav>
+
+        <div class="w-100" >
+          <t t-raw="0"/>
+        </div>
+
+      </div>
+
+    </t>
+  </template>
+
+  <template id="list_reba" name="Riesgo disergonomico - REBA">
+    <t t-call="s3_riesgodisergonomico.ventana_navegacion_menu">
+      <div id="content" class="p-3 planid mx-auto my-2">
+        <button type="button" id="sidebarCollapse" class="btn btn-info display-none">
+          <i class="fa fa-align-left"></i>
+        </button>
+        <div class="alert alert-primary text-center mb-5" role="alert">
+          <h4>REBA</h4>
+        </div>
+
+        <form method="POST">
+          <div class="row m-1">
+            <div class="col-sm-12 bg-primary text-center border border-dark">
+              <strong>RIESGOS DISERGONOMICOS</strong>
+            </div>
+          </div>
+
+          <p></p>
+
+          <div class="row m-1">
+            <div class="col-sm-4 bg-primary text-center border border-dark">
+              <strong>RUC</strong>
+            </div>
+            <div class="col-sm-8 text-center border border-dark">
+              <strong><span t-field="registro.ruc"/></strong>
+            </div>
+          </div>
+          <div class="row m-1">
+            <div class="col-sm-4 bg-primary text-center border border-dark">
+              <strong>RAZON SOCIAL</strong>
+            </div>
+            <div class="col-sm-8 text-center border border-dark">
+              <strong><span t-field="registro.cliente"/></strong>
+            </div>
+          </div>
+
+          <p></p>
+
+          <div class="row m-1">
+            <div class="col-sm-4 bg-primary text-center border border-dark">
+              <strong>NUMERO DE PUNTOS POR AGENTE</strong>
+            </div>
+            <div class="col-sm-4 bg-primary text-center border border-dark">
+              <strong>FECHA INICIO</strong>
+            </div>
+            <div class="col-sm-4 bg-primary text-center border border-dark">
+              <strong>FECHA FIN</strong>
+            </div>
+          </div>
+          <div class="row m-1">
+            <t t-set="cont" t-value="0"/>
+            <t t-foreach="registro.reba_ids" t-as="sono">
+              <t t-set="cont" t-value="cont + 1"/>
+            </t>
+            <div class="col-sm-4 text-center border border-dark">
+              <strong><span t-esc="cont"/></strong>
+            </div>
+            <div class="col-sm-4 text-center border border-dark">
+              <strong><span t-field="registro.fecha_monitoreo"/></strong>
+            </div>
+            <div class="col-sm-4 text-center border border-dark">
+              <strong><span t-field="registro.fecha_monitoreo_fin"/></strong>
+            </div>
+          </div>
+          <p></p>
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">DATOS</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">RESULTADO</a>
+            </li>
+
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+              <div class="py-7">
+                <div class="table-responsive">
+                  <table id="resumen" class="table table-hover table-bordered responsive nowrap" style="width:100%; text-align: center;">
+                    <thead>
+                      <tr class="table-active bg-primary">
+                        <th class="align-middle">N°</th>
+                        <th class="align-middle">Area</th>
+                        <th class="align-middle">Puesto de Trabajo</th>
+                        <th class="align-middle">Empleado</th>
+                        <th class="align-middle"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <t t-set="counter" t-value="0"/>
+                      <t t-foreach="registro.reba_ids" t-as="reba">
+
+                        <t t-set="counter" t-value="counter + 1"/>
+                        <tr class="row_registro">
+                          <td>
+                            <span class="align-middle" t-esc="counter"/>
+                          </td>
+                          <td>
+                            <span class="align-middle" t-field="reba.area"/>
+                          </td>
+                          <td >
+                            <span class="align-middle" t-field="reba.puesto_trabajo"/>
+                          </td>
+                          <td>
+                            <span class="align-middle" t-field="reba.empleado"/>
+                          </td>
+                          <td >
+                            <a class="btn btn-success" t-att-href="'/riesgo-disergonomico/reba/form/%s' % (reba.id)" role="button">
+                              <i class="fa fa-pencil-square-o"></i>
+                            </a>
+                          </td>
+                        </tr>
+                      </t>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+            </div>
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+              <div class="py-7">
+                <div class="table-responsive">
+                  <table id="resumen" class="table table-hover table-bordered responsive nowrap" style="width:100%; text-align: center;">
+                    <thead>
+                      <tr class="table-active bg-primary">
+                        <th class="align-middle">N°</th>
+                        <th class="align-middle">Puntuación A</th>
+                        <th class="align-middle">Puntuación B</th>
+                        <th class="align-middle">Puntuación C</th>
+                        <th class="align-middle">Puntuación</th>
+                        <th class="align-middle">Nivel de Riesgo</th>
+                        <th class="align-middle">NIvel de Actuaciòn</th>
+                        <th class="align-middle">Cumple</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <t t-set="counter" t-value="0"/>
+                      <t t-foreach="registro.reba_ids" t-as="reba">
+
+                        <t t-set="counter" t-value="counter + 1"/>
+                        <tr class="row_registro">
+                          <td>
+                            <span class="align-middle" t-esc="counter"/>
+                          </td>
+                          <td>
+                            <span class="align-middle" t-field="reba.puntuacion_a"/>
+                          </td>
+                          <td >
+                            <span class="align-middle" t-field="reba.puntuacion_b"/>
+                          </td>
+                          <td>
+                            <span class="align-middle" t-field="reba.puntuacion_c"/>
+                          </td>
+                          <td >
+                            <span class="align-middle" t-field="reba.puntuacion"/>
+
+                          </td>
+                          <td >
+                            <span class="align-middle" t-field="reba.nivel_riesgo"/>
+
+                          </td>
+                          <td >
+                            <span class="align-middle" t-field="reba.nivel_actuacion"/>
+
+                          </td>
+                          <td >
+                            <span class="align-middle" t-field="reba.cumple"/>
+
+                          </td>
+                        </tr>
+                      </t>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="row m-1">
+            <div class="col-sm-4 text-center">
+              <button type="button" class="btn btn-secondary" data-toggle="modal" t-attf-data-target="#modalreba">CREAR</button>
+            </div>
+            <div class="col-sm-4 text-center">
+              <strong></strong>
+            </div>
+            <div class="col-sm-4 text-center">
+              <a class="btn btn-secondary" t-att-href="'/riesgo-disergonomico/%s' % (registro.id)" role="button">REGRESAR</a>
+            </div>
+          </div>
+          <div class="modal fade row_registro" t-attf-id="modalreba" t-att-aria-hidden="true" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="mx-auto  modal-xl modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">REBA</h5>
+                </div>
+                <div class="modal-body">
+                  <form class="registro_sonometria">
+                    <div class="form-group row">
+                      <input name="id" type="text" t-attf-value="{{registro.id}}" class="d-none" placeholder="ID"/>
+
+                      <label for="area" class="col-sm-2 col-form-label">Area</label>
+                      <div class="col-sm-10">
+                        <input name="area" type="text" class="form-control area" placeholder="Area"/>
+                      </div>
+                      <label for="puesto_trabajo" class="col-sm-2 col-form-label">Puesto de Trabajo</label>
+                      <div class="col-sm-10">
+                        <input type="text" name="puesto_trabajo" class="form-control puesto_trabajo" placeholder="Puesto de Trabajo"/>
+                      </div>
+                      <label for="empleado" class="col-sm-2 col-form-label">Trabajador</label>
+                      <div class="col-sm-10">
+                        <input name="empleado" type="text" class="form-control empleado" placeholder="Empleado"/>
+                      </div>
+
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Descartar</button>
+                  <!--Guardar requiere de js-->
+                  <button type="button" class="btn btn-primary botton-crear-reba">Guardar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+
+      </div>
+
+    </t>
+  </template>
+
+  <template id="form_reba" name="Riesgo disergonomico - REBA">
+      <t t-call="s3_riesgodisergonomico.ventana_navegacion_menu">
+
+        <div id="content" class="m-5 p-3 planid mx-auto">
+          <button type="button" id="sidebarCollapse" class="btn btn-info display-none">
+            <i class="fa fa-align-left"></i>
+          </button>
+          <div class="form-group m-5" id="formulario_editar_field_reba" t-att-data-model_id="model" t-att-data-record_id="reba.id">
+            <table class="table table-bordered" style="table-layout: auto;border-bottom:0px;border-left:0px">
+              <thead>
+                <tr>
+                  <th colspan="8" class="bg-primary text-center">
+                    <h3>REBA</h3>
+                  </th>
+                </tr>
+                <tr>
+                  <th colspan="8" class="bg-success text-left">DATOS DEL EMPLEADOR</th>
+                </tr>
+                <tr class="text-center bg-primary">
+                  <th scope="col" rowspan="2" colspan="2" style="width:25%;vertical-align:middle">Area</th>
+                  <th scope="col" rowspan="2" style="width:13%;vertical-align:middle">Puesto de Trabajo</th>
+                  <th scope="col" rowspan="2" colspan="2" style="width:20%;vertical-align:middle">Trabajador</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="bg-primary">
+                  <td colspan="2"><input type="text" name="cliente" class="border-0 form-control linea_programa" t-att-value="reba.area"/></td>
+                  <td ><input type="text" name="ruc" class="border-0 form-control linea_programa" t-att-value="reba.puesto_trabajo" placeholder="Puesto de Trabajo"/></td>
+                  <td colspan="2"><input type="text" name="domicilio" class="border-0 form-control linea_programa" t-att-value="reba.empleado" placeholder="Empleado"/></td>
+                </tr>
+              </tbody>
+            </table>
+            <ul class="nav nav-tabs" t-attf-id="myTab{{reba.id}}" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link " t-attf-id="factores-tab{{reba.id}}" data-toggle="tab" t-attf-href="#factores{{reba.id}}" role="tab" t-attf-aria-controls="factores{{reba.id}}" aria-selected="false">FACTORES DE RIESGO DISERGONÓMICO</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" t-attf-id="metodo-tab{{reba.id}}" data-toggle="tab" t-attf-href="#metodo{{reba.id}}" role="tab" t-attf-aria-controls="metodo{{reba.id}}" aria-selected="true">Método REBA</a>
+              </li>
+
+            </ul>
+            <div class="tab-content" t-attf-id="myTabContent{{reba.id}}">
+              <div class="tab-pane fade " t-attf-id="factores{{reba.id}}" role="tabpanel" t-attf-aria-labelledby="factores-tab{{reba.id}}">
+
+                <div class="row my-2  border border-dark text-center align-middle">
+                  <div class="col-3  d-flex flex-column border  bg-primary">
+                    Posturas incómodas o forzadas
+                  </div>
+                  <div class="col-9 d-flex flex-column border">
+                    <div class="row flex border">
+                      <div class="col-11 border ">
+                        Las manos por encima de la cabeza(*)
+                      </div>
+                      <div class="col-1 border ">
+                        <t t-if="reba.postura_1"><input name="postura_1" type="checkbox" t-attf-value="{{reba.postura_1}}" class="field-odoo" checked="1"/></t>
+                        <t t-else=""><input name="postura_1" type="checkbox" t-attf-value="{{reba.postura_1}}" class="field-odoo"/></t>
+                      </div>
+                    </div>
+                    <div class="row flex border">
+                      <div class="col-11 border">
+                        Codos por encima del hombro(*)
+                      </div>
+                      <div class="col-1 border ">
+                        <t t-if="reba.postura_2"><input name="postura_2" type="checkbox" t-attf-value="{{reba.postura_2}}" class="field-odoo" checked="1"/></t>
+                        <t t-else=""><input name="postura_2" type="checkbox" t-attf-value="{{reba.postura_2}}" class="field-odoo"/></t>
+
+                      </div>
+                    </div>
+                    <div class="row flex border">
+                      <div class="col-11 border">
+                        Espalda inclinada hacia adelante más de 30 grados (*)
+                      </div>
+                      <div class="col-1 border">
+                        <t t-if="reba.postura_3"><input name="postura_3" type="checkbox" t-attf-value="{{reba.postura_3}}" class="field-odoo" checked="1"/></t>
+                        <t t-else=""><input name="postura_3" type="checkbox" t-attf-value="{{reba.postura_3}}" class="field-odoo"/></t>
+
+                      </div>
+                    </div>
+                    <div class="row flex border ">
+                      <div class="col-11 border ">
+                        Espalda en extensión más de 30 grados (*)
+                      </div>
+                      <div class="col-1 border">
+                        <t t-if="reba.postura_4"><input name="postura_4" type="checkbox" t-attf-value="{{reba.postura_4}}" class="field-odoo" checked="1"/></t>
+                        <t t-else=""><input name="postura_4" type="checkbox" t-attf-value="{{reba.postura_4}}" class="field-odoo"/></t>
+
+                      </div>
+                    </div>
+                    <div class="row flex border">
+                      <div class="col-11 border">
+                        Cuello doblado/ girado más de 30 grados
+                      </div>
+                      <div class="col-1 border">
+                        <t t-if="reba.postura_5"><input name="postura_5" type="checkbox" t-attf-value="{{reba.postura_5}}" class="field-odoo" checked="1"/></t>
+                        <t t-else=""><input name="postura_5" type="checkbox" t-attf-value="{{reba.postura_5}}" class="field-odoo"/></t>
+
+                      </div>
+                    </div>
+                    <div class="row flex border">
+                      <div class="col-11 border">
+                        Estando sentado, espalda inclinada hacia adelante más de 30 grados(*)
+                      </div>
+                      <div class="col-1 border">
+                        <t t-if="reba.postura_6"><input name="postura_6" type="checkbox" t-attf-value="{{reba.postura_6}}" class="field-odoo" checked="1"/></t>
+                        <t t-else=""><input name="postura_6" type="checkbox" t-attf-value="{{reba.postura_6}}" class="field-odoo"/></t>
+
+                      </div>
+                    </div>
+                    <div class="row flex border">
+                      <div class="col-11 border">
+                        Estando sentado, espalda girada o lateralizada más de 30 grados (*)
+                      </div>
+                      <div class="col-1 border">
+                        <t t-if="reba.postura_7"><input name="postura_7" type="checkbox" t-attf-value="{{reba.postura_7}}" class="field-odoo" checked="1"/></t>
+                        <t t-else=""><input name="postura_7" type="checkbox" t-attf-value="{{reba.postura_7}}" class="field-odoo"/></t>
+
+                      </div>
+                    </div>
+                    <div class="row flex border">
+                      <div class="col-11 border">
+                        De cuclillas (*)
+                      </div>
+                      <div class="col-1 border">
+                        <t t-if="reba.postura_8"><input name="postura_8" type="checkbox" t-attf-value="{{reba.postura_8}}" class="field-odoo" checked="1"/></t>
+                        <t t-else=""><input name="postura_8" type="checkbox" t-attf-value="{{reba.postura_8}}" class="field-odoo"/></t>
+
+                      </div>
+                    </div>
+                    <div class="row flex border">
+                      <div class="col-11 border">
+                        De rodillas (*)
+                      </div>
+                      <div class="col-1 border">
+                        <t t-if="reba.postura_9"><input name="postura_9" type="checkbox" t-attf-value="{{reba.postura_9}}" class="field-odoo" checked="1"/></t>
+                        <t t-else=""><input name="postura_9" type="checkbox" t-attf-value="{{reba.postura_9}}" class="field-odoo"/></t>
+
+                      </div>
+                    </div>
+                    <div class="row flex border">
+                      <div class="col-11 border">
+                        (*)Más de 2 horas en total por día.
+                      </div>
+                      <div class="col-1 border">
+                        <t t-if="reba.postura_10"><input name="postura_10" type="checkbox" t-attf-value="{{reba.postura_10}}" class="field-odoo" checked="1"/></t>
+                        <t t-else=""><input name="postura_10" type="checkbox" t-attf-value="{{reba.postura_10}}" class="field-odoo"/></t>
+
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="row my-2  border border-dark text-center align-middle">
+                  <div class="col-3  d-flex flex-column border  bg-primary">
+                    Levantamiento de carga frecuente
+                  </div>
+                  <div class="col-9 d-flex flex-column border">
+                    <div class="row flex border">
+                      <div class="col-11 ">
+                        40 KG. Una vez/ día (*)
+                      </div>
+                      <div class="col-1 border ">
+                        <t t-if="reba.levantamiento_1"><input name="levantamiento_1" type="checkbox" t-attf-value="{{reba.levantamiento_1}}" class="field-odoo" checked="1"/></t>
+                        <t t-else=""><input name="levantamiento_1" type="checkbox" t-attf-value="{{reba.levantamiento_1}}" class="field-odoo"/></t>
+
+                      </div>
+                    </div>
+                    <div class="row flex border">
+                      <div class="col-11 border">
+                        25 KG. Más de doce veces / hora (*)
+                      </div>
+                      <div class="col-1 border ">
+                        <t t-if="reba.levantamiento_2"><input name="levantamiento_2" type="checkbox" t-attf-value="{{reba.levantamiento_2}}" class="field-odoo" checked="1"/></t>
+                        <t t-else=""><input name="levantamiento_2" type="checkbox" t-attf-value="{{reba.levantamiento_2}}" class="field-odoo"/></t>
+
+                      </div>
+                    </div>
+                    <div class="row flex border">
+                      <div class="col-11 border">
+                        5 KG. Más de doce veces / minuto (*)
+                      </div>
+                      <div class="col-1 border">
+                        <t t-if="reba.levantamiento_3"><input name="levantamiento_3" type="checkbox" t-attf-value="{{reba.levantamiento_3}}" class="field-odoo" checked="1"/></t>
+                        <t t-else=""><input name="levantamiento_3" type="checkbox" t-attf-value="{{reba.levantamiento_3}}" class="field-odoo"/></t>
+
+                      </div>
+                    </div>
+                    <div class="row flex border ">
+                      <div class="col-11 border ">
+                        Menos de 3 Kg. Más de cuatro veces / min (*)
+                      </div>
+                      <div class="col-1 border">
+                        <t t-if="reba.levantamiento_4"><input name="levantamiento_4" type="checkbox" t-attf-value="{{reba.levantamiento_4}}" class="field-odoo" checked="1"/></t>
+                        <t t-else=""><input name="levantamiento_4" type="checkbox" t-attf-value="{{reba.levantamiento_4}}" class="field-odoo"/></t>
+
+                      </div>
+                    </div>
+                    <div class="row flex border">
+                      <div class="col-11 border">
+                        (*) Durante más de 2 horas por día
+                      </div>
+                      <div class="col-1 border">
+                        <t t-if="reba.levantamiento_5"><input name="levantamiento_5" type="checkbox" t-attf-value="{{reba.levantamiento_5}}" class="field-odoo" checked="1"/></t>
+                        <t t-else=""><input name="levantamiento_5" type="checkbox" t-attf-value="{{reba.levantamiento_5}}" class="field-odoo"/></t>
+
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+                <div class="row my-2  border border-dark text-center align-middle">
+                  <div class="col-3  d-flex flex-column border  bg-primary">
+                    Esfuerzo de manos y muñecas
+                  </div>
+                  <div class="col-9 d-flex flex-column border">
+                    <div class="row flex border">
+                      <div class="col-11 ">
+                        Si se manipula y sujeta en pinza un objeto de mas de 1kg. (*)
+                      </div>
+                      <div class="col-1 border ">
+                        <t t-if="reba.esfuerzo_1"><input name="esfuerzo_1" type="checkbox" t-attf-value="{{reba.esfuerzo_1}}" class="field-odoo" checked="1"/></t>
+                        <t t-else=""><input name="esfuerzo_1" type="checkbox" t-attf-value="{{reba.esfuerzo_1}}" class="field-odoo"/></t>
+
+                      </div>
+                    </div>
+                    <div class="row flex border">
+                      <div class="col-11 border">
+                        Si las muñecas están flexionadas en extensión, giradas o lateralizadas haciendo un agarre con fuerza. (*)
+                      </div>
+                      <div class="col-1 border ">
+                        <t t-if="reba.esfuerzo_2"><input name="esfuerzo_2" type="checkbox" t-attf-value="{{reba.esfuerzo_2}}" class="field-odoo" checked="1"/></t>
+                        <t t-else=""><input name="esfuerzo_2" type="checkbox" t-attf-value="{{reba.esfuerzo_2}}" class="field-odoo"/></t>
+
+                      </div>
+                    </div>
+                    <div class="row flex border">
+                      <div class="col-11 border">
+                        Si se ejecuta la acción de atornillar de forma intensa (*)
+                      </div>
+                      <div class="col-1 border">
+                        <t t-if="reba.esfuerzo_3"><input name="esfuerzo_3" type="checkbox" t-attf-value="{{reba.esfuerzo_3}}" class="field-odoo" checked="1"/></t>
+                        <t t-else=""><input name="esfuerzo_3" type="checkbox" t-attf-value="{{reba.esfuerzo_3}}" class="field-odoo"/></t>
+
+                      </div>
+                    </div>
+                    <div class="row flex border ">
+                      <div class="col-11 border ">
+                        (*)Más de 2 horas por día.
+                      </div>
+                      <div class="col-1 border">
+                        <t t-if="reba.esfuerzo_4"><input name="esfuerzo_4" type="checkbox" t-attf-value="{{reba.esfuerzo_4}}" class="field-odoo" checked="1"/></t>
+                        <t t-else=""><input name="esfuerzo_4" type="checkbox" t-attf-value="{{reba.esfuerzo_4}}" class="field-odoo"/></t>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="row my-2  border border-dark text-center align-middle">
+                  <div class="col-3  d-flex flex-column border  bg-primary">
+                    Movimientos repetitivos con alta frecuencia
+                  </div>
+                  <div class="col-9 d-flex flex-column border">
+                    <div class="row flex border">
+                      <div class="col-11 ">
+                        El trabajador repite el mismo movimiento muscular más de 4 veces/ min. durante más de 2 horas por día. En los siguientes grupos musculares: Cuello, hombros, codos, muñecas, manos.
+                      </div>
+                      <div class="col-1 border ">
+                        <t t-if="reba.movimiento_1"><input name="movimiento_1" type="checkbox" t-attf-value="{{reba.movimiento_1}}" class="field-odoo" checked="1"/></t>
+                        <t t-else=""><input name="movimiento_1" type="checkbox" t-attf-value="{{reba.movimiento_1}}" class="field-odoo"/></t>
+
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="row my-2  border border-dark text-center align-middle">
+                  <div class="col-3  d-flex flex-column border  bg-primary">
+                    Impacto repetido
+                  </div>
+                  <div class="col-9 d-flex flex-column border">
+                    <div class="row flex border">
+                      <div class="col-11 ">
+                        Usando manos o rodillas como un martillo mas de 10 veces por hora, más de 2 horas por día.
+                      </div>
+                      <div class="col-1 border ">
+                        <t t-if="reba.impacto_1"><input name="impacto_1" type="checkbox" t-attf-value="{{reba.impacto_1}}" class="field-odoo" checked="1"/></t>
+                        <t t-else=""><input name="impacto_1" type="checkbox" t-attf-value="{{reba.impacto_1}}" class="field-odoo"/></t>
+
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="row my-2  border border-dark text-center align-middle">
+                  <div class="col-3  d-flex flex-column border  bg-primary">
+                    Vibración de brazo-mano de moderada a alta
+                  </div>
+                  <div class="col-9 d-flex flex-column border">
+                    <div class="row flex border">
+                      <div class="col-11 ">
+                        Nivel moderado: más de 30 min./ día.
+                      </div>
+                      <div class="col-1 border ">
+                        <t t-if="reba.vibracion_1"><input name="vibracion_1" type="checkbox" t-attf-value="{{reba.vibracion_1}}" class="field-odoo" checked="1"/></t>
+                        <t t-else=""><input name="vibracion_1" type="checkbox" t-attf-value="{{reba.vibracion_1}}" class="field-odoo"/></t>
+
+                      </div>
+                    </div>
+                    <div class="row flex border">
+                      <div class="col-11 ">
+                        Nivel alto: 2horas/ día
+                      </div>
+                      <div class="col-1 border ">
+                        <t t-if="reba.vibracion_2"><input name="vibracion_2" type="checkbox" t-attf-value="{{reba.vibracion_2}}" class="field-odoo" checked="1"/></t>
+                        <t t-else=""><input name="vibracion_2" type="checkbox" t-attf-value="{{reba.vibracion_2}}" class="field-odoo"/></t>
+
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+                <div class="tab-pane fade show active" t-attf-id="metodo{{reba.id}}" role="tabpanel" t-attf-aria-labelledby="metodo-tab{{reba.id}}">
+
+                <div class="row border border-dark justify-content-center align-middle bg-success" style="height:40px;">
+                  EVALUACIÓN
+                </div>
+                <div class="row my-4 border border-dark justify-content-center align-middle">
+                  <div class="col-10 d-flex flex-column text-center  border celda-grey2 " style="height:30px;">
+                    Puntuación del Grupo A
+                  </div>
+                  <div class="col-2 d-flex flex-column border  text-center " style="height:30px;">
+                    <span name="puntuacion_a" t-esc="reba.puntuacion_a"/>
+                  </div>
+                </div>
+
+                <div class="row  border border-dark">
+                  <div class="col-xl-4 col-sm-12">
+                    <div class="row">
+                      <div class="col-10 border text-center align-middle bg-secondary">
+                        <h6>Tronco</h6>
+                      </div>
+                      <div class="col-2 border text-center align-middle celda-grey3">
+                        <span name="tronco" t-esc="reba.tronco"/>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-10 border text-center align-middle bg-secondary">
+                        <span name="flexion_tronco_texto" t-esc="reba.flexion_tronco_texto"/>
+                      </div>
+                      <div class="col-2 border text-center align-middle celda-grey3 p-0">
+                        <input name="flexion_tronco" type="number" t-attf-value="{{reba.flexion_tronco}}" class="field-odoo" min="1" max="4" oninput="if(value>4){value=1}else{value=Math.abs(value)}"/>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-8 border text-center align-middle">
+                        Existe torsión o inclinación lateral
+                      </div>
+                      <div class="col-2 border text-center align-middle  celda-grey4">
+                        <span name="extension_tronco_texto" t-esc="reba.extension_tronco_texto"/>
+                      </div>
+                      <div class="col-2 border text-center align-middle celda-grey3 p-0">
+                        <input name="extension_tronco" type="number" t-attf-value="{{reba.extension_tronco}}" class="field-odoo" min="0"  max="1" oninput="if(value>1){value=0}else{value=Math.abs(value)}"/>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-12 border text-center align-middle">
+                        <img name="flexion_tronco" t-attf-src="/s3/static/description/reba/tronco/tronco_{{reba.flexion_tronco}}.jpeg" width="100" height="100" class="d-inline-block align-top mr-1" alt=""/>
+
+                      </div>
+
+                    </div>
+
+                  </div>
+                  <div class="col-xl-4 col-sm-12">
+
+                    <div class="row">
+                      <div class="col-10 border text-center align-middle bg-secondary">
+                        <h6>Cuello</h6>
+                      </div>
+                      <div class="col-2 border text-center align-middle celda-grey3">
+                        <span name="cuello" t-esc="reba.cuello "/>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-10 border text-center align-middle bg-secondary">
+                        <span name="flexion_cuello_texto" t-esc="reba.flexion_cuello_texto"/>
+                      </div>
+                      <div class="col-2 border text-center align-middle celda-grey3 p-0">
+                        <input name="flexion_cuello" type="number" t-attf-value="{{reba.flexion_cuello}}" class="field-odoo" min="1" max="2" oninput="if(value>2){value=1}else{value=Math.abs(value)}"/>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-8 border text-center align-middle">
+                        Cabeza rotada o con inclinación lateral
+                      </div>
+                      <div class="col-2 border text-center align-middle  celda-grey4">
+                        <span name="extension_cuello_texto" t-esc="reba.extension_cuello_texto"/>
+                      </div>
+                      <div class="col-2 border text-center align-middle celda-grey3 p-0">
+                        <input name="extension_cuello" type="number" t-attf-value="{{reba.extension_cuello}}" class="field-odoo" min="0" max="1" oninput="if(value>1){value=0}else{value=Math.abs(value)}"/>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-12 border text-center align-middle">
+                        <img name="flexion_cuello" t-attf-src="/s3/static/description/reba/cuello/cuello_{{reba.flexion_cuello}}.jpeg" width="100" height="100" class="d-inline-block align-top mr-1" alt=""/>
+
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="col-xl-4 col-sm-12">
+                    <div class="row">
+                      <div class="col-10 border text-center align-middle bg-secondary">
+                        <h6>Piernas</h6>
+                      </div>
+                      <div class="col-2 border text-center align-middle celda-grey3">
+                        <span name="piernas" t-esc="reba.piernas"/>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-10 border text-center align-middle bg-secondary">
+                        <span name="soporte_pie_texto" t-esc="reba.soporte_pie_texto"/>
+                      </div>
+                      <div class="col-2 border text-center align-middle celda-grey3 p-0">
+                        <input name="soporte_pie" type="number" t-attf-value="{{reba.soporte_pie}}" class="field-odoo" min="1" max="2" oninput="if(value>2){value=1}else{value=Math.abs(value)}"/>
+
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-10 border text-center align-middle  celda-grey4">
+                        <span name="flexion_rodilla_texto" t-esc="reba.flexion_rodilla_texto"/>
+                      </div>
+                      <div class="col-2 border text-center align-middle celda-grey3 p-0">
+                        <input name="flexion_rodilla" type="number" t-attf-value="{{reba.flexion_rodilla}}" class="field-odoo" min="0" max="1" oninput="if(value>1){value=0}else{value=Math.abs(value)}"/>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-12 border text-center align-middle">
+                        <img name="soporte_pie" t-attf-src="/s3/static/description/reba/piernas/piernas_{{reba.soporte_pie}}.jpeg" width="100" height="100" class="d-inline-block align-top mr-1" alt=""/>
+
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row my-4  border border-dark justify-content-center align-middle">
+                  <div class="col-10 d-flex flex-column text-center  border celda-grey2 " style="height:30px;">
+                    Puntuación del Grupo B
+                  </div>
+                  <div class="col-2 d-flex flex-column border  text-center " style="height:30px;">
+                    <span name="puntuacion_b" t-esc="reba.puntuacion_b"/>
+                  </div>
+                </div>
+
+                <div class="row my-2  border border-dark">
+                  <div class="col-xl-4 col-sm-12">
+                    <div class="row">
+                      <div class="col-10 border text-center align-middle bg-secondary">
+                        <h6>Brazo</h6>
+                      </div>
+                      <div class="col-2 border text-center align-middle celda-grey3">
+                        <span name="brazo" t-esc="reba.brazo"/>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-10 border text-center align-middle bg-secondary">
+                        <span name="extension_brazo_texto" t-esc="reba.extension_brazo_texto"/>
+                      </div>
+                      <div class="col-2 border text-center align-middle celda-grey3 p-0">
+                        <input name="extension_brazo" type="number" t-attf-value="{{reba.extension_brazo}}" class="field-odoo" min="1" max="4" oninput="if(value>4){value=1}else{value=Math.abs(value)}"/>
+                      </div>
+                    </div>
+                    <div class="row">
+
+                      <div class="col-10 border text-center align-middle  celda-grey4">
+                        <span name="correccion_brazo_texto" t-esc="reba.correccion_brazo_texto"/>
+                      </div>
+                      <div class="col-2 border text-center align-middle celda-grey3 p-0">
+                        <input name="correccion_brazo" type="number" t-attf-value="{{reba.correccion_brazo}}" class="field-odoo" min="0" max="1" oninput="if(value>1){value=0}else{value=Math.abs(value)}"/>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12 border text-center align-middle">
+                        <img name="extension_brazo" t-attf-src="/s3/static/description/reba/brazo/brazo_{{reba.extension_brazo}}.jpeg" width="100" height="100" class="d-inline-block align-top mr-1" alt=""/>
+
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="col-xl-4 col-sm-12">
+                    <div class="row">
+                      <div class="col-10 border text-center align-middle bg-secondary">
+                        <h6>Antebrazo</h6>
+                      </div>
+                      <div class="col-2 border text-center align-middle celda-grey3">
+                        <span name="antebrazo" t-esc="reba.antebrazo"/>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-10 border text-center align-middle bg-secondary">
+                        <span name="extension_antebrazo_texto" t-esc="reba.extension_antebrazo_texto"/>
+                      </div>
+                      <div class="col-2 border text-center align-middle celda-grey3 p-0">
+                        <input name="extension_antebrazo" type="number" t-attf-value="{{reba.extension_antebrazo}}" class="field-odoo" min="1" max="2" oninput="if(value>2){value=1}else{value=Math.abs(value)}"/>
+
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12"></div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12 border text-center align-middle">
+                        <img name="extension_antebrazo" t-attf-src="/s3/static/description/reba/antebrazo/antebrazo_{{reba.extension_antebrazo}}.jpeg" width="100" height="100" class="d-inline-block align-top mr-1" alt=""/>
+
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="col-xl-4 col-sm-12">
+                    <div class="row">
+                      <div class="col-10 border text-center align-middle bg-secondary">
+                        <h6>Muñeca</h6>
+                      </div>
+                      <div class="col-2 border text-center align-middle celda-grey3">
+                        <span name="muneca" t-esc="reba.muneca"/>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-10 border text-center align-middle bg-secondary">
+                        <span name="extension_muneca_texto" t-esc="reba.extension_muneca_texto"/>
+                      </div>
+                      <div class="col-2 border text-center align-middle celda-grey3 p-0">
+                        <input name="extension_muneca" type="number" t-attf-value="{{reba.extension_muneca}}" class="field-odoo" min="1" max="2" oninput="if(value>2){value=1}else{value=Math.abs(value)}"/>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-8 border text-center align-middle">
+                        Presenta Torsión o Desviación radial o cubital
+                      </div>
+                      <div class="col-2 border text-center align-middle  celda-grey4">
+                        <span name="torsion_muneca_texto" t-esc="reba.torsion_muneca_texto"/>
+                      </div>
+                      <div class="col-2 border text-center align-middle celda-grey3 p-0">
+                        <input name="torsion_muneca" type="number" t-attf-value="{{reba.torsion_muneca}}" class="field-odoo" min="0" max="1" oninput="if(value>1){value=0}else{value=Math.abs(value)}"/>
+
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12 border text-center align-middle">
+                        <img name="extension_muneca" t-attf-src="/s3/static/description/reba/muneca/muneca_{{reba.extension_muneca}}.jpeg" width="100" height="100" class="d-inline-block align-top mr-1" alt=""/>
+
+                      </div>
+
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="row my-2  border border-dark">
+                  <div class="col-xl-4 col-sm-12">
+                    <div class="row border border-dark">
+                      <div class="col-10 border text-center align-middle bg-secondary">
+                        <h6>Fuerzas de Cargas</h6>
+                      </div>
+                      <div class="col-2 border text-center align-middle celda-grey3">
+                        <span name="fuerza_carga" t-esc="reba.fuerza_carga"/>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-10 border text-center align-middle bg-secondary">
+                        <span name="cantidad_carga_texto" t-esc="reba.cantidad_carga_texto"/>
+                      </div>
+                      <div class="col-2 border text-center align-middle celda-grey3 p-0">
+                        <input name="cantidad_carga" type="number" t-attf-value="{{reba.cantidad_carga}}" class="field-odoo" min="0" max="2" oninput="if(value>2){value=0}else{value=Math.abs(value)}"/>
+
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-8 border text-center align-middle">
+                        Existen fuerzas o cargas aplicadas bruscamente
+                      </div>
+                      <div class="col-2 border text-center align-middle  celda-grey4">
+                        <span name="fuerza_brusca_texto" t-esc="reba.fuerza_brusca_texto"/>
+                      </div>
+                      <div class="col-2 border text-center align-middle celda-grey3 p-0">
+                        <input name="fuerza_brusca" type="number" t-attf-value="{{reba.fuerza_brusca}}" class="field-odoo" min="0" max="1" oninput="if(value>1){value=0}else{value=Math.abs(value)}"/>
+
+                      </div>
+                    </div>
+                    <div class="row  mt-4 border border-dark">
+                      <div class="col-10 border text-center align-middle bg-secondary">
+                        <h6>Calidad de Agarre</h6>
+                      </div>
+                      <div class="col-2 border text-center align-middle celda-grey3">
+                        <span name="agarre" t-esc="reba.agarre"/>
+                      </div>
+                    </div>
+                    <div class="row border border-dark">
+
+                      <div class="col-4 border text-center align-middle  celda-grey4">
+                        <span name="agarre_tipo_texto" t-esc="reba.agarre_tipo_texto"/>
+                      </div>
+
+                      <div class="col-6 border text-center align-middle celda-grey4">
+                        <span name="agarre_tipo_texto_1" t-esc="reba.agarre_tipo_texto_1"/>
+                      </div>
+                      <div class="col-2 border text-center align-middle celda-grey3 p-0">
+                        <input name="agarre_tipo" type="number" t-attf-value="{{reba.agarre_tipo}}" class="field-odoo" min="0" max="3" oninput="if(value>3){value=0}else{value=Math.abs(value)}"/>
+                      </div>
+                    </div>
+
+                    <div class="row mt-4">
+                      <div class="col-10 border text-center align-middle celda-grey2" style="height:30px;">
+                        Puntuación C:
+                      </div>
+                      <div class="col-2 border text-center align-middle celda-grey3" style="height:30px;">
+                        <span name="puntuacion_c" t-esc="reba.puntuacion_c"/>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-10 border text-center align-middle bg-secondary">
+                        Tipo de Actividad Muscular
+                      </div>
+                      <div class="col-2 border text-center align-middle celda-grey3">
+                        <span name="acti_muscular" t-esc="reba.acti_muscular"/>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-10 border text-center align-middle">
+                        Una o más partes del cuerpo permanecen estáticas soportadas durante más de 1 minuto
+                      </div>
+                      <div class="col-2 border text-center align-middle">
+                        <t t-if="reba.tip_muscu"><input name="tip_muscu" type="checkbox" t-attf-value="{{reba.tip_muscu}}" class="field-odoo" checked="1"/></t>
+                        <t t-else=""><input name="tip_muscu" type="checkbox" t-attf-value="{{reba.tip_muscu}}" class="field-odoo"/></t>
+
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-10 border text-center align-middle">
+                        Se producen movimientos repetitivos, por ejemplo repetidos más de 4 veces por minuto (excluyendo caminar)
+                      </div>
+                      <div class="col-2 border text-center align-middle">
+                        <t t-if="reba.tip_muscu_1"><input name="tip_muscu_1" type="checkbox" t-attf-value="{{reba.tip_muscu_1}}" class="field-odoo" checked="1"/></t>
+                        <t t-else=""><input name="tip_muscu_1" type="checkbox" t-attf-value="{{reba.tip_muscu_1}}" class="field-odoo"/></t>
+
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-10 border text-center align-middle">
+                        Se producen cambios de postura importantes o se adoptan posturas inestables
+                      </div>
+                      <div class="col-2 border text-center align-middle">
+
+                        <t t-if="reba.tip_muscu_2"><input name="tip_muscu_2" type="checkbox" t-attf-value="{{reba.tip_muscu_2}}" class="field-odoo" checked="1"/></t>
+                        <t t-else=""><input name="tip_muscu_2" type="checkbox" t-attf-value="{{reba.tip_muscu_2}}" class="field-odoo"/></t>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-4 col-sm-12">
+                    <div class="row">
+                      <div class="col-12 border text-center align-middle celda-grey2">
+                        <h6>INTERPRETACIÓN DE RESULTADO</h6>
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-9 border text-center align-middle celda-grey4">
+                        <h6>
+                          Puntuación Final</h6>
+                      </div>
+                      <div class="col-3 border text-center align-middle celda-grey3">
+                        <span name="puntuacion" t-esc="reba.puntuacion"/>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-9 border text-center align-middle celda-grey4">
+                        <h6>
+                          Nivel de riesgo</h6>
+                      </div>
+                      <div class="col-3 border text-center align-middle celda-grey3">
+                        <span name="nivel_riesgo" t-esc="reba.nivel_riesgo"/>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-9 border text-center align-middle celda-grey4">
+                        <h6>
+                          Nivel de Actuación</h6>
+                      </div>
+                      <div class="col-3 border text-center align-middle celda-grey3">
+                        <span name="nivel_actuacion" t-esc="reba.nivel_actuacion"/>
+                      </div>
+                    </div>
+
+                      <div class="row mt-4">
+                        <div class="col-12 border text-center align-middle celda-grey3">
+                          <h6>
+                            Nivel de riesgo</h6>
+                        </div>
+                      </div>
+                      <div class="row ">
+                        <div class="col-12 border text-center align-middle">
+                          La puntuación final obtenida es de 7 que corresponde a un nivel de Riesgo MEDIO
+
+                        </div>
+                      </div>
+                      <div class="row mt-4">
+                        <div class="col-12 border text-center align-middle celda-grey3">
+                          <h6>
+                            Nivel de Actuación</h6>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12 border text-center align-middle">
+                          Para el nivel de Riesgo MEDIO, corresponde un Nivel de Actuación igual a 2, lo cual significa que Es necesaria la actuación.
+
+                        </div>
+                      </div>
+
+
+                  </div>
+                  <div class="col-xl-4 col-sm-12">
+                    <div class="row">
+                      <div class="col-12 border text-center align-middle celda-grey2">
+                        <h6>FOTOGRAFÍA REFERENCIAL</h6>
+                      </div>
+
+                    </div>
+                    <div class="row imageodoo-input">
+                      <input id="image_input" type="file"/>
+                        <label for="image_input" class="image-button"><i class="fa fa-image"></i> Seleccionar image</label>
+                        <img class="image_file_input" t-attf-src="data:image/png;base64, #{reba.imagen}" />
+
+                    </div>
+                    <div class="row">
+
+                    </div>
+                  </div>
+                </div>
+
+                <button type="button" class="btn btn-primary botton-guardar-field-data">Guardar</button>
+
+              </div>
+
+            </div>
+          </div>
+            </div>
+
+          </t>
+        </template>
+</odoo>

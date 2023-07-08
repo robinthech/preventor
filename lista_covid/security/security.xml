@@ -1,0 +1,75 @@
+<odoo>
+    <data>
+        <record  id="category_covid_vigilancia" model="ir.module.category">
+            <field name="name">Covid</field>
+        </record>
+
+        <record id="group_covid_vigilancia_user" model="res.groups">
+            <field name="name">Usuario</field>
+            <field name="category_id" ref="category_covid_vigilancia" />
+        </record>
+
+        <record id="group_covid_vigilancia_manager" model="res.groups">
+            <field name="name">Responsable</field>
+            <field name="implied_ids" eval="[(4, ref('group_covid_vigilancia_user'))]" />
+            <field name="category_id" ref="category_covid_vigilancia"/>
+        </record>
+
+        <record id="group_covid_vigilancia_admin" model="res.groups">
+            <field name="name">Administrator</field>
+            <field name="implied_ids" eval="[(4, ref('group_covid_vigilancia_manager'))]" />
+            <field name="category_id" ref="category_covid_vigilancia"/>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+
+        <record id="model_access_covid_anexo_lista" model="ir.model.access">
+            <field name="name">model.access.covid.anexo.user</field>
+            <field name="group_id" ref="lista_covid.group_covid_vigilancia_user"/>
+            <field name="model_id" ref="lista_covid.model_covid_anexo_lista"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_covid_anex0" model="ir.model.access">
+            <field name="name">model.access.covid.anexo.lista.user</field>
+            <field name="group_id" ref="lista_covid.group_covid_vigilancia_user"/>
+            <field name="model_id" ref="lista_covid.model_covid_anexo"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_covid_anex_sub" model="ir.model.access">
+            <field name="name">model.access.covid.anexo.sublista.user</field>
+            <field name="group_id" ref="lista_covid.group_covid_vigilancia_user"/>
+            <field name="model_id" ref="lista_covid.model_covid_anexo_sublista"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_covid_elemento_covid" model="ir.model.access">
+            <field name="name">model.access.covid.elemento_covid.user</field>
+            <field name="group_id" ref="lista_covid.group_covid_vigilancia_user"/>
+            <field name="model_id" ref="lista_covid.model_elemento_covid"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_covid_tipo_elemento_covid" model="ir.model.access">
+            <field name="name">model.access.tipo.elemento_covid.user</field>
+            <field name="group_id" ref="lista_covid.group_covid_vigilancia_user"/>
+            <field name="model_id" ref="lista_covid.model_tipo_elemento_covid"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+         <record  id="category_registro_accidente" model="ir.module.category">
+            <field name="name">Registro de Accidente</field>
+        </record>
+
+        <record id="group_registro_accidente" model="res.groups">
+            <field name="name">Registrador</field>
+            <field name="category_id" ref="category_registro_accidente" />
+        </record>
+
+
+    </data>
+</odoo>

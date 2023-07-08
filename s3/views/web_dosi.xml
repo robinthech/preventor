@@ -1,0 +1,386 @@
+<odoo>
+    <template id="form_dosi" name="Registros de Monitoreo - Ruido por Dosimetria">
+    <t t-call="s3.sidebar_s3">
+      <div class="wrapper modulo-s3">
+        <!-- Sidebar -->
+      <div id="content" class="width-table p-3 planid mx-auto my-2" t-att-data-plan_id="plan.id">
+        <button type="button" id="sidebarCollapse" class="btn btn-info display-none">
+          <i class="fa fa-arrow-left"></i>
+        </button>
+        <div class="alert alert-primary text-center mb-5" role="alert">
+          <h4>DOSIMETRIA DE RUIDO</h4>
+        </div>
+        <form method="POST">
+            <div class="row m-1">
+                <div class="col-sm-12 bg-primary text-center border border-dark"><strong>REGISTROS DE MONITOREO</strong></div>
+            </div>
+
+            <p></p>
+
+            <div class="row m-1">
+                <div class="col-sm-4 bg-primary text-center border border-dark"><strong>RUC</strong></div>
+                <div class="col-sm-8 text-center border border-dark">
+                    <strong><span t-field="registro.ruc"/></strong>
+                </div>
+            </div>
+            <div class="row m-1">
+                <div class="col-sm-4 bg-primary text-center border border-dark"><strong>RAZON SOCIAL</strong></div>
+                <div class="col-sm-8 text-center border border-dark">
+                    <strong><span t-field="registro.cliente"/></strong>
+                </div>
+            </div>
+
+            <p></p>
+
+            <div class="row m-1">
+                <t t-set="cont" t-value="0"/>
+                <t t-foreach="registro.dosimetria_ids" t-as="dosi">
+                  <t t-set="cont" t-value="cont + 1"/>
+                </t>
+                <div class="col-sm-4 bg-primary text-center border border-dark px-0">
+                    <strong>NUMERO DE PUNTOS POR AGENTE</strong>
+                    <div class="text-center bg-white">
+                    <strong><span t-esc="cont"/></strong>
+                    </div>
+                </div>
+                <div class="col-sm-4 bg-primary text-center border border-dark px-0">
+                    <strong>FECHA INICIO</strong>
+                    <div class="text-center bg-white">
+                    <strong><span t-field="registro.fecha_monitoreo"/></strong>
+                    </div>
+                </div>
+                <div class="col-sm-4 bg-primary text-center border border-dark px-0">
+                    <strong>FECHA FIN</strong>
+                    <div class="text-center bg-white">
+                    <strong><span t-field="registro.fecha_monitoreo_fin"/></strong>
+                    </div>
+                </div>
+            </div>
+            <p></p>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Registros</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Datos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Resultados</a>
+            </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+            <div class="py-8">
+                <div class="table-responsive">
+                    <table id="resumen" class="table table-hover table-bordered responsive nowrap" style="width:100%; text-align: center;">
+                    <thead>
+                        <tr class="table-active bg-primary">
+                        <th class="align-middle">N°</th>
+                        <th class="align-middle">Area</th>
+                        <th class="align-middle">Puesto de Trabajo</th>
+                        <th class="align-middle">Trabajador</th>
+                        <th class="align-middle">Tipo de Actividad</th>
+                        <th class="align-middle">Jornada Laboral (horas)</th>
+                        <th class="align-middle">Leq (dBA)</th>
+                        <th class="align-middle">Editar</th>
+                        <th class="align-middle">Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-set="counter" t-value="0"/>
+                        <t t-foreach="registro.dosimetria_ids" t-as="dosi">
+
+                            <t t-set="counter" t-value="counter + 1"/>
+                            <tr class="row_registro">
+                                <td>
+                                <span class="align-middle" t-esc="counter"/>
+                                </td>
+                                <td>
+                                <span class="align-middle" t-field="dosi.area"/>
+                                </td>
+                                <td >
+                                <span class="align-middle" t-field="dosi.puesto_trabajo"/>
+                                </td>
+                                <td >
+                                <span class="align-middle" t-field="dosi.empleado"/>
+                                </td>
+                                <td>
+                                <span class="align-middle" t-field="dosi.tipo_actividad"/>
+                                </td>
+                                <td >
+                                <span class="align-middle" t-field="dosi.jornada"/>
+                                </td>
+                                <td>
+                                <span class="align-middle" t-field="dosi.leq"/>
+                                </td>
+                                <td>
+                                <button type="button" class="btn bg-success" data-toggle="modal" t-attf-data-target="#aeae{{dosi.id}}"><i class="fa fa-pencil-square-o" style="font-size:20px"></i></button>
+                                <div class="modal fade" t-attf-id="aeae{{dosi.id}}" t-att-aria-hidden="true" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Ruido por Dosimetria</h5>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form class="registro_dosimetria">
+                                                <div class="form-group row">
+                                                    <input name="id" type="text" class="d-none" t-attf-value="{{dosi.id}}" placeholder="ID"/>
+                                                    <label for="area" class="col-sm-2 col-form-label">Area</label>
+                                                    <div class="col-sm-10">
+                                                    <input name="area" type="text" class="form-control area" t-attf-value="{{dosi.area}}" placeholder="Area"/>
+                                                    </div>
+                                                    <label for="puesto_trabajo" class="col-sm-2 col-form-label">Puesto de Trabajo</label>
+                                                    <div class="col-sm-10">
+                                                    <input type="text" name="puesto_trabajo" class="form-control puesto_trabajo" t-attf-value="{{dosi.puesto_trabajo}}" placeholder="Puesto de Trabajo"/>
+                                                    </div>
+                                                    <label for="empleado" class="col-sm-2 col-form-label">Trabajador</label>
+                                                    <div class="col-sm-10">
+                                                    <input name="empleado" type="text" class="form-control empleado" t-attf-value="{{dosi.empleado}}" placeholder="Empleado"/>
+                                                    </div>
+                                                    <label for="tipo_actividad" class="col-sm-2 col-form-label">Tipo de Actividad</label>
+                                                    <div class="col-sm-10">
+                                                    <select name="tarea" t-attf-id="tarea-{{dosi.id}}"  class="form-control tipo_actividad">
+                                                        <t t-if="'1' == dosi.tipo_actividad">
+                                                        <option value="1" selected="selected">Administrativo</option>
+                                                        <option value="2">Operativo</option>
+                                                        </t>
+                                                        <t t-elif="'2' == dosi.tipo_actividad">
+                                                        <option value="1">Administrativo</option>
+                                                        <option value="2" selected="selected">Operativo</option>
+                                                        </t>
+                                                    </select>
+                                                    </div>
+                                                    <label for="jornada" class="col-sm-2 col-form-label">Jornada Laboral (horas)</label>
+                                                    <div class="col-sm-10">
+                                                    <input name="jornada" type="text" class="form-control jornada" t-attf-value="{{dosi.jornada}}" placeholder="0.00"/>
+                                                    </div>
+                                                    <label for="leq" class="col-sm-2 col-form-label">Leq (dBA)</label>
+                                                    <div class="col-sm-10">
+                                                    <input name="leq" type="text" class="form-control leq" t-attf-value="{{dosi.leq}}" placeholder="0.00"/>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer" t-att-data-id="dosi.id">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Descartar</button>
+                                            <button type="button" class="btn btn-primary botton-editar-dosi">Guardar</button>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </td>
+                                <td>
+                                  <button type="button" class="btn btn-danger" data-toggle="modal" t-attf-data-target="#dada{{dosi.id}}"><i class="fa fa-trash" style="font-size:20px"></i></button>
+                                  <div class="modal fade" t-attf-id="dada{{dosi.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                      <div class="modal-dialog modal-dialog-centered" role="document">
+                                          <div class="modal-content">
+                                          <div class="modal-header">
+                                              <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                          </div>
+                                          <div class="modal-body">
+                                            <div class="alert alert-danger" role="alert">
+                                              ESTA SEGURO DE ELIMINAR
+                                            </div>
+                                          </div>
+                                          <div class="modal-footer" t-att-data-id="dosi.id">
+                                              <input name="id_registro" type="text" class="d-none" t-attf-value="{{registro.id}}" placeholder="ID"/>
+                                              <input name="id" type="text" class="d-none" t-attf-value="{{dosi.id}}" placeholder="ID"/>
+                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Descartar</button>
+                                              <button type="button" class="btn btn-danger botton-eliminar-dosi">Eliminar</button>
+                                          </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row justify-content-around">
+                <div class="text-center"><button type="button" class="btn btn-secondary" data-toggle="modal" t-attf-data-target="#exampleModalLong">CREAR</button></div>
+                <div class="text-center"><a class="btn btn-secondary" t-att-href="'/registros/%s' % (registro.id)" role="button">REGRESAR</a></div>
+            </div>
+            <div class="modal fade row_registro" t-attf-id="exampleModalLong" t-att-aria-hidden="true" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Ruido por Dosimetria</h5>
+                    </div>
+                    <div class="modal-body">
+                        <form class="registro_dosimetria">
+                            <div class="form-group row">
+                                <input name="id" type="text" class="d-none" t-attf-value="{{registro.id}}" placeholder="ID"/>
+                                <label for="area" class="col-sm-2 col-form-label">Area</label>
+                                <div class="col-sm-10">
+                                <input name="area" type="text" class="form-control area" placeholder="Area"/>
+                                </div>
+                                <label for="puesto_trabajo" class="col-sm-2 col-form-label">Puesto de Trabajo</label>
+                                <div class="col-sm-10">
+                                <input name="puesto_trabajo" type="text" class="form-control puesto_trabajo" placeholder="Puesto de Trabajo"/>
+                                </div>
+                                <label for="empleado" class="col-sm-2 col-form-label">Trabajador</label>
+                                <div class="col-sm-10">
+                                <input name="empleado" type="text" class="form-control empleado" placeholder="Empleado"/>
+                                </div>
+                                <label for="tipo_actividad" t-attf-value="1" class="col-sm-2 col-form-label">Tipo de Actividad</label>
+                                <div class="col-sm-10">
+                                <select id="tipo_actividad_id"  class="form-control horario">
+                                    <option name="tipo_actividad" t-attf-value="1">Administrativo</option>
+                                    <option name="tipo_actividad" t-attf-value="2">Operativo</option>
+                                </select>
+                                </div>
+
+                                <label for="jornada" class="col-sm-2 col-form-label">Jornada Laboral (horas)</label>
+                                <div class="col-sm-10">
+                                <input name="jornada" type="text" class="form-control jornada" placeholder="0.00"/>
+                                </div>
+                                <label for="leq" class="col-sm-2 col-form-label">Leq (dBA)</label>
+                                <div class="col-sm-10">
+                                <input name="leq" type="text" class="form-control leq" placeholder="0.00"/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Descartar</button>
+                        <!--Guardar requiere de js-->
+                        <button type="button" class="btn btn-primary botton-crear-dosi">Guardar</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <t t-set="counter" t-value="0"/>
+            <div class="py-7">
+                <div class="table-responsive">
+                    <table id="resumen" class="table table-hover table-bordered responsive nowrap" style="width:100%; text-align: center;">
+                    <thead>
+                        <tr class="table-active bg-primary">
+                        <th class="align-middle">N°</th>
+                        <th class="align-middle">Area</th>
+                        <th class="align-middle">Puesto de Trabajo</th>
+                        <th class="align-middle">Trabajador</th>
+                        <th class="align-middle">Jornada Laboral (Horas)</th>
+                        <th class="align-middle">Leq (dBA)</th>
+                        <th class="align-middle">LMPc (dBA)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="registro.dosimetria_ids" t-as="dosi">
+
+                            <t t-set="counter" t-value="counter + 1"/>
+                            <tr class="row_registro">
+                                <td>
+                                <span class="align-middle" t-esc="counter"/>
+                                </td>
+                                <td>
+                                <span class="align-middle" t-field="dosi.area"/>
+                                </td>
+                                <td >
+                                <span class="align-middle" t-field="dosi.puesto_trabajo"/>
+                                </td>
+                                <td >
+                                <span class="align-middle" t-field="dosi.empleado"/>
+                                </td>
+                                <td >
+                                <span class="align-middle" t-field="dosi.jornada"/>
+                                </td>
+                                <td >
+                                <span class="align-middle" t-field="dosi.leq"/>
+                                </td>
+                                <td >
+                                <span class="align-middle" t-field="dosi.val_max"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                    </table>
+                </div>
+            </div>
+            </div>
+            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+            <t t-set="counter" t-value="0"/>
+            <div class="py-7">
+                <div class="table-responsive">
+                    <table id="resumen" class="table table-hover table-bordered responsive nowrap" style="width:100%; text-align: center;">
+                    <thead>
+                        <tr class="table-active bg-primary">
+                        <th class="align-middle">N°</th>
+                        <th class="align-middle">Tipo de Actividad</th>
+                        <th class="align-middle">Jornada Laboral (Horas)</th>
+                        <th class="align-middle">Leq (dBA)</th>
+                        <th class="align-middle">LMPc (dBA)</th>
+                        <th class="align-middle">Dosis (%)</th>
+                        <th class="align-middle">¿Cumple con la R.M. N°375-2008-TR?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="registro.dosimetria_ids" t-as="dosi">
+
+                            <t t-set="counter" t-value="counter + 1"/>
+                            <tr class="row_registro">
+                                <td>
+                                <span class="align-middle" t-esc="counter"/>
+                                </td>
+                                <td >
+                                <t t-if="dosi.tipo_actividad == '1'" class="align-middle">Administrativo</t>
+                                <t t-if="dosi.tipo_actividad == '2'" class="align-middle">Operativo</t>
+                                </td>
+                                <td >
+                                <span class="align-middle" t-field="dosi.jornada"/>
+                                </td>
+                                <td >
+                                <span class="align-middle" t-field="dosi.leq"/>
+                                </td>
+                                <td >
+                                <span class="align-middle" t-field="dosi.val_max"/>
+                                </td>
+                                <td >
+                                <span class="align-middle" t-field="dosi.dosis"/>
+                                </td>
+                                <t t-if="dosi.cumple=='NO CUMPLE'">
+                                    <td class="bg-danger">
+                                    <span class="align-middle" t-field="dosi.cumple"/>
+                                    </td>
+                                </t>
+                                <t t-if="dosi.cumple=='SÍ CUMPLE'">
+                                    <td class="" style="background-color:#A3F452;">
+                                    <span class="align-middle" t-field="dosi.cumple"/>
+                                    </td>
+                                </t>
+                            </tr>
+                        </t>
+                    </tbody>
+                    </table>
+                    <div class="row_registro registroid" t-att-data-registro_id="registro.id">
+                        <t t-if="plan.report_excel">
+                          <td>
+                            <t t-if="registro.excel_dosi_binary">
+                            <a class="btn btn-info" role="button" t-attf-href="/web/content?model=registro.monitoreo&amp;field=excel_dosi_binary&amp;id={{registro.id}}&amp;filename={{registro.excel_dosi}}&amp;download=true">
+                                <i class="fa fa-file-excel-o" style="font-size:20px"></i>
+                            </a>
+                            </t>
+                          </td>
+                        </t>
+                        <t t-else="">
+                          <td class="line-excel">
+                            <a class="btn btn-info text-light file-gratis"  role="button">
+                              <i class="fa fa-file-excel-o" style="font-size:20px"></i>
+                            </a>
+                          </td>
+                        </t>
+                    </div>
+                </div>
+            </div>
+            </div>
+            </div>
+        </form>
+      </div>
+      </div>
+    </t>
+  </template>
+</odoo>

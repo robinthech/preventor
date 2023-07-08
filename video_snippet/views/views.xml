@@ -1,0 +1,105 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="product_template_form_view_inherited">
+            <field name="name">product.template.form.view.inherited</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='description']" position="after">
+                    <field name="url"/>
+                    <field name="modulo"/>
+                    <field name="planes"/>
+                    <field name="solve_file_ids"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="sale_order_custom" model="ir.ui.view">
+            <field name="name">sale.order.custom</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree/field[@name='product_id']" position="after">
+                    <field name="plan_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="preventor_video_tree">
+            <field name="name">planes.planes.tree</field>
+            <field name="model">planes.planes</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="precio"/>
+                    <field name="product_id"/>
+                    <field name="usuario_ids"/>
+                    <!-- <field name="imagen" widget="image" class="float-left oe_avatar"/> -->
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="preventor_video_form">
+            <field name="name">planes.planes.form</field>
+            <field name="model">planes.planes</field>
+            <field name="arch" type="xml">
+                <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="precio" widget="monetary"/>
+                        <field name="product_id"/>
+                    </group>
+                    <group>
+                        <field name="limite_registro"/>
+                        <field name="limite_usuarios" />
+                        <field name="limite_puntos" />
+                        <field name="report_excel"/>
+                    </group>
+                    <field name="usuario_ids" mode="tree">
+                      <tree editable="top">
+                        <field name="planes_id" invisible="True"/>
+                        <field name="user_id"/>
+                        <field name="fecha"/>
+                      </tree>
+                    </field>
+                </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="video_accion">
+            <field name="name">Planes</field>
+            <field name="res_model">planes.planes</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Planes" action="video_snippet.video_accion" id="video_snippet.menu_principal"/>
+
+
+        <record id="company_view_culqi" model="ir.ui.view">
+            <field name="name">view.culqi</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page string="Culqi">
+                        <group>
+                            <field name="mode"/>
+                        </group>
+                        <group string="Test">
+                            <field name="culqi_pk_test" string="Culqi Public Key"/>
+                            <field name="culqi_sk_test" string="Culqi Secret Key"/>
+                        </group>
+                        <group string="Live">
+                            <field name="culqi_pk_live" string="Culqi Public Live"/>
+                            <field name="culqi_sk_live" string="Culqi Secret Live"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,108 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="evaluacion_psicosocial_multi_tree">
+      <field name="name">evaluacion.psicosocial.multi.tree</field>
+      <field name="model">evaluacion.psicosocial.multi</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="empresa"/>
+          <field name="fecha"/>
+          <field name="user_id"/>
+          <field name="psicosocial71"/>
+          <field name="psicosocial72"/>
+          <field name="psicosocial73"/>
+          <field name="psicosocial74"/>
+          <field name="psicosocial75"/>
+          <field name="psicosocial81"/>
+          <field name="psicosocial82"/>
+          <field name="psicosocial83"/>
+          <field name="psicosocial84"/>
+          <field name="psicosocial85"/>
+          <field name="psicosocial91"/>
+          <field name="psicosocial92"/>
+          <field name="psicosocial93"/>
+          <field name="psicosocial94"/>
+          <field name="psicosocial95"/>
+          <field name="psicosocial101"/>
+          <field name="psicosocial102"/>
+          <field name="psicosocial103"/>
+          <field name="psicosocial111"/>
+          <field name="psicosocial112"/>
+          <field name="estado" string="¿Esta finalizado?"/>
+        </tree>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="evaluacion_psicosocial_multi_form">
+      <field name="name">evaluacion.psicosocial.multi.form</field>
+      <field name="model">evaluacion.psicosocial.multi</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="fecha"/>
+              <field name="estado" string="¿Esta finalizado?"/>
+              <field name="area"/>
+              <field name="puesto"/>
+              <field name="empresa"/>
+              <field name="tipo"/>
+              <field name="sede"/>
+              <field name="user_id"/>
+              <field name="sexo"/>
+              <field name="edad"/>
+              <field name="tiempo"/>
+              <field name="jornada"/>
+              <field name="horario"/>
+              <field name="riesgo_trabajo"/>
+              <field name="riesgo_psicologicas"/>
+              <field name="riesgo_apoyo"/>
+              <field name="riesgo_compensaciones"/>
+              <field name="riesgo_presencia"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="empresa_multi_form">
+      <field name="name">EMPRESA</field>
+      <field name="model">empresa.multicompania</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="evaluacion_ids" invisible="True"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="survey_survey_inherit_form">
+      <field name="name">SurveyInherit</field>
+      <field name="model">survey.survey</field>
+      <field name="inherit_id" ref="survey.survey_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='questions_layout']" position="after">
+            <field name="deadline"/>
+        </xpath>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="psicosocial_accion">
+      <field name="name">PSICOSOCIAL</field>
+      <field name="res_model">evaluacion.psicosocial.multi</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    <record model="ir.actions.act_window" id="empresa_accion">
+      <field name="name">EMPRESA</field>
+      <field name="res_model">empresa.multicompania</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem name="Psicosocial" action="psicosocial_multi.psicosocial_accion" id="psicosocial_multi.menu_principal"/>
+    <menuitem name="Evaluaciones" action="psicosocial_multi.psicosocial_accion" id="psicosocial_multi.menu_evaluaciones" parent="psicosocial_multi.menu_principal"/>
+    <menuitem name="Empresas" action="psicosocial_multi.empresa_accion" id="psicosocial_multi.menu_1" parent="psicosocial_multi.menu_principal"/>
+  </data>
+</odoo>

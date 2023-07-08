@@ -1,0 +1,174 @@
+<odoo>
+    <data>
+      <record id="model_access_portal_permisos_3" model="ir.model.access">
+          <field name="name">model.access.portalpermisos.3</field>
+          <field name="group_id" ref="base.group_portal"/>
+          <field name="model_id" ref="website_permiso.model_permiso_trabajo"/>
+          <field name="perm_read" eval="1"/>
+          <field name="perm_create" eval="1"/>
+          <field name="perm_write" eval="1"/>
+          <field name="perm_unlink" eval="1"/>
+      </record>
+
+      <record id="model_access_portal_tipo_permisos_3" model="ir.model.access">
+          <field name="name">model.access.portaltipo.permisos.3</field>
+          <field name="group_id" ref="base.group_portal"/>
+          <field name="model_id" ref="website_permiso.model_tipo_permiso"/>
+          <field name="perm_read" eval="1"/>
+          <field name="perm_create" eval="1"/>
+          <field name="perm_write" eval="1"/>
+          <field name="perm_unlink" eval="1"/>
+      </record>
+
+      <record id="model_access_portal_area_3" model="ir.model.access">
+          <field name="name">model.access.portalarea.3</field>
+          <field name="group_id" ref="base.group_portal"/>
+          <field name="model_id" ref="website_permiso.model_area_area"/>
+          <field name="perm_read" eval="1"/>
+          <field name="perm_create" eval="1"/>
+          <field name="perm_write" eval="1"/>
+          <field name="perm_unlink" eval="1"/>
+      </record>
+
+      <record id="model_access_portal_sub_area_3" model="ir.model.access">
+          <field name="name">model.access.portalsub.area.3</field>
+          <field name="group_id" ref="base.group_portal"/>
+          <field name="model_id" ref="website_permiso.model_sub_area"/>
+          <field name="perm_read" eval="1"/>
+          <field name="perm_create" eval="1"/>
+          <field name="perm_write" eval="1"/>
+          <field name="perm_unlink" eval="1"/>
+      </record>
+
+      <record id="model_access_portal_empresa_3" model="ir.model.access">
+          <field name="name">model.access.portalempresa.3</field>
+          <field name="group_id" ref="base.group_portal"/>
+          <field name="model_id" ref="website_permiso.model_empresa_empresa"/>
+          <field name="perm_read" eval="1"/>
+          <field name="perm_create" eval="1"/>
+          <field name="perm_write" eval="1"/>
+          <field name="perm_unlink" eval="1"/>
+      </record>
+
+      <record id="model_access_portal_permiso_trabajador_3" model="ir.model.access">
+          <field name="name">model.access.portalpermiso.trabajador.3</field>
+          <field name="group_id" ref="base.group_portal"/>
+          <field name="model_id" ref="website_permiso.model_permiso_trabajador"/>
+          <field name="perm_read" eval="1"/>
+          <field name="perm_create" eval="1"/>
+          <field name="perm_write" eval="1"/>
+          <field name="perm_unlink" eval="1"/>
+      </record>
+
+      <record id="model_access_portal_trabajador_3" model="ir.model.access">
+          <field name="name">model.access.portaltrabajador.3</field>
+          <field name="group_id" ref="base.group_portal"/>
+          <field name="model_id" ref="website_permiso.model_trabajador_trabajador"/>
+          <field name="perm_read" eval="1"/>
+          <field name="perm_create" eval="1"/>
+          <field name="perm_write" eval="1"/>
+          <field name="perm_unlink" eval="1"/>
+      </record>
+
+      <record id="model_access_portal_requisito_3" model="ir.model.access">
+          <field name="name">model.access.portalrequisito.3</field>
+          <field name="group_id" ref="base.group_portal"/>
+          <field name="model_id" ref="website_permiso.model_requisito_requisito"/>
+          <field name="perm_read" eval="1"/>
+          <field name="perm_create" eval="1"/>
+          <field name="perm_write" eval="1"/>
+          <field name="perm_unlink" eval="1"/>
+      </record>
+
+      <record id="model_access_portal_tipo_requisito_3" model="ir.model.access">
+          <field name="name">model.access.portaltipo.requisito.3</field>
+          <field name="group_id" ref="base.group_portal"/>
+          <field name="model_id" ref="website_permiso.model_tipo_requisito"/>
+          <field name="perm_read" eval="1"/>
+          <field name="perm_create" eval="1"/>
+          <field name="perm_write" eval="1"/>
+          <field name="perm_unlink" eval="1"/>
+      </record>
+
+      <record id="model_access_portal_requisito_permiso_3" model="ir.model.access">
+          <field name="name">model.access.portalrequisito.permiso.3</field>
+          <field name="group_id" ref="base.group_portal"/>
+          <field name="model_id" ref="website_permiso.model_requisito_permiso"/>
+          <field name="perm_read" eval="1"/>
+          <field name="perm_create" eval="1"/>
+          <field name="perm_write" eval="1"/>
+          <field name="perm_unlink" eval="1"/>
+      </record>
+
+      <record id="model_access_portal_sequence_3" model="ir.model.access">
+          <field name="name">model.access.sequence.permiso.3</field>
+          <field name="group_id" ref="base.group_portal"/>
+          <field name="model_id" ref="base.model_ir_sequence"/>
+          <field name="perm_read" eval="1"/>
+          <field name="perm_create" eval="1"/>
+          <field name="perm_write" eval="1"/>
+          <field name="perm_unlink" eval="1"/>
+      </record>
+
+      <record id="model_access_sede_sede_portal" model="ir.model.access">
+          <field name="name">model.access.sede.sede.portal</field>
+          <field name="group_id" ref="base.group_portal"/>
+          <field name="model_id" ref="website_permiso.model_sede_sede"/>
+          <field name="perm_read" eval="1"/>
+          <field name="perm_create" eval="1"/>
+          <field name="perm_write" eval="1"/>
+          <field name="perm_unlink" eval="1"/>
+      </record>
+
+      <record id="model_access_contratista_contratista_portal" model="ir.model.access">
+          <field name="name">model.access.contratista.contratista.portal</field>
+          <field name="group_id" ref="base.group_portal"/>
+          <field name="model_id" ref="website_permiso.model_contratista_contratista"/>
+          <field name="perm_read" eval="1"/>
+          <field name="perm_create" eval="1"/>
+          <field name="perm_write" eval="1"/>
+          <field name="perm_unlink" eval="1"/>
+      </record>
+
+      <record id="model_access_trabajador_contratista_portal" model="ir.model.access">
+          <field name="name">model.access.trabajador.contratista.portal</field>
+          <field name="group_id" ref="base.group_portal"/>
+          <field name="model_id" ref="website_permiso.model_trabajador_contratista"/>
+          <field name="perm_read" eval="1"/>
+          <field name="perm_create" eval="1"/>
+          <field name="perm_write" eval="1"/>
+          <field name="perm_unlink" eval="1"/>
+      </record>
+
+      <record id="model_access_res_users_portal" model="ir.model.access">
+          <field name="name">model.access.res.users.portal</field>
+          <field name="group_id" ref="base.group_portal"/>
+          <field name="model_id" ref="base.model_res_users"/>
+          <field name="perm_read" eval="1"/>
+          <field name="perm_create" eval="1"/>
+          <field name="perm_write" eval="1"/>
+          <field name="perm_unlink" eval="1"/>
+      </record>
+
+      <record id="model_access_requisito_trabajador_interno_portal" model="ir.model.access">
+          <field name="name">model.access.requisito_trabajador</field>
+          <field name="group_id" ref="base.group_portal"/>
+          <field name="model_id" ref="website_permiso.model_requisito_trabajador"/>
+          <field name="perm_read" eval="1"/>
+          <field name="perm_create" eval="1"/>
+          <field name="perm_write" eval="1"/>
+          <field name="perm_unlink" eval="1"/>
+      </record>
+
+      <record id="model_access_requisito_estandar_interno_portal" model="ir.model.access">
+          <field name="name">model.access.requisito.estandar</field>
+          <field name="group_id" ref="base.group_portal"/>
+          <field name="model_id" ref="website_permiso.model_requisito_estandar"/>
+          <field name="perm_read" eval="1"/>
+          <field name="perm_create" eval="1"/>
+          <field name="perm_write" eval="1"/>
+          <field name="perm_unlink" eval="1"/>
+      </record>
+
+    </data>
+  </odoo>

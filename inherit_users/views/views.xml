@@ -1,0 +1,17 @@
+<odoo>
+  <data>
+    <record id="user_form_2" model="ir.ui.view">
+      <field name="name">user.form.2</field>
+      <field name="model">res.users</field>
+      <field name="inherit_id" ref="base.view_users_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='signature']" position="after">
+          <group>
+            <field name="parent_id" string="Agregado por"/>
+            <field name="perfil"/>
+          </group>
+        </xpath>
+      </field>
+    </record>
+    </data>
+</odoo>

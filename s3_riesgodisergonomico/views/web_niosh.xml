@@ -1,0 +1,733 @@
+<odoo>
+  <template id="list_niosh" name="Lista de Registros de Monitoreo - niosh">
+    <t t-call="s3_riesgodisergonomico.ventana_navegacion_menu">
+
+      <div id="content" class="p-3 planid mx-auto my-2" t-att-data-plan_id="plan.id">
+        <button type="button" id="sidebarCollapse" class="btn btn-info display-none">
+          <i class="fa fa-arrow-left"></i>
+        </button>
+        <div class="alert alert-primary text-center mb-5" role="alert">
+          <h4>niosh</h4>
+        </div>
+
+        <form method="POST">
+          <div class="row m-1">
+            <div class="col-sm-12 bg-primary text-center border border-dark">
+              <strong>REGISTROS DE MONITOREO</strong>
+            </div>
+          </div>
+
+          <p></p>
+
+          <div class="row m-1">
+            <div class="col-sm-4 bg-primary text-center border border-dark">
+              <strong>RUC</strong>
+            </div>
+            <div class="col-sm-8 text-center border border-dark">
+              <strong><span t-field="registro.ruc"/></strong>
+            </div>
+          </div>
+          <div class="row m-1">
+            <div class="col-sm-4 bg-primary text-center border border-dark">
+              <strong>RAZON SOCIAL</strong>
+            </div>
+            <div class="col-sm-8 text-center border border-dark">
+              <strong><span t-field="registro.cliente"/></strong>
+            </div>
+          </div>
+
+          <p></p>
+
+          <div class="row m-1">
+            <div class="col-sm-4 bg-primary text-center border border-dark">
+              <strong>NUMERO DE PUNTOS POR AGENTE</strong>
+            </div>
+            <div class="col-sm-4 bg-primary text-center border border-dark">
+              <strong>FECHA INICIO</strong>
+            </div>
+            <div class="col-sm-4 bg-primary text-center border border-dark">
+              <strong>FECHA FIN</strong>
+            </div>
+          </div>
+          <div class="row m-1">
+            <t t-set="cont" t-value="0"/>
+            <t t-foreach="registro.niosh_ids" t-as="sono">
+              <t t-set="cont" t-value="cont + 1"/>
+            </t>
+            <div class="col-sm-4 text-center border border-dark">
+              <strong><span t-esc="cont"/></strong>
+            </div>
+            <div class="col-sm-4 text-center border border-dark">
+              <strong><span t-field="registro.fecha_monitoreo"/></strong>
+            </div>
+            <div class="col-sm-4 text-center border border-dark">
+              <strong><span t-field="registro.fecha_monitoreo_fin"/></strong>
+            </div>
+          </div>
+          <p></p>
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">DATOS</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">RESULTADO</a>
+            </li>
+
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+              <div class="py-7">
+                <div class="table-responsive">
+                  <table id="resumen" class="table table-hover table-bordered responsive nowrap" style="width:100%; text-align: center;">
+                    <thead>
+                      <tr class="table-active bg-primary">
+                        <th class="align-middle">N°</th>
+                        <th class="align-middle">Area</th>
+                        <th class="align-middle">Puesto de Trabajo</th>
+                        <th class="align-middle">Empleado</th>
+                        <th class="align-middle"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <t t-set="counter" t-value="0"/>
+                      <t t-foreach="registro.niosh_ids" t-as="niosh">
+
+                        <t t-set="counter" t-value="counter + 1"/>
+                        <tr class="row_registro">
+                          <td>
+                            <span class="align-middle" t-esc="counter"/>
+                          </td>
+                          <td>
+                            <span class="align-middle" t-field="niosh.area"/>
+                          </td>
+                          <td >
+                            <span class="align-middle" t-field="niosh.puesto_trabajo"/>
+                          </td>
+                          <td>
+                            <span class="align-middle" t-field="niosh.empleado"/>
+                          </td>
+                          <td >
+                            <a class="btn btn-success" t-att-href="'/riesgo-disergonomico/niosh/form/%s' % (niosh.id)" role="button">
+                              <i class="fa fa-pencil-square-o"></i>
+                            </a>
+                          </td>
+                        </tr>
+                      </t>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+            </div>
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+              <div class="py-7">
+                <div class="table-responsive">
+                  <table id="resumen" class="table table-hover table-bordered responsive nowrap" style="width:100%; text-align: center;">
+                    <thead>
+                      <tr class="table-active bg-primary">
+                        <th class="align-middle">N°</th>
+                        <th class="align-middle">RESULTADO GRUPO A</th>
+                        <th class="align-middle">RESULTADO GRUPO B</th>
+                        <th class="align-middle">PUNTAJE FINAL</th>
+                        <th class="align-middle">NIVEL DE RIESGO</th>
+                        <th class="align-middle">SITUACIÓN DE TRABAJO</th>
+                        <th class="align-middle">CUMPLE</th>
+                      </tr>
+                    </thead>
+
+                  </table>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="row m-1">
+            <div class="col-sm-4 text-center">
+              <button type="button" class="btn btn-secondary" data-toggle="modal" t-attf-data-target="#modalniosh">CREAR</button>
+            </div>
+            <div class="col-sm-4 text-center">
+              <strong></strong>
+            </div>
+            <div class="col-sm-4 text-center">
+              <a class="btn btn-secondary" t-att-href="'/registros/%s' % (registro.id)" role="button">REGRESAR</a>
+            </div>
+          </div>
+          <div class="modal fade row_registro" t-attf-id="modalniosh" t-att-aria-hidden="true" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="mx-auto  modal-xl modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">niosh</h5>
+                </div>
+                <div class="modal-body">
+                  <form class="registro_sonometria">
+                    <div class="form-group row">
+                      <input name="id" type="text" t-attf-value="{{registro.id}}" class="d-none" placeholder="ID"/>
+
+                      <label for="area" class="col-sm-2 col-form-label">Area</label>
+                      <div class="col-sm-10">
+                        <input name="area" type="text" class="form-control area" placeholder="Area"/>
+                      </div>
+                      <label for="puesto_trabajo" class="col-sm-2 col-form-label">Puesto de Trabajo</label>
+                      <div class="col-sm-10">
+                        <input type="text" name="puesto_trabajo" class="form-control puesto_trabajo" placeholder="Puesto de Trabajo"/>
+                      </div>
+                      <label for="empleado" class="col-sm-2 col-form-label">Trabajador</label>
+                      <div class="col-sm-10">
+                        <input name="empleado" type="text" class="form-control empleado" placeholder="Empleado"/>
+                      </div>
+
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Descartar</button>
+                  <!--Guardar requiere de js-->
+                  <button type="button" class="btn btn-primary botton-crear-niosh">Guardar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+
+      </div>
+
+    </t>
+  </template>
+
+  <template id="form_niosh" name="formulario de Registros de Monitoreo - niosh">
+    <t t-call="s3_riesgodisergonomico.ventana_navegacion_menu">
+
+      <div id="content" class="m-5 p-3 planid mx-auto" t-att-data-plan_id="plan.id">
+        <button type="button" id="sidebarCollapse" class="btn btn-info display-none">
+          <i class="fa fa-arrow-left"></i>
+        </button>
+        <div class="form-group " id="formulario_editar_field_niosh" t-att-data-model_id="model" t-att-data-record_id="niosh.id">
+          <table class="table table-bordered" style="table-layout: auto;border-bottom:0px;border-left:0px">
+            <thead>
+              <tr>
+                <th colspan="8" class="bg-primary text-center">
+                  <h3>niosh</h3>
+                </th>
+              </tr>
+              <tr>
+                <th colspan="8" class="bg-success text-left">DATOS DEL EMPLEADOR</th>
+              </tr>
+              <tr class="text-center bg-primary">
+                <th scope="col" rowspan="2" colspan="2" style="width:25%;vertical-align:middle">Area</th>
+                <th scope="col" rowspan="2" style="width:13%;vertical-align:middle">Puesto de Trabajo</th>
+                <th scope="col" rowspan="2" colspan="2" style="width:20%;vertical-align:middle">Trabajador</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="bg-primary">
+                <td colspan="2"><input type="text" name="cliente" class="border-0 form-control linea_programa" t-att-value="niosh.area"/></td>
+                <td ><input type="text" name="ruc" class="border-0 form-control linea_programa" t-att-value="niosh.puesto_trabajo" placeholder="Puesto de Trabajo"/></td>
+                <td colspan="2"><input type="text" name="domicilio" class="border-0 form-control linea_programa" t-att-value="niosh.empleado" placeholder="Empleado"/></td>
+              </tr>
+            </tbody>
+          </table>
+          <ul class="nav nav-tabs" t-attf-id="myTab{{niosh.id}}" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link " t-attf-id="factores-tab{{niosh.id}}" data-toggle="tab" t-attf-href="#factores{{niosh.id}}" role="tab" t-attf-aria-controls="factores{{niosh.id}}" aria-selected="false">FACTORES DE RIESGO DISERGONÓMICO</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" t-attf-id="datos-tab{{niosh.id}}" data-toggle="tab" t-attf-href="#datos{{niosh.id}}" role="tab" t-attf-aria-controls="datos{{niosh.id}}" aria-selected="true">DATOS</a>
+            </li>
+          </ul>
+          <div class="tab-content" t-attf-id="myTabContent{{niosh.id}}">
+            <div class="tab-pane fade " t-attf-id="factores{{niosh.id}}" role="tabpanel" t-attf-aria-labelledby="factores-tab{{niosh.id}}">
+
+              <div class="row my-2  border border-dark text-center align-middle">
+                <div class="col-3  d-flex flex-column border  bg-primary">
+                  Posturas incómodas o forzadas
+                </div>
+                <div class="col-9 d-flex flex-column border">
+                  <div class="row flex border">
+                    <div class="col-11 border ">
+                      Las manos por encima de la cabeza(*)
+                    </div>
+                    <div class="col-1 border ">
+                      <t t-if="niosh.postura_1"><input name="postura_1" type="checkbox" t-attf-value="{{niosh.postura_1}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="postura_1" type="checkbox" t-attf-value="{{niosh.postura_1}}" class="field-odoo"/></t>
+                    </div>
+                  </div>
+                  <div class="row flex border">
+                    <div class="col-11 border">
+                      Codos por encima del hombro(*)
+                    </div>
+                    <div class="col-1 border ">
+                      <t t-if="niosh.postura_2"><input name="postura_2" type="checkbox" t-attf-value="{{niosh.postura_2}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="postura_2" type="checkbox" t-attf-value="{{niosh.postura_2}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+                  <div class="row flex border">
+                    <div class="col-11 border">
+                      Espalda inclinada hacia adelante más de 30 grados (*)
+                    </div>
+                    <div class="col-1 border">
+                      <t t-if="niosh.postura_3"><input name="postura_3" type="checkbox" t-attf-value="{{niosh.postura_3}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="postura_3" type="checkbox" t-attf-value="{{niosh.postura_3}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+                  <div class="row flex border ">
+                    <div class="col-11 border ">
+                      Espalda en extensión más de 30 grados (*)
+                    </div>
+                    <div class="col-1 border">
+                      <t t-if="niosh.postura_4"><input name="postura_4" type="checkbox" t-attf-value="{{niosh.postura_4}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="postura_4" type="checkbox" t-attf-value="{{niosh.postura_4}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+                  <div class="row flex border">
+                    <div class="col-11 border">
+                      Cuello doblado/ girado más de 30 grados
+                    </div>
+                    <div class="col-1 border">
+                      <t t-if="niosh.postura_5"><input name="postura_5" type="checkbox" t-attf-value="{{niosh.postura_5}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="postura_5" type="checkbox" t-attf-value="{{niosh.postura_5}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+                  <div class="row flex border">
+                    <div class="col-11 border">
+                      Estando sentado, espalda inclinada hacia adelante más de 30 grados(*)
+                    </div>
+                    <div class="col-1 border">
+                      <t t-if="niosh.postura_6"><input name="postura_6" type="checkbox" t-attf-value="{{niosh.postura_6}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="postura_6" type="checkbox" t-attf-value="{{niosh.postura_6}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+                  <div class="row flex border">
+                    <div class="col-11 border">
+                      Estando sentado, espalda girada o lateralizada más de 30 grados (*)
+                    </div>
+                    <div class="col-1 border">
+                      <t t-if="niosh.postura_7"><input name="postura_7" type="checkbox" t-attf-value="{{niosh.postura_7}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="postura_7" type="checkbox" t-attf-value="{{niosh.postura_7}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+                  <div class="row flex border">
+                    <div class="col-11 border">
+                      De cuclillas (*)
+                    </div>
+                    <div class="col-1 border">
+                      <t t-if="niosh.postura_8"><input name="postura_8" type="checkbox" t-attf-value="{{niosh.postura_8}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="postura_8" type="checkbox" t-attf-value="{{niosh.postura_8}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+                  <div class="row flex border">
+                    <div class="col-11 border">
+                      De rodillas (*)
+                    </div>
+                    <div class="col-1 border">
+                      <t t-if="niosh.postura_9"><input name="postura_9" type="checkbox" t-attf-value="{{niosh.postura_9}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="postura_9" type="checkbox" t-attf-value="{{niosh.postura_9}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+                  <div class="row flex border">
+                    <div class="col-11 border">
+                      (*)Más de 2 horas en total por día.
+                    </div>
+                    <div class="col-1 border">
+                      <t t-if="niosh.postura_10"><input name="postura_10" type="checkbox" t-attf-value="{{niosh.postura_10}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="postura_10" type="checkbox" t-attf-value="{{niosh.postura_10}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row my-2  border border-dark text-center align-middle">
+                <div class="col-3  d-flex flex-column border  bg-primary">
+                  Levantamiento de carga frecuente
+                </div>
+                <div class="col-9 d-flex flex-column border">
+                  <div class="row flex border">
+                    <div class="col-11 ">
+                      40 KG. Una vez/ día (*)
+                    </div>
+                    <div class="col-1 border ">
+                      <t t-if="niosh.levantamiento_1"><input name="levantamiento_1" type="checkbox" t-attf-value="{{niosh.levantamiento_1}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="levantamiento_1" type="checkbox" t-attf-value="{{niosh.levantamiento_1}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+                  <div class="row flex border">
+                    <div class="col-11 border">
+                      25 KG. Más de doce veces / hora (*)
+                    </div>
+                    <div class="col-1 border ">
+                      <t t-if="niosh.levantamiento_2"><input name="levantamiento_2" type="checkbox" t-attf-value="{{niosh.levantamiento_2}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="levantamiento_2" type="checkbox" t-attf-value="{{niosh.levantamiento_2}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+                  <div class="row flex border">
+                    <div class="col-11 border">
+                      5 KG. Más de doce veces / minuto (*)
+                    </div>
+                    <div class="col-1 border">
+                      <t t-if="niosh.levantamiento_3"><input name="levantamiento_3" type="checkbox" t-attf-value="{{niosh.levantamiento_3}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="levantamiento_3" type="checkbox" t-attf-value="{{niosh.levantamiento_3}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+                  <div class="row flex border ">
+                    <div class="col-11 border ">
+                      Menos de 3 Kg. Más de cuatro veces / min (*)
+                    </div>
+                    <div class="col-1 border">
+                      <t t-if="niosh.levantamiento_4"><input name="levantamiento_4" type="checkbox" t-attf-value="{{niosh.levantamiento_4}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="levantamiento_4" type="checkbox" t-attf-value="{{niosh.levantamiento_4}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+                  <div class="row flex border">
+                    <div class="col-11 border">
+                      (*) Durante más de 2 horas por día
+                    </div>
+                    <div class="col-1 border">
+                      <t t-if="niosh.levantamiento_5"><input name="levantamiento_5" type="checkbox" t-attf-value="{{niosh.levantamiento_5}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="levantamiento_5" type="checkbox" t-attf-value="{{niosh.levantamiento_5}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+              <div class="row my-2  border border-dark text-center align-middle">
+                <div class="col-3  d-flex flex-column border  bg-primary">
+                  Esfuerzo de manos y muñecas
+                </div>
+                <div class="col-9 d-flex flex-column border">
+                  <div class="row flex border">
+                    <div class="col-11 ">
+                      Si se manipula y sujeta en pinza un objeto de mas de 1kg. (*)
+                    </div>
+                    <div class="col-1 border ">
+                      <t t-if="niosh.esfuerzo_1"><input name="esfuerzo_1" type="checkbox" t-attf-value="{{niosh.esfuerzo_1}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="esfuerzo_1" type="checkbox" t-attf-value="{{niosh.esfuerzo_1}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+                  <div class="row flex border">
+                    <div class="col-11 border">
+                      Si las muñecas están flexionadas en extensión, giradas o lateralizadas haciendo un agarre con fuerza. (*)
+                    </div>
+                    <div class="col-1 border ">
+                      <t t-if="niosh.esfuerzo_2"><input name="esfuerzo_2" type="checkbox" t-attf-value="{{niosh.esfuerzo_2}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="esfuerzo_2" type="checkbox" t-attf-value="{{niosh.esfuerzo_2}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+                  <div class="row flex border">
+                    <div class="col-11 border">
+                      Si se ejecuta la acción de atornillar de forma intensa (*)
+                    </div>
+                    <div class="col-1 border">
+                      <t t-if="niosh.esfuerzo_3"><input name="esfuerzo_3" type="checkbox" t-attf-value="{{niosh.esfuerzo_3}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="esfuerzo_3" type="checkbox" t-attf-value="{{niosh.esfuerzo_3}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+                  <div class="row flex border ">
+                    <div class="col-11 border ">
+                      (*)Más de 2 horas por día.
+                    </div>
+                    <div class="col-1 border">
+                      <t t-if="niosh.esfuerzo_4"><input name="esfuerzo_4" type="checkbox" t-attf-value="{{niosh.esfuerzo_4}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="esfuerzo_4" type="checkbox" t-attf-value="{{niosh.esfuerzo_4}}" class="field-odoo"/></t>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row my-2  border border-dark text-center align-middle">
+                <div class="col-3  d-flex flex-column border  bg-primary">
+                  Movimientos repetitivos con alta frecuencia
+                </div>
+                <div class="col-9 d-flex flex-column border">
+                  <div class="row flex border">
+                    <div class="col-11 ">
+                      El trabajador repite el mismo movimiento muscular más de 4 veces/ min. durante más de 2 horas por día. En los siguientes grupos musculares: Cuello, hombros, codos, muñecas, manos.
+                    </div>
+                    <div class="col-1 border ">
+                      <t t-if="niosh.movimiento_1"><input name="movimiento_1" type="checkbox" t-attf-value="{{niosh.movimiento_1}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="movimiento_1" type="checkbox" t-attf-value="{{niosh.movimiento_1}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row my-2  border border-dark text-center align-middle">
+                <div class="col-3  d-flex flex-column border  bg-primary">
+                  Impacto repetido
+                </div>
+                <div class="col-9 d-flex flex-column border">
+                  <div class="row flex border">
+                    <div class="col-11 ">
+                      Usando manos o rodillas como un martillo mas de 10 veces por hora, más de 2 horas por día.
+                    </div>
+                    <div class="col-1 border ">
+                      <t t-if="niosh.impacto_1"><input name="impacto_1" type="checkbox" t-attf-value="{{niosh.impacto_1}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="impacto_1" type="checkbox" t-attf-value="{{niosh.impacto_1}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row my-2  border border-dark text-center align-middle">
+                <div class="col-3  d-flex flex-column border  bg-primary">
+                  Vibración de brazo-mano de moderada a alta
+                </div>
+                <div class="col-9 d-flex flex-column border">
+                  <div class="row flex border">
+                    <div class="col-11 ">
+                      Nivel moderado: más de 30 min./ día.
+                    </div>
+                    <div class="col-1 border ">
+                      <t t-if="niosh.vibracion_1"><input name="vibracion_1" type="checkbox" t-attf-value="{{niosh.vibracion_1}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="vibracion_1" type="checkbox" t-attf-value="{{niosh.vibracion_1}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+                  <div class="row flex border">
+                    <div class="col-11 ">
+                      Nivel alto: 2horas/ día
+                    </div>
+                    <div class="col-1 border ">
+                      <t t-if="niosh.vibracion_2"><input name="vibracion_2" type="checkbox" t-attf-value="{{niosh.vibracion_2}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="vibracion_2" type="checkbox" t-attf-value="{{niosh.vibracion_2}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="tab-pane fade show active" t-attf-id="datos{{niosh.id}}" role="tabpanel" t-attf-aria-labelledby="datos-tab{{niosh.id}}">
+
+              <form class="registro_niosh">
+                <div class="form-group my-5">
+                  <br/>
+                  <button type="button" class="btn btn-primary botton-guardar-field-data float-right">Guardar</button>
+                  <br/>
+                  <br/>
+                  <input name="counter" type="text" class="d-none" t-attf-value="{{counter}}" placeholder="Contador"/>
+                  <br/>
+                  <div class="row">
+                    <label for="area" class="col-sm-4 col-form-label">Area</label>
+                    <div class="col-sm-8">
+                      <input name="area" type="text" class="field-odoo" t-attf-value="{{niosh.area}}" placeholder="Area"/>
+                    </div>
+                  </div>
+                  <br/>
+                  <div class="row">
+                    <label for="puesto_trabajo" class="col-sm-4 col-form-label">Puesto de Trabajo</label>
+                    <div class="col-sm-8">
+                      <input type="text" name="puesto_trabajo" class="field-odoo" t-attf-value="{{niosh.puesto_trabajo}}" placeholder="Puesto de Trabajo"/>
+                    </div>
+                  </div>
+                  <br/>
+                  <div class="row">
+                    <label for="masa" class="col-sm-4 col-form-label">MASA DEL OBJETO A LEVANTAR  m ≤ mref ESPECIFICA</label>
+                    <div class="col-sm-8">
+                      <input type="number" name="masa" class="field-odoo" t-attf-value="{{niosh.masa}}" placeholder="Masas"/>
+                    </div>
+                  </div>
+                  <br/>
+                  <div class="row">
+                    <label for="distancia" class="col-sm-4 col-form-label">Distancia horizontal (h)</label>
+                    <div class="col-sm-8">
+                      <input type="number" name="distancia" class="field-odoo" t-attf-value="{{niosh.distancia}}" placeholder="Distancia"/>
+                    </div>
+                  </div>
+                  <br/>
+                  <div class="row">
+                    <label for="posicion_inicial" class="col-sm-4 col-form-label">Posición Vertical Inicial (v)</label>
+                    <div class="col-sm-8">
+                      <input type="number" name="posicion_inicial" class="field-odoo" t-attf-value="{{niosh.posicion_inicial}}"/>
+                    </div>
+                  </div>
+                  <br/>
+                  <div class="row">
+                    <label for="posicion_final" class="col-sm-4 col-form-label">Posición Vertical Final</label>
+                    <div class="col-sm-8">
+                      <input type="number" name="posicion_final" class="field-odoo" t-attf-value="{{niosh.posicion_final}}"/>
+                    </div>
+                  </div>
+                  <br/>
+                  <div class="row">
+                    <label for="frecuencia" class="col-sm-4 col-form-label">Frecuencia de Levantamiento (F) ** /minuto</label>
+                    <div class="col-sm-8">
+                      <input type="number" name="frecuencia" class="field-odoo" t-attf-value="{{niosh.frecuencia}}"/>
+                    </div>
+                  </div>
+                  <br/>
+                  <div class="row">
+                    <label for="calidad" class="col-sm-4 col-form-label">Calidad  de Agarre ( c )</label>
+                    <div class="col-sm-8">
+
+                      <select name="calidad" class="field-odoo">
+                            <t t-if="'Bueno' == niosh.calidad">
+                              <option value="Bueno" selected="selected">Bueno</option>
+                              <option value="Regular" >Regular</option>
+                              <option value="Malo" >Malo</option>
+                            </t>
+                            <t t-if="'Regular' == niosh.calidad">
+                              <option value="Bueno" >Bueno</option>
+                              <option value="Regular" selected="selected">Regular</option>
+                              <option value="Malo" >Malo</option>
+                            </t>
+                            <t t-if="'Malo' == niosh.calidad">
+                              <option value="Bueno" >Bueno</option>
+                              <option value="Regular" >Regular</option>
+                              <option value="Malo" selected="selected">Malo</option>
+                            </t>
+                      </select>
+                    </div>
+                  </div>
+                  <br/>
+                  <div class="row">
+                    <label for="angulo" class="col-sm-4 col-form-label">Angulo de asimetria</label>
+                    <div class="col-sm-8">
+                      <input type="number" name="angulo" class="field-odoo" t-attf-value="{{niosh.angulo}}" />
+                    </div>
+                  </div>
+
+                  <br/>
+                  <div class="row">
+                    <label for="duracion" class="col-sm-4 col-form-label">Duración del Trabajo (Horas)</label>
+                    <div class="col-sm-8">
+                      <input type="number" name="duracion" class="field-odoo" t-attf-value="{{niosh.duracion}}" />
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <div class="alert alert-info text-center" role="alert">
+                RESULTADOS
+                </div>
+              <table class="table table-bordered text-center">
+                <tbody>
+                  <tr>
+                    <td class="backgroundtable">
+                      LC
+                    </td>
+                    <td>
+                        <span t-esc="niosh.lc"></span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="backgroundtable">
+                      HM
+                    </td>
+                    <td>
+                        <span t-esc="niosh.hm"></span>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="backgroundtable">
+                      VM
+                    </td>
+                    <td>
+                        <span t-esc="niosh.vm"></span>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="backgroundtable">
+                      DM
+                    </td>
+                    <td>
+                        <span t-esc="niosh.dm"></span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="backgroundtable">
+                      AM
+                    </td>
+                    <td>
+                        <span t-esc="niosh.am"></span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="backgroundtable">
+                      FM
+                    </td>
+                    <td>
+                        <span t-esc="niosh.fm"></span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="backgroundtable">
+                      CM
+                    </td>
+                    <td>
+                        <span t-esc="niosh.cm"></span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="backgroundtable">
+                      RWL
+                    </td>
+                    <td>
+                        <span t-esc="niosh.rwl"></span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="backgroundtable">
+                      IL
+                    </td>
+                    <td>
+                        <span t-esc="niosh.il"></span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="backgroundtable">
+                      Nivel de Riesgo
+                    </td>
+                    <td>
+                        <span t-esc="niosh.nivel_riesgo"></span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="backgroundtable">
+                      ¿Cumple?
+                    </td>
+                      <t t-if="niosh.cumple=='NO CUMPLE'">
+                          <td class="bg-danger">
+                          <span class="align-middle" t-field="niosh.cumple"/>
+                          </td>
+                      </t>
+                      <t t-if="niosh.cumple=='SÍ CUMPLE'">
+                          <td class="" style="background-color:#A3F452;">
+                          <span class="align-middle" t-field="niosh.cumple"/>
+                          </td>
+                      </t>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </t>
+  </template>
+
+</odoo>

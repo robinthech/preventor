@@ -1,0 +1,19 @@
+<odoo>
+    <data>
+        <record id='medida_correctiva_default_1' model='medida.incidente.default'>
+            <field name='name'>Medida 1</field>
+            <field name="fecha_ejecucion" eval="(DateTime.today()).strftime('%Y-%m-%d')"></field>
+        </record>
+        <record id='accidente_responsable_default_1' model='incidente.responsable'>
+            <field name='name'>Responsable 1</field>
+        </record>
+        <record id='accidente_responsable_default_2' model='incidente.responsable'>
+            <field name='name'>Responsable 2</field>
+        </record>
+        <record id='accidente_responsable_final_default_1' model='incidente.responsable.final.default'>
+            <field name='name'>Responsable</field>
+            <field name='cargo'>Cargo</field>
+            <field name="fecha" eval="(DateTime.today()).strftime('%Y-%m-%d')"></field>
+        </record>
+    </data>
+</odoo>

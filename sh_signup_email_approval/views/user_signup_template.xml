@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="auth_signup.signup" name="Sign up login">
+		<t t-call="web.login_layout">
+          <form id="signup_form" class="oe_signup_form" role="form" method="post" t-if="not message">
+            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
+              <t t-call="auth_signup.fields">
+                  <t t-set="only_passwords" t-value="bool(token and not invalid_token)"/>
+              </t>
+
+              <p class="alert alert-danger" t-if="error" role="alert">
+                  <t t-esc="error"/>
+              </p>
+              <input type="hidden" name="redirect" t-att-value="redirect"/>
+              <input type="hidden" name="token" t-att-value="token"/>
+									<b>  <input class="m-1" required="required" type="checkbox" name="terms"/><a href="/conditions" class="btn-link" target="_blank">Términos de Servicio </a> <string >y</string> <a href="/privacy-policy" class="btn-link" target="_blank"> Política de Privacidad</a>.</b>
+              <div class="text-center oe_login_buttons pt-3">
+                  <button type="submit" id="signup_btn" class="btn btn-primary btn-block"> Sign up</button>
+                  <a t-attf-href="/web/login?{{ keep_query() }}" class="btn btn-link btn-sm" role="button">Already have an account?</a>
+                  <div class="o_login_auth"/>
+              </div>
+          </form>
+       </t>
+	</template>
+	<template id="sh_signup_verfiy_template" name="VERIFICAR">
+		<t t-call="web.login_layout">
+			<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+			<script type="text/javascript">
+				$( document ).ready(function() {
+					$("#button_verify").click(function(e){
+						$.ajax({url: "/web/signup/verify",
+ 						data: {'url':window.location.href,'code':$("#code").val()},
+ 						type: "post",
+ 						cache: false,
+ 						success: function(result){
+ 							var datas = JSON.parse(result);
+ 							if(datas.success=='1'){
+ 								window.location.href = "/usuarios";
+ 								}
+ 							if(datas.error=='0'){
+ 								url = "/web/signup/error/"+String(datas.user_id);
+ 								window.location.href = url;
+ 							}
+ 							},
+ 						});
+					});
+				});
+			</script>
+			<div class="container d-flex justify-content-center">
+				<div class="card m-5 text-center">
+					  <div class="card-header">
+					    	<h2> INGRESE CÓDIGO DE VERIFICACIÓN</h2>
+					  </div>
+					  <div class="card-body">
+					    <h5 class="card-title">REVISAR SU CORREO</h5>
+					    <p class="card-text">
+								<div class="col-md-12">
+								<input type="text" name="code" id="code" class="form-group form-control" placeholder="Code"/>
+							</div></p>
+					    <button id="button_verify" class="btn btn-primary font-weight-bold">VERIFICAR</button>
+					  </div>
+					</div>
+			</div>
+		</t>
+	</template>
+    <template id="email_approval_sorry" name="Invalido">
+        	<t t-call="website.layout">
+        	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+			<script type="text/javascript">
+				$( document ).ready(function() {
+					$("#button_verify").click(function(e){
+						$.ajax({url: "/web/signup/error/verify",
+ 						data: {'url':window.location.href},
+ 						type: "post",
+ 						cache: false,
+ 						success: function(result){
+ 							var datas = JSON.parse(result);
+ 							if(datas.success=='1' &amp;&amp; datas.user_id){
+ 								url = "/web/signup/verify/"+String(datas.user_id);
+ 								window.location.href = url;
+ 								}
+ 							},
+ 						});
+					});
+				});
+			</script>
+        	<div class="container">
+
+						<div class="card text-center">
+						  <div class="card-header">
+						    	<h1>Sorry!</h1>
+						  </div>
+						  <div class="card-body">
+						    <h5 class="card-title"> EL CÓDIGO ES INVALIDO</h5>
+						    <p class="card-text">
+									<button type="button" class="close" data-dismiss="alert">&amp;times;</button>
+
+						    </p>
+						  </div>
+						  <div class="card-footer text-muted">
+								<button id="button_verify" class="btn btn-primary 0" role="button">VERIFICAR</button>
+						  </div>
+						</div>
+        	</div>
+        </t>
+    </template>
+</odoo>

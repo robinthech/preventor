@@ -1,0 +1,186 @@
+<odoo>
+    <data>
+        <record id='lista_covid_limpieza' model='tipo.elemento.covid'>
+            <field name='name'>Limpieza del Centro de Labores (DETALLAR ESPACIOS)</field>
+            <field name="cumplimiento">False</field>
+        </record>
+        <record id='lista_covid_desinfeccion' model='tipo.elemento.covid'>
+            <field name='name'>Desinfección del Centro de Labores (DETALLAR ESPACIOS)</field>
+            <field name="cumplimiento">False</field>
+        </record>
+        <record id='lista_covid_evalua' model='tipo.elemento.covid'>
+            <field name='name'>Se Evalúa la condición de salud de todos los trabajadores periódicamente</field>
+            <field name="cumplimiento">False</field>
+        </record>
+        <record id='lista_covid_temperatura' model='elemento.covid'>
+            <field name='name'>1. Toma de Temperatura diaria en forma aleatoria</field>
+            <field name="cumplimiento">False</field>
+            <field name="tipo_elemento_id" eval="ref('lista_covid_evalua')"></field>
+        </record>
+        <record id='lista_covid_sintomatologia' model='elemento.covid'>
+            <field name='name'>2. Ficha de Sintomatología de la COVID-19</field>
+            <field name="cumplimiento">False</field>
+            <field name="tipo_elemento_id" eval="ref('lista_covid_evalua')"></field>
+        </record>
+        <record id='lista_covid_aplicacion' model='elemento.covid'>
+            <field name='name'>3. Aplicación de pruebas serológicas cuando lo ameriten</field>
+            <field name="cumplimiento">False</field>
+            <field name="tipo_elemento_id" eval="ref('lista_covid_evalua')"></field>
+        </record>
+        <record id='lista_covid_casos' model='tipo.elemento.covid'>
+            <field name='name'>CASOS SOSPECHOSOS</field>
+            <field name="cumplimiento">False</field>
+        </record>
+        <record id='lista_covid_epidemeo' model='elemento.covid'>
+            <field name='name'>Aplicación de la Ficha epidemeológica de la COVID-19 establecida por MINSA a todos los casos sospechosos en trabajadores de bajo riesgo</field>
+            <field name="cumplimiento">False</field>
+            <field name="tipo_elemento_id" eval="ref('lista_covid_casos')"></field>
+        </record>
+        <record id='lista_covid.9' model='elemento.covid'>
+            <field name='name'>Identificación de contactos en casos sospechosos</field>
+            <field name="cumplimiento">False</field>
+            <field name="tipo_elemento_id" eval="ref('lista_covid_casos')"></field>
+        </record>
+        <record id='lista_covid.10' model='elemento.covid'>
+            <field name='name'>Se comunica a la autoridad de salud de jurisdicción o EPS para el seguimiento de casos correspondiente</field>
+            <field name="cumplimiento">False</field>
+            <field name="tipo_elemento_id" eval="ref('lista_covid_casos')"></field>
+        </record>
+        <record id='lista_covid.11' model='elemento.covid'>
+            <field name='name'>Se realizo segumiento Clinico a distancia diariamente al trabajador identificado como sospechoso</field>
+            <field name="cumplimiento">False</field>
+            <field name="tipo_elemento_id" eval="ref('lista_covid_casos')"></field>
+        </record>
+        <record id='lista_covid.12' model='tipo.elemento.covid'>
+            <field name='name'>MEDIDAS DE HIGIENE</field>
+            <field name="cumplimiento">False</field>
+        </record>
+        <record id='lista_covid.13' model='elemento.covid'>
+            <field name='name'>Se aseguran los puntos de lavado de manos con agua potable, jabón liquido o jabón desinfectante y papel toalla</field>
+            <field name="cumplimiento">False</field>
+            <field name="tipo_elemento_id" eval="ref('lista_covid.12')"></field>
+        </record>
+        <record id='lista_covid.14' model='elemento.covid'>
+            <field name='name'>Se aseguran puntos de alcohol para la desinfección de manos</field>
+            <field name="cumplimiento">False</field>
+            <field name="tipo_elemento_id" eval="ref('lista_covid.12')"></field>
+        </record>
+        <record id='lista_covid.15' model='elemento.covid'>
+            <field name='name'>Se ubica un punto de lavado o dispensador de alcohol en el ingreso del centro de trabajo</field>
+            <field name="cumplimiento">False</field>
+            <field name="tipo_elemento_id" eval="ref('lista_covid.12')"></field>
+        </record>
+        <record id='lista_covid.16' model='elemento.covid'>
+            <field name='name'>Los trabajadores proceden al lavado de manos precio inicio de sus actividades laborales</field>
+            <field name="cumplimiento">False</field>
+            <field name="tipo_elemento_id" eval="ref('lista_covid.12')"></field>
+        </record>
+        <record id='lista_covid.17' model='elemento.covid'>
+            <field name='name'>Se colocan carteles en las partes superiores de los puntos de lavado para la ejecución adecuada del método de lavado correcto o el uso de alcohol para la higiene de manos</field>
+            <field name="cumplimiento">False</field>
+            <field name="tipo_elemento_id" eval="ref('lista_covid.12')"></field>
+        </record>
+        <record id='lista_covid.18' model='tipo.elemento.covid'>
+            <field name='name'>SENSIBILIZACIÓN DE LA PREVENCIÓN DEL CONTAGIO EN EL CENTRO DE TRABAJO</field>
+            <field name="cumplimiento">False</field>
+        </record>
+        <record id='lista_covid.19' model='elemento.covid'>
+            <field name='name'>Se difunde información sobre coronavirus y medios de protección laboral en lugares visibles</field>
+            <field name="cumplimiento">False</field>
+            <field name="tipo_elemento_id" eval="ref('lista_covid.18')"></field>
+        </record>
+        <record id='lista_covid.20' model='elemento.covid'>
+            <field name='name'>Se difunde la importancia del lavado de manos, toser o estornudar cubriéndose la boca con la flexión del codo, no tocarse el rostro, entre otras prácticas de higiene</field>
+            <field name="cumplimiento">False</field>
+            <field name="tipo_elemento_id" eval="ref('lista_covid.18')"></field>
+        </record>
+        <record id='lista_covid.21' model='elemento.covid'>
+            <field name='name'>Todos los trabajadores utilizan mascarilla de acuerdo al nivel de riesgo del puesto de trabajo</field>
+            <field name="cumplimiento">False</field>
+            <field name="tipo_elemento_id" eval="ref('lista_covid.18')"></field>
+        </record>
+        <record id='lista_covid.22' model='elemento.covid'>
+            <field name='name'>Se facilitan medios para responder las inquietudes de los trabajadores respecto a la COVID-19</field>
+            <field name="cumplimiento">False</field>
+            <field name="tipo_elemento_id" eval="ref('lista_covid.18')"></field>
+        </record>
+        <record id='lista_covid.23' model='tipo.elemento.covid'>
+            <field name='name'>MEDIDAS PREVENTIVAS</field>
+            <field name="cumplimiento">False</field>
+        </record>
+        <record id='lista_covid.24' model='elemento.covid'>
+            <field name='name'>Ambientes adecuados ventilados</field>
+            <field name="cumplimiento">False</field>
+            <field name="tipo_elemento_id" eval="ref('lista_covid.23')"></field>
+        </record>
+        <record id='lista_covid.25' model='elemento.covid'>
+            <field name='name'>Se cumple con el distanciamiento social de 1 metro entre trabajadores, además del uso permanente de protector respiratorio, mascarilla quirúrgica o comunitaria según corresponda</field>
+            <field name="cumplimiento">False</field>
+            <field name="tipo_elemento_id" eval="ref('lista_covid.23')"></field>
+        </record>
+        <record id='lista_covid.26' model='elemento.covid'>
+            <field name='name'>Existen medidas de protección a los trabajadores en puestos de atención al cliente, mediante el empleo de barreras físicas</field>
+            <field name="cumplimiento">False</field>
+            <field name="tipo_elemento_id" eval="ref('lista_covid.23')"></field>
+        </record>
+        <record id='lista_covid.27' model='elemento.covid'>
+            <field name='name'>Se evita las conglomeraciones durante el ingreso y la salida del centro de trabajo</field>
+            <field name="cumplimiento">False</field>
+            <field name="tipo_elemento_id" eval="ref('lista_covid.23')"></field>
+        </record>
+        <record id='lista_covid.28' model='elemento.covid'>
+            <field name='name'>Se establecen puntos estratégicos para el acopio y entrega de EPP</field>
+            <field name="cumplimiento">False</field>
+            <field name="tipo_elemento_id" eval="ref('lista_covid.23')"></field>
+        </record>
+        <record id='lista_covid.29' model='elemento.covid'>
+            <field name='name'>Se entrega EPP de acuerdo al riesgo del punto de trabajo</field>
+            <field name="cumplimiento">False</field>
+            <field name="tipo_elemento_id" eval="ref('lista_covid.23')"></field>
+        </record>
+        <record id='lista_covid.30' model='elemento.covid'>
+            <field name='name'>El trabajador utiliza correctamente EPP</field>
+            <field name="cumplimiento">False</field>
+            <field name="tipo_elemento_id" eval="ref('lista_covid.23')"></field>
+        </record>
+        <record id='lista_covid.31' model='elemento.covid'>
+            <field name='name'>Medidas Preventivas Colectivas (Ejemplo: Talleres Online sobre Primeros Auxilios psicológicos, apoyo emocional, Difusión de Información sobre la COVID-19)</field>
+            <field name="cumplimiento">False</field>
+            <field name="tipo_elemento_id" eval="ref('lista_covid.23')"></field>
+        </record>
+        <record id='lista_covid.32' model='tipo.elemento.covid'>
+            <field name='name'>VIGILANCIA DE LA SALUD EN EL TRABAJO</field>
+            <field name="cumplimiento">False</field>
+        </record>
+        <record id='lista_covid.33' model='elemento.covid'>
+            <field name='name'>Se controla la temperatura corporal de cada trabajador</field>
+            <field name="cumplimiento">False</field>
+            <field name="tipo_elemento_id" eval="ref('lista_covid.32')"></field>
+        </record>
+        <record id='lista_covid.34' model='elemento.covid'>
+            <field name='name'>Se indica evaluación médica de sintomas a todos los trabajadores que presenten Temperatura corporal mayor a 38.0°C</field>
+            <field name="cumplimiento">False</field>
+            <field name="tipo_elemento_id" eval="ref('lista_covid.32')"></field>
+        </record>
+        <record id='lista_covid.35' model='elemento.covid'>
+            <field name='name'>Se concideran medidas de salud mental (especificar)</field>
+            <field name="cumplimiento">False</field>
+            <field name="tipo_elemento_id" eval="ref('lista_covid.32')"></field>
+        </record>
+        <record id='lista_covid.36' model='elemento.covid'>
+            <field name='name'>Se registra en el SICOVID a todos los trabajadores que pasen por una prueba de la COVID-19</field>
+            <field name="cumplimiento">False</field>
+            <field name="tipo_elemento_id" eval="ref('lista_covid.32')"></field>
+        </record>
+        <record id='lista_covid.37' model='elemento.covid'>
+            <field name='name'>Se le otorga aislamiento domiciliario cubierto por descanso médico por un tiempo no menor a 14 días a aquellos trabajadores diagnosticados con la COVID-19</field>
+            <field name="cumplimiento">False</field>
+            <field name="tipo_elemento_id" eval="ref('lista_covid.32')"></field>
+        </record>
+        <record id='lista_covid.38' model='elemento.covid'>
+            <field name='name'>Se le otorgara licencia por un tiempo de 14 días a aquellos trabajadores que por haber presentado sintomas o haber estado en contacto con un caso positivo de la COVID-19 cumplen cuarentena</field>
+            <field name="cumplimiento">False</field>
+            <field name="tipo_elemento_id" eval="ref('lista_covid.32')"></field>
+        </record>
+    </data>
+</odoo>

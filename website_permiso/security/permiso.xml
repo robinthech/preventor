@@ -1,0 +1,338 @@
+<odoo>
+    <data>
+        <record id="model_access_permisos_1" model="ir.model.access">
+            <field name="name">model.access.permisos.1</field>
+            <field name="group_id" ref="website_permiso.group_permiso_soli"/>
+            <field name="model_id" ref="website_permiso.model_permiso_trabajo"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+
+        </record>
+
+
+
+        <record id="model_access_permisos_2" model="ir.model.access">
+            <field name="name">model.access.permisos.2</field>
+            <field name="group_id" ref="website_permiso.group_permiso_aut"/>
+            <field name="model_id" ref="website_permiso.model_permiso_trabajo"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+        <record id="model_access_permisos_3" model="ir.model.access">
+            <field name="name">model.access.permisos.3</field>
+            <field name="group_id" ref="website_permiso.group_permiso_apro"/>
+            <field name="model_id" ref="website_permiso.model_permiso_trabajo"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_tipo_permisos_1" model="ir.model.access">
+            <field name="name">model.access.tipo.permisos.1</field>
+            <field name="group_id" ref="website_permiso.group_permiso_soli"/>
+            <field name="model_id" ref="website_permiso.model_tipo_permiso"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+        <record id="model_access_tipo_permisos_2" model="ir.model.access">
+            <field name="name">model.access.tipo.permisos.2</field>
+            <field name="group_id" ref="website_permiso.group_permiso_aut"/>
+            <field name="model_id" ref="website_permiso.model_tipo_permiso"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+        <record id="model_access_tipo_permisos_3" model="ir.model.access">
+            <field name="name">model.access.tipo.permisos.3</field>
+            <field name="group_id" ref="website_permiso.group_permiso_apro"/>
+            <field name="model_id" ref="website_permiso.model_tipo_permiso"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_area_1" model="ir.model.access">
+            <field name="name">model.access.area.1</field>
+            <field name="group_id" ref="website_permiso.group_permiso_soli"/>
+            <field name="model_id" ref="website_permiso.model_area_area"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+        <record id="model_access_area_2" model="ir.model.access">
+            <field name="name">model.access.area.2</field>
+            <field name="group_id" ref="website_permiso.group_permiso_aut"/>
+            <field name="model_id" ref="website_permiso.model_area_area"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+        <record id="model_access_area_3" model="ir.model.access">
+            <field name="name">model.access.area.3</field>
+            <field name="group_id" ref="website_permiso.group_permiso_apro"/>
+            <field name="model_id" ref="website_permiso.model_area_area"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_sub_area_1" model="ir.model.access">
+            <field name="name">model.access.sub.area.1</field>
+            <field name="group_id" ref="website_permiso.group_permiso_soli"/>
+            <field name="model_id" ref="website_permiso.model_sub_area"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+        <record id="model_access_sub_area_2" model="ir.model.access">
+            <field name="name">model.access.sub.area.2</field>
+            <field name="group_id" ref="website_permiso.group_permiso_aut"/>
+            <field name="model_id" ref="website_permiso.model_sub_area"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+        <record id="model_access_sub_area_3" model="ir.model.access">
+            <field name="name">model.access.sub.area.3</field>
+            <field name="group_id" ref="website_permiso.group_permiso_apro"/>
+            <field name="model_id" ref="website_permiso.model_sub_area"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_empresa_1" model="ir.model.access">
+            <field name="name">model.access.empresa.1</field>
+            <field name="group_id" ref="website_permiso.group_permiso_soli"/>
+            <field name="model_id" ref="website_permiso.model_empresa_empresa"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+        <record id="model_access_empresa_2" model="ir.model.access">
+            <field name="name">model.access.empresa.2</field>
+            <field name="group_id" ref="website_permiso.group_permiso_aut"/>
+            <field name="model_id" ref="website_permiso.model_empresa_empresa"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+        <record id="model_access_empresa_3" model="ir.model.access">
+            <field name="name">model.access.empresa.3</field>
+            <field name="group_id" ref="website_permiso.group_permiso_apro"/>
+            <field name="model_id" ref="website_permiso.model_empresa_empresa"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_permiso_trabajador_1" model="ir.model.access">
+            <field name="name">model.access.permiso.trabajador.1</field>
+            <field name="group_id" ref="website_permiso.group_permiso_soli"/>
+            <field name="model_id" ref="website_permiso.model_permiso_trabajador"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+        <record id="model_access_permiso_trabajador_2" model="ir.model.access">
+            <field name="name">model.access.permiso.trabajador.2</field>
+            <field name="group_id" ref="website_permiso.group_permiso_aut"/>
+            <field name="model_id" ref="website_permiso.model_permiso_trabajador"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+        <record id="model_access_permiso_trabajador_3" model="ir.model.access">
+            <field name="name">model.access.permiso.trabajador.3</field>
+            <field name="group_id" ref="website_permiso.group_permiso_apro"/>
+            <field name="model_id" ref="website_permiso.model_permiso_trabajador"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_trabajador_1" model="ir.model.access">
+            <field name="name">model.access.trabajador.1</field>
+            <field name="group_id" ref="website_permiso.group_permiso_soli"/>
+            <field name="model_id" ref="website_permiso.model_trabajador_trabajador"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+        <record id="model_access_trabajador_2" model="ir.model.access">
+            <field name="name">model.access.trabajador.2</field>
+            <field name="group_id" ref="website_permiso.group_permiso_aut"/>
+            <field name="model_id" ref="website_permiso.model_trabajador_trabajador"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+        <record id="model_access_trabajador_3" model="ir.model.access">
+            <field name="name">model.access.trabajador.3</field>
+            <field name="group_id" ref="website_permiso.group_permiso_apro"/>
+            <field name="model_id" ref="website_permiso.model_trabajador_trabajador"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_requisito_1" model="ir.model.access">
+            <field name="name">model.access.requisito.1</field>
+            <field name="group_id" ref="website_permiso.group_permiso_soli"/>
+            <field name="model_id" ref="website_permiso.model_requisito_requisito"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+        <record id="model_access_requisito_2" model="ir.model.access">
+            <field name="name">model.access.requisito.2</field>
+            <field name="group_id" ref="website_permiso.group_permiso_aut"/>
+            <field name="model_id" ref="website_permiso.model_requisito_requisito"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+        <record id="model_access_requisito_3" model="ir.model.access">
+            <field name="name">model.access.requisito.3</field>
+            <field name="group_id" ref="website_permiso.group_permiso_apro"/>
+            <field name="model_id" ref="website_permiso.model_requisito_requisito"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_tipo_requisito_1" model="ir.model.access">
+            <field name="name">model.access.tipo.requisito.1</field>
+            <field name="group_id" ref="website_permiso.group_permiso_soli"/>
+            <field name="model_id" ref="website_permiso.model_tipo_requisito"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+        <record id="model_access_tipo_requisito_2" model="ir.model.access">
+            <field name="name">model.access.tipo.requisito.2</field>
+            <field name="group_id" ref="website_permiso.group_permiso_aut"/>
+            <field name="model_id" ref="website_permiso.model_tipo_requisito"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+        <record id="model_access_tipo_requisito_3" model="ir.model.access">
+            <field name="name">model.access.tipo.requisito.3</field>
+            <field name="group_id" ref="website_permiso.group_permiso_apro"/>
+            <field name="model_id" ref="website_permiso.model_tipo_requisito"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_requisito_permiso_1" model="ir.model.access">
+            <field name="name">model.access.requisito.permiso.1</field>
+            <field name="group_id" ref="website_permiso.group_permiso_soli"/>
+            <field name="model_id" ref="website_permiso.model_requisito_permiso"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+        <record id="model_access_requisito_permiso_2" model="ir.model.access">
+            <field name="name">model.access.requisito.permiso.2</field>
+            <field name="group_id" ref="website_permiso.group_permiso_aut"/>
+            <field name="model_id" ref="website_permiso.model_requisito_permiso"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+        <record id="model_access_requisito_permiso_3" model="ir.model.access">
+            <field name="name">model.access.requisito.permiso.3</field>
+            <field name="group_id" ref="website_permiso.group_permiso_apro"/>
+            <field name="model_id" ref="website_permiso.model_requisito_permiso"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_sede_sede_interno" model="ir.model.access">
+            <field name="name">model.access.sede.sede.interno</field>
+            <field name="group_id" ref="website_permiso.group_permiso_apro"/>
+            <field name="model_id" ref="website_permiso.model_sede_sede"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+
+        <record id="model_access_contratista_contratista_interno" model="ir.model.access">
+            <field name="name">model.access.contratista.contratista.interno</field>
+            <field name="group_id" ref="website_permiso.group_permiso_apro"/>
+            <field name="model_id" ref="website_permiso.model_contratista_contratista"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_trabajador_contratista_interno" model="ir.model.access">
+            <field name="name">model.access.trabajador.contratista.interno</field>
+            <field name="group_id" ref="website_permiso.group_permiso_apro"/>
+            <field name="model_id" ref="website_permiso.model_trabajador_contratista"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_requisito_trabajador_interno" model="ir.model.access">
+            <field name="name">model.access.requisito_trabajador</field>
+            <field name="group_id" ref="website_permiso.group_permiso_apro"/>
+            <field name="model_id" ref="website_permiso.model_requisito_trabajador"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="model_access_requisito_estandar_interno" model="ir.model.access">
+            <field name="name">model.access.requisito.estandar</field>
+            <field name="group_id" ref="website_permiso.group_permiso_apro"/>
+            <field name="model_id" ref="website_permiso.model_requisito_estandar"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+    </data>
+</odoo>

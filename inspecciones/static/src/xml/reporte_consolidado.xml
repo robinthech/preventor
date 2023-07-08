@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+  <!-- TEMPLATE PARA LA TABLA DE ASISTENCIA -->
+
+  <t t-name="inspecciones.reporte_consolidado_inspeciones">
+    <table d="modulo-inspecciones" class="table table-hover responsive nowrap" style="width:100%; text-align: center;">
+      <thead>
+        <tr style="vertical-align:middle">
+          <th class="color-inspeccion-4">
+            INSPECCIÓN
+          </th>
+          <th class="color-inspeccion-1">
+            PENDIENTE
+          </th>
+          <th class="color-inspeccion-2">
+            PROCESO
+          </th>
+          <th class="color-inspeccion-3">
+            CERRADO
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <t t-foreach="matriz" t-as="filas">
+          <tr class="text-center">
+            <t t-foreach="filas" t-as="columnas">
+              <td style="vertical-align:middle">
+                <span t-esc="columnas"/>
+
+              </td>
+            </t>
+          </tr>
+        </t>
+      </tbody>
+    </table>
+
+  </t>
+
+
+
+</templates>

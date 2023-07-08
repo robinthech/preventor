@@ -1,0 +1,143 @@
+<odoo>
+  <template id="sidebar_registro_accidente" name="Detalle">
+      <t t-call="website.layout">
+        <t t-set="no_header" t-value="True"/>
+        <t t-set="no_footer" t-value="True"/>
+        <header>
+            <nav class="navbar navbar-expand-md navbar-dark bg-primary accidente">
+              <div class="ml-auto">
+              <a class="navbar-brand logo" href="https://softwaresst.com">
+                <img src="/web/image/website/1/logo/PREVENTOR?unique=43ff1c1" class="img img-fluid" style="height:120px" alt="logo-preventor"/>
+              </a>
+            </div>
+            </nav>
+        </header>
+        <div class="perfil_alumno">
+          <div class="page-wrapper chiller-theme toggled">
+            <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+              <i class="fa fa-bars"></i>
+            </a>
+            <nav id="sidebar" class="sidebar-wrapper pt-5">
+              <div class="sidebar-content">
+                <div class="sidebar-brand h4">
+                  <a href="#" class="text-white text-center">MÓDULO REGISTRO DE ACCIDENTE DE TRABAJO</a>
+                  <div id="close-sidebar">
+                    <i class="fa fa-times"></i>
+                  </div>
+                </div>
+                <div class="sidebar-header">
+                  <div class="user-pic">
+                    <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg" alt="User picture"/></div>
+                  <div class="user-info">
+                    <span class="user-name">
+                      <!-- <strong t-field="user.name"></strong> -->
+                    </span>
+                    <span class="user-role"></span>
+                    <span class="user-status d-flex align-items-center">
+                      <i class="fa fa-circle"></i>
+                      <span class="text-white font-weight-bold h6 mb-0" t-esc="user_id.name[:23] + '...' if user_id.name and len(user_id.name) &gt; 25 else user_id.name"/>
+                    </span>
+                  </div>
+                </div>
+                <!-- sidebar-search -->
+                <div class="sidebar-menu">
+                  <ul>
+                    <li class="sidebar-dropdown">
+                      <a href="#" class="sidebar-dropdown-activate">
+                        <i class="fa fa-home"></i>
+                        <span>DATOS GENERALES</span>
+                      </a>
+                      <div class="sidebar-submenu" style="display: block;">
+                        <ul>
+                          <li data-toggle="modal" data-target="#exampleModalCenter">
+                            <a>CARACTERISTICAS</a>
+                          </li>
+                          <li>
+                            <a href="/registro-accidente/guia">INSTRUCTIVO</a>
+                          </li>
+                          <li>
+                            <a href="/slides" target="_blank">CAPACITACIONES</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </li>
+                    <li class="sidebar-dropdown">
+                      <a href="#" class="sidebar-dropdown-activate">
+                        <i class="fa fa-home"></i>
+                        <span>DATOS ESPECÍFICOS</span>
+                      </a>
+                      <div class="sidebar-submenu" style="display: none;">
+                        <ul>
+                          <li>
+                            <a href="/registro-accidente">LISTADO DE REGISTRO DE ACCIDENTES</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <!-- sidebar-menu -->
+              </div>
+
+              <!-- sidebar-content -->
+              <div class="sidebar-footer">
+                <a href="/chat_lms">
+                  <i class="fa fa-bell"></i>
+                  <span class="badge badge-pill badge-warning notification">3</span>
+                </a>
+                <a href="#">
+                  <i class="fa fa-envelope"></i>
+                  <span class="badge badge-pill badge-success notification">7</span>
+                </a>
+                <a href="#">
+                  <i class="fa fa-cog"></i>
+                  <span class="badge-sonar"></span>
+                </a>
+                <a href="#" class="nav-link dropdown-toggle align-items-center d-flex" data-toggle="dropdown">
+                  <i class="fa fa-user-circle mr-1"></i>
+                </a>
+                <div class="dropdown-menu js_usermenu" role="menu">
+                  <a class="dropdown-item" t-attf-href="/usuarios" role="menuitem">Panel de control</a>
+                  <a id="o_logout" class="dropdown-item" role="menuitem" href="/web/session/logout?redirect=https://softwaresst.com/">Cerrar sesión</a>
+                </div>
+              </div>
+            </nav>
+            <!-- sidebar-wrapper -->
+            <main class="page-content">
+              <div class="container-fluid">
+
+                <t t-raw="0"/>
+
+
+              </div>
+
+            </main>
+            <!-- page-content" -->
+          </div>
+        </div>
+
+          <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Características</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">x
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <ul>
+                    <li>Permite gestionar los accidentes.</li>
+                    <li>Permite gestionar por nivel de gravedad (Leve, Incapacitante, Mortal).</li>
+                    <li>Gestionaras el historial de los diferentes accidentes.</li>
+                    <li>Permite hacer seguimiento de las acciones correctivas.</li>
+                    <li>Permite adjuntar archivos (en formato txt, word, pdf, jpg y Excel) de la investigación.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+      </t>
+    </template>
+</odoo>

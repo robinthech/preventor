@@ -1,0 +1,97 @@
+<odoo>
+  <data>
+    <template id="assets_backend" name="disable edit paid invoice assets" inherit_id="web.assets_backend">
+      <xpath expr="." position="inside">
+        <script type="text/javascript" src="/s3/static/src/js/button.js"></script>
+        <link rel="stylesheet" href="/s3/static/src/css/toltip.css"/>
+
+      </xpath>
+    </template>
+
+    <template id="registros_assets_frontend" inherit_id="website.assets_frontend" name="Registros">
+      <xpath expr="//script[last()]" position="after">
+        <script type="text/javascript" src="/s3/static/src/js/registro.js"/>
+        <script type="text/javascript" src="/s3/static/src/js/rosa.js"/>
+      </xpath>
+      <xpath expr="//link[last()]" position="after">
+        <link href="/s3/static/src/css/s3.scss" type="text/scss" rel="stylesheet"/>
+      </xpath>
+    </template>
+  </data>
+
+  <template id="ventana_navegacion_menu" name="Registros de Monitoreo">
+    <t t-call="website.layout">
+      <t t-set="no_header" t-value="True"/>
+      <t t-set="no_footer" t-value="True"/>
+      <header>
+        <nav class="navbar navbar-expand-md navbar-dark bg-primary accidente">
+        <div class="container">
+          <a class="navbar-brand logo" href="https://softwaresst.com">
+            <img src="/web/image/website/1/logo/PREVENTOR?unique=43ff1c1" class="img img-fluid" alt=""/>
+          </a>
+          <div id="top_menu_collapse" aria-expanded="false">
+            <ul class="nav ml-auto text-right" id="top_menu">
+              <li class="nav-item divider"></li>
+              <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle align-items-center d-flex" data-toggle="dropdown">
+                  <i class="fa fa-user-circle mr-1" style="font-size: 1.5rem"></i>
+                  <b>
+                    <span t-esc="user_id.name[:23] + '...' if user_id.name and len(user_id.name) &gt; 25 else user_id.name"/>
+                  </b>
+                </a>
+                <div class="dropdown-menu js_usermenu" role="menu">
+
+                  <a class="dropdown-item" t-attf-href="/usuarios" role="menuitem">Panel de control</a>
+                  <a id="o_logout" class="dropdown-item" role="menuitem" href="/web/session/logout?redirect=https://softwaresst.com/">Cerrar sesión</a>
+                </div>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+      </nav>
+      </header>
+      <div class="wrapper modulo-s3">
+        <nav id="sidebar" class="bg-info">
+          <ul class="list-unstyled components">
+            <p class="bg-success text-center" style="height:60px;">
+              <strong>MODULO DE MONITOREOS OCUPACIONALES</strong>
+            </p>
+            <li>
+              <a class="" href="/registros">VISTA PRINCIPAL</a>
+            </li>
+            <li>
+              <a class="" t-att-href="'/registros/%s' % (registro.id)">REGISTROS DE MONITOREO</a>
+            </li>
+            <li>
+              <a t-att-href="'/registros/ilu/%s' % (registro.id)">ILUMINACIÓN</a>
+            </li>
+            <li >
+              <a t-att-href="'/registros/dosi/%s' % (registro.id)">DOSIMETRIA</a>
+            </li>
+            <li >
+              <a t-att-href="'/registros/sono/%s' % (registro.id)">SONOMETRÍA</a>
+            </li>
+            <li >
+              <a t-att-href="'/registros/reba/%s' % (registro.id)">REBA</a>
+            </li>
+            <li >
+              <a t-att-href="'/registros/rosa/%s' % (registro.id)">ROSA</a>
+            </li>
+            <li class="nav-item divider"></li>
+            <li>
+              <a href="/registros/guia">INSTRUCCIONES</a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="w-100" >
+          <t t-raw="0"/>
+        </div>
+
+      </div>
+
+    </t>
+  </template>
+
+</odoo>

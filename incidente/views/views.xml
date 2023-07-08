@@ -1,0 +1,50 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+
+
+    <!-- <record model="ir.ui.view" id="lista_verificacion_tree">
+      <field name="name">lista.verificacion.tree</field>
+      <field name="model">lista.verificacion</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="evaluado"/>
+          <field name="fecha"/>
+          <field name="principios_char_1"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="lista_verificacion_form">
+      <field name="name">lista.verificacion.form</field>
+      <field name="model">lista.verificacion</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+            <button name="file_excel" type="object" string="EXCEL" class="btn btn-primary"/>
+          </header>
+          <sheet>
+            <group>
+              <field name="evaluado"/>
+              <field name="fecha"/>
+              <field name="otros_ids"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="lista_accion">
+      <field name="name">Lista</field>
+      <field name="res_model">lista.verificacion</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Lista"  action="lista_verificacion.lista_accion" id="lista_verificacion.menu_principal"/>
+ -->
+
+
+
+  </data>
+</odoo>

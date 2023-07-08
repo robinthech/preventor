@@ -1,0 +1,2621 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* website_permiso
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-10-14 13:06+0000\n"
+"PO-Revision-Date: 2020-10-14 13:06+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "960960960"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+msgid "<i class=\"fa fa-arrow-left\"/> RETURN"
+msgstr "<i class=\"fa fa-arrow-left\"/> REGRESAR"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.perfil_usuario
+msgid ""
+"<i class=\"fa fa-book\"/>\n"
+"                      <span>GESTIÓN DE DOCUMENTOS</span>"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.perfil_usuario
+msgid ""
+"<i class=\"fa fa-check\"/>\n"
+"                      <span>GESTIÓN DE REQUISITOS</span>"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.contratistas
+#: model_terms:ir.ui.view,arch_db:website_permiso.personal
+#: model_terms:ir.ui.view,arch_db:website_permiso.requisito_estandar
+msgid "<i class=\"fa fa-download\"/>Plantilla"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.sidebar_permiso
+msgid ""
+"<i class=\"fa fa-home\"/>\n"
+"                        <span>SPECIFIC DATA</span>"
+msgstr ""
+"<i class=\"fa fa-home\"/>\n"
+"                        <span>DATOS ESPECÍFICOS</span>"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.sidebar_permiso
+msgid ""
+"<i class=\"fa fa-home\"/>\n"
+"                        <span>GENERAL DATA</span>"
+msgstr ""
+"<i class=\"fa fa-home\"/>\n"
+"                        <span>DATOS GENERALES</span>"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.sidebar_permiso
+msgid ""
+"<i class=\"fa fa-home\"/>\n"
+"                        <span>PERMIT MANAGEMENT</span>"
+msgstr ""
+"<i class=\"fa fa-home\"/>\n"
+"                        <span>GESTIÓN DE PERMISOS</span>"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.perfil_usuario
+msgid ""
+"<i class=\"fa fa-home\"/>\n"
+"                      <span>DESCRIPCIÓN GENERAL</span>"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.perfil_usuario
+msgid ""
+"<i class=\"fa fa-mortar-board \"/>\n"
+"                      <span>MÓDULOS SOFTWARE SST</span>"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.sidebar_permiso
+msgid ""
+"<i class=\"fa fa-shield\"/>\n"
+"                          <span>RESPONSIBLE MANAGEMENT</span>"
+msgstr ""
+"<i class=\"fa fa-shield\"/>\n"
+"                          <span>GESTIÓN DE RESPONSABLES</span>"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.perfil_usuario
+msgid ""
+"<i class=\"fa fa-users\"/>\n"
+"                      <span>GESTIÓN DE CONTRATISTAS</span>"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.perfil_usuario
+msgid ""
+"<i class=\"fa fa-users\"/>\n"
+"                      <span>GESTIÓN DE PERSONAL</span>"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.planes
+msgid "<small>/ mes</small>"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+msgid "<span class=\"align-middle\">EPP</span>"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+#: model_terms:ir.ui.view,arch_db:website_permiso.report_continuo
+msgid "<span class=\"align-middle\">Otras Condiciones</span>"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.contratistas
+#: model_terms:ir.ui.view,arch_db:website_permiso.personal
+msgid "<span>Apto</span>"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.perfil_usuario
+msgid "<span>General</span>"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.contratistas
+#: model_terms:ir.ui.view,arch_db:website_permiso.personal
+msgid "<span>No Apto</span>"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+msgid "<strong>REQUISITO</strong>"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.contratistas
+msgid "AGREGAR CONSTRATISTA"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_contratistas
+msgid "AGREGAR CONTRATISTA"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_trabajador_requisitos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_trabajador_requisitos_contratista
+#: model_terms:ir.ui.view,arch_db:website_permiso.requisito_estandar
+msgid "AGREGAR REQUISITO"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "AGREGAR SEDE"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.contratistas
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_trabajador
+#: model_terms:ir.ui.view,arch_db:website_permiso.personal
+msgid "AGREGAR TRABAJADOR"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "AGREGAR USUARIO"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permiso_guia
+msgid "ALERTA"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_autorizado_alert
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_solicitado_alert
+msgid "PREVIOUS"
+msgstr "ANTERIOR"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_trabajador
+msgid "APELLIDOS"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.contratistas
+#: model_terms:ir.ui.view,arch_db:website_permiso.personal
+msgid "APELLIDOS Y NOMBRES"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_roles_usuarios
+#: model_terms:ir.ui.view,arch_db:website_permiso.report_continuo
+msgid "APPROVER"
+msgstr "APROBADOR"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+#: model_terms:ir.ui.view,arch_db:website_permiso.sidebar_permiso
+msgid "APPROVE"
+msgstr "APROBAR"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+#: model_terms:ir.ui.view,arch_db:website_permiso.report_continuo
+msgid "AREA"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.preventor
+msgid "AUDITORÍAS"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_roles_usuarios
+#: model_terms:ir.ui.view,arch_db:website_permiso.report_continuo
+msgid "AUTHORIZER"
+msgstr "AUTORIZADOR"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.sidebar_permiso
+msgid "AUTHORIZE"
+msgstr "AUTORIZAR"
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: website_permiso
+#: model:res.groups,name:website_permiso.group_permiso_admin
+msgid "Administrador"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_search
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_search_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_search_2
+msgid "Agrupado por Estado"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__altura
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_permiso__altura
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_requisito__altura
+#: model:ir.model.fields,field_description:website_permiso.field_tipo_permiso__altura
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form_2
+msgid "Altura"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields.selection,name:website_permiso.selection__permiso_trabajo__estado__4
+msgid "Approved"
+msgstr "Aprobado"
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__aprobador_id
+#: model:res.groups,name:website_permiso.group_permiso_apro
+msgid "Aprobador"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form_2
+msgid "Approve"
+msgstr "Aprobar"
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_trabajador_contratista__aptitud
+#: model:ir.model.fields,field_description:website_permiso.field_trabajador_trabajador__aptitud
+msgid "Aptitud"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields.selection,name:website_permiso.selection__trabajador_contratista__aptitud__1
+#: model:ir.model.fields.selection,name:website_permiso.selection__trabajador_trabajador__aptitud__1
+msgid "Apto"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields.selection,name:website_permiso.selection__permiso_trabajo__estado__3
+msgid "Authorized"
+msgstr "Autorizado"
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__autorizador_id
+msgid "Autorizador"
+msgstr ""
+
+#. module: website_permiso
+#: model:res.groups,name:website_permiso.group_permiso_aut
+msgid "Autorizador "
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form_1
+msgid "Authorize"
+msgstr "Autorizar"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+msgid "ADD"
+msgstr "AÑADIR"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+msgid "ADD WORKERS"
+msgstr "AÑADIR TRABAJADORES"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+msgid "Basic example"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields.selection,name:website_permiso.selection__permiso_trabajo__estado__1
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "CANTIDAD DE TRABAJADORES"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.sidebar_permiso
+msgid "TRAININGS"
+msgstr "CAPACITACIONES"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.sidebar_permiso
+msgid "CHARACTERISTICS"
+msgstr "CARACTERISTICAS"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+#: model_terms:ir.ui.view,arch_db:website_permiso.report_continuo
+msgid "CLOSING OF APERTURE"
+msgstr "CERRAMIENTO DE ABERTURAS"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.contratistas
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_trabajador_requisitos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_trabajador_requisitos_contratista
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_contratistas
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_trabajador
+#: model_terms:ir.ui.view,arch_db:website_permiso.personal
+#: model_terms:ir.ui.view,arch_db:website_permiso.planes
+#: model_terms:ir.ui.view,arch_db:website_permiso.requisito_estandar
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "CLOSE"
+msgstr "CERRAR"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.personal
+msgid "CODIGO"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+#: model_terms:ir.ui.view,arch_db:website_permiso.report_continuo
+msgid "COMMENTS"
+msgstr "COMENTARIOS"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+#: model_terms:ir.ui.view,arch_db:website_permiso.report_continuo
+msgid "SECURITY CONDITIONS"
+msgstr "CONDICIONES DE SEGURIDAD"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_contratistas
+#: model_terms:ir.ui.view,arch_db:website_permiso.report_continuo
+msgid "CONTRACTOR"
+msgstr "CONTRATISTA"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_kanban
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_kanban_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_kanban_2
+msgid "CONTRACTOR:"
+msgstr "CONTRATISTA"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.sidebar_permiso
+msgid "CONTRACTORS"
+msgstr "CONTRATISTAS"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.contratistas
+#: model_terms:ir.ui.view,arch_db:website_permiso.personal
+msgid "CORREO"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "CORREO PRINCIPAL"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "CREA TU EMPRESA"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "CREAR"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_trabajador_requisitos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_trabajador_requisitos_contratista
+msgid "CUMPLE"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__calor
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_permiso__calor
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_requisito__calor
+#: model:ir.model.fields,field_description:website_permiso.field_tipo_permiso__calor
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form_2
+msgid "Calor"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields.selection,name:website_permiso.selection__permiso_trabajo__estado__7
+msgid "Canceled"
+msgstr "Cancelado"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.sidebar_permiso
+msgid "Características"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields.selection,name:website_permiso.selection__permiso_trabajo__estado__5
+msgid "Closed"
+msgstr "Cerrado"
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__cerramiento_altura_ids
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__cerramiento_calor_ids
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__cerramiento_confinado_ids
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__cerramiento_electrico_ids
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__cerramiento_frio_ids
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form_2
+msgid "Closing of aperture"
+msgstr "Cerramiento de Aberturas"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form_2
+msgid "Close"
+msgstr "Cerrar"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.perfil_usuario
+#: model_terms:ir.ui.view,arch_db:website_permiso.sidebar_permiso
+msgid "Cerrar sesión"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_permiso__check
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form_2
+msgid "Check"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+#: model_terms:ir.ui.view,arch_db:website_permiso.sidebar_permiso
+msgid "Close"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__sequence
+#: model:ir.model.fields,field_description:website_permiso.field_trabajador_trabajador__codigo
+msgid "Codigo"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_area_area__company_id
+#: model:ir.model.fields,field_description:website_permiso.field_empresa_empresa__company_id
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajador__company_id
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__company_id
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_permiso__company_id
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_requisito__company_id
+#: model:ir.model.fields,field_description:website_permiso.field_sub_area__company_id
+#: model:ir.model.fields,field_description:website_permiso.field_tipo_permiso__company_id
+#: model:ir.model.fields,field_description:website_permiso.field_tipo_requisito__company_id
+#: model:ir.model.fields,field_description:website_permiso.field_trabajador_trabajador__company_id
+msgid "Company"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__seguridad_altura_ids
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__seguridad_calor_ids
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__seguridad_confinado_ids
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__seguridad_electrico_ids
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__seguridad_frio_ids
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form_2
+msgid "Security conditions"
+msgstr "Condiciones de Seguridad"
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__confinado
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_permiso__confinado
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_requisito__confinado
+#: model:ir.model.fields,field_description:website_permiso.field_tipo_permiso__confinado
+msgid "Confinado"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_trabajador_contratista__contratisa_id
+msgid "Constratista"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_tree
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_tree_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_tree_2
+msgid "Contratista / Empresa Ejecutora"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_trabajador_contratista__correo
+#: model:ir.model.fields,field_description:website_permiso.field_trabajador_trabajador__correo
+msgid "Correo"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_empresa_empresa__correo
+msgid "Correo Principal"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_area_area__create_uid
+#: model:ir.model.fields,field_description:website_permiso.field_contratista_contratista__create_uid
+#: model:ir.model.fields,field_description:website_permiso.field_empresa_empresa__create_uid
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_create_line__create_uid
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajador__create_uid
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__create_uid
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_estandar__create_uid
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_permiso__create_uid
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_requisito__create_uid
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_requisito_transient__create_uid
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_trabajador__create_uid
+#: model:ir.model.fields,field_description:website_permiso.field_sede_sede__create_uid
+#: model:ir.model.fields,field_description:website_permiso.field_sub_area__create_uid
+#: model:ir.model.fields,field_description:website_permiso.field_tipo_permiso__create_uid
+#: model:ir.model.fields,field_description:website_permiso.field_tipo_requisito__create_uid
+#: model:ir.model.fields,field_description:website_permiso.field_trabajador_contratista__create_uid
+#: model:ir.model.fields,field_description:website_permiso.field_trabajador_trabajador__create_uid
+#: model:ir.model.fields,field_description:website_permiso.field_user_transient__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_area_area__create_date
+#: model:ir.model.fields,field_description:website_permiso.field_contratista_contratista__create_date
+#: model:ir.model.fields,field_description:website_permiso.field_empresa_empresa__create_date
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_create_line__create_date
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajador__create_date
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__create_date
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_estandar__create_date
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_permiso__create_date
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_requisito__create_date
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_requisito_transient__create_date
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_trabajador__create_date
+#: model:ir.model.fields,field_description:website_permiso.field_sede_sede__create_date
+#: model:ir.model.fields,field_description:website_permiso.field_sub_area__create_date
+#: model:ir.model.fields,field_description:website_permiso.field_tipo_permiso__create_date
+#: model:ir.model.fields,field_description:website_permiso.field_tipo_requisito__create_date
+#: model:ir.model.fields,field_description:website_permiso.field_trabajador_contratista__create_date
+#: model:ir.model.fields,field_description:website_permiso.field_trabajador_trabajador__create_date
+#: model:ir.model.fields,field_description:website_permiso.field_user_transient__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_trabajador__cumple
+msgid "Cumple?"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.personal
+msgid "CÓDIGO"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+msgid "DISCONNECTION"
+msgstr "DESCONEXIÓN"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+#: model_terms:ir.ui.view,arch_db:website_permiso.report_continuo
+msgid "WORK DESCRIPTION"
+msgstr "DESCRIPCIÓN DEL TRABAJO"
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajador__dni
+#: model:ir.model.fields,field_description:website_permiso.field_sede_sede__dni
+#: model:ir.model.fields,field_description:website_permiso.field_trabajador_contratista__dni
+#: model:ir.model.fields,field_description:website_permiso.field_trabajador_trabajador__dni
+#: model_terms:ir.ui.view,arch_db:website_permiso.contratistas
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_trabajador
+#: model_terms:ir.ui.view,arch_db:website_permiso.personal
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "DNI"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permisos
+msgid "Cancel"
+msgstr "Descartar"
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_area_area__descripcion
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_requisito__descripcion
+#: model:ir.model.fields,field_description:website_permiso.field_sub_area__descripcion
+#: model:ir.model.fields,field_description:website_permiso.field_tipo_permiso__descripcion
+#: model:ir.model.fields,field_description:website_permiso.field_tipo_requisito__descripcion
+msgid "Descripción"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__descripcion
+msgid "Work description"
+msgstr "Descripción del Trabajo"
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_area_area__display_name
+#: model:ir.model.fields,field_description:website_permiso.field_contratista_contratista__display_name
+#: model:ir.model.fields,field_description:website_permiso.field_empresa_empresa__display_name
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_create_line__display_name
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajador__display_name
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__display_name
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_estandar__display_name
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_permiso__display_name
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_requisito__display_name
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_requisito_transient__display_name
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_trabajador__display_name
+#: model:ir.model.fields,field_description:website_permiso.field_sede_sede__display_name
+#: model:ir.model.fields,field_description:website_permiso.field_sub_area__display_name
+#: model:ir.model.fields,field_description:website_permiso.field_tipo_permiso__display_name
+#: model:ir.model.fields,field_description:website_permiso.field_tipo_requisito__display_name
+#: model:ir.model.fields,field_description:website_permiso.field_trabajador_contratista__display_name
+#: model:ir.model.fields,field_description:website_permiso.field_trabajador_trabajador__display_name
+#: model:ir.model.fields,field_description:website_permiso.field_user_transient__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_contratistas
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permisos_2
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_trabajador
+#: model_terms:ir.ui.view,arch_db:website_permiso.personal
+#: model_terms:ir.ui.view,arch_db:website_permiso.requisito_estandar
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "EDIT"
+msgstr "EDITAR"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.requisito_estandar
+msgid "EDITAR REQUISITO"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.personal
+msgid "EDITAR TRABAJADOR"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "EDITAR USUARIO"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_trabajador_requisitos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_trabajador_requisitos_contratista
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_contratistas
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_trabajador
+#: model_terms:ir.ui.view,arch_db:website_permiso.personal
+#: model_terms:ir.ui.view,arch_db:website_permiso.requisito_estandar
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "DELETE"
+msgstr "ELIMINAR"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "EMAIL"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.preventor
+msgid "EMPEZAR"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_trabajador
+msgid "EMPRESA"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.preventor
+msgid "EN DESARROLLO"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "ENCARGADO"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "ENCARGADO DE SEDE"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+#: model_terms:ir.ui.view,arch_db:website_permiso.report_continuo
+msgid "PPE"
+msgstr "EPP"
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__epp_altura_ids
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__epp_calor_ids
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__epp_confinado_ids
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__epp_electrico_ids
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__epp_frio_ids
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form_2
+msgid "PPEs"
+msgstr "EPPs"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_trabajador_requisitos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_trabajador_requisitos_contratista
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_contratistas
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_trabajador
+#: model_terms:ir.ui.view,arch_db:website_permiso.personal
+#: model_terms:ir.ui.view,arch_db:website_permiso.requisito_estandar
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "ARE YOU SURE TO DELETE?"
+msgstr "ESTA SEGURO DE ELIMINAR"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.contratistas
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permisos_2
+#: model_terms:ir.ui.view,arch_db:website_permiso.personal
+msgid "STATUS"
+msgstr "ESTADO"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permisos_2
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form_2
+msgid "EXCEL"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permiso_plantilla
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "Editar"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "Delete"
+msgstr "Eliminar"
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__electrico
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_permiso__electrico
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_requisito__electrico
+#: model:ir.model.fields,field_description:website_permiso.field_tipo_permiso__electrico
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form_2
+msgid "Eléctrico"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "Email"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__empleados_ids
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form_2
+msgid "Empleados"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.actions.act_window,name:website_permiso.empresa_accion
+#: model:ir.model.fields,field_description:website_permiso.field_contratista_contratista__empresa_id
+#: model:ir.model.fields,field_description:website_permiso.field_empresa_empresa__name
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__contratista_id
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__empresa_id
+#: model:ir.model.fields,field_description:website_permiso.field_res_users__empresa_id
+#: model:ir.model.fields,field_description:website_permiso.field_sede_sede__empresa_id
+#: model:ir.model.fields,field_description:website_permiso.field_trabajador_trabajador__empresa_id
+msgid "Empresa"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_contratista_contratista__empleados_ids
+#: model:ir.ui.menu,name:website_permiso.empresa
+msgid "Empresas"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_sede_sede__encargado
+msgid "Encargado"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form_2
+msgid "Espacios Confinados"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_area_area__active
+#: model:ir.model.fields,field_description:website_permiso.field_empresa_empresa__active
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__estado
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_requisito__active
+#: model:ir.model.fields,field_description:website_permiso.field_sub_area__active
+#: model:ir.model.fields,field_description:website_permiso.field_tipo_permiso__active
+#: model:ir.model.fields,field_description:website_permiso.field_trabajador_trabajador__active
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_search
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_search_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_search_2
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "Status"
+msgstr "Estado"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.report_continuo
+msgid "Status:"
+msgstr "Estado"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.sidebar_permiso
+msgid "Estandariza los permisos de trabajo."
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+msgid "This Form must be filled out by Approver"
+msgstr "Este Formulario debe ser llenado por el Aprobador"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+msgid "This form must be filled out by Authorizer"
+msgstr "Este Formulario debe ser llenado por el Autorizador"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permisos_2
+msgid "END DATE"
+msgstr "FECHA DE FIN"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permisos_2
+msgid "START DATE"
+msgstr "FECHA DE INICIO"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "SIGNATURE"
+msgstr "FIRMA"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.report_continuo
+msgid "PERMIT TO WORK FORMAT"
+msgstr "FORMATO PERMISO DE TRABAJO"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_kanban
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_kanban_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_kanban_2
+msgid "End date:"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_kanban
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_kanban_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_kanban_2
+msgid "Start date:"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+#: model_terms:ir.ui.view,arch_db:website_permiso.report_continuo
+msgid "End date"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+#: model_terms:ir.ui.view,arch_db:website_permiso.report_continuo
+msgid "Start date"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permisos
+msgid "Date from"
+msgstr "Fecha desde"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permisos
+msgid "Date to"
+msgstr "Fecha hasta"
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__fecha_fin
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__fecha_fin_1
+msgid "Fecha y Hora Fin"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__fecha_inicio
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__fecha_inicio_1
+msgid "Fecha y Hora Inicio"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_tree
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_tree_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_tree_2
+msgid "Fecha y Hora del Trabajo"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "Firma"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__message_channel_ids
+msgid "Followers (Channels)"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_trabajador_trabajador__foto
+msgid "Foto"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__frio
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_permiso__frio
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_requisito__frio
+#: model:ir.model.fields,field_description:website_permiso.field_tipo_permiso__frio
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form_2
+msgid "Frío"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.contratistas
+msgid "GESTIÓN DE CONTRATISTAS"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.personal
+msgid "GESTIÓN DE PERSONAL"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.requisito_estandar
+msgid "GESTIÓN DE REQUISITOS"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_roles_usuarios
+msgid "RESPONSIBLE MANAGEMENT"
+msgstr "GESTIÓN DE RESPONSABLES"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.contratistas
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_trabajador_requisitos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_trabajador_requisitos_contratista
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_contratistas
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_trabajador
+#: model_terms:ir.ui.view,arch_db:website_permiso.personal
+#: model_terms:ir.ui.view,arch_db:website_permiso.requisito_estandar
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "SAVE"
+msgstr "GUARDAR"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_tipo_permiso_plantilla
+msgid "Save"
+msgstr "Guardar"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+#: model_terms:ir.ui.view,arch_db:website_permiso.report_continuo
+msgid "TOOLS"
+msgstr "HERRAMIENTAS"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form_2
+msgid "Tools"
+msgstr "Herramientas"
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__herramienta_altura_ids
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__herramienta_calor_ids
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__herramienta_confinado_ids
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__herramienta_electrico_ids
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__herramienta_frio_ids
+msgid "Herraminetas"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__hora_fin
+msgid "Hora Fin"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__hora_inicio
+msgid "Hora Inicio"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_area_area__id
+#: model:ir.model.fields,field_description:website_permiso.field_contratista_contratista__id
+#: model:ir.model.fields,field_description:website_permiso.field_empresa_empresa__id
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_create_line__id
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajador__id
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__id
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_estandar__id
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_permiso__id
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_requisito__id
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_requisito_transient__id
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_trabajador__id
+#: model:ir.model.fields,field_description:website_permiso.field_sede_sede__id
+#: model:ir.model.fields,field_description:website_permiso.field_sub_area__id
+#: model:ir.model.fields,field_description:website_permiso.field_tipo_permiso__id
+#: model:ir.model.fields,field_description:website_permiso.field_tipo_requisito__id
+#: model:ir.model.fields,field_description:website_permiso.field_trabajador_contratista__id
+#: model:ir.model.fields,field_description:website_permiso.field_trabajador_trabajador__id
+#: model:ir.model.fields,field_description:website_permiso.field_user_transient__id
+msgid "ID"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.requisito_estandar
+msgid "IMPORTACION DE LISTA REQUISITOS"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.contratistas
+#: model_terms:ir.ui.view,arch_db:website_permiso.personal
+msgid "IMPORTACION DE LISTA TRABAJADORES"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.contratistas
+#: model_terms:ir.ui.view,arch_db:website_permiso.personal
+#: model_terms:ir.ui.view,arch_db:website_permiso.requisito_estandar
+msgid "IMPORTAR"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.requisito_estandar
+msgid "IMPORTAR REQUISITOS"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.contratistas
+#: model_terms:ir.ui.view,arch_db:website_permiso.personal
+msgid "IMPORTAR TRABAJADOR"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+msgid "PRINT"
+msgstr "IMPRIMIR"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.sidebar_permiso
+msgid "INSTRUCTIVE"
+msgstr "INSTRUCTIVO"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.preventor
+msgid "IPERC"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_permiso__image
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_requisito__image
+#: model:ir.model.fields,field_description:website_permiso.field_tipo_permiso__icono
+msgid "Icono"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,help:website_permiso.field_permiso_trabajo__message_needaction
+#: model:ir.model.fields,help:website_permiso.field_permiso_trabajo__message_unread
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,help:website_permiso.field_permiso_trabajo__message_has_error
+#: model:ir.model.fields,help:website_permiso.field_permiso_trabajo__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+msgid "Imprimir"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__txt_binary_excel_cal
+msgid "Informe Calor"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.planes
+msgid "Ingresar"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.preventor
+msgid "LISTA DE VERIFICACION"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_contratistas
+msgid "LISTADO DE CONTRATISTAS"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_trabajador
+msgid "LISTADO DE TRABAJADORES"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+#: model_terms:ir.ui.view,arch_db:website_permiso.report_continuo
+msgid "WORKPLACE AND EXECUTOR"
+msgstr "LUGAR DE TRABAJO Y EJECUTOR"
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_area_area____last_update
+#: model:ir.model.fields,field_description:website_permiso.field_contratista_contratista____last_update
+#: model:ir.model.fields,field_description:website_permiso.field_empresa_empresa____last_update
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_create_line____last_update
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajador____last_update
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo____last_update
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_estandar____last_update
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_permiso____last_update
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_requisito____last_update
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_requisito_transient____last_update
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_trabajador____last_update
+#: model:ir.model.fields,field_description:website_permiso.field_sede_sede____last_update
+#: model:ir.model.fields,field_description:website_permiso.field_sub_area____last_update
+#: model:ir.model.fields,field_description:website_permiso.field_tipo_permiso____last_update
+#: model:ir.model.fields,field_description:website_permiso.field_tipo_requisito____last_update
+#: model:ir.model.fields,field_description:website_permiso.field_trabajador_contratista____last_update
+#: model:ir.model.fields,field_description:website_permiso.field_trabajador_trabajador____last_update
+#: model:ir.model.fields,field_description:website_permiso.field_user_transient____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_area_area__write_uid
+#: model:ir.model.fields,field_description:website_permiso.field_contratista_contratista__write_uid
+#: model:ir.model.fields,field_description:website_permiso.field_empresa_empresa__write_uid
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_create_line__write_uid
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajador__write_uid
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__write_uid
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_estandar__write_uid
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_permiso__write_uid
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_requisito__write_uid
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_requisito_transient__write_uid
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_trabajador__write_uid
+#: model:ir.model.fields,field_description:website_permiso.field_sede_sede__write_uid
+#: model:ir.model.fields,field_description:website_permiso.field_sub_area__write_uid
+#: model:ir.model.fields,field_description:website_permiso.field_tipo_permiso__write_uid
+#: model:ir.model.fields,field_description:website_permiso.field_tipo_requisito__write_uid
+#: model:ir.model.fields,field_description:website_permiso.field_trabajador_contratista__write_uid
+#: model:ir.model.fields,field_description:website_permiso.field_trabajador_trabajador__write_uid
+#: model:ir.model.fields,field_description:website_permiso.field_user_transient__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_area_area__write_date
+#: model:ir.model.fields,field_description:website_permiso.field_contratista_contratista__write_date
+#: model:ir.model.fields,field_description:website_permiso.field_empresa_empresa__write_date
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_create_line__write_date
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajador__write_date
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__write_date
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_estandar__write_date
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_permiso__write_date
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_requisito__write_date
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_requisito_transient__write_date
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_trabajador__write_date
+#: model:ir.model.fields,field_description:website_permiso.field_sede_sede__write_date
+#: model:ir.model.fields,field_description:website_permiso.field_sub_area__write_date
+#: model:ir.model.fields,field_description:website_permiso.field_tipo_permiso__write_date
+#: model:ir.model.fields,field_description:website_permiso.field_tipo_requisito__write_date
+#: model:ir.model.fields,field_description:website_permiso.field_trabajador_contratista__write_date
+#: model:ir.model.fields,field_description:website_permiso.field_trabajador_trabajador__write_date
+#: model:ir.model.fields,field_description:website_permiso.field_user_transient__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.ui.menu,name:website_permiso.menu_listas
+msgid "Listas"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields.selection,name:website_permiso.selection__trabajador_trabajador__tipo__2
+msgid "Locacion de Servicios"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.personal
+msgid "Locación de Servicios"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_empresa_empresa__logo
+msgid "Logo"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.preventor
+msgid "Logout"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_tree
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_tree_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_tree_2
+msgid "Lugar"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "MI EMPRESA"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.planes
+msgid "MIS PLANES"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "MODIFICAR SEDE"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.preventor
+msgid "MONITOREO OCUPACIONAL"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+msgid "REASON FOR OBSERVATION"
+msgstr "MOTIVO DE OBSERVACION"
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permiso_plantilla
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_tipo_permiso_plantilla
+msgid "Modificado el:"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.sidebar_permiso
+msgid "PERMIT TO WORK MODULE"
+msgstr "MÓDULO PERMISOS DE TRABAJO"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.planes
+msgid "Módulos"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "NIVEL DE USUARIO"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_contratistas
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_trabajador
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "NOMBRE"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "NOMBRE DE LA EMPRESA"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "NOMBRE DE SEDE"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "NOMBRE DEL USUARIO"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.contratistas
+msgid "NOMBRE Y APELLIDO"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_contratistas
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_trabajador
+msgid "NOMBRES"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "NUEVA SEDE"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.contratistas
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_contratistas
+msgid "NUEVO CONTRATISTA"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permisos
+msgid "NEW PERMIT TO WORK"
+msgstr "NUEVO PERMISO"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_trabajador_requisitos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_trabajador_requisitos_contratista
+#: model_terms:ir.ui.view,arch_db:website_permiso.requisito_estandar
+msgid "NUEVO REQUISITO"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.contratistas
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_trabajador
+#: model_terms:ir.ui.view,arch_db:website_permiso.personal
+msgid "NUEVO TRABAJADOR"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "NUEVO USUARIO"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields.selection,name:website_permiso.selection__trabajador_contratista__aptitud__2
+#: model:ir.model.fields.selection,name:website_permiso.selection__trabajador_trabajador__aptitud__2
+msgid "No Apto"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "No registrado"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permiso_guia
+msgid "No se ha publicado el pdf"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_contratista_contratista__name
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajador__name
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_estandar__name
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_permiso__name
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_trabajador__name
+#: model_terms:ir.ui.view,arch_db:website_permiso.requisito_form
+#: model_terms:ir.ui.view,arch_db:website_permiso.tipo_permiso_form
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "Nombre"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_trabajador_trabajador__name
+msgid "Nombres"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_trabajador_contratista__name
+msgid "Nombres y Apellido"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,help:website_permiso.field_permiso_trabajo__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,help:website_permiso.field_permiso_trabajo__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,help:website_permiso.field_permiso_trabajo__message_unread_counter
+msgid "Number of unread messages"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.planes
+msgid "Numero de registros:"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_sede_sede__trabajadores
+msgid "Numero de trabajadores"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.planes
+msgid "Numero de usuarios:"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "N° DNI"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__name
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_tree
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_tree_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_tree_2
+msgid "N° Permiso"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+msgid "OBSERVATION"
+msgstr "OBSERVACION"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+msgid "NOTE"
+msgstr "OBSERVAR"
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__observacion_apro
+msgid "Observaciones del Aprobador"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__observacion_auto
+msgid "Observaciones del Autorizador"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields.selection,name:website_permiso.selection__permiso_trabajo__estado__6
+msgid "Observed"
+msgstr "Observado"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.sidebar_permiso
+msgid "Optimiza los tiempos de autorización."
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.perfil_usuario
+msgid "PANEL DE USUARIO"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+msgid "STEP 1: PERMISSION TO APPLY"
+msgstr "PASO 1: SOLICITAR PERMISO"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "PERFIL DE LA EMPRESA"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "PERFIL DE USUARIO"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permisos_2
+msgid "ID PERMIT WORK"
+msgstr "PERMISO"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+msgid "PERMIT TO WORK"
+msgstr "PERMISO DE TRABAJO"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.preventor
+msgid "WORKS PERMIT"
+msgstr "PERMISOS DE TRABAJO"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.sidebar_permiso
+msgid "PERMITS TEMPLATE"
+msgstr "PLANTILLA DE PERMISOS"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permiso_plantilla
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_tipo_permiso_plantilla
+msgid "PLANTILLAS DE PERMISOS"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.preventor
+msgid "PREVENTOR"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.contratistas
+msgid "PUESTO"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.contratistas
+#: model_terms:ir.ui.view,arch_db:website_permiso.personal
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "PUESTO DE TRABAJO"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.external_layout_standard
+msgid ""
+"Pagina:\n"
+"          <span class=\"page\"/>\n"
+"          /\n"
+"          <span class=\"topage\"/>"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.perfil_usuario
+#: model_terms:ir.ui.view,arch_db:website_permiso.sidebar_permiso
+msgid "Panel de control"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.module.category,name:website_permiso.category_permisos_trabajo
+msgid "Permios de Trabajo"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajador__permiso_id
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_permiso__permiso_id
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_requisito__permiso_id
+msgid "Permiso"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form
+msgid "Permiso en Altura"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form
+msgid "Permiso en Caliente"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form
+msgid "Permiso en Eléctrico"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form_2
+msgid "Permiso en Espacios Confinados"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form
+msgid "Permiso en Frío"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.ui.menu,name:website_permiso.menu_permisos
+msgid "Permisos"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.ui.menu,name:website_permiso.permisos_3
+msgid "Permisos - Aprobador"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.ui.menu,name:website_permiso.permisos_2
+msgid "Permisos - Autorizador"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.ui.menu,name:website_permiso.permisos_1
+msgid "Permisos - Solicitante"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.actions.act_window,name:website_permiso.permiso_accion
+#: model:ir.actions.act_window,name:website_permiso.permiso_accion_1
+#: model:ir.actions.act_window,name:website_permiso.permiso_accion_2
+#: model:ir.ui.menu,name:website_permiso.menu_principal
+msgid "Permisos de Trabajo"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.sidebar_permiso
+msgid "Permite descargar los Permisos de trabajo en formato Excel y PDF."
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.sidebar_permiso
+msgid "Permite gestionar el historial de los permisos de trabajo."
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.sidebar_permiso
+msgid "Permite programar con anticipación los diferentes permisos de trabajo."
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.ui.menu,name:website_permiso.menu_usuarios
+msgid "Personal"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.planes
+msgid "Plan"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields.selection,name:website_permiso.selection__trabajador_trabajador__tipo__1
+#: model_terms:ir.ui.view,arch_db:website_permiso.personal
+msgid "Planilla"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__plantilla
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permisos
+msgid "Template"
+msgstr "Plantilla"
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__otras_altura_ids
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__otras_calor_ids
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__otras_confinado_ids
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__otras_electrico_ids
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__otras_frio_ids
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__preparacion_altura_ids
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__preparacion_calor_ids
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__preparacion_confinado_ids
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__preparacion_electrico_ids
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__preparacion_frio_ids
+#: model:ir.model.fields,field_description:website_permiso.field_tipo_permiso__tipos
+msgid "Preparación"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "Principal"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_sede_sede__puesto
+#: model:ir.model.fields,field_description:website_permiso.field_trabajador_contratista__puesto
+#: model:ir.model.fields,field_description:website_permiso.field_trabajador_trabajador__puesto
+msgid "Puesto"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.contratistas
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_contratistas
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "RAZON SOCIAL"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+msgid "RECONNECTION"
+msgstr "RECONEXIÓN"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.preventor
+msgid "REGISTRO DE ACCIDENTES"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_trabajador_requisitos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_trabajador_requisitos_contratista
+#: model_terms:ir.ui.view,arch_db:website_permiso.requisito_estandar
+msgid "REQUISITO"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_trabajador_requisitos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_trabajador_requisitos_contratista
+msgid "REQUISITOS"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+#: model_terms:ir.ui.view,arch_db:website_permiso.report_continuo
+msgid "PREPARATION REQUIREMENTS"
+msgstr "REQUISITOS DE PREPARACIÓN"
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_empresa_empresa__ruc
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_contratistas
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "RUC"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_empresa_empresa__razon_social
+msgid "Razón Social"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "Registrado"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.actions.report,name:website_permiso.action_report_permiso
+msgid "ReportePDF Permiso de Trabajo"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.planes
+msgid "Reportes Excel:"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.actions.act_window,name:website_permiso.requisito_accion
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_permiso__requisito_id
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_requisito__name
+msgid "Requisito"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_trabajador_contratista__requisito_ids
+#: model:ir.model.fields,field_description:website_permiso.field_trabajador_trabajador__requisito_ids
+#: model:ir.ui.menu,name:website_permiso.menu_requisitos_estandar
+#: model:ir.ui.menu,name:website_permiso.requisito
+msgid "Requisitos"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.actions.act_window,name:website_permiso.requisito_estandar_accion
+msgid "Requisitos General"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form_2
+msgid "Preparation Requirements"
+msgstr "Requisitos de Preparación"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permisos_2
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "LOCATION"
+msgstr "SEDE"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "LOCATIONS"
+msgstr "SEDES"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_autorizado_alert
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_solicitado_alert
+msgid "NEXT"
+msgstr "SIGUIENTE"
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_roles_usuarios
+#: model_terms:ir.ui.view,arch_db:website_permiso.report_continuo
+msgid "APPLICANT"
+msgstr "SOLICITANTE"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.sidebar_permiso
+msgid "REQUEST"
+msgstr "SOLICITAR"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+#: model_terms:ir.ui.view,arch_db:website_permiso.report_continuo
+msgid "SUB - AREA"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.contratistas
+#: model_terms:ir.ui.view,arch_db:website_permiso.personal
+#: model_terms:ir.ui.view,arch_db:website_permiso.requisito_estandar
+msgid "SUBIR ARCHIVO"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "Secundario"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__sede
+#: model:ir.model.fields,field_description:website_permiso.field_sede_sede__name
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permisos
+msgid "Location"
+msgstr "Sede"
+
+#. module: website_permiso
+#: model:ir.model.fields.selection,name:website_permiso.selection__permiso_trabajo__estado__2
+msgid "Requested"
+msgstr "Solicitado"
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__solicitante_id
+#: model:res.groups,name:website_permiso.group_permiso_soli
+msgid "Solicitante"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.permiso_form
+msgid "Solicitar Permiso"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.actions.act_window,name:website_permiso.sub_area_accion
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__sub_area_id
+#: model:ir.model.fields,field_description:website_permiso.field_sub_area__name
+msgid "Sub Área"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_area_area__sub_area_ids
+#: model:ir.ui.menu,name:website_permiso.sub_area
+msgid "Sub Áreas"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.contratistas
+#: model_terms:ir.ui.view,arch_db:website_permiso.personal
+msgid "TELEFONO"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.contratistas
+#: model_terms:ir.ui.view,arch_db:website_permiso.personal
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "TELÉFONO"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.personal
+msgid "TIPO DE TRABAJADOR"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+#: model_terms:ir.ui.view,arch_db:website_permiso.report_continuo
+msgid "TYPE OF WORK"
+msgstr "TIPO DE TRABAJO"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_trabajador
+msgid "TRABAJADOR"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+#: model_terms:ir.ui.view,arch_db:website_permiso.report_continuo
+#: model_terms:ir.ui.view,arch_db:website_permiso.sidebar_permiso
+msgid "WORKERS"
+msgstr "TRABAJADORES"
+
+#. module: website_permiso
+#: model:ir.ui.menu,name:website_permiso.permisos_tablero
+msgid "Tablero"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_empresa_empresa__telefono
+#: model:ir.model.fields,field_description:website_permiso.field_trabajador_contratista__telefono
+#: model:ir.model.fields,field_description:website_permiso.field_trabajador_trabajador__telefono
+msgid "Telefono"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_permiso__tipo_permiso_id
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_requisito__tipo_permiso_id
+#: model:ir.model.fields,field_description:website_permiso.field_tipo_permiso__name
+msgid "Tipo de Permiso"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.ui.menu,name:website_permiso.tipo_permisos
+msgid "Tipo de Permisos"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.actions.act_window,name:website_permiso.tipo_requisito_accion
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_permiso__tipo_requi_id
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_requisito__tipo_requi_id
+#: model:ir.model.fields,field_description:website_permiso.field_tipo_requisito__name
+msgid "Tipo de Requisito"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.ui.menu,name:website_permiso.tipo_requisito
+msgid "Tipo de Requisitos"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_estandar__tipo
+msgid "Tipo de requisito"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_trabajador_trabajador__tipo
+msgid "Tipo de trabajador"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.actions.act_window,name:website_permiso.tipo_permiso_accion
+msgid "Tipos de Permiso"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.actions.act_window,name:website_permiso.trabajador_accion
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajador__trabajador_id
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_trabajador__trabajador_contratista_id
+#: model:ir.model.fields,field_description:website_permiso.field_requisito_trabajador__trabajador_id
+msgid "Trabajador"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.ui.menu,name:website_permiso.trabajador
+msgid "Trabajadores"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+#: model_terms:ir.ui.view,arch_db:website_permiso.report_continuo
+msgid "Trabajo Eléctrico"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+msgid "Trabajo Eléctricos"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+#: model_terms:ir.ui.view,arch_db:website_permiso.report_continuo
+msgid "Trabajo en Altura"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+#: model_terms:ir.ui.view,arch_db:website_permiso.report_continuo
+msgid "Trabajo en Caliente"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.report_continuo
+msgid "Trabajo en Calor"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+#: model_terms:ir.ui.view,arch_db:website_permiso.report_continuo
+msgid "Trabajo en Espacios Confinados"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+#: model_terms:ir.ui.view,arch_db:website_permiso.report_continuo
+msgid "Trabajo en Frio"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+msgid "Trabajo en Frío"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__txt_excel_cal
+msgid "Txt Excel Cal"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+#: model_terms:ir.ui.view,arch_db:website_permiso.report_continuo
+msgid "LOCATION"
+msgstr "UBICACION"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_roles_usuarios
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "USERS"
+msgstr "USUARIOS"
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__area
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__sub_area
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__ubicacion_exacta
+msgid "Ubicación"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__message_unread
+msgid "Unread Messages"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.perfil_usuario
+#: model_terms:ir.ui.view,arch_db:website_permiso.sidebar_permiso
+msgid "User picture"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model,name:website_permiso.model_res_users
+msgid "Users"
+msgstr "Usuarios"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "Usuario"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.actions.act_window,name:website_permiso.usuarios_solicitante_accion
+#: model:ir.ui.menu,name:website_permiso.usuarios_solicitante
+msgid "Usuario Solicitante"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permisos_2
+msgid "APPROVER VIEW"
+msgstr "VISTA DEL APROBADOR"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permisos_1
+msgid "AUTHORIZER VIEW"
+msgstr "VISTA DEL AUTORIZADOR"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permisos
+msgid "APPLICANT VIEW"
+msgstr "VISTA DEL SOLICITANTE"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.planes
+msgid "Valido hasta"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permiso_guia
+msgid "Visualizar PDF<span/>"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields,help:website_permiso.field_permiso_trabajo__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_autorizado_alert
+msgid "YOU ALREADY AUTHORIZED THE PERMIT, WAIT FOR ITS APPROVAL"
+msgstr "YA AUTORIZASTE EL PERMISO, ESPERA SU APROBACIÓN"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_aprobado_alert
+msgid "THE PERMIT IS ALREADY APPROVED, START YOUR WORK"
+msgstr "YA SE APROBÓ EL PERMISO, COMIENCE SU TRABAJO"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_solicitado_alert
+msgid "YOU ALREADY REQUESTED YOUR PERMISSION, WAITING FOR YOUR AUTHORIZATION"
+msgstr "YA SOLICITASTE SU PERMISO, ESPERA SU AUTORIZACION"
+
+#. module: website_permiso
+#: model:ir.model,name:website_permiso.model_area_area
+msgid "area.area"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model,name:website_permiso.model_contratista_contratista
+msgid "contratista.contratista"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_1
+#: model_terms:ir.ui.view,arch_db:website_permiso.form_permisos_2
+#: model_terms:ir.ui.view,arch_db:website_permiso.report_continuo
+msgid "dd/mm/aaaa"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_permiso_plantilla
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_tipo_permiso_plantilla
+msgid "de"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model,name:website_permiso.model_empresa_empresa
+msgid "empresa.empresa"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields.selection,name:website_permiso.selection__requisito_estandar__tipo__general
+msgid "general"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.usuarios
+msgid "info@softwaresst.com"
+msgstr ""
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.perfil_usuario
+#: model_terms:ir.ui.view,arch_db:website_permiso.sidebar_permiso
+msgid "logo-preventor"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model,name:website_permiso.model_permiso_create_line
+msgid "permiso.create.line"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model,name:website_permiso.model_permiso_trabajador
+msgid "permiso.trabajador"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model,name:website_permiso.model_permiso_trabajo
+msgid "permiso.trabajo"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model.fields.selection,name:website_permiso.selection__requisito_estandar__tipo__personal
+msgid "personal"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model,name:website_permiso.model_requisito_estandar
+msgid "requisito.estandar"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model,name:website_permiso.model_requisito_permiso
+msgid "requisito.permiso"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model,name:website_permiso.model_requisito_requisito
+msgid "requisito.requisito"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model,name:website_permiso.model_requisito_requisito_transient
+msgid "requisito.requisito.transient"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model,name:website_permiso.model_requisito_trabajador
+msgid "requisito.trabajador"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model,name:website_permiso.model_sede_sede
+msgid "sede.sede"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model,name:website_permiso.model_sub_area
+msgid "sub.area"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model,name:website_permiso.model_tipo_permiso
+msgid "tipo.permiso"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model,name:website_permiso.model_tipo_requisito
+msgid "tipo.requisito"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model,name:website_permiso.model_trabajador_contratista
+msgid "trabajador.contratista"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model,name:website_permiso.model_trabajador_trabajador
+msgid "trabajador.trabajador"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.model,name:website_permiso.model_user_transient
+msgid "user.transient"
+msgstr ""
+
+#. module: website_permiso
+#: model:ir.actions.act_window,name:website_permiso.area_accion
+#: model:ir.model.fields,field_description:website_permiso.field_area_area__name
+#: model:ir.model.fields,field_description:website_permiso.field_permiso_trabajo__area_id
+#: model:ir.model.fields,field_description:website_permiso.field_sub_area__area_id
+#: model:ir.ui.menu,name:website_permiso.area
+msgid "Área"
+msgstr ""
+
+#. module: website_permiso
+#: model:requisito.requisito,name:website_permiso.anteojos
+#: model:requisito.requisito,name:website_permiso.confinado_anteojos
+#: model:requisito.requisito,name:website_permiso.frio_anteojos_seguridad
+msgid "Safety glasses"
+msgstr "Anteojos de Seguridad"
+
+#. module: website_permiso
+#: model:requisito.requisito,name:website_permiso.altura_anteojos
+msgid "Safety glasses"
+msgstr "Anteojos de Seguridad"
+
+#. module: website_permiso
+#: model:requisito.requisito,name:website_permiso.electrico_anteojos
+msgid "Safety glasses"
+msgstr "Anteojos de Seguridad"
+
+#. module: website_permiso
+#: model:requisito.requisito,name:website_permiso.electrico_guantes
+msgid "Dielectrics gloves"
+msgstr "Guantes dielectrico"
+
+#. module: website_permiso
+#: model:requisito.requisito,name:website_permiso.electrico_casco
+msgid "Dielectrics helmets"
+msgstr "Casco dielectrico"
+
+#. module: website_permiso
+#: model:requisito.requisito,name:website_permiso.zapatos
+#: model:requisito.requisito,name:website_permiso.zapatos_1
+msgid "Safety boots"
+msgstr "Zapatos de Seguridad"
+
+#. module: website_permiso
+#: model:requisito.requisito,name:website_permiso.electrico_casco_uv
+msgid "Face helmets"
+msgstr "Casco Facial con UV"
+
+#. module: website_permiso
+#: model:requisito.requisito,name:website_permiso.electrico_zapatos
+msgid "Dielectrics boots"
+msgstr "Zapatos dielectrico"
+
+#. module: website_permiso
+#: model:requisito.requisito,name:website_permiso.electrico_alicate
+msgid "Pliers"
+msgstr "Alicate"
+
+#. module: website_permiso
+#: model:requisito.requisito,name:website_permiso.electrico_pertiga
+msgid "Pole"
+msgstr "Pertiga"
+
+#. module: website_permiso
+#: model:requisito.requisito,name:website_permiso.electrico_conector
+msgid "Tension connector"
+msgstr "Conector de tensión"
+
+#. module: website_permiso
+#: model:requisito.requisito,name:website_permiso.electrico_megometro
+msgid "Megometer"
+msgstr "Megometro"
+
+#. module: website_permiso
+#: model:requisito.requisito,name:website_permiso.electrico_banco_aislador
+msgid "Isolating bench"
+msgstr "Banco aislador"
+
+#. module: website_permiso
+#: model:requisito.requisito,name:website_permiso.calor_manoueras
+#: model:requisito.requisito,name:website_permiso.electrico_destornillador
+msgid "Screwdriver"
+msgstr "Destornillador"
+
+#. module: website_permiso
+#: model:requisito.requisito,name:website_permiso.calor_apertura
+#: model:requisito.requisito,name:website_permiso.confinado_apertura
+#: model:requisito.requisito,name:website_permiso.electrico_apertura
+msgid "Opening covered by a temporary surface (supporting 100 kg)"
+msgstr "Apertura cubierta por una superficie provisional (que soporte 100 kg)"
+
+#. module: website_permiso
+#: model:requisito.requisito,name:website_permiso.altura_apertura
+msgid "Opening covered by a temporary surface (supporting 100 kg)"
+msgstr "Apertura cubierta por una superficie provisional (que soporte 100 kg)"
+
+#. module: website_permiso
+#: model:requisito.requisito,name:website_permiso.frio_apertura
+msgid "Opening covered by a temporary surface (supporting 100 kg)"
+msgstr "Apertura cubierta por una superficie provisional (que soporte 100 kg)"
+
+#. module: website_permiso
+#: model:requisito.requisito,name:website_permiso.altura_letrero
+#: model:requisito.requisito,name:website_permiso.electrico_letrero
+#: model:requisito.requisito,name:website_permiso.calor_letrero
+#: model:requisito.requisito,name:website_permiso.frio_letrero
+msgid "Sign RISK OF FALLING AT A DIFFERENT LEVEL"
+msgstr "Letrero RIESGO DE CAIDA A DISTINTO NIVEL"
+
+#. module: website_permiso
+#: model:requisito.requisito,name:website_permiso.altura_cerco
+#: model:requisito.requisito,name:website_permiso.calor_cerco
+#: model:requisito.requisito,name:website_permiso.confinado_cerco
+#: model:requisito.requisito,name:website_permiso.electrico_cerco
+#: model:requisito.requisito,name:website_permiso.frio_cerco
+msgid "Temporary fence around the opening"
+msgstr "Cerco temporal alrededor de la apertura"
+
+#. module: website_permiso
+#: model:requisito.requisito,name:website_permiso.desconexion_4
+msgid "Disconnection at the electrical panel"
+msgstr "Desconexión en el tablero eléctrico"
+
+#. module: website_permiso
+#: model:requisito.requisito,name:website_permiso.calor_retiro
+#: model:requisito.requisito,name:website_permiso.retiro
+msgid "Fuse removal"
+msgstr "Retiro de fusibles"
+
+#. module: website_permiso
+#: model:requisito.requisito,name:website_permiso.conexion_4
+#: model:requisito.requisito,name:website_permiso.confinado_conexion
+msgid "Ground connection"
+msgstr "Conexión a tierra"
+
+#. module: website_permiso
+#: model:requisito.requisito,name:website_permiso.verificacion
+msgid "Verification of disconnection"
+msgstr "Verificación de la desconexión"
+
+#. module: website_permiso
+#: model:requisito.requisito,name:website_permiso.desconexion_1
+msgid "Disconnection in substation"
+msgstr "Desconexión en sub-estación"
+
+#. module: website_permiso
+#: model:requisito.requisito,name:website_permiso.desconexion_2
+msgid "Disconnect power from the supplier"
+msgstr "Desconexión de alimentación del suministrador"
+
+#. module: website_permiso
+#: model:requisito.requisito,name:website_permiso.equipos_1
+msgid "Equipment is covered or insulated"
+msgstr "Los equipos se encuentran cubiertos ó aislados"
+
+#. module: website_permiso
+#: model:requisito.requisito,name:website_permiso.superficies_1
+msgid "No energized or bare surfaces"
+msgstr "No hay superficies energizados ó desnudas"
+
+#. module: website_permiso
+#: model:requisito.requisito,name:website_permiso.personal_1
+msgid "There are no personnel working on the equipment"
+msgstr "No se encuentran personal trabajando en los equipos"
+
+#. module: website_permiso
+#: model:requisito.requisito,name:website_permiso.personas_1
+msgid "No people in contact or near places where there is a risk of electric shock"
+msgstr "No hay personas en contacto o cerca de lugares donde exista riesgo de shock eléctrico"
+
+#. module: website_permiso
+#: model:requisito.requisito,name:website_permiso.interruptores_1
+msgid "The switches are open and the equipment will not emerge when proceeding to connect the selector that had been opened"
+"Los interruptores se encuentran abiertos y los equipos no se emergizarán al "
+"proceder a conectar el seleccionador que habia sido abierto"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.sidebar_permiso
+msgid "<span>REPORTS</span>"
+msgstr "<span>REPORTES</span>"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.sidebar_permiso
+msgid "Graphics"
+msgstr "Gráficos"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.sidebar_permiso
+msgid "History"
+msgstr "Historial"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_graph
+msgid "PERMIT TO WORK GRAPHS"
+msgstr "GRÁFICO DE PERMISOS DE TRABAJO"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_history
+msgid "PERMIT TO WORK HISTORY"
+msgstr "HISTORIAL DE PERMISOS DE TRABAJO"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_history
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_graph
+msgid "Date from"
+msgstr "Fecha desde"
+
+#. module: website_permiso
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_history
+#: model_terms:ir.ui.view,arch_db:website_permiso.list_graph
+msgid "Date to"
+msgstr "Fecha hasta"

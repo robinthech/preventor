@@ -1,0 +1,130 @@
+<odoo>
+  <template id="consolidado_inspecciones" name="Inspecciones">
+    <t t-call="inspecciones.sidebar_inspecciones">
+
+      <div class="wrapper modulo-wrapper">
+        <!-- Page Content -->
+        <div id="content" class="consolidado_inspeccion_substandar" t-att-data-empresa_id="empresa.id">
+
+          <div class="row py-2">
+            <div class="col-12">
+              <div class="alert alert-primary text-center" role="alert">
+                <h4>CONSOLIDADO DE REPORTE DE CONDICIONES SUBESTANDARES ENCONTRADAS
+                </h4>
+              </div>
+
+            </div>
+            <hr/>
+            <hr/>
+            <section class="col-12 search-section-reporte">
+              <div class="align-items-center">
+                <form action="#" method="post" novalidate="novalidate">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="row text-center">
+                        <div class="col-lg-9 col-md-9 col-sm-12 p-0">
+                          <h6 class="text-center m-0 p-0" style="color:white;">SELECCIONAR RESPONSABLE</h6>
+                          <select class="form-control" type="select" name="responsable_id">
+                            <t t-foreach="trabajadores" t-as="v">
+                              <option t-att-value="'%s' % (v.id)" t-esc="v.name"/>
+                            </t>
+                          </select>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                          <button type="button" class="btn wrn-btn-reporte w-50 wrn-btn-reporte-consolidado">REPORTAR</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </section>
+            <hr/>
+            <div class="mx-auto align-items-center m-3 p-3" style="width:100%; background-color: white;">
+              <section class="loading-learning" style="display:none;">
+                <div class="circle-loading"></div>
+                <div class="circle-loading"></div>
+                <div class="circle-loading"></div>
+              </section>
+              <br/>
+              <div class="reporte" style="background-color: white;">
+
+                <div id="reporte-consolidado-inspecciones" class="table-responsive">
+                  <table id="modulo-inspecciones" class="table table-hover responsive nowrap" style="width:100%; text-align: center;" t-att-data-plan_id="plan.id">
+                    <thead >
+                      <tr style="vertical-align:middle">
+                        <th class="color-inspeccion-4">
+                          INSPECCIÓN
+                        </th>
+                        <th class="color-inspeccion-1">
+                          PENDIENTE
+                        </th>
+                        <th class="color-inspeccion-2">
+                          PROCESO
+                        </th>
+                        <th class="color-inspeccion-3">
+                          CERRADO
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody >
+                      <t t-set="contador" t-value="0"/>
+
+                      <t t-foreach="registros" t-as="registro">
+                        <t t-set="contador" t-value="contador + 1"/>
+                        <tr>
+                          <td>
+                            <span t-field="registro.name"/>
+                          </td>
+                          <td >
+                            <span t-field="registro.total_pendiente"/>
+                          </td>
+                          <td>
+                            <span t-field="registro.total_proceso"/>
+                          </td>
+                          <td>
+                            <span t-field="registro.total_cerrado"/>
+                          </td>
+                        </tr>
+                      </t>
+                    </tbody>
+                  </table>
+                </div>
+                <br/>
+
+              </div>
+
+            </div>
+            <button type="button" class="btn btn-gamma font-weight-bold float-right send_email" data-toggle="modal">ENVIAR EMAIL</button>
+            <div class="modal fade" id="send_email" t-att-aria-hidden="true" tabindex="-1" role="dialog" aria-labelledby="exampleModalTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">NUEVO FORMATO</h5>
+                  </div>
+                  <div class="modal-body">
+                    <div id="formulario">
+                        <label for="asunto">Asunto</label>
+                        <input class="form-control " name="asunto" type="text" required="required" id="asunto" placeholder="asunto" tabindex="1" title="Asunto" />
+                        <label for="email">Email</label>
+                        <input class="form-control " name="email" type="email" required="required" id="email" placeholder="email" tabindex="2" title="Email" />
+                        <label for="Mensaje">Mensaje</label>
+                        <textarea class="form-control" name="mensaje" rows="4" id="mensaje" placeholder="mensaje" style="width: 370px; height: 100px;" tabindex="6"></textarea>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Descartar</button>
+                        <!--Guardar requiere de js-->
+                        <button type="button" class="btn btn-primary button-enviar-email">ENVIAR EMAIL</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </t>
+      </template>
+
+    </odoo>

@@ -1,0 +1,617 @@
+<odoo>
+  <template id="registro_incidente" name="Registro de equipos de seguridad o emergencia">
+    <t t-call="website.layout">
+      <t t-set="no_header" t-value="True"/>
+      <t t-set="no_footer" t-value="True"/>
+      <header>
+        <nav class="navbar navbar-expand-md navbar-dark bg-primary accidente">
+        <div class="container">
+          <a class="navbar-brand logo" href="https://softwaresst.com">
+            <img src="/web/image/website/1/logo/PREVENTOR?unique=43ff1c1" class="img img-fluid" alt=""/>
+          </a>
+          <div id="top_menu_collapse" aria-expanded="false">
+            <ul class="nav ml-auto text-right" id="top_menu">
+              <li class="nav-item divider"></li>
+              <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle align-items-center d-flex" data-toggle="dropdown">
+                  <i class="fa fa-user-circle mr-1"></i>
+                  <b>
+                    <span t-esc="user_id.name[:23] + '...' if user_id.name and len(user_id.name) &gt; 25 else user_id.name"/>
+                  </b>
+                </a>
+                <div class="dropdown-menu js_usermenu" role="menu">
+
+                  <a class="dropdown-item" t-attf-href="/usuarios" role="menuitem">Panel de control</a>
+                  <a id="o_logout" class="dropdown-item" role="menuitem" href="/web/session/logout?redirect=https://softwaresst.com/">Cerrar sesión</a>
+                </div>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+      </nav>
+      </header>
+      <div class="wrapper modulo-wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar" class="bg-info">
+          <ul class="list-unstyled components">
+            <p class="bg-success text-center">
+              <strong>MODULO DE EQUIPOS DE SEGURIDAD O EMERGENCIA</strong>
+            </p>
+            <li class="nav-item divider"></li>
+            <li>
+              <a href="/equipos-seguridad/configuracion">LISTADO DE TRABAJADORES</a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content" class="registro-equipos">
+          <button type="button" id="sidebarCollapse" class="btn btn-info display-none">
+            <i class="fa fa-align-left"></i>
+          </button>
+          <div class="row py-2">
+            <div class="col-12">
+              <div class="alert alert-primary text-center" role="alert">
+                <h4>REGISTROS DE EQUIPOS DE SEGURIDAD O EMERGENCIA</h4>
+              </div>
+              <div class="table-responsive">
+                <table class="table table-hover responsive nowrap text-center">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th>INCIDENTE</th>
+                      <th>EMPRESA</th>
+                      <th>RUC</th>
+                      <th>EDITAR</th>
+                      <th>ELIMINAR</th>
+                    </tr>
+                  </thead>
+                  <tbody >
+                    <t t-set="contador" t-value="0"/>
+                    <t t-foreach="verificaciones" t-as="verificacion">
+                      <t t-set="contador" t-value="contador + 1"/>
+                      <tr>
+                        <td>
+                          <div>
+                            <span t-field="verificacion.sequence"/>
+                          </div>
+                        </td>
+                        <td>
+                          <span t-field="verificacion.razon"/>
+                        </td>
+                        <td>
+                          <span t-field="verificacion.ruc"/>
+                        </td>
+                        <td>
+                          <a class="btn btn-success" t-att-href="'/equipos-seguridad/%s' % (verificacion.id)" role="button">
+                            <i class="fa fa-pencil-square-o"></i>
+
+                          </a>
+                        </td>
+                        <td>
+                          <div>
+                            <button type="button" class="btn btn-danger" data-toggle="modal" t-attf-data-target="#trabajador-{{verificacion.id}}">
+                              <i class="fa fa-trash"></i>
+
+                            </button>
+                            <div class="modal fade" t-attf-id="trabajador-{{verificacion.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                  </div>
+                                  <div class="modal-body">
+                                    <div class="alert alert-danger" role="alert">
+                                      ESTA SEGURO DE ELIMINAR
+                                    </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                                    <button type="button" class="btn btn-secondary botton-eliminar-verificacion" t-att-data-verificacion_id="verificacion.id">ELIMINAR</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                        </td>
+                      </tr>
+                    </t>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-center">
+
+            <button type="button" class="btn btn-success font-weight-bold" data-toggle="modal" data-target="#new_trabajadores">
+              <strong>Crear registro de equipos de seguridad</strong>
+            </button>
+            <div class="modal fade" id="new_trabajadores" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">NUEVO REGISTRO DE EQUIPOS DE SEGURIDAD</h5>
+                  </div>
+                  <div class="modal-body">
+                    RUC
+                    <input class="col-12 form-control mt-1 mb-3" name="new-accidente-ruc" type="text"/>
+                    RAZON SOCIAL
+                    <input class="col-12 form-control mt-1 mb-3" name="new-accidente-razon" type="text"/>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                    <button type="button" class="btn btn-primary nuevo-registro-incidente">GUARDAR</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </t>
+  </template>
+  <template id="formulario_accidente" name="Registro de equipos de seguridad o emergencia">
+      <t t-call="website.layout">
+          <t t-set="no_header" t-value="True"/>
+          <t t-set="no_footer" t-value="True"/>
+          <header>
+            <nav class="navbar navbar-expand-md navbar-dark bg-primary accidente">
+            <div class="container">
+              <a class="navbar-brand logo" href="https://softwaresst.com">
+                <img src="/web/image/website/1/logo/PREVENTOR?unique=43ff1c1" class="img img-fluid" alt=""/>
+              </a>
+              <div id="top_menu_collapse" aria-expanded="false">
+                  <ul class="nav navbar-nav ml-auto text-right" id="top_menu">
+                  <li class="nav-item dropdown flot-right">
+                  </li>
+
+                  <li class="nav-item divider"></li>
+                  <li class="nav-item dropdown">
+                      <a href="#" class="nav-link dropdown-toggle align-items-center d-flex" data-toggle="dropdown"><i class="fa fa-user-circle mr-1" style="font-size: 1.5rem"></i>
+                      <b>
+                          <span t-esc="user_id.name[:23] + '...' if user_id.name and len(user_id.name) &gt; 25 else user_id.name"/>
+                      </b>
+                      </a>
+                      <div class="dropdown-menu js_usermenu" role="menu">
+
+                      <a class="dropdown-item" t-attf-href="/usuarios" role="menuitem">Panel de control</a>
+                      <a id="o_logout" class="dropdown-item" role="menuitem" href="/web/session/logout?redirect=https://softwaresst.com/">Cerrar sesión</a>
+                      </div>
+                  </li>
+
+                  </ul>
+              </div>
+              </div>
+          </nav>
+          </header>
+          <div class="wrapper modulo-wrapper" style="position:relative">
+          <!-- Sidebar -->
+              <nav id="sidebar" class="bg-info">
+                <ul class="list-unstyled components">
+                    <p class="bg-success" style="height:60px;">
+                    <strong>MODULO DE EQUIPOS DE SEGURIDAD O EMERGENCIA</strong>
+                    </p>
+                    <li>
+                      <a href="/equipos-seguridad">REGISTROS DE EQUIPOS DE SEGURIDAD</a>
+                    </li>
+                    <li>
+                      <a href="/equipos-seguridad/configuracion">LISTADO DE RESPONSABLES</a>
+                    </li>
+                </ul>
+              </nav>
+
+              <div id="content" class="section_equipos">
+                  <div class="mx-auto accidente_id" style="width:85%" t-att-data-accidente_id="incidente.id">
+                      <!-- <h1>AUDITORIA INTERNA</h1> -->
+                      <div class="row font-weight-bold bg-primary" style="height: 80px;">
+                          <div class="col-3 border border-dark p-2 d-flex align-items-center">
+                              <h5>N° REGISTRO:<br/><span t-field="incidente.sequence"/></h5>
+                          </div>
+                          <div class="col-9 border border-dark text-center p-2 d-flex align-items-center justify-content-center">
+                              <h3>REGISTROS DE EQUIPOS DE SEGURIDAD O EMERGENCIA</h3>
+                          </div>
+                      </div>
+                      <div class="row my-2">
+                          <div class="col-12 p-2 font-weight-bold border border-dark bg-secondary d-flex align-items-center shadow" style="height:30px;">
+                              <h6 class="mb-0">DATOS DEL EMPLEADOR</h6>
+                          </div>
+                      </div>
+                      <div class="row font-weight-bold  bg-primary text-center" style="height:80px">
+                          <div class="col-3 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              RAZÓN SOCIAL O DENOMINACIÓN SOCIAL
+                          </div>
+                          <div class="col-2 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              RUC
+                          </div>
+                          <div class="col-3 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              DOMICILIO (Dirección, distrito, departamento, provincia)
+                          </div>
+                          <div class="col-2 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              ACTIVIDAD ECONÓMICA
+                          </div>
+                          <div class="col-2 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              Nº TRABAJADORES EN EL CENTRO LABORAL
+                          </div>
+                      </div>
+                      <div class="row font-weight-bold text-center" style="height:40px">
+                          <div class="col-3 px-0 border border-dark d-flex align-items-center justify-content-center">
+                              <input type="text" name="razon" class="form-control h-100 linea_accidente" placeholder="Razon social" t-att-value="incidente.razon" style="border-radius:0px"/>
+                          </div>
+                          <div class="col-2 px-0 border border-dark d-flex align-items-center justify-content-center">
+                              <input type="text" name="ruc" class="form-control h-100 linea_accidente" placeholder="RUC" t-att-value="incidente.ruc" style="border-radius:0px"/>
+                          </div>
+                          <div class="col-3 px-0 border border-dark d-flex align-items-center justify-content-center">
+                              <input type="text" name="domicilio" class="form-control h-100 linea_accidente" placeholder="Domicilio" t-att-value="incidente.domicilio" style="border-radius:0px"/>
+                          </div>
+                          <div class="col-2 px-0 border border-dark d-flex align-items-center justify-content-center">
+                              <input type="text"  name="actividad" class="form-control h-100 linea_accidente" placeholder="Actividad" t-att-value="incidente.actividad" style="border-radius:0px"/>
+                          </div>
+                          <div class="col-2 px-0 border border-dark d-flex align-items-center justify-content-center">
+                              <input type="number" name="trabajadores" class="form-control h-100 linea_accidente" t-att-value="incidente.trabajadores" oninput="this.value = Math.abs(this.value)" style="border-radius:0px"/>
+                          </div>
+                      </div>
+                      <div class="row my-2">
+                          <div class="col-12 p-2 font-weight-bold border border-dark bg-secondary shadow text-center" style="height:30px;">
+                              <h6 class="mb-0">MARCAR CON CHECK</h6>
+                          </div>
+                      </div>
+                      <div class="row my-1">
+                        <div class="col-sm-12 bg-primary text-center border border-dark">Seleccione los equipos de seguridad o emergencia</div>
+                      </div>
+                      <div class="row my-1">
+                        <div class="col-12" style="position:relative">
+                          <button type="button" class="btn btn-primary font-weight-bold mx-1 button-plus" style="position:absolute;left:-50px" data-toggle="modal" data-target="#new_proteccion">
+                            <strong>+</strong>
+                          </button>
+                          <div class="modal fade" id="new_proteccion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel">NUEVO EQUIPO DE PROTECCION PERSONAL</h5>
+                                </div>
+                                <div class="modal-body">
+                                  <strong>EQUIPO</strong>
+                                  <input class="col-12 form-control mt-1" name="new-equipo-proteccion" type="text"/>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                                  <button type="button" class="btn btn-primary nuevo-equipo-proteccion">GUARDAR</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-3 border border-dark text-center align-middle bg-secondary">
+                          <span class="align-middle">EQUIPO DE PROTECCION PERSONAL</span>
+                        </div>
+                        <div class="col-12 col-sm-9 d-flex flex-column border border-dark">
+                          <t t-as="proteccion" t-foreach="incidente.proteccion_ids">
+                            <div class="row d-flex border">
+                              <div class="col-10">
+                                <span t-field="proteccion.name"/>
+                              </div>
+                              <div class="col-2 requisito-div">
+                                <t t-if="proteccion.equipo"><input name="equipo" class="equipo-proteccion" type="checkbox" t-att-data-linea_id="proteccion.id" checked="1"/></t>
+                                <t t-else=""><input name="equipo" class="equipo-proteccion" t-att-data-linea_id="proteccion.id" type="checkbox"/></t>
+                              </div>
+                            </div>
+                          </t>
+                        </div>
+                      </div>
+                      <div class="row my-1">
+                        <div class="col-12" style="position:relative">
+                          <button type="button" class="btn btn-primary font-weight-bold mx-1 button-plus" style="position:absolute;left:-50px" data-toggle="modal" data-target="#new_emergencia">
+                            <strong>+</strong>
+                          </button>
+                          <div class="modal fade" id="new_emergencia" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel">NUEVO EQUIPO DE EMERGENCIA</h5>
+                                </div>
+                                <div class="modal-body">
+                                  <strong>EQUIPO</strong>
+                                  <input class="col-12 form-control mt-1" name="new-equipo-emergencia" type="text"/>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                                  <button type="button" class="btn btn-primary nuevo-equipo-emergencia">GUARDAR</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-3 border border-dark text-center align-middle bg-secondary">
+                          <span class="align-middle">EQUIPO DE EMERGENCIA</span>
+                        </div>
+                        <div class="col-12 col-sm-9 d-flex flex-column border border-dark">
+                          <t t-as="proteccion" t-foreach="incidente.emergencia_ids">
+                            <div class="row d-flex border">
+                              <div class="col-10">
+                                <span t-field="proteccion.name"/>
+                              </div>
+                              <div class="col-2 requisito-div">
+                                <t t-if="proteccion.equipo"><input name="equipo" class="equipo-emergencia" type="checkbox" t-att-data-linea_id="proteccion.id" checked="1"/></t>
+                                <t t-else=""><input name="equipo" class="equipo-emergencia" t-att-data-linea_id="proteccion.id" type="checkbox"/></t>
+                              </div>
+                            </div>
+                          </t>
+                        </div>
+                      </div>
+
+                      <div class="row my-2">
+                          <div class="col-12 p-2 font-weight-bold border border-dark bg-secondary d-flex align-items-center shadow" style="height:30px;">
+                              <h6 class="mb-0">LISTA DE DATOS DE(LOS) Y TRABAJADOR(ES)</h6>
+                          </div>
+                      </div>
+                      <div class="row my-2">
+                        <table class="table table-bordered table-hover" style="table-layout:auto">
+                          <thead class="bg-primary">
+                            <tr>
+                              <td class="py-0" style="position:absolute;border:0px">
+                                <button type="button" class="btn btn-primary font-weight-bold agregar_datos enfermedad_id" data-toggle="modal" style="position:absolute;left:-45px" t-att-data-enfermedad_id="incidente.id">
+                                  <strong>+</strong>
+                                </button>
+                              </td>
+                            </tr>
+                            <tr class="text-center">
+                              <th scope="col" class="align-middle">#</th>
+                              <th scope="col" class="align-middle">NOMBRES Y APELLIDOS</th>
+                              <th scope="col" class="align-middle">DNI</th>
+                              <th scope="col" class="align-middle">AREA</th>
+                              <th scope="col" class="align-middle">FECHA DE ENTREGA</th>
+                              <th scope="col" class="align-middle">FECHA DE RENOVACIÓN</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <t t-set="counter" t-value="0"/>
+                            <t t-foreach="incidente.trabajador_ids" t-as="trabajador">
+                              <t t-set="counter" t-value="counter + 1"/>
+                              <tr class="trabajador_id" t-att-data-trabajador_id="trabajador.id">
+                                <td><t t-esc="counter"/></td>
+                                <td>
+                                  <select name="equipo_id" class="form-control linea_trabajador change_trabajador_id">
+                                    <t t-foreach="trabajadores" t-as="res">
+                                      <t t-if="res.id == trabajador.equipo_id.id ">
+                                        <option t-att-value="'%s' % (res.id)" t-esc="res.name" selected="selected"/>
+                                      </t>
+                                      <t t-else="">
+                                        <option t-att-value="'%s' % (res.id)" t-esc="res.name"/>
+                                      </t>
+                                    </t>
+                                  </select>
+                                </td>
+                                <td><input type="text" name="dni" placeholder="DNI" class="form-control h-100 linea_trabajador border-0" t-att-value="trabajador.equipo_id.dni" style="border-radius:0px" readonly="true"/></td>
+                                <td><input type="text" name="area" placeholder="Area" class="form-control h-100 linea_trabajador border-0" t-att-value="trabajador.area" style="border-radius:0px"/></td>
+                                <td><input type="date" name="fecha_entrega" class="form-control h-100 linea_trabajador border-0" t-att-value="trabajador.fecha_entrega" style="border-radius:0px"/></td>
+                                <td><input type="date" name="fecha_renovacion" class="form-control h-100 linea_trabajador border-0" t-att-value="trabajador.fecha_renovacion" style="border-radius:0px"/></td>
+                              </tr>
+                            </t>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="row my-2" style="position:relative">
+                          <button type="button" class="btn btn-primary font-weight-bold nuevo_responsable" style="position:absolute;left:-40px">
+                            <strong>+</strong>
+                          </button>
+                          <div class="col-12 p-2 font-weight-bold border border-dark bg-secondary d-flex align-items-center shadow" style="height:30px;">
+                              <h6 class="mb-0">RESPONSABLES DEL REGISTRO Y DE LA INVESTIGACIÓN</h6>
+                          </div>
+                      </div>
+                      <t t-foreach="incidente.responsable_ids" t-as="responsable">
+                        <div class="row font-weight-bold text-center responsable_id" t-att-data-responsable_id="responsable.id" style="height:40px">
+                            <div class="col-4 px-0 border border-dark d-flex align-items-center justify-content-center">
+                                <input type="text" class="form-control h-100 linea_responsable" name="name" t-att-value="responsable.name" style="border-radius:0px"/>
+                            </div>
+                            <div class="col-4 px-0 border border-dark d-flex align-items-center justify-content-center">
+                                <input type="text" class="form-control h-100 linea_responsable" name="cargo" t-att-value="responsable.cargo"  placeholder="Cargo" style="border-radius:0px"/>
+                            </div>
+                            <div class="col-4 px-0 border border-dark d-flex align-items-center justify-content-center">
+                                <input type="date" class="form-control h-100 linea_responsable" name="fecha" t-att-value="responsable.fecha"  style="border-radius:0px"/>
+                            </div>
+                        </div>
+                      </t>
+                      <div class="row my-2">
+                          <div class="col-12 p-2 font-weight-bold border border-dark bg-secondary d-flex align-items-center shadow" style="height:30px;">
+                              <h6 class="mb-0">FIRMA DEL RESPONSABLE</h6>
+                          </div>
+                      </div>
+                      <div class="signature-pad--body linea_firma text-center border">
+                        <canvas width="664" height="373" style="touch-action: none;"></canvas>
+                      </div>
+                  </div>
+              </div>
+            </div>
+        </t>
+    </template>
+  <template id="configuracion_registro_incidente" name="Registro de equipos de seguridad o emergencia">
+    <t t-call="website.layout">
+      <t t-set="no_header" t-value="True"/>
+      <t t-set="no_footer" t-value="True"/>
+      <header>
+        <nav class="navbar navbar-expand-md navbar-dark bg-primary accidente">
+        <div class="container">
+          <a class="navbar-brand logo" href="https://softwaresst.com">
+            <img src="/web/image/website/1/logo/PREVENTOR?unique=43ff1c1" class="img img-fluid" alt=""/>
+          </a>
+          <div id="top_menu_collapse" aria-expanded="false">
+            <ul class="nav ml-auto text-right" id="top_menu">
+              <li class="nav-item divider"></li>
+              <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle align-items-center d-flex" data-toggle="dropdown">
+                  <i class="fa fa-user-circle mr-1"></i>
+                  <b>
+                    <span t-esc="user_id.name[:23] + '...' if user_id.name and len(user_id.name) &gt; 25 else user_id.name"/>
+                  </b>
+                </a>
+                <div class="dropdown-menu js_usermenu" role="menu">
+
+                  <a class="dropdown-item" t-attf-href="/usuarios" role="menuitem">Panel de control</a>
+                  <a id="o_logout" class="dropdown-item" role="menuitem" href="/web/session/logout?redirect=https://softwaresst.com/">Cerrar sesión</a>
+                </div>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+      </nav>
+      </header>
+      <div class="wrapper modulo-wrapper registro-configuracion">
+        <!-- Sidebar -->
+        <nav id="sidebar" class="bg-info">
+          <ul class="list-unstyled components">
+              <p class="bg-success" style="height:60px;">
+              <strong>MODULO DE EQUIPOS DE SEGURIDAD O EMERGENCIA</strong>
+              </p>
+              <li>
+                <a href="/equipos-seguridad">REGISTROS DE EQUIPOS DE SEGURIDAD</a>
+              </li>
+              <li>
+                <a href="/equipos-seguridad/configuracion">LISTADO DE RESPONSABLES</a>
+              </li>
+          </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content">
+          <button type="button" id="sidebarCollapse" class="btn btn-info display-none">
+            <i class="fa fa-align-left"></i>
+          </button>
+          <div class="py-2 mx-auto">
+            <div class="text-center mb-5">
+              <h1>LISTADO DE TRABAJADORES</h1>
+            </div>
+            <table id="resumen" class="table table-hover responsive nowrap w-100 text-center">
+              <thead class="thead-dark">
+                <tr>
+                  <th>Trabajador</th>
+                  <th>DNI</th>
+                  <th>Fecha de entrega</th>
+                  <th>Fecha de renovacion</th>
+                  <th>Equipos</th>
+                  <th>Editar</th>
+                  <th>Eliminar</th>
+                </tr>
+              </thead>
+              <tbody>
+                <t t-set="counter" t-value="0"/>
+                <t t-foreach="responsables" t-as="responsable">
+                  <tr class="eliminar_trabajador_id" t-att-data-trabajador_id="responsable.id">
+                    <td class="font-weight-bold"><span t-field="responsable.name"/></td>
+                    <td class="font-weight-bold"><span t-field="responsable.dni"/></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                      <div>
+                        <button type="button" class="btn bg-success" data-toggle="modal" t-attf-data-target="#tipoeditar-{{responsable.id}}">
+                          <i class="fa fa-pencil-square-o"></i>
+                        </button>
+                        <div class="modal fade" t-attf-id="tipoeditar-{{responsable.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">EDITAR TRABAJADOR</h5>
+                              </div>
+                              <div class="modal-body text-left">
+                                NOMBRE
+                                <input class="form-control col-12 mb-2" name="new-responsable-name" t-att-value="responsable.name" type="text"/>
+                                DNI
+                                <input class="form-control col-12" name="new-responsable-dni" t-att-value="responsable.dni"  type="text"/>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                                <button type="button" class="btn btn-secondary guardar_trabajador" t-att-data-trabajador_id="responsable.id">GUARDAR</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" t-attf-data-target="#trabajador-{{responsable.id}}">
+                          <i class="fa fa-trash"></i>
+                        </button>
+                        <div class="modal fade" t-attf-id="trabajador-{{responsable.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                              </div>
+                              <div class="modal-body">
+                                <div class="alert alert-danger" role="alert">
+                                  ESTA SEGURO DE ELIMINAR
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                                <button type="button" class="btn btn-secondary botton-eliminar-trabajador" t-att-data-responsable_id="responsable.id">ELIMINAR</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <t t-foreach="responsable.trabajador_id" t-as="equipo">
+                    <t t-set="counter" t-value="counter + 1"/>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td><span t-field="equipo.fecha_entrega"/></td>
+                      <td><span t-field="equipo.fecha_renovacion"/></td>
+                      <td class="text-justify">
+                        <t t-foreach="equipo.trabajador_id.proteccion_ids" t-as="proteccion">
+                          <t t-if="proteccion.equipo">
+                            <span t-field="proteccion.name"/> -
+                          </t>
+                        </t>
+                        <t t-foreach="equipo.trabajador_id.emergencia_ids" t-as="emergencia">
+                          <t t-if="emergencia.equipo">
+                            <span t-field="emergencia.name"/> -
+                          </t>
+                        </t>
+                      </td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  </t>
+                </t>
+              </tbody>
+            </table>
+
+            <div class="d-flex justify-content-center float-left">
+              <button type="button" class="btn btn-primary font-weight-bold" data-toggle="modal" data-target="#new_tipo_peligro">
+                AGREGAR TRABAJADOR
+              </button>
+              <div class="modal fade" id="new_tipo_peligro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">NUEVO TRABAJADOR</h5>
+                    </div>
+                    <div class="modal-body">
+                      NOMBRE
+                      <input class="form-control col-12 mb-2" name="new-responsable-name" type="text"/>
+                      DNI
+                      <input class="form-control col-12" name="new-responsable-dni" type="text"/>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                      <button type="button" class="btn btn-primary nuevo_responsable_configuracion">GUARDAR</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </t>
+  </template>
+
+</odoo>

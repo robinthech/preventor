@@ -1,0 +1,10 @@
+<odoo>
+    <template id="accidente.assets_frontend" inherit_id="website.assets_frontend">
+        <xpath expr="//script[last()]" position="after">
+            <script src="/accidente/static/src/js/accidente.js" type="text/javascript"/>
+        </xpath>
+        <xpath expr="//link[last()]" position="after">
+            <link href="/accidente/static/src/scss/accidente.scss" type="text/scss" rel="stylesheet"/>
+        </xpath>
+    </template>
+</odoo>

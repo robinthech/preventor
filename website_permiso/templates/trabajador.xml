@@ -1,0 +1,1445 @@
+<odoo>
+  <template id="list_trabajador" name="Permisos de trabajo">
+    <t t-call="website_permiso.sidebar_permiso">
+      <div class="wrapper modulo-wrapper">
+        <!-- Sidebar -->
+        <!-- Page Content -->
+        <div id="content">
+          <div class="container trabajador-form">
+            <div class="row py-5">
+              <div class="col-12">
+                <div class=" page-header">
+                  <h1>LISTADO DE TRABAJADORES</h1>
+                </div>
+                <br/>
+                <div class="table-responsive">
+                  <table id="resumen" class="table table-hover responsive nowrap text-center">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th>NOMBRE</th>
+                        <th>DNI</th>
+                        <th>EMPRESA</th>
+                        <th>EDITAR</th>
+                        <th>ELIMINAR</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <t t-foreach="trabajadores" t-as="trabajador">
+                        <tr>
+                          <td>
+                            <div>
+                              <span t-field="trabajador.name"/>
+                            </div>
+                          </td>
+                          <td >
+                            <span t-field="trabajador.dni"/>
+                          </td>
+                          <td >
+                            <span t-field="trabajador.empresa_id.name"/>
+                          </td>
+                          <td class="editar-trabajador">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" t-attf-data-target="#trabajador-{{trabajador.id}}">
+                              <i class="fa fa-pencil-square-o"></i>
+                            </button>
+                            <div class="modal fade" t-attf-id="trabajador-{{trabajador.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">TRABAJADOR</h5>
+                                  </div>
+                                  <div class="modal-body">
+                                    NOMBRES
+                                    <input class="col-12" t-attf-value="{{trabajador.name}}" name="trabajador-name" type="text"/>
+                                    APELLIDOS
+                                    <input class="col-12" t-attf-value="{{trabajador.apellido}}" name="trabajador-apellido" type="text"/>
+                                    DNI
+                                    <input class="col-12" t-attf-value="{{trabajador.dni}}" name="trabajador-dni" type="number"/>
+                                    EMPRESA
+                                    <select name="empresa-trabajador-select" class="col-12">
+                                      <t t-foreach="empresas" t-as="v">
+                                        <t t-if="v.id == trabajador.empresa_id.id ">
+                                          <option t-att-value="'%s' % (v.id)" t-esc="v.name" selected="selected"/>
+                                        </t>
+                                        <t t-else="">
+                                          <option t-att-value="'%s' % (v.id)" t-esc="v.name"/>
+                                        </t>
+                                      </t>
+                                    </select>
+                                  </div>
+
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                                    <button type="button" t-att-data-trabajador_id="trabajador.id" class="btn btn-primary guardar-trabajador">GUARDAR</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </td>
+                          <td >
+                            <div >
+                              <button type="button" class="btn btn-danger" data-toggle="modal" t-attf-data-target="#trabajador-{{trabajador.id}}">
+                                <i class="fa fa-trash"></i>
+                              </button>
+                              <div class="modal fade" t-attf-id="trabajador-{{trabajador.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                    </div>
+                                    <div class="modal-body">
+                                      <div class="alert alert-danger" role="alert">
+                                        ESTA SEGURO DE ELIMINAR
+                                      </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                                      <button type="button" class="btn btn-secondary eliminar-trabajador" t-att-data-trabajador_id="trabajador.id">ELIMINAR</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </t>
+                    </tbody>
+                  </table>
+
+                </div>
+                <div class="d-flex justify-content-center">
+
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#new_trabajadores">
+                    AGREGAR TRABAJADOR
+                  </button>
+                  <div class="modal fade" id="new_trabajadores" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">NUEVO TRABAJADOR</h5>
+                        </div>
+                        <div class="modal-body">
+                          NOMBRES
+                          <input class="form-control col-12" name="new-trabajador-name" type="text"/>
+                          APELLIDOS
+                          <input class="form-control col-12" name="new-trabajador-apellido" type="text"/>
+                          DNI
+                          <input class="form-control col-12" name="new-trabajador-dni" type="number" min="8" max="8"/>
+                          EMPRESA
+                          <select name="new-empresa-trabajador-select" class="form-control col-12">
+                            <t t-foreach="empresas" t-as="v">
+                              <option t-att-value="'%s' % (v.id)" t-esc="v.name"/>
+                            </t>
+                          </select>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                          <button type="button" class="btn btn-primary nuevo-trabajador">GUARDAR</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </t>
+  </template>
+  <template id="form_solicitado_alert" name="Permisos de trabajo">
+    <t t-call="website_permiso.sidebar_permiso">
+      <div class="wrapper modulo-wrapper">
+        <!-- Sidebar -->
+        <!-- Page Content -->
+        <div id="content">
+          <div class="container d-flex justify-content-center">
+            <div class="py-5 justify-content-center">
+              <div class="row alert alert-primary" role="alert">
+
+                <h5>YOU ALREADY REQUESTED YOUR PERMISSION, WAITING FOR YOUR AUTHORIZATION
+                </h5>
+              </div>
+              <div class="d-flex justify-content-between row buttons mt-4">
+                <a class="float-left btn btn-primary" href="/permiso/solicitar" role="button">ANTERIOR</a>
+                <a class="float-right btn btn-primary" href="/permiso/autorizar" role="button">SIGUIENTE</a>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </t>
+  </template>
+  <template id="form_autorizado_alert" name="Permisos de trabajo">
+    <t t-call="website_permiso.sidebar_permiso">
+      <div class="wrapper modulo-wrapper">
+        <!-- Sidebar -->
+        <!-- Page Content -->
+        <div id="content">
+          <div class="d-flex justify-content-center">
+            <div class="py-5 justify-content-center">
+              <div class="row alert alert-primary" role="alert">
+
+                <h5>YOU ALREADY AUTHORIZED THE PERMIT, WAIT FOR ITS APPROVAL
+                </h5>
+              </div>
+              <div class="d-flex justify-content-between row buttons mt-4">
+                <a class="btn btn-primary" href="/permiso/solicitar" role="button">PREVIOUS</a>
+                <a class="btn btn-primary" href="/permiso/aprobar" role="button">NEXT</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </t>
+  </template>
+  <template id="form_aprobado_alert" name="Permisos de trabajo">
+    <t t-call="website_permiso.sidebar_permiso">
+      <div class="wrapper modulo-wrapper">
+        <!-- Sidebar -->
+        <!-- Page Content -->
+        <div id="content">
+          <div class="container d-flex justify-content-center">
+            <div class="py-5 justify-content-center">
+              <div class="row alert alert-primary" role="alert">
+
+                <h5>THE PERMIT IS ALREADY APPROVED, START YOUR WORK
+                </h5>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </t>
+  </template>
+  <template id="list_contratistas" name="Permisos de trabajo">
+    <t t-call="website_permiso.sidebar_permiso">
+      <div class="wrapper modulo-wrapper">
+        <!-- Sidebar -->
+        <!-- Page Content -->
+        <div id="content">
+          <div class="container empresa-form">
+            <div class="row py-5">
+              <div class="col-12">
+                <div class=" page-header">
+                  <h1>LISTADO DE CONTRATISTAS</h1>
+                </div>
+                <br/>
+                <div class="table-responsive">
+                  <table id="resumen" class="table table-hover responsive nowrap text-center">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th>NOMBRE</th>
+                        <th>RAZON SOCIAL</th>
+                        <th>RUC</th>
+                        <th>EDITAR</th>
+                        <th>ELIMINAR</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <t t-foreach="empresas" t-as="empresa">
+                        <tr>
+                          <td>
+                            <div>
+                              <span t-field="empresa.name"/>
+                            </div>
+                          </td>
+                          <td >
+                            <span t-field="empresa.razon_social"/>
+                          </td>
+                          <td >
+                            <span t-field="empresa.ruc"/>
+                          </td>
+                          <td class="editar-empresa">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" t-attf-data-target="#empresa-{{empresa.id}}">
+                              <i class="fa fa-pencil-square-o"></i>
+                            </button>
+                            <div class="modal fade" t-attf-id="empresa-{{empresa.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">CONTRATISTA</h5>
+                                  </div>
+                                  <div class="modal-body">
+                                    NOMBRES
+                                    <input class="col-12" t-attf-value="{{empresa.name}}" name="empresa-name" type="text"/>
+                                    RAZON SOCIAL
+                                    <input class="col-12" t-attf-value="{{empresa.razon_social}}" name="empresa-razon_social" type="text"/>
+                                    RUC
+                                    <input class="col-12" t-attf-value="{{empresa.ruc}}" name="empresa-ruc" type="text"/>
+                                  </div>
+
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                                    <button type="button" t-att-data-empresa_id="empresa.id" class="btn btn-primary guardar-empresa">GUARDAR</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </td>
+                          <td >
+                            <div >
+                              <button type="button" class="btn btn-danger" data-toggle="modal" t-attf-data-target="#trabajador-{{empresa.id}}">
+                                <i class="fa fa-trash"></i>
+
+                              </button>
+                              <div class="modal fade" t-attf-id="trabajador-{{empresa.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                    </div>
+                                    <div class="modal-body">
+                                      <div class="alert alert-danger" role="alert">
+                                        ESTA SEGURO DE ELIMINAR
+                                      </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                                      <button type="button" class="btn btn-secondary eliminar-empresa" t-att-data-empresa_id="empresa.id">ELIMINAR</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </t>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="d-flex justify-content-center">
+
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#new_empresa">
+                    AGREGAR CONTRATISTA
+                  </button>
+                  <div class="modal fade" id="new_empresa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">NUEVO CONTRATISTA</h5>
+                        </div>
+                        <div class="modal-body">
+                          NOMBRES
+                          <input class="form-control col-12" name="new-empresa-name" type="text"/>
+                          RAZON SOCIAL
+                          <input class="form-control col-12" name="new-empresa-razon_social" type="text"/>
+                          RUC
+                          <input class="form-control col-12" name="new-empresa-ruc" type="text"/>
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                          <button type="button" class="btn btn-primary nuevo-empresa">GUARDAR</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </t>
+  </template>
+  <template id="usuarios" name="Panel de Control">
+    <t t-call="website_permiso.perfil_usuario">
+      <div class="wrapper modulo-wrapper">
+        <!-- Sidebar -->
+        <!-- Page Content -->
+        <div id="content">
+          <div class="usuario-perfil">
+            <div class="row py-2">
+              <div class="col-12">
+                <div class="alert alert-primary text-center" role="alert">
+                  <h4>PERFIL DE USUARIO</h4>
+                </div>
+                <div class="row">
+                  <div class="form-group col-12 col-lg-6">
+                    <label class="col-12 control-label">NOMBRE</label>
+                    <div class="col-12 inputGroupContainer">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text pr-3">
+                            <i class="fa fa-user"></i>
+                          </span>
+                        </div>
+                        <input id="name_usuario" name="name_usuario" placeholder="NOMBRE DEL USUARIO" class="form-control" required="true" t-att-value="usuario.name" type="text" t-att-data-usuario_id="usuario.id"/></div>
+                    </div>
+                  </div>
+                  <div class="form-group col-12 col-lg-6">
+                    <label class="col-12 control-label">DNI</label>
+                    <div class="col-12 inputGroupContainer">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="fa fa-id-card"></i>
+                          </span>
+                        </div>
+                        <input id="dni" name="dni" placeholder="DNI" class="form-control" required="true" t-att-value="usuario.dni" type="text" t-att-data-usuario_id="usuario.id"/></div>
+                    </div>
+                  </div>
+                  <div class="form-group col-12 col-lg-6">
+                    <div class="d-flex col-12">
+                      <label class="control-label mr-auto">FIRMA</label>
+                      <span data-action="clear"><i class="fa fa-trash ml-1"></i></span>
+                      <span data-action="undo"><i class="fa fa-undo ml-2"></i></span>
+                      <span data-action="save-png"><i class="fa fa-download ml-2"></i></span>
+                    </div>
+                    <div id="signature-pad" class="signature-pad usuario_id" t-att-data-usuario_id="usuario.id" style="margin:0 15px 0 15px">
+                      <div id="firma" class="signature-pad--body linea_firma">
+                        <canvas style="touch-action: none;" class="border image_file_input"></canvas>
+                      </div>
+                    </div>
+                    <div class="form-group col-12">
+                      <input type="file" class="form-control-file" id="image_input" t-att-data-usuario_id="usuario.id" accept="image/x-png,image/jpeg"/>
+                    </div>
+                  </div>
+                </div>
+
+                <t t-if="usuario.empresa_id">
+
+                  <div class="alert alert-primary text-center" role="alert">
+                    <h4>PERFIL DE LA EMPRESA</h4>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-12 col-lg-6">
+                      <label class="col-12 control-label">NOMBRE DE LA EMPRESA</label>
+                      <div class="col-12 inputGroupContainer">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text pr-3">
+                              <i class="fa fa-building-o "></i>
+                            </span>
+                          </div>
+                          <input t-att-disabled="not usuario.perfil=='1' or None" id="name_empresa" name="name_empresa" placeholder="NOMBRE DE LA EMPRESA" class="form-control" required="true" t-att-value="usuario.empresa_id.name" type="text" t-att-data-empresa_id="usuario.empresa_id.id"/></div>
+                      </div>
+                    </div>
+                    <div class="form-group col-12 col-lg-6">
+                      <label class="col-12 control-label">RUC</label>
+                      <div class="col-12 inputGroupContainer">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">
+                              <i class="fa fa-id-card"></i>
+                            </span>
+                          </div>
+                          <input t-att-disabled="not usuario.perfil=='1' or None" id="ruc" name="ruc" placeholder="RUC" class="form-control" required="true" t-att-value="usuario.empresa_id.ruc" type="text" t-att-data-empresa_id="usuario.empresa_id.id"/></div>
+                      </div>
+                    </div>
+                    <div class="form-group col-12 col-lg-6">
+                      <label class="col-12 control-label">CORREO PRINCIPAL</label>
+                      <div class="col-12 inputGroupContainer">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">
+                              <i class="fa fa-envelope"></i>
+                            </span>
+                          </div>
+                          <input t-att-disabled="not usuario.perfil=='1' or None" id="correo" name="correo" placeholder="info@softwaresst.com" class="form-control" required="true" t-att-value="usuario.empresa_id.correo" type="text" t-att-data-empresa_id="usuario.empresa_id.id"/></div>
+                      </div>
+                    </div>
+                    <div class="form-group col-12 col-lg-6">
+                        <label class="col-12 control-label">TELÉFONO</label>
+                        <div class="col-12 inputGroupContainer">
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">
+                                <i class="fa fa-phone"></i>
+                              </span>
+                            </div>
+                            <input t-att-disabled="not usuario.perfil=='1' or None" id="telefono" name="telefono" placeholder="960960960" class="form-control" required="true" t-att-value="usuario.empresa_id.telefono" type="text" t-att-data-empresa_id="usuario.empresa_id.id"/></div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="row justify-content-center my-3">
+                  </div>
+                </t>
+                <t t-else="">
+                  <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#new_empresa">
+                    CREA TU EMPRESA
+                  </button>
+                  <div class="modal fade" id="new_empresa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">MI EMPRESA</h5>
+                        </div>
+                        <div class="modal-body">
+                          RAZON SOCIAL
+                          <input class="col-12 form-control mb-2" name="new-empresa-name" type="text"/>
+                          RUC
+                          <input class="col-12 form-control mb-2" name="new-empresa-ruc" type="text"/>
+                          CORREO PRINCIPAL
+                          <input class="col-12 form-control mb-2" name="new-empresa-correo" type="text"/>
+                          TELÉFONO
+                          <input class="col-12 form-control mb-2" name="new-empresa-telefono" type="text"/>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                          <button type="button" class="btn btn-primary nuevo-empresa-usuario">CREAR</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </t>
+                <div class="alert alert-info text-center col-12 col-md-3" role="alert">
+                  <h4>USUARIOS</h4>
+                </div>
+                <div class="table-responsive">
+                  <table id="resumen" class="table table-hover responsive nowrap text-center w-100">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th>#</th>
+                        <th>Email</th>
+                        <th>Nombre</th>
+                        <th>Usuario</th>
+                        <th>Estado</th>
+                        <th>Firma</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <t t-set="counter" t-value="0"/>
+                      <t t-foreach="trabajadores" t-as="trabajador">
+                        <t t-set="counter" t-value="counter + 1"/>
+                        <tr>
+                          <td>
+                            <div>
+                              <span t-esc="counter"/>
+                            </div>
+                          </td>
+                          <td >
+                            <div>
+                              <span t-field="trabajador.login"/>
+                            </div>
+                          </td>
+                          <td>
+                            <div>
+                              <span t-field="trabajador.name"/>
+                            </div>
+                          </td>
+                          <td>
+                            <div>
+                              <span t-field="trabajador.perfil"/>
+                            </div>
+                          </td>
+                          <t t-if="trabajador.state=='active'">
+                            <td>
+                              Registrado
+                            </td>
+                          </t>
+                          <t t-else="">
+                            <td>
+                              No registrado
+                            </td>
+                          </t>
+                          <td style="width:20%;">
+                            <t t-if="trabajador.signature_binary">
+                              <img class="image_file_input" t-attf-src="data:image/png;base64, #{trabajador.signature_binary}" style="max-width:50%;"/>
+                            </t>
+                          </td>
+                          <td>
+                            <i class="fa fa-pencil-square-o search-user" data-toggle="modal" t-att-data-usuario_id="trabajador.id" t-attf-data-target="#trabajador-{{trabajador.id}}"></i>
+                            <div class="modal fade editar-planes" t-attf-id="trabajador-{{trabajador.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content text-left">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">EDITAR USUARIO</h5>
+                                  </div>
+                                  <div class="modal-body">
+                                    NOMBRE
+                                    <input class="form-control mb-2 col-12" name="new-usuario-name" t-att-value="trabajador.name" type="text" disabled="disabled"/>
+                                    EMAIL
+                                    <input class="form-control mb-4 col-12" name="new-usuario-email" t-att-value="trabajador.login" type="text" disabled="disabled"/>
+                                    <t t-foreach="matriz" t-as="plan">
+                                      <t t-if="plan[0].name != 'Plan Gratis'">
+                                        <div id="checkboxes">
+                                          <t t-if="trabajador.perfil=='1'">
+                                            <label class="checkbox-inline">
+                                              <input type="checkbox" class="mr-1" t-att-id="plan[0].id" disabled="disabled"/><t t-esc="plan[0].product_id.name"/>
+                                              -
+                                              <t t-esc="plan[0].name"/>
+                                            </label>
+                                          </t>
+                                          <t t-else="">
+                                            <label class="checkbox-inline">
+                                              <input type="checkbox" class="mr-1" t-att-id="plan[0].id"/><t t-esc="plan[0].product_id.name"/>
+                                              -
+                                              <t t-esc="plan[0].name"/>
+                                            </label>
+                                          </t>
+                                        </div>
+                                      </t>
+                                    </t>
+                                    <div class="error text-danger"></div>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                                    <button type="button" t-att-data-user_id="trabajador.id" class="btn btn-primary change-plan">GUARDAR</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </td>
+                          <td>
+                            <div>
+                              <button type="button" class="btn btn-danger" data-toggle="modal" t-attf-data-target="#usuario-{{trabajador.id}}">
+                                <i class="fa fa-trash" style="font-size:20px"></i>
+                              </button>
+                              <div class="modal fade" t-attf-id="usuario-{{trabajador.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                    </div>
+                                    <div class="modal-body">
+                                      <div class="alert alert-danger" role="alert">
+                                        ESTA SEGURO DE ELIMINAR
+                                      </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                                      <button type="button" class="btn btn-secondary eliminar-usuario" t-att-data-trabajador_id="trabajador.id">ELIMINAR</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </t>
+                    </tbody>
+                  </table>
+                </div>
+                <t t-if="usuario.perfil=='1'">
+                  <div class="d-flex justify-content-center">
+                    <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#new_usuario">
+                      AGREGAR USUARIO
+                    </button>
+                    <div class="modal fade" id="new_usuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <form class="nuevo_usuario" t-att-data-empresa_id="usuario.empresa_id.id" t-att-data-usuario_id="usuario.id">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">NUEVO USUARIO</h5>
+                            </div>
+                            <div class="modal-body">
+                              NOMBRE
+                              <input class="form-control mb-2 col-12" name="new-usuario-name" type="text" required="true"/>
+                              EMAIL
+                              <input class="form-control mb-2 col-12" name="new-usuario-email" type="text" required="true"/>
+                              NIVEL DE USUARIO
+                              <select class="form-control mb-4 perfil-usuario">
+                                <option selected="selected" value="1">Principal</option>
+                                <option value="2">Secundario</option>
+                              </select>
+                              <t t-foreach="matriz" t-as="plan">
+                                <t t-if="plan[0].name != 'Plan Gratis'">
+                                  <div id="checkboxes">
+                                    <t t-if="plan[1] == 0">
+                                      <label class="checkbox-inline">
+                                        <input type="checkbox" class="mr-1" t-att-id="plan[0].id" disabled="disabled"/><t t-esc="plan[0].product_id.name"/>
+                                        -
+                                        <t t-esc="plan[0].name"/>
+                                      </label>
+                                    </t>
+                                    <t t-else="">
+                                      <label class="checkbox-inline">
+                                        <input type="checkbox" class="mr-1" t-att-id="plan[0].id"/><t t-esc="plan[0].product_id.name"/>
+                                        -
+                                        <t t-esc="plan[0].name"/>
+                                      </label>
+                                    </t>
+                                  </div>
+                                </t>
+                              </t>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                              <button type="submit" class="btn btn-primary">GUARDAR</button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </t>
+
+                <div class="alert alert-info text-center col-12 col-md-3" role="alert">
+                  <h4>SEDES</h4>
+                </div>
+                <t t-if="usuario.perfil=='1'">
+                  <div class="font-weight-bold mb-3">
+                    <button type="button" class="btn btn-primary font-weight-bold" style="border-radius:50%"  data-toggle="modal" data-target="#new_sede">+</button> AGREGAR SEDE
+                  </div>
+                </t>
+                <div class="modal fade" id="new_sede" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">NUEVA SEDE</h5>
+                      </div>
+                      <div class="modal-body">
+                        NOMBRE DE SEDE
+                        <input class="form-control mb-2 col-12" name="new-sede-name" type="text"/>
+                        CANTIDAD DE TRABAJADORES
+                        <input class="form-control mb-2 col-12" oninput="this.value = Math.abs(this.value)" name="new-sede-trabajadores" type="number"/>
+                        ENCARGADO DE SEDE
+                        <select class="form-control mb-2 col-12 new-sede-encargado" name="new-sede-encargado">
+                            <t t-foreach="secundarios" t-as="secundario">
+                              <option t-att-value="'%s' % (secundario.id)" t-esc="secundario.name" selected="selected"/>
+                            </t>
+                        </select>
+                        DNI
+                        <input class="form-control mb-2 col-12" name="new-sede-dni" type="text"/>
+                        PUESTO DE TRABAJO
+                        <input class="form-control mb-2 col-12" name="new-sede-puesto" type="text"/>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                        <button type="button" t-att-data-empresa_id="usuario.empresa_id.id" t-att-data-usuario_id="usuario.id" class="btn btn-primary nueva-sede">GUARDAR</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <t t-if="usuario.perfil == '1'">
+                  <div class="table-responsive">
+                  <table id="resumen" class="table table-hover responsive nowrap w-100 text-center">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th>SEDE</th>
+                        <th>ENCARGADO</th>
+                        <th>N° DNI</th>
+                        <th>PUESTO DE TRABAJO</th>
+                        <th>CANTIDAD DE TRABAJADORES</th>
+                        <th>EDITAR</th>
+                        <th>ELIMINAR</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <t t-foreach="sedes" t-as="sede">
+                        <tr>
+                          <td><t t-esc="sede.name"/></td>
+                          <td><t t-esc="sede.encargado.name"/></td>
+                          <td><t t-esc="sede.dni"/></td>
+                          <td><t t-esc="sede.puesto"/></td>
+                          <td><t t-esc="sede.trabajadores"/></td>
+                          <td>
+                            <a role="button" class="btn btn-primary" t-attf-href="/sede/{{sede.id}}">
+  														<i class="fa fa-pencil-square-o" style="font-size:20px"></i>
+  													</a>
+                              <!-- <button type="button" class="btn bg-success" data-toggle="modal" t-attf-data-target="#editarsede-{{sede.id}}"><i class="fa fa-pencil-square-o" style="font-size:20px"></i></button> -->
+                              <div class="modal fade" t-attf-id="editarsede-{{sede.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">MODIFICAR SEDE</h5>
+                                  </div>
+                                  <div class="modal-body text-left">
+                                    NOMBRE DE SEDE
+                                    <input class="form-control mb-2 col-12" t-att-value="sede.name" name="new-sede-name" type="text"/>
+                                    CANTIDAD DE TRABAJADORES
+                                    <input class="form-control mb-2 col-12" t-att-value="sede.trabajadores" oninput="this.value = Math.abs(this.value)" name="new-sede-trabajadores" type="number"/>
+                                    ENCARGADO DE SEDE
+                                    <select class="form-control mb-2 col-12 edit-encargado" name="new-sede-encargado">
+                                        <t t-foreach="secundarios" t-as="v">
+                                          <t t-if="v.id == sede.encargado.id ">
+                                            <option t-att-value="'%s' % (v.id)" t-esc="v.name" selected="selected"/>
+                                          </t>
+                                          <t t-else="">
+                                            <option t-att-value="'%s' % (v.id)" t-esc="v.name"/>
+                                          </t>
+                                        </t>
+                                    </select>
+                                    DNI
+                                    <input class="form-control mb-2 col-12" t-att-value="sede.dni" name="new-sede-dni" type="text"/>
+                                    PUESTO DE TRABAJO
+                                    <input class="form-control mb-2 col-12" t-att-value="sede.puesto" name="new-sede-puesto" type="text"/>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                                    <button type="button" t-att-data-sede_id="sede.id" class="btn btn-primary guardar-sede">GUARDAR</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </td>
+                          <td>
+                            <div>
+                              <button type="button" class="btn btn-danger" data-toggle="modal" t-attf-data-target="#sede-{{sede.id}}">
+                                <i class="fa fa-trash" style="font-size:20px"></i>
+                              </button>
+                              <div class="modal fade" t-attf-id="sede-{{sede.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                    </div>
+                                    <div class="modal-body">
+                                      <div class="alert alert-danger" role="alert">
+                                        ESTA SEGURO DE ELIMINAR
+                                      </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                                      <button type="button" class="btn btn-secondary botton-eliminar-sede" t-att-data-sede_id="sede.id">ELIMINAR</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </t>
+                    </tbody>
+                  </table>
+                </div>
+                </t>
+                <t t-else="">
+                  <div class="table-responsive">
+                  <table id="resumen" class="table table-hover responsive nowrap w-100 text-center">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th>SEDE</th>
+                        <th>ENCARGADO</th>
+                        <th>N° DNI</th>
+                        <th>PUESTO DE TRABAJO</th>
+                        <th>CANTIDAD DE TRABAJADORES</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <t t-foreach="sedes" t-as="sede">
+                        <tr>
+                          <td><t t-esc="sede.name"/></td>
+                          <td><t t-esc="sede.encargado.name"/></td>
+                          <td><t t-esc="sede.dni"/></td>
+                          <td><t t-esc="sede.puesto"/></td>
+                          <td><t t-esc="sede.trabajadores"/></td>
+                        </tr>
+                      </t>
+                    </tbody>
+                  </table>
+                </div>
+                </t>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </t>
+  </template>
+
+
+  <template id="planes" name="Panel de Control">
+    <t t-call="website_permiso.perfil_usuario">
+      <div class="wrapper modulo-wrapper">
+        <!-- Sidebar -->
+        <!-- <nav id="sidebar" class="bg-info">
+          <ul class="list-unstyled components">
+            <p class="bg-success text-center">
+              <strong>PANEL DE CONTROL</strong>
+            </p>
+          </ul>
+        </nav> -->
+        <!-- Page Content -->
+        <div id="content">
+        <div class="alert alert-primary text-center" role="alert">
+          <h4>MIS PLANES</h4>
+        </div>
+        <div class="table-responsive">
+          <table id="resumen" class="table table-hover responsive nowrap w-100 text-center">
+            <thead class="thead-dark">
+              <tr>
+                <th colspan="2" style="width:30%">Módulos</th>
+                <th>Plan</th>
+                <th>Valido hasta</th>
+                <th>Ingresar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <t t-set="counter" t-value="0"/>
+              <t t-foreach="matriz" t-as="grupo">
+                <t t-set="counter" t-value="counter + 1"/>
+                <tr>
+                  <td>
+                    <a t-att-href="grupo[0].product_id.modulo"><img t-attf-src="/web/image?model=product.product&#38;id={{grupo[0].product_id.id}}&#38;field=image_128"/></a>
+                  </td>
+                  <td><t t-esc="grupo[0].product_id.name"/></td>
+                  <td>
+                    <a class="modulo-ancla" data-toggle="modal" t-attf-href="#plan-{{grupo[0].id}}"><t t-esc="grupo[0].name"/></a>
+                    <div class="modal fade" t-attf-id="plan-{{grupo[0].id}}" role="dialog">
+                      <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                          <div class="modal-header">
+
+                            <h4 >
+                              <span t-field="grupo[0].name"/></h4>
+                          </div>
+                          <div class="modal-body">
+                            <div class="card-body text-center">
+                              <h2 class="card-title">
+                                <span class="s_comparisons_currency">S/.</span>
+                                <span class="s_comparisons_price">
+                                  <b><span t-field="grupo[0].precio"/></b>
+                                </span>
+                              </h2>
+                              <small>/ mes</small>
+                            </div>
+                          </div>
+                          <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Numero de registros:
+                              <span t-field="grupo[0].limite_registro"/>
+                            </li>
+                            <li class="list-group-item">Numero de usuarios:
+                              <span t-field="grupo[0].limite_usuarios"/></li>
+                            <li class="list-group-item">Reportes Excel:
+                              <t t-if="grupo[0].report_excel">
+                                <i class="fa fa-check-circle-o"/>
+                              </t>
+                              <t t-else="">
+                                <i class="fa fa-times-circle"/>
+                              </t>
+                            </li>
+
+                          </ul>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">CERRAR</button>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </td>
+                  <t t-if="grupo[0].name == 'Plan Gratis'">
+                    <td class="gratis-infinito">&#8734;</td>
+                  </t>
+                  <t t-else="">
+                    <td><t t-esc="grupo[3]"/></td>
+                  </t>
+                  <td>
+                    <a t-att-href="grupo[0].product_id.modulo" class="btn btn-warning font-weight-bold">Ingresar</a>
+                  </td>
+                </tr>
+              </t>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      </div>
+    </t>
+  </template>
+
+
+
+  <template id="personal" name="Panel de Control">
+    <t t-call="website_permiso.perfil_usuario">
+      <div class="wrapper modulo-wrapper">
+        <!-- Sidebar -->
+        <!-- Page Content -->
+        <div id="content" class="usuario-form">
+          <div class="alert alert-primary text-center" role="alert">
+            <h4>GESTIÓN DE PERSONAL</h4>
+          </div>
+
+          <t t-if="usuario.perfil=='1'">
+            <div class="font-weight-bold mb-3">
+              <button type="button" class="btn btn-primary font-weight-bold" style="border-radius:50%"  data-toggle="modal" data-target="#new_trabajador">+</button> AGREGAR TRABAJADOR
+              <button type="button" class="btn btn-gamma font-weight-bold float-right"  data-toggle="modal" data-target="#import_trabajador">IMPORTAR TRABAJADOR</button>
+            </div>
+          </t>
+          <div class="modal fade" id="new_trabajador" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">NUEVO TRABAJADOR</h5>
+                </div>
+                <div class="modal-body">
+                  APELLIDOS Y NOMBRES
+                  <input class="form-control mb-2 col-12" name="new-trabajador-nombres" type="text"/>
+                  DNI
+                  <input class="form-control mb-2 col-12" name="new-trabajador-dni" type="text"/>
+                  PUESTO DE TRABAJO
+                  <input class="form-control mb-2 col-12" name="new-trabajador-puesto" type="text"/>
+                  TIPO DE TRABAJADOR
+                  <select id="tipo" class="form-control mb-2 col-12" name="new-trabajador-tipo">
+                    <option selected="selected" value="1">Planilla</option>
+                    <option value="2">Locación de Servicios</option>
+                  </select>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                  <button type="button" t-att-data-empresa_id="usuario.empresa_id.id" t-att-data-usuario_id="usuario.id" class="btn btn-primary nuevo-trabajador">GUARDAR</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade" id="import_trabajador" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">IMPORTACION DE LISTA TRABAJADORES</h5>
+                </div>
+                <div class="modal-body">
+                  <div class="font-weight-bold mb-3 button_import_trabajador">
+                    <!-- <div class='file fileupload'>
+                       <label for='imput_file_excel'>
+                         <i class="fa fa-upload" style="font-size:20px"></i>SUBE TU ARCHIVO
+                       </label>
+                       <input id='imput_file_excel' type='file' name="imput_file_excel"/>
+                     </div> -->
+                     <div class="button_import_trabajador_new">
+                       <div class="wrap m-auto">
+                              <div class="custom-file">
+                                <input class="custom-file-input" id="imput_file_excel" type="file"/>
+                                <label class="custom-file-label" for="imput_file_excel">SUBIR ARCHIVO</label>
+                              </div>
+                            </div>
+                     </div>
+
+                   </div>
+
+                </div>
+                <div class="modal-footer">
+                  <a class="btn float-left" style="background-color:#aed581;" href="/website_permiso/static/description/import_user.xlsx" download="1"><i class="fa fa-download"/>Plantilla</a>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                  <button type="button" t-att-data-empresa_id="usuario.empresa_id.id" t-att-data-usuario_id="usuario.id" class="btn btn-primary button-importar-trabajador">IMPORTAR</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h3>Planilla</h3>
+          <div class="table-responsive mb-4">
+            <t t-if="usuario.perfil=='1'">
+              <table id="table_planilla" class="table table-hover responsive nowrap w-100 text-center mb-4">
+              <thead class="thead-dark">
+                <tr>
+                  <th>N°</th>
+                  <th>APELLIDOS Y NOMBRES</th>
+                  <th>DNI</th>
+                  <th>CORREO</th>
+                  <th>TELEFONO</th>
+                  <th>CODIGO</th>
+                  <th>PUESTO DE TRABAJO</th>
+                  <th>ESTADO</th>
+                  <th class="no-sort">EDITAR</th>
+                  <th class="no-sort">ELIMINAR</th>
+                </tr>
+              </thead>
+              <tbody>
+                <t t-set="counter" t-value="0"/>
+                <t t-foreach="trabajadores_planilla" t-as="trabajador">
+                  <t t-set="counter" t-value="counter + 1"/>
+                  <tr>
+                    <td><t t-esc="counter"/></td>
+                    <td><t t-esc="trabajador.name"/></td>
+                    <td><t t-esc="trabajador.dni"/></td>
+                    <td><t t-esc="trabajador.correo"/></td>
+                    <td><t t-esc="trabajador.telefono"/></td>
+                    <td><t t-esc="trabajador.codigo"/></td>
+                    <td><t t-esc="trabajador.puesto"/></td>
+                    <td>
+                      <a role="button" class="btn btn-primary" t-attf-href="/trabajador/requisitos/{{trabajador.id}}">
+                      <t t-if="trabajador.aptitud == '1'">
+                        <span>Apto</span>
+                      </t>
+                      <t t-if="trabajador.aptitud == '2'">
+                        <span>No Apto</span>
+                      </t>
+                    </a>
+
+                    </td>
+                    <td>
+                        <button type="button" class="btn bg-success" data-toggle="modal" t-attf-data-target="#editarTrabajador-{{trabajador.id}}"><i class="fa fa-pencil-square-o" style="font-size:20px"></i></button>
+                        <div class="modal fade" t-attf-id="editarTrabajador-{{trabajador.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">EDITAR TRABAJADOR</h5>
+                            </div>
+                            <div class="modal-body text-left">
+                              APELLIDOS Y NOMBRES
+                              <input class="form-control mb-2 col-12" t-att-value="trabajador.name" name="new-trabajador-nombres" type="text"/>
+                              DNI
+                              <input class="form-control mb-2 col-12" t-att-value="trabajador.dni" name="new-trabajador-dni" type="text"/>
+                              CORREO
+                              <input class="form-control mb-2 col-12" t-att-value="trabajador.correo" name="new-trabajador-correo" type="text"/>
+                              TELÉFONO
+                              <input class="form-control mb-2 col-12" t-att-value="trabajador.telefono" name="new-trabajador-telefono" type="text"/>
+                              CÓDIGO
+                              <input class="form-control mb-2 col-12" t-att-value="trabajador.codigo" name="new-trabajador-codigo" type="text"/>
+                              PUESTO DE TRABAJO
+                              <input class="form-control mb-2 col-12" t-att-value="trabajador.puesto" name="new-trabajador-puesto" type="text"/>
+                              TIPO DE TRABAJADOR
+                              <select id="tipo" class="form-control mb-2 col-12" name="new-trabajador-tipo">
+                                <option selected="selected" value="1">Planilla</option>
+                                <option value="2">Locación de Servicios</option>
+                              </select>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                              <button type="button" t-att-data-trabajador_id="trabajador.id" class="btn btn-primary guardar-trabajador">GUARDAR</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" t-attf-data-target="#trabajador-{{trabajador.id}}">
+                          <i class="fa fa-trash" style="font-size:20px"></i>
+                        </button>
+                        <div class="modal fade" t-attf-id="trabajador-{{trabajador.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                              </div>
+                              <div class="modal-body">
+                                <div class="alert alert-danger" role="alert">
+                                  ESTA SEGURO DE ELIMINAR
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                                <button type="button" class="btn btn-secondary botton-eliminar-trabajador" t-att-data-trabajador_id="trabajador.id">ELIMINAR</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </t>
+              </tbody>
+            </table>
+            </t>
+            <t t-else="">
+              <table id="table_planilla" class="table table-hover responsive nowrap w-100 text-center mb-4">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>N°</th>
+                    <th>APELLIDOS Y NOMBRES</th>
+                    <th>DNI</th>
+                    <th>CORREO</th>
+                    <th>TELEFONO</th>
+                    <th>CODIGO</th>
+                    <th>PUESTO DE TRABAJO</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <t t-set="counter" t-value="0"/>
+                  <t t-foreach="trabajadores_planilla" t-as="trabajador">
+                    <t t-set="counter" t-value="counter + 1"/>
+                    <tr>
+                      <td><t t-esc="counter"/></td>
+                      <td><t t-esc="trabajador.name"/></td>
+                      <td><t t-esc="trabajador.dni"/></td>
+                      <td><t t-esc="trabajador.correo"/></td>
+                      <td><t t-esc="trabajador.telefono"/></td>
+                      <td><t t-esc="trabajador.codigo"/></td>
+                      <td><t t-esc="trabajador.puesto"/></td>
+                    </tr>
+                  </t>
+                </tbody>
+              </table>
+            </t>
+
+          </div>
+
+
+          <h3>Locación de Servicios</h3>
+          <div class="table-responsive">
+            <t t-if="usuario.perfil=='1'">
+              <table id="table_servicios" class="table table-hover responsive nowrap w-100 text-center">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>N°</th>
+                    <th data-field="name" data-checkbox="true">APELLIDOS Y NOMBRES</th>
+                    <th>DNI</th>
+                    <th>CORREO</th>
+                    <th>TELEFONO</th>
+                    <th>CODIGO</th>
+                    <th>PUESTO DE TRABAJO</th>
+                    <th class="no-sort">EDITAR</th>
+                    <th class="no-sort">ELIMINAR</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <t t-set="counter" t-value="0"/>
+                  <t t-foreach="trabajadores_locacion" t-as="trabajador">
+                    <t t-set="counter" t-value="counter + 1"/>
+                    <tr>
+                      <td><t t-esc="counter"/></td>
+                      <td><t t-esc="trabajador.name"/></td>
+                      <td><t t-esc="trabajador.dni"/></td>
+                      <td><t t-esc="trabajador.correo"/></td>
+                      <td><t t-esc="trabajador.telefono"/></td>
+                      <td><t t-esc="trabajador.codigo"/></td>
+                      <td><t t-esc="trabajador.puesto"/></td>
+                      <td>
+                          <button type="button" class="btn bg-success" data-toggle="modal" t-attf-data-target="#editarTrabajadorLocacion-{{trabajador.id}}"><i class="fa fa-pencil-square-o" style="font-size:20px"></i></button>
+                          <div class="modal fade" t-attf-id="editarTrabajadorLocacion-{{trabajador.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">EDITAR TRABAJADOR</h5>
+                              </div>
+                              <div class="modal-body text-left">
+                                APELLIDOS Y NOMBRES
+                                <input class="form-control mb-2 col-12" t-att-value="trabajador.name" name="new-trabajador-nombres" type="text"/>
+                                DNI
+                                <input class="form-control mb-2 col-12" t-att-value="trabajador.dni" name="new-trabajador-dni" type="text"/>
+                                CORREO
+                                <input class="form-control mb-2 col-12" t-att-value="trabajador.correo" name="new-trabajador-correo" type="text"/>
+                                TELÉFONO
+                                <input class="form-control mb-2 col-12" t-att-value="trabajador.telefono" name="new-trabajador-telefono" type="text"/>
+                                CÓDIGO
+                                <input class="form-control mb-2 col-12" t-att-value="trabajador.codigo" name="new-trabajador-codigo" type="text"/>
+                                PUESTO DE TRABAJO
+                                <input class="form-control mb-2 col-12" t-att-value="trabajador.puesto" name="new-trabajador-puesto" type="text"/>
+                                TIPO DE TRABAJADOR
+                                <select id="tipo" class="form-control mb-2 col-12" name="new-trabajador-tipo">
+                                  <option value="1">Planilla</option>
+                                  <option value="2" selected="selected">Locación de Servicios</option>
+                                </select>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                                <button type="button" t-att-data-trabajador_id="trabajador.id" class="btn btn-primary guardar-trabajador">GUARDAR</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div>
+                          <button type="button" class="btn btn-danger" data-toggle="modal" t-attf-data-target="#trabajadorLocacion-{{trabajador.id}}">
+                            <i class="fa fa-trash" style="font-size:20px"></i>
+                          </button>
+                          <div class="modal fade" t-attf-id="trabajadorLocacion-{{trabajador.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                </div>
+                                <div class="modal-body">
+                                  <div class="alert alert-danger" role="alert">
+                                    ESTA SEGURO DE ELIMINAR
+                                  </div>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                                  <button type="button" class="btn btn-secondary botton-eliminar-trabajador" t-att-data-trabajador_id="trabajador.id">ELIMINAR</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </t>
+                </tbody>
+              </table>
+            </t>
+            <t t-else="">
+              <table id="table_servicios" class="table table-hover responsive nowrap w-100 text-center">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>N°</th>
+                    <th data-field="name" data-checkbox="true">APELLIDOS Y NOMBRES</th>
+                    <th>DNI</th>
+                    <th>CORREO</th>
+                    <th>TELEFONO</th>
+                    <th>CODIGO</th>
+                    <th>PUESTO DE TRABAJO</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <t t-set="counter" t-value="0"/>
+                  <t t-foreach="trabajadores_locacion" t-as="trabajador">
+                    <t t-set="counter" t-value="counter + 1"/>
+                    <tr>
+                      <td><t t-esc="counter"/></td>
+                      <td><t t-esc="trabajador.name"/></td>
+                      <td><t t-esc="trabajador.dni"/></td>
+                      <td><t t-esc="trabajador.correo"/></td>
+                      <td><t t-esc="trabajador.telefono"/></td>
+                      <td><t t-esc="trabajador.codigo"/></td>
+                      <td><t t-esc="trabajador.puesto"/></td>
+                    </tr>
+                  </t>
+                </tbody>
+              </table>
+            </t>
+          </div>
+
+        </div>
+      </div>
+    </t>
+  </template>
+
+
+
+  <template id="contratistas" name="Panel de Control">
+    <t t-call="website_permiso.perfil_usuario">
+      <div class="wrapper modulo-wrapper">
+        <!-- Sidebar -->
+        <!-- Page Content -->
+        <div id="content" class="usuario-form">
+          <div class="alert alert-primary text-center" role="alert">
+            <h4>GESTIÓN DE CONTRATISTAS</h4>
+          </div>
+          <t t-if="usuario.perfil=='1'">
+            <div class="font-weight-bold mb-3">
+              <button type="button" class="btn btn-primary font-weight-bold" style="border-radius:50%"  data-toggle="modal" data-target="#new_contratista">+</button> AGREGAR CONSTRATISTA
+            </div>
+          </t>
+          <div class="modal fade" id="new_contratista" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">NUEVO CONTRATISTA</h5>
+                </div>
+                <div class="modal-body">
+                  RAZON SOCIAL
+                  <input class="form-control mb-2 col-12" name="new-contratista-name" type="text"/>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                  <button type="button" t-att-data-empresa_id="usuario.empresa_id.id" class="btn btn-primary nuevo-contratista">GUARDAR</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <t t-foreach="contratistas" t-as="contratista">
+            <div class="alert alert-info text-center col-12 col-lg-6" role="alert">
+              <h4><t t-esc="contratista.name"/></h4>
+            </div>
+
+            <t t-if="usuario.perfil=='1'">
+              <div class="font-weight-bold mb-3">
+                <button type="button" class="btn btn-primary font-weight-bold" style="border-radius:50%"  data-toggle="modal" t-attf-data-target="#contratista-{{contratista.id}}">+</button> AGREGAR TRABAJADOR
+                <button type="button" class="btn btn-gamma font-weight-bold float-right"  data-toggle="modal" data-target="#import_trabajador">IMPORTAR TRABAJADOR</button>
+              </div>
+            </t>
+            <div class="modal fade" t-attf-id="contratista-{{contratista.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">NUEVO TRABAJADOR</h5>
+                  </div>
+                  <div class="modal-body">
+                    NOMBRE Y APELLIDO
+                    <input class="form-control mb-2 col-12" name="new-contratista-name" type="text"/>
+                    DNI
+                    <input class="form-control mb-2 col-12" name="new-contratista-dni" type="text"/>
+                    CORREO
+                    <input class="form-control mb-2 col-12" name="new-contratista-correo" type="text"/>
+                    TELÉFONO
+                    <input class="form-control mb-2 col-12" name="new-contratista-telefono" type="text"/>
+                    PUESTO
+                    <input class="form-control mb-2 col-12" name="new-contratista-puesto" type="text"/>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                    <button type="button" t-att-data-contratista_id="contratista.id" class="btn btn-primary nuevo-contratista-trabajador">GUARDAR</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal fade" id="import_trabajador" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">IMPORTACION DE LISTA TRABAJADORES</h5>
+                  </div>
+                  <div class="modal-body">
+                    <div class="font-weight-bold mb-3 button_import_trabajador">
+                      <!-- <div class='file fileupload'>
+                         <label for='imput_file_excel'>
+                           <i class="fa fa-upload" style="font-size:20px"></i>SUBE TU ARCHIVO
+                         </label>
+                         <input id='imput_file_excel' type='file' name="imput_file_excel"/>
+                       </div> -->
+                       <div class="button_import_trabajador_new">
+                         <div class="wrap m-auto">
+                                <div class="custom-file">
+                                  <input class="custom-file-input" id="imput_file_excel" type="file"/>
+                                  <label class="custom-file-label" for="imput_file_excel">SUBIR ARCHIVO</label>
+                                </div>
+                              </div>
+                       </div>
+                     </div>
+
+                  </div>
+                  <div class="modal-footer">
+                    <a class="btn float-left" style="background-color:#aed581;" href="/website_permiso/static/description/import_user_contratista.xlsx" download="1"><i class="fa fa-download"/>Plantilla</a>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                    <button type="button"  t-att-data-contratista_id="contratista.id"  class="btn btn-primary button-importar-trabajador-contratista">IMPORTAR</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="table-responsive mb-4">
+                <table class="table table-hover responsive nowrap w-100 text-center contratista">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th>N°</th>
+                      <th>APELLIDOS Y NOMBRES</th>
+                      <th>DNI</th>
+                      <th>CORREO</th>
+                      <th>TELEFONO</th>
+                      <th>PUESTO DE TRABAJO</th>
+                      <th>ESTADO</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <t t-set="counter" t-value="0"/>
+                    <t t-foreach="contratista.empleados_ids" t-as="empleado">
+                      <t t-set="counter" t-value="counter + 1"/>
+                      <tr>
+                        <td><t t-esc="counter"/></td>
+                        <td><t t-esc="empleado.name"/></td>
+                        <td><t t-esc="empleado.dni"/></td>
+                        <td><t t-esc="empleado.correo"/></td>
+                        <td><t t-esc="empleado.telefono"/></td>
+                        <td><t t-esc="empleado.puesto"/></td>
+                        <td>
+                          <a role="button" class="btn btn-primary" t-attf-href="/trabajador_contratista/requisitos/{{empleado.id}}">
+                          <t t-if="empleado.aptitud == '1'">
+                            <span>Apto</span>
+                          </t>
+                          <t t-if="empleado.aptitud == '2'">
+                            <span>No Apto</span>
+                          </t>
+                        </a>
+
+                        </td>
+                      </tr>
+                    </t>
+                  </tbody>
+                </table>
+            </div>
+          </t>
+
+        </div>
+      </div>
+    </t>
+  </template>
+
+</odoo>

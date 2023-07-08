@@ -1,0 +1,154 @@
+<odoo>
+  <data>
+    <record id="category_iper_completo" model="ir.module.category">
+      <field name="name">IPER</field>
+    </record>
+
+    <record id="group_iper_completo" model="res.groups">
+      <field name="name">Registrador</field>
+      <field name="category_id" ref="category_iper_completo"/>
+    </record>
+
+    <record id="model_access_iper_completo" model="ir.model.access">
+      <field name="name">model.access.iper.completo</field>
+      <field name="group_id" ref="iperc.group_iper_completo"/>
+      <field name="model_id" ref="iperc.model_iper_completo"/>
+      <field name="perm_read" eval="1"/>
+      <field name="perm_create" eval="1"/>
+      <field name="perm_write" eval="1"/>
+      <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="model_access_type_iper" model="ir.model.access">
+      <field name="name">model.access.type.iper</field>
+      <field name="group_id" ref="iperc.group_iper_completo"/>
+      <field name="model_id" ref="iperc.model_type_iper"/>
+      <field name="perm_read" eval="1"/>
+      <field name="perm_create" eval="1"/>
+      <field name="perm_write" eval="1"/>
+      <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="model_access_descripcion_iper" model="ir.model.access">
+      <field name="name">model.access.descripcion.iper</field>
+      <field name="group_id" ref="iperc.group_iper_completo"/>
+      <field name="model_id" ref="iperc.model_descripcion_iper"/>
+      <field name="perm_read" eval="1"/>
+      <field name="perm_create" eval="1"/>
+      <field name="perm_write" eval="1"/>
+      <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="model_access_evaluacion_iper" model="ir.model.access">
+      <field name="name">model.access.evaluacion.iper</field>
+      <field name="group_id" ref="iperc.group_iper_completo"/>
+      <field name="model_id" ref="iperc.model_evaluacion_iper"/>
+      <field name="perm_read" eval="1"/>
+      <field name="perm_create" eval="1"/>
+      <field name="perm_write" eval="1"/>
+      <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="model_access_evaluacion_iper_default" model="ir.model.access">
+      <field name="name">model.access.evaluacion.iper.default</field>
+      <field name="group_id" ref="iperc.group_iper_completo"/>
+      <field name="model_id" ref="iperc.model_evaluacion_iper_default"/>
+      <field name="perm_read" eval="1"/>
+      <field name="perm_create" eval="1"/>
+      <field name="perm_write" eval="1"/>
+      <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="model_access_supervisor_iper" model="ir.model.access">
+      <field name="name">model.access.supervisor.iper</field>
+      <field name="group_id" ref="iperc.group_iper_completo"/>
+      <field name="model_id" ref="iperc.model_supervisor_iper"/>
+      <field name="perm_read" eval="1"/>
+      <field name="perm_create" eval="1"/>
+      <field name="perm_write" eval="1"/>
+      <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="model_access_supervisor_iper_default" model="ir.model.access">
+      <field name="name">model.access.supervisor.iper.default</field>
+      <field name="group_id" ref="iperc.group_iper_completo"/>
+      <field name="model_id" ref="iperc.model_supervisor_iper_default"/>
+      <field name="perm_read" eval="1"/>
+      <field name="perm_create" eval="1"/>
+      <field name="perm_write" eval="1"/>
+      <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <!-- PORTAL -->
+    <record id="model_access_iper_completo_portal" model="ir.model.access">
+      <field name="name">model.access.iper.completo.portal</field>
+      <field name="group_id" ref="base.group_portal"/>
+      <field name="model_id" ref="iperc.model_iper_completo"/>
+      <field name="perm_read" eval="1"/>
+      <field name="perm_create" eval="1"/>
+      <field name="perm_write" eval="1"/>
+      <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="model_access_type_iper_portal" model="ir.model.access">
+      <field name="name">model.access.type.iper.portal</field>
+      <field name="group_id" ref="base.group_portal"/>
+      <field name="model_id" ref="iperc.model_type_iper"/>
+      <field name="perm_read" eval="1"/>
+      <field name="perm_create" eval="1"/>
+      <field name="perm_write" eval="1"/>
+      <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="model_access_descripcion_iper_portal" model="ir.model.access">
+      <field name="name">model.access.descripcion.iper.portal</field>
+      <field name="group_id" ref="base.group_portal"/>
+      <field name="model_id" ref="iperc.model_descripcion_iper"/>
+      <field name="perm_read" eval="1"/>
+      <field name="perm_create" eval="1"/>
+      <field name="perm_write" eval="1"/>
+      <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="model_access_evaluacion_iper_portal" model="ir.model.access">
+      <field name="name">model.access.evaluacion.iper.portal</field>
+      <field name="group_id" ref="base.group_portal"/>
+      <field name="model_id" ref="iperc.model_evaluacion_iper"/>
+      <field name="perm_read" eval="1"/>
+      <field name="perm_create" eval="1"/>
+      <field name="perm_write" eval="1"/>
+      <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="model_access_evaluacion_iper_default_portal" model="ir.model.access">
+      <field name="name">model.access.evaluacion.iper.default.portal</field>
+      <field name="group_id" ref="base.group_portal"/>
+      <field name="model_id" ref="iperc.model_evaluacion_iper_default"/>
+      <field name="perm_read" eval="1"/>
+      <field name="perm_create" eval="1"/>
+      <field name="perm_write" eval="1"/>
+      <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="model_access_supervisor_iper_portal" model="ir.model.access">
+      <field name="name">model.access.supervisor.iper.portal</field>
+      <field name="group_id" ref="base.group_portal"/>
+      <field name="model_id" ref="iperc.model_supervisor_iper"/>
+      <field name="perm_read" eval="1"/>
+      <field name="perm_create" eval="1"/>
+      <field name="perm_write" eval="1"/>
+      <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="model_access_supervisor_iper_default_portal" model="ir.model.access">
+      <field name="name">model.access.supervisor.iper.default.portal</field>
+      <field name="group_id" ref="base.group_portal"/>
+      <field name="model_id" ref="iperc.model_supervisor_iper_default"/>
+      <field name="perm_read" eval="1"/>
+      <field name="perm_create" eval="1"/>
+      <field name="perm_write" eval="1"/>
+      <field name="perm_unlink" eval="1"/>
+    </record>
+
+  </data>
+</odoo>

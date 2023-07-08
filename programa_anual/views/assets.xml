@@ -1,0 +1,10 @@
+<odoo>
+    <template id="programa_anual.assets_frontend" inherit_id="website.assets_frontend">
+        <xpath expr="//script[last()]" position="after">
+            <script src="/programa_anual/static/src/js/programa.js" type="text/javascript"/>
+        </xpath>
+        <xpath expr="//link[last()]" position="after">
+            <link href="/programa_anual/static/src/scss/programa.scss" type="text/scss" rel="stylesheet"/>
+        </xpath>
+    </template>
+</odoo>

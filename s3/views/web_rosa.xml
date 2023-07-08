@@ -1,0 +1,1433 @@
+<odoo>
+  <template id="list_rosa" name="Lista de Registros de Monitoreo - rosa">
+    <t t-call="s3.ventana_navegacion_menu">
+
+      <div id="content" class="p-3 planid mx-auto my-2" t-att-data-plan_id="plan.id">
+        <button type="button" id="sidebarCollapse" class="btn btn-info display-none">
+          <i class="fa fa-arrow-left"></i>
+        </button>
+        <div class="alert alert-primary text-center mb-5" role="alert">
+          <h4>rosa</h4>
+        </div>
+
+        <form method="POST">
+          <div class="row m-1">
+            <div class="col-sm-12 bg-primary text-center border border-dark">
+              <strong>REGISTROS DE MONITOREO</strong>
+            </div>
+          </div>
+
+          <p></p>
+
+          <div class="row m-1">
+            <div class="col-sm-4 bg-primary text-center border border-dark">
+              <strong>RUC</strong>
+            </div>
+            <div class="col-sm-8 text-center border border-dark">
+              <strong><span t-field="registro.ruc"/></strong>
+            </div>
+          </div>
+          <div class="row m-1">
+            <div class="col-sm-4 bg-primary text-center border border-dark">
+              <strong>RAZON SOCIAL</strong>
+            </div>
+            <div class="col-sm-8 text-center border border-dark">
+              <strong><span t-field="registro.cliente"/></strong>
+            </div>
+          </div>
+
+          <p></p>
+
+          <div class="row m-1">
+            <div class="col-sm-4 bg-primary text-center border border-dark">
+              <strong>NUMERO DE PUNTOS POR AGENTE</strong>
+            </div>
+            <div class="col-sm-4 bg-primary text-center border border-dark">
+              <strong>FECHA INICIO</strong>
+            </div>
+            <div class="col-sm-4 bg-primary text-center border border-dark">
+              <strong>FECHA FIN</strong>
+            </div>
+          </div>
+          <div class="row m-1">
+            <t t-set="cont" t-value="0"/>
+            <t t-foreach="registro.rosa_ids" t-as="sono">
+              <t t-set="cont" t-value="cont + 1"/>
+            </t>
+            <div class="col-sm-4 text-center border border-dark">
+              <strong><span t-esc="cont"/></strong>
+            </div>
+            <div class="col-sm-4 text-center border border-dark">
+              <strong><span t-field="registro.fecha_monitoreo"/></strong>
+            </div>
+            <div class="col-sm-4 text-center border border-dark">
+              <strong><span t-field="registro.fecha_monitoreo_fin"/></strong>
+            </div>
+          </div>
+          <p></p>
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">DATOS</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">RESULTADO</a>
+            </li>
+
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+              <div class="py-7">
+                <div class="table-responsive">
+                  <table id="resumen" class="table table-hover table-bordered responsive nowrap" style="width:100%; text-align: center;">
+                    <thead>
+                      <tr class="table-active bg-primary">
+                        <th class="align-middle">N°</th>
+                        <th class="align-middle">Area</th>
+                        <th class="align-middle">Puesto de Trabajo</th>
+                        <th class="align-middle">Empleado</th>
+                        <th class="align-middle"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <t t-set="counter" t-value="0"/>
+                      <t t-foreach="registro.rosa_ids" t-as="rosa">
+
+                        <t t-set="counter" t-value="counter + 1"/>
+                        <tr class="row_registro">
+                          <td>
+                            <span class="align-middle" t-esc="counter"/>
+                          </td>
+                          <td>
+                            <span class="align-middle" t-field="rosa.area"/>
+                          </td>
+                          <td >
+                            <span class="align-middle" t-field="rosa.puesto_trabajo"/>
+                          </td>
+                          <td>
+                            <span class="align-middle" t-field="rosa.empleado"/>
+                          </td>
+                          <td >
+                            <a class="btn btn-success" t-att-href="'/registros/rosa/form/%s' % (rosa.id)" role="button">
+                              <i class="fa fa-pencil-square-o"></i>
+                            </a>
+                          </td>
+                        </tr>
+                      </t>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+            </div>
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+              <div class="py-7">
+                <div class="table-responsive">
+                  <table id="resumen" class="table table-hover table-bordered responsive nowrap" style="width:100%; text-align: center;">
+                    <thead>
+                      <tr class="table-active bg-primary">
+                        <th class="align-middle">N°</th>
+                        <th class="align-middle">RESULTADO GRUPO A</th>
+                        <th class="align-middle">RESULTADO GRUPO B</th>
+                        <th class="align-middle">PUNTAJE FINAL</th>
+                        <th class="align-middle">NIVEL DE RIESGO</th>
+                        <th class="align-middle">SITUACIÓN DE TRABAJO</th>
+                        <th class="align-middle">CUMPLE</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <t t-set="counter" t-value="0"/>
+                      <t t-foreach="registro.rosa_ids" t-as="rosa">
+
+                        <t t-set="counter" t-value="counter + 1"/>
+                        <tr class="row_registro">
+                          <td>
+                            <span class="align-middle" t-esc="counter"/>
+                          </td>
+                          <td>
+                            <span class="align-middle" t-field="rosa.resultado_grupo_a"/>
+                          </td>
+                          <td >
+                            <span class="align-middle" t-field="rosa.resultado_grupo_b"/>
+                          </td>
+                          <td>
+                            <span class="align-middle" t-field="rosa.resultado_final"/>
+                          </td>
+                          <td >
+                            <span class="align-middle" t-field="rosa.nivel_riesgo"/>
+
+                          </td>
+                          <td >
+                            <span class="align-middle" t-field="rosa.situacion_trabajo"/>
+
+                          </td>
+                          <td >
+                            <span class="align-middle" t-field="rosa.cumple"/>
+
+                          </td>
+                        </tr>
+                      </t>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="row m-1">
+            <div class="col-sm-4 text-center">
+              <button type="button" class="btn btn-secondary" data-toggle="modal" t-attf-data-target="#modalrosa">CREAR</button>
+            </div>
+            <div class="col-sm-4 text-center">
+              <strong></strong>
+            </div>
+            <div class="col-sm-4 text-center">
+              <a class="btn btn-secondary" t-att-href="'/registros/%s' % (registro.id)" role="button">REGRESAR</a>
+            </div>
+          </div>
+          <div class="modal fade row_registro" t-attf-id="modalrosa" t-att-aria-hidden="true" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="mx-auto  modal-xl modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">ROSA</h5>
+                </div>
+                <div class="modal-body">
+                  <form class="registro_sonometria">
+                    <div class="form-group row">
+                      <input name="id" type="text" t-attf-value="{{registro.id}}" class="d-none" placeholder="ID"/>
+
+                      <label for="area" class="col-sm-2 col-form-label">Area</label>
+                      <div class="col-sm-10">
+                        <input name="area" type="text" class="form-control area" placeholder="Area"/>
+                      </div>
+                      <label for="puesto_trabajo" class="col-sm-2 col-form-label">Puesto de Trabajo</label>
+                      <div class="col-sm-10">
+                        <input type="text" name="puesto_trabajo" class="form-control puesto_trabajo" placeholder="Puesto de Trabajo"/>
+                      </div>
+                      <label for="empleado" class="col-sm-2 col-form-label">Trabajador</label>
+                      <div class="col-sm-10">
+                        <input name="empleado" type="text" class="form-control empleado" placeholder="Empleado"/>
+                      </div>
+
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Descartar</button>
+                  <!--Guardar requiere de js-->
+                  <button type="button" class="btn btn-primary botton-crear-rosa">Guardar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+
+      </div>
+
+    </t>
+  </template>
+
+  <template id="form_rosa" name="formulario de Registros de Monitoreo - rosa">
+    <t t-call="s3.ventana_navegacion_menu">
+
+      <div id="content" class="m-5 p-3 planid mx-auto" t-att-data-plan_id="plan.id">
+        <button type="button" id="sidebarCollapse" class="btn btn-info display-none">
+          <i class="fa fa-arrow-left"></i>
+        </button>
+        <div class="form-group " id="formulario_editar_field_rosa" t-att-data-model_id="model" t-att-data-record_id="rosa.id">
+          <table class="table table-bordered" style="table-layout: auto;border-bottom:0px;border-left:0px">
+            <thead>
+              <tr>
+                <th colspan="8" class="bg-primary text-center">
+                  <h3>rosa</h3>
+                </th>
+              </tr>
+              <tr>
+                <th colspan="8" class="bg-success text-left">DATOS DEL EMPLEADOR</th>
+              </tr>
+              <tr class="text-center bg-primary">
+                <th scope="col" rowspan="2" colspan="2" style="width:25%;vertical-align:middle">Area</th>
+                <th scope="col" rowspan="2" style="width:13%;vertical-align:middle">Puesto de Trabajo</th>
+                <th scope="col" rowspan="2" colspan="2" style="width:20%;vertical-align:middle">Trabajador</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="bg-primary">
+                <td colspan="2"><input type="text" name="cliente" class="border-0 form-control linea_programa" t-att-value="rosa.area"/></td>
+                <td ><input type="text" name="ruc" class="border-0 form-control linea_programa" t-att-value="rosa.puesto_trabajo" placeholder="Puesto de Trabajo"/></td>
+                <td colspan="2"><input type="text" name="domicilio" class="border-0 form-control linea_programa" t-att-value="rosa.empleado" placeholder="Empleado"/></td>
+              </tr>
+            </tbody>
+          </table>
+          <ul class="nav nav-tabs" t-attf-id="myTab{{rosa.id}}" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link " t-attf-id="factores-tab{{rosa.id}}" data-toggle="tab" t-attf-href="#factores{{rosa.id}}" role="tab" t-attf-aria-controls="factores{{rosa.id}}" aria-selected="false">FACTORES DE RIESGO DISERGONÓMICO</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" t-attf-id="metodo-tab{{rosa.id}}" data-toggle="tab" t-attf-href="#metodo{{rosa.id}}" role="tab" t-attf-aria-controls="metodo{{rosa.id}}" aria-selected="true">Método rosa</a>
+            </li>
+
+          </ul>
+          <div class="tab-content" t-attf-id="myTabContent{{rosa.id}}">
+            <div class="tab-pane fade " t-attf-id="factores{{rosa.id}}" role="tabpanel" t-attf-aria-labelledby="factores-tab{{rosa.id}}">
+
+              <div class="row my-2  border border-dark text-center align-middle">
+                <div class="col-3  d-flex flex-column border  bg-primary">
+                  Posturas incómodas o forzadas
+                </div>
+                <div class="col-9 d-flex flex-column border">
+                  <div class="row flex border">
+                    <div class="col-11 border ">
+                      Las manos por encima de la cabeza(*)
+                    </div>
+                    <div class="col-1 border ">
+                      <t t-if="rosa.postura_1"><input name="postura_1" type="checkbox" t-attf-value="{{rosa.postura_1}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="postura_1" type="checkbox" t-attf-value="{{rosa.postura_1}}" class="field-odoo"/></t>
+                    </div>
+                  </div>
+                  <div class="row flex border">
+                    <div class="col-11 border">
+                      Codos por encima del hombro(*)
+                    </div>
+                    <div class="col-1 border ">
+                      <t t-if="rosa.postura_2"><input name="postura_2" type="checkbox" t-attf-value="{{rosa.postura_2}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="postura_2" type="checkbox" t-attf-value="{{rosa.postura_2}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+                  <div class="row flex border">
+                    <div class="col-11 border">
+                      Espalda inclinada hacia adelante más de 30 grados (*)
+                    </div>
+                    <div class="col-1 border">
+                      <t t-if="rosa.postura_3"><input name="postura_3" type="checkbox" t-attf-value="{{rosa.postura_3}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="postura_3" type="checkbox" t-attf-value="{{rosa.postura_3}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+                  <div class="row flex border ">
+                    <div class="col-11 border ">
+                      Espalda en extensión más de 30 grados (*)
+                    </div>
+                    <div class="col-1 border">
+                      <t t-if="rosa.postura_4"><input name="postura_4" type="checkbox" t-attf-value="{{rosa.postura_4}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="postura_4" type="checkbox" t-attf-value="{{rosa.postura_4}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+                  <div class="row flex border">
+                    <div class="col-11 border">
+                      Cuello doblado/ girado más de 30 grados
+                    </div>
+                    <div class="col-1 border">
+                      <t t-if="rosa.postura_5"><input name="postura_5" type="checkbox" t-attf-value="{{rosa.postura_5}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="postura_5" type="checkbox" t-attf-value="{{rosa.postura_5}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+                  <div class="row flex border">
+                    <div class="col-11 border">
+                      Estando sentado, espalda inclinada hacia adelante más de 30 grados(*)
+                    </div>
+                    <div class="col-1 border">
+                      <t t-if="rosa.postura_6"><input name="postura_6" type="checkbox" t-attf-value="{{rosa.postura_6}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="postura_6" type="checkbox" t-attf-value="{{rosa.postura_6}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+                  <div class="row flex border">
+                    <div class="col-11 border">
+                      Estando sentado, espalda girada o lateralizada más de 30 grados (*)
+                    </div>
+                    <div class="col-1 border">
+                      <t t-if="rosa.postura_7"><input name="postura_7" type="checkbox" t-attf-value="{{rosa.postura_7}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="postura_7" type="checkbox" t-attf-value="{{rosa.postura_7}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+                  <div class="row flex border">
+                    <div class="col-11 border">
+                      De cuclillas (*)
+                    </div>
+                    <div class="col-1 border">
+                      <t t-if="rosa.postura_8"><input name="postura_8" type="checkbox" t-attf-value="{{rosa.postura_8}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="postura_8" type="checkbox" t-attf-value="{{rosa.postura_8}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+                  <div class="row flex border">
+                    <div class="col-11 border">
+                      De rodillas (*)
+                    </div>
+                    <div class="col-1 border">
+                      <t t-if="rosa.postura_9"><input name="postura_9" type="checkbox" t-attf-value="{{rosa.postura_9}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="postura_9" type="checkbox" t-attf-value="{{rosa.postura_9}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+                  <div class="row flex border">
+                    <div class="col-11 border">
+                      (*)Más de 2 horas en total por día.
+                    </div>
+                    <div class="col-1 border">
+                      <t t-if="rosa.postura_10"><input name="postura_10" type="checkbox" t-attf-value="{{rosa.postura_10}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="postura_10" type="checkbox" t-attf-value="{{rosa.postura_10}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row my-2  border border-dark text-center align-middle">
+                <div class="col-3  d-flex flex-column border  bg-primary">
+                  Levantamiento de carga frecuente
+                </div>
+                <div class="col-9 d-flex flex-column border">
+                  <div class="row flex border">
+                    <div class="col-11 ">
+                      40 KG. Una vez/ día (*)
+                    </div>
+                    <div class="col-1 border ">
+                      <t t-if="rosa.levantamiento_1"><input name="levantamiento_1" type="checkbox" t-attf-value="{{rosa.levantamiento_1}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="levantamiento_1" type="checkbox" t-attf-value="{{rosa.levantamiento_1}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+                  <div class="row flex border">
+                    <div class="col-11 border">
+                      25 KG. Más de doce veces / hora (*)
+                    </div>
+                    <div class="col-1 border ">
+                      <t t-if="rosa.levantamiento_2"><input name="levantamiento_2" type="checkbox" t-attf-value="{{rosa.levantamiento_2}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="levantamiento_2" type="checkbox" t-attf-value="{{rosa.levantamiento_2}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+                  <div class="row flex border">
+                    <div class="col-11 border">
+                      5 KG. Más de doce veces / minuto (*)
+                    </div>
+                    <div class="col-1 border">
+                      <t t-if="rosa.levantamiento_3"><input name="levantamiento_3" type="checkbox" t-attf-value="{{rosa.levantamiento_3}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="levantamiento_3" type="checkbox" t-attf-value="{{rosa.levantamiento_3}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+                  <div class="row flex border ">
+                    <div class="col-11 border ">
+                      Menos de 3 Kg. Más de cuatro veces / min (*)
+                    </div>
+                    <div class="col-1 border">
+                      <t t-if="rosa.levantamiento_4"><input name="levantamiento_4" type="checkbox" t-attf-value="{{rosa.levantamiento_4}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="levantamiento_4" type="checkbox" t-attf-value="{{rosa.levantamiento_4}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+                  <div class="row flex border">
+                    <div class="col-11 border">
+                      (*) Durante más de 2 horas por día
+                    </div>
+                    <div class="col-1 border">
+                      <t t-if="rosa.levantamiento_5"><input name="levantamiento_5" type="checkbox" t-attf-value="{{rosa.levantamiento_5}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="levantamiento_5" type="checkbox" t-attf-value="{{rosa.levantamiento_5}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+              <div class="row my-2  border border-dark text-center align-middle">
+                <div class="col-3  d-flex flex-column border  bg-primary">
+                  Esfuerzo de manos y muñecas
+                </div>
+                <div class="col-9 d-flex flex-column border">
+                  <div class="row flex border">
+                    <div class="col-11 ">
+                      Si se manipula y sujeta en pinza un objeto de mas de 1kg. (*)
+                    </div>
+                    <div class="col-1 border ">
+                      <t t-if="rosa.esfuerzo_1"><input name="esfuerzo_1" type="checkbox" t-attf-value="{{rosa.esfuerzo_1}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="esfuerzo_1" type="checkbox" t-attf-value="{{rosa.esfuerzo_1}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+                  <div class="row flex border">
+                    <div class="col-11 border">
+                      Si las muñecas están flexionadas en extensión, giradas o lateralizadas haciendo un agarre con fuerza. (*)
+                    </div>
+                    <div class="col-1 border ">
+                      <t t-if="rosa.esfuerzo_2"><input name="esfuerzo_2" type="checkbox" t-attf-value="{{rosa.esfuerzo_2}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="esfuerzo_2" type="checkbox" t-attf-value="{{rosa.esfuerzo_2}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+                  <div class="row flex border">
+                    <div class="col-11 border">
+                      Si se ejecuta la acción de atornillar de forma intensa (*)
+                    </div>
+                    <div class="col-1 border">
+                      <t t-if="rosa.esfuerzo_3"><input name="esfuerzo_3" type="checkbox" t-attf-value="{{rosa.esfuerzo_3}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="esfuerzo_3" type="checkbox" t-attf-value="{{rosa.esfuerzo_3}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+                  <div class="row flex border ">
+                    <div class="col-11 border ">
+                      (*)Más de 2 horas por día.
+                    </div>
+                    <div class="col-1 border">
+                      <t t-if="rosa.esfuerzo_4"><input name="esfuerzo_4" type="checkbox" t-attf-value="{{rosa.esfuerzo_4}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="esfuerzo_4" type="checkbox" t-attf-value="{{rosa.esfuerzo_4}}" class="field-odoo"/></t>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row my-2  border border-dark text-center align-middle">
+                <div class="col-3  d-flex flex-column border  bg-primary">
+                  Movimientos repetitivos con alta frecuencia
+                </div>
+                <div class="col-9 d-flex flex-column border">
+                  <div class="row flex border">
+                    <div class="col-11 ">
+                      El trabajador repite el mismo movimiento muscular más de 4 veces/ min. durante más de 2 horas por día. En los siguientes grupos musculares: Cuello, hombros, codos, muñecas, manos.
+                    </div>
+                    <div class="col-1 border ">
+                      <t t-if="rosa.movimiento_1"><input name="movimiento_1" type="checkbox" t-attf-value="{{rosa.movimiento_1}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="movimiento_1" type="checkbox" t-attf-value="{{rosa.movimiento_1}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row my-2  border border-dark text-center align-middle">
+                <div class="col-3  d-flex flex-column border  bg-primary">
+                  Impacto repetido
+                </div>
+                <div class="col-9 d-flex flex-column border">
+                  <div class="row flex border">
+                    <div class="col-11 ">
+                      Usando manos o rodillas como un martillo mas de 10 veces por hora, más de 2 horas por día.
+                    </div>
+                    <div class="col-1 border ">
+                      <t t-if="rosa.impacto_1"><input name="impacto_1" type="checkbox" t-attf-value="{{rosa.impacto_1}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="impacto_1" type="checkbox" t-attf-value="{{rosa.impacto_1}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row my-2  border border-dark text-center align-middle">
+                <div class="col-3  d-flex flex-column border  bg-primary">
+                  Vibración de brazo-mano de moderada a alta
+                </div>
+                <div class="col-9 d-flex flex-column border">
+                  <div class="row flex border">
+                    <div class="col-11 ">
+                      Nivel moderado: más de 30 min./ día.
+                    </div>
+                    <div class="col-1 border ">
+                      <t t-if="rosa.vibracion_1"><input name="vibracion_1" type="checkbox" t-attf-value="{{rosa.vibracion_1}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="vibracion_1" type="checkbox" t-attf-value="{{rosa.vibracion_1}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+                  <div class="row flex border">
+                    <div class="col-11 ">
+                      Nivel alto: 2horas/ día
+                    </div>
+                    <div class="col-1 border ">
+                      <t t-if="rosa.vibracion_2"><input name="vibracion_2" type="checkbox" t-attf-value="{{rosa.vibracion_2}}" class="field-odoo" checked="1"/></t>
+                      <t t-else=""><input name="vibracion_2" type="checkbox" t-attf-value="{{rosa.vibracion_2}}" class="field-odoo"/></t>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+        
+
+            <div class="tab-pane fade show active" t-attf-id="metodo{{rosa.id}}" role="tabpanel" t-attf-aria-labelledby="metodo-tab{{rosa.id}}">
+              <div class="row my-4 border border-dark justify-content-center align-middle">
+                <div class="col-10 d-flex flex-column text-center  border color-encabezado-rosa" style="height:30px;">
+                  SILLA
+                </div>
+                <div class="col-2 d-flex flex-column border  text-center color-segundo-rosa" style="height:30px;">
+                  <span name="silla_puntuacion" t-esc="rosa.silla_puntuacion"/>
+                </div>
+              </div>
+              <div class="row my-4">
+                <div class="col-xl-8 col-sm-12">
+                  <div class="row  border border-dark justify-content-center align-middle">
+                    <div class="col-10 d-flex flex-column text-center  border celda-grey2">
+                      Altura del asiento
+                    </div>
+                    <div class="col-2 d-flex flex-column border  text-center">
+                      <span name="silla_altura_puntuacion" t-esc="rosa.silla_altura_puntuacion"/>
+                    </div>
+                  </div>
+                  <div class="row  border border-dark justify-content-center align-middle">
+                    <div class="col-xl-8 col-sm-12 text-center">
+                      <div class="row">
+                        <div class="col-xl-6 col-sm-12 border border-dark">
+                          <img t-attf-src="/s3/static/description/rosa/altura_asiento_1.jpeg" width="175" height="125" class="d-inline-block align-top mr-1" alt=""/>
+
+                        </div>
+                        <div class="col-xl-6 col-sm-12">
+                          <div class="row border border-dark">
+                            <div class="col-4">
+                              <input name="silla_altura_igual" id="silla_altura" type="checkbox"  t-att-checked="rosa.silla_altura_igual" class="field-odoo"/>
+                            </div>
+                            <div class="col-8">
+                              A° es igual a 90 °
+                            </div>
+                          </div>
+                          <div class="row border border-dark">
+                            <div class="col-4">
+                              <input name="silla_altura_menor" id="silla_altura" type="checkbox" t-att-checked="rosa.silla_altura_menor" class="field-odoo"/>
+                            </div>
+                            <div class="col-8">
+                              Silla muy baja Rodillas A° &lt; 90°
+                            </div>
+                          </div>
+                          <div class="row border border-dark">
+                            <div class="col-4">
+                              <input name="silla_altura_mayor" id="silla_altura" type="checkbox" t-att-checked="rosa.silla_altura_mayor" class="field-odoo"/>
+                            </div>
+                            <div class="col-8">
+                              Silla muy alta Rodillas A° &gt; 90°
+                            </div>
+                          </div>
+                          <div class="row border border-dark">
+                            <div class="col-4">
+                              <input name="silla_altura_sin_contacto" type="checkbox" t-att-checked="rosa.silla_altura_sin_contacto" class="field-odoo"/>
+                            </div>
+                            <div class="col-8">
+                              Sin contacto con el suelo°
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-4 col-sm-12  border  text-center">
+                      <div class="row">
+                        <div class="col-xl-4 col-sm-12 border border-dark ">
+                          <img t-attf-src="/s3/static/description/rosa/altura_asiento_2.jpeg" width="100" height="100" class="d-inline-block align-top mr-1" alt=""/>
+                        </div>
+                        <div class="col-xl-8 col-sm-12 ">
+                          <div class="row border border-dark">
+                            <div class="col-4">
+                              <input name="silla_altura_no_ajustable" type="checkbox" t-att-checked="rosa.silla_altura_no_ajustable" class="field-odoo"/>
+                            </div>
+                            <div class="col-8">
+                              Altura del asiento no ajustable
+                            </div>
+                          </div>
+                          <div class="row border border-dark">
+                            <div class="col-4">
+                              <input name="silla_altura_sin_espacio" type="checkbox" t-att-checked="rosa.silla_altura_sin_espacio" class="field-odoo"/>
+                            </div>
+                            <div class="col-8">
+                              Sin suficiente espacio bajo la mesa. Imposibilidad de cruzar las piernas
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+                <div class="col-xl-4 col-sm-12">
+                  <div class="row border border-dark justify-content-center align-middle">
+                    <div class="col-8 d-flex flex-column text-center  border celda-grey2 ">
+                      Longitud del asiento
+                    </div>
+                    <div class="col-4 d-flex flex-column border  text-center">
+                      <span name="silla_longitud_puntuacion" t-esc="rosa.silla_longitud_puntuacion"/>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xl-4 col-sm-12 border border-dark">
+                      <img t-attf-src="/s3/static/description/rosa/longitud_asiento.jpeg" width="100" height="100" class="d-inline-block align-top mr-1" alt=""/>
+                    </div>
+                    <div class="col-xl-8 col-sm-12 d-flex flex-column text-center">
+                      <div class="row border border-dark">
+                        <div class="col-4">
+                          <input name="silla_longitud_igual" type="checkbox" t-att-checked="rosa.silla_longitud_igual" class="field-odoo"/>
+                        </div>
+                        <div class="col-8">
+                          "d" = 08 cm de espacio
+                        </div>
+                      </div>
+                      <div class="row border border-dark">
+                        <div class="col-4">
+                          <input name="silla_longitud_menor" type="checkbox" t-att-checked="rosa.silla_longitud_menor" class="field-odoo"/>
+                        </div>
+                        <div class="col-8">
+                          "d" es menor a 08 cm de espacio
+                        </div>
+                      </div>
+                      <div class="row border border-dark">
+                        <div class="col-4">
+                          <input name="silla_longitud_mayor" type="checkbox" t-att-checked="rosa.silla_longitud_mayor" class="field-odoo"/>
+                        </div>
+                        <div class="col-8">
+                          "d" es mayor a 08 cm de espacio
+                        </div>
+                      </div>
+                      <div class="row border border-dark">
+                        <div class="col-4">
+                          <input name="silla_longitud_no_ajustable" type="checkbox" t-att-checked="rosa.silla_longitud_no_ajustable" class="field-odoo"/>
+                        </div>
+                        <div class="col-8">
+                          Profundidad no es ajustable Ajuste (+ 1)
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row my-4 border border-dark">
+                <div class="col-xl-7 col-sm-12">
+                  <div class="row  border border-dark justify-content-center align-middle">
+                    <div class="col-10 d-flex flex-column text-center  border celda-grey2">
+                      Respaldo
+                    </div>
+                    <div class="col-2 d-flex flex-column border  text-center">
+                      <span name="silla_respaldo_puntuacion" t-esc="rosa.silla_respaldo_puntuacion"/>
+                    </div>
+                  </div>
+                  <div class="row  border border-dark justify-content-center align-middle">
+                    <div class="col-respaldo-1 col-sm-12 border border-dark">
+                      <div class="row border-bot-rosa">
+                        <input name="silla_respaldo_recto" type="checkbox" t-att-checked="rosa.silla_respaldo_recto" class="field-odoo"/>
+                      </div>
+                      <div class="row justify-content-center align-middle">
+                        <img t-attf-src="/s3/static/description/rosa/respaldo_1.jpeg" width="100" height="100" class="d-inline-block align-top mr-1" alt=""/>
+                      </div>
+                    </div>
+                    <div class="col-respaldo-1 col-sm-12 border border-dark">
+                      <div class="row border-bot-rosa">
+                        <input name="silla_respaldo_plano" type="checkbox" t-att-checked="rosa.silla_respaldo_plano" class="field-odoo"/>
+
+                      </div>
+                      <div class="row justify-content-center align-middle">
+                        <img t-attf-src="/s3/static/description/rosa/respaldo_2.jpeg" width="100" height="100" class="d-inline-block align-top mr-1" alt=""/>
+                      </div>
+                    </div>
+                    <div class="col-respaldo-1 col-sm-12 border border-dark">
+                      <div class="row border-bot-rosa">
+                        <input name="silla_respaldo_obtuso" type="checkbox" t-att-checked="rosa.silla_respaldo_obtuso" class="field-odoo"/>
+
+                      </div>
+                      <div class="row justify-content-center align-middle">
+                        <img t-attf-src="/s3/static/description/rosa/respaldo_3.jpeg" width="100" height="100" class="d-inline-block align-top mr-1" alt=""/>
+                      </div>
+                    </div>
+                    <div class="col-respaldo-1 col-sm-12 border border-dark">
+                      <div class="row border-bot-rosa">
+                        <input name="silla_respaldo_agudo" type="checkbox" t-att-checked="rosa.silla_respaldo_agudo" class="field-odoo"/>
+
+                      </div>
+                      <div class="row justify-content-center align-middle">
+                        <img t-attf-src="/s3/static/description/rosa/respaldo_4.jpeg" width="100" height="100" class="d-inline-block align-top mr-1" alt=""/>
+                      </div>
+                    </div>
+                    <div class="col-respaldo-1 col-sm-12 border border-dark">
+                      <div class="row border-bot-rosa">
+                        <input name="silla_respaldo_ajustable" type="checkbox" t-att-checked="rosa.silla_respaldo_ajustable" class="field-odoo"/>
+
+                      </div>
+                      <div class="row">
+                        Respaldo no ajustable
+                      </div>
+                    </div>
+                    <div class="col-respaldo-2 col-sm-12 border border-dark">
+                      <div class="row border-bot-rosa">
+                        <input name="silla_respaldo_mesa" type="checkbox" t-att-checked="rosa.silla_respaldo_mesa" class="field-odoo"/>
+
+                      </div>
+                      <div class="row border-bot-rosa">
+                        <div class="col-6">
+                          Mesa de trabajo demasiado alta. Hombros encogidos
+                        </div>
+                        <div class="col-6 justify-content-center align-middle">
+                          <img t-attf-src="/s3/static/description/rosa/respaldo_5.jpeg" width="100" height="100" class="d-inline-block align-top mr-1" alt=""/>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="col-xl-5 col-sm-12">
+                  <div class="row border border-dark justify-content-center align-middle">
+                    <div class="col-10 d-flex flex-column text-center  border celda-grey2 ">
+                      Reposabrazos
+                    </div>
+                    <div class="col-2 d-flex flex-column border  text-center">
+                      <span name="silla_reposabrazos_puntuacion" t-esc="rosa.silla_reposabrazos_puntuacion"/>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xl-2 col-sm-12 border border-dark">
+                      <div class="row border-bot-rosa">
+                        <input name="silla_reposabrazos_linea" type="checkbox" t-att-checked="rosa.silla_reposabrazos_linea" class="field-odoo"/>
+                      </div>
+                      <div class="row justify-content-center align-middle">
+                        <img t-attf-src="/s3/static/description/rosa/reposabrazo_1.jpeg" width="100" height="100" class="d-inline-block align-top mr-1" alt=""/>
+
+                      </div>
+                      <div class="row text-center">
+                        Reposa brazos en línea con el hombro, relajado
+                      </div>
+                    </div>
+                    <div class="col-xl-2 col-sm-12 border border-dark">
+                      <div class="row border-bot-rosa">
+                        <input name="silla_reposabrazos_alto" type="checkbox" t-att-checked="rosa.silla_reposabrazos_alto" class="field-odoo"/>
+                      </div>
+                      <div class="row justify-content-center align-middle">
+                        <img t-attf-src="/s3/static/description/rosa/reposabrazo_2.jpeg" width="100" height="100" class="d-inline-block align-top mr-1" alt=""/>
+
+                      </div>
+                      <div class="row text-center">
+                        Reposa brazos muy alto o con poco soporte
+                      </div>
+                    </div>
+                    <div class="col-xl-2 col-sm-12 border border-dark">
+                      <div class="row border-bot-rosa">
+                        <input name="silla_reposabrazos_dura" type="checkbox" t-att-checked="rosa.silla_reposabrazos_dura" class="field-odoo"/>
+                      </div>
+                      <div class="row justify-content-center align-middle">
+                        <img t-attf-src="/s3/static/description/rosa/reposabrazo_3.jpeg" width="100" height="100" class="d-inline-block align-top mr-1" alt=""/>
+
+                      </div>
+                      <div class="row text-center">
+                        Superficie dura o dañada de reposabrazos
+                      </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-12 border border-dark">
+                      <div class="row border-bot-rosa">
+                        <input name="silla_reposabrazos_separados" type="checkbox" t-att-checked="rosa.silla_reposabrazos_separados" class="field-odoo"/>
+                      </div>
+                      <div class="row justify-content-center align-middle">
+                        <img t-attf-src="/s3/static/description/rosa/reposabrazo_4.jpeg" width="100" height="100" class="d-inline-block align-top mr-1" alt=""/>
+
+                      </div>
+                      <div class="row text-center">
+                        Reposabrasos muy separados
+                      </div>°
+                    </div>
+                    <div class="col-xl-3 col-sm-12 border border-dark">
+                      <div class="row border-bot-rosa">
+                        <input name="silla_reposabrazos_ajustable" type="checkbox" t-att-checked="rosa.silla_reposabrazos_ajustable" class="field-odoo"/>
+                      </div>
+                      <div class="row text-center">
+                        Separación entre reposabrazos no es ajustable
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row my-4 border border-dark justify-content-center align-middle">
+                <div class="col-xl-8 col-sm-12 d-flex flex-column text-center  border ">
+                  <div class="row ">
+                    <div class="col-6 celda-grey2 ">
+                      Altura del asiento más la profundidad
+                    </div>
+                    <div class="col-6">
+                      <span name="altura_longitud_puntuacion" t-esc="rosa.altura_longitud_puntuacion"/>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-6 celda-grey2 ">
+                      Respaldo del asiento más el reposabrazos
+                    </div>
+                    <div class="col-6">
+                      <span name="respaldo_reposabrazos_puntuacion" t-esc="rosa.respaldo_reposabrazos_puntuacion"/>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-6 celda-grey2 ">
+                      Puntuación silla
+                    </div>
+                    <div class="col-6">
+                      <span name="silla_puntuacion" t-esc="rosa.silla_puntuacion"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-sm-12 d-flex flex-column border  text-center ">
+                  <div class="row">
+                    <div class="col-6">
+                      Duración de uso de Silla:
+                    </div>
+                    <div class="col-6">
+                      <select name="silla_reposabrazos_duracion" class="field-odoo">
+                        <t t-if="'menor' == rosa.silla_reposabrazos_duracion">
+                          <option value="menor" selected="selected">Menor a 1 hora por día o menor a 30 minutos ininterrumpidamente</option>
+                          <option value="entre">Si se permanece entre 1 y 4 horas al día o entre 30 minutos y 1 hora seguida</option>
+                          <option value="mayor">Si permanece más de 4 horas al día o más de una 1hora ininterrumpidamente</option>
+                        </t>
+                        <t t-elif="'entre' == rosa.silla_reposabrazos_duracion">
+                          <option value="menor">Menor a 1 hora por día o menor a 30 minutos ininterrumpidamente</option>
+                          <option value="entre" selected="selected">Si se permanece entre 1 y 4 horas al día o entre 30 minutos y 1 hora seguida</option>
+                          <option value="mayor">Si permanece más de 4 horas al día o más de una 1hora ininterrumpidamente</option>
+                        </t>
+                        <t t-elif="'mayor' == rosa.silla_reposabrazos_duracion">
+                          <option value="menor">Menor a 1 hora por día o menor a 30 minutos ininterrumpidamente</option>
+                          <option value="entre">Si se permanece entre 1 y 4 horas al día o entre 30 minutos y 1 hora seguida</option>
+                          <option value="mayor" selected="selected">Si permanece más de 4 horas al día o más de una 1hora ininterrumpidamente</option>
+                        </t>
+                        <t t-else="">
+                          <option value="menor">Menor a 1 hora por día o menor a 30 minutos ininterrumpidamente</option>
+                          <option value="entre">Si se permanece entre 1 y 4 horas al día o entre 30 minutos y 1 hora seguida</option>
+                          <option value="mayor">Si permanece más de 4 horas al día o más de una 1hora ininterrumpidamente</option>
+                        </t>
+
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row my-4 border border-dark justify-content-center align-middle">
+                <div class="col-10 d-flex flex-column text-center  border color-encabezado-rosa" style="height:30px;">
+                  MONITOR MÁS TELÉFONO
+                </div>
+                <div class="col-2 d-flex flex-column border  text-center color-segundo-rosa" style="height:30px;">
+                  <span name="monitor_telefono_puntuacion" t-esc="rosa.monitor_telefono_puntuacion"/>
+                </div>
+              </div>
+              <div class="row  border border-dark">
+                <div class="col-xl-7 col-sm-12">
+                  <div class="row  border border-dark justify-content-center align-middle">
+                    <div class="col-10 d-flex flex-column text-center  border color-encabezado-rosa">
+                      MONITOR
+                    </div>
+                    <div class="col-2 d-flex flex-column border  text-center">
+                      <span name="monitor_puntuacion" t-esc="rosa.monitor_puntuacion"/>
+                    </div>
+                  </div>
+                  <div class="row  border border-dark justify-content-center align-middle">
+                    <div class="col-respaldo-1 col-sm-12 border border-dark">
+                      <div class="row border-bot-rosa">
+                        <input name="monitor_ideal" type="checkbox" t-att-checked="rosa.monitor_ideal" class="field-odoo"/>
+                      </div>
+                      <div class="row justify-content-center align-middle">
+                        <img t-attf-src="/s3/static/description/rosa/monitor_1.jpeg" width="100" height="100" class="d-inline-block align-top mr-1" alt=""/>
+                      </div>
+                      <div class="row text-center">
+                        Posición ideal
+                      </div>
+                    </div>
+                    <div class="col-respaldo-1 col-sm-12 border border-dark">
+                      <div class="row border-bot-rosa">
+                        <input name="monitor_bajo" type="checkbox" t-att-checked="rosa.monitor_bajo" class="field-odoo"/>
+
+                      </div>
+                      <div class="row justify-content-center align-middle">
+                        <img t-attf-src="/s3/static/description/rosa/monitor_2.jpeg" width="100" height="100" class="d-inline-block align-top mr-1" alt=""/>
+                      </div>
+                      <div class="row text-center">
+                        Monitor Bajo
+                      </div>
+                    </div>
+                    <div class="col-respaldo-1 col-sm-12 border border-dark">
+                      <div class="row border-bot-rosa">
+                        <input name="monitor_alto" type="checkbox" t-att-checked="rosa.monitor_alto" class="field-odoo"/>
+
+                      </div>
+                      <div class="row justify-content-center align-middle">
+                        <img t-attf-src="/s3/static/description/rosa/monitor_3.jpeg" width="100" height="100" class="d-inline-block align-top mr-1" alt=""/>
+                      </div>
+                      <div class="row text-center">
+                        Monitor Alto
+                      </div>
+                    </div>
+                    <div class="col-respaldo-1 col-sm-12 border border-dark">
+                      <div class="row border-bot-rosa">
+                        <input name="monitor_centrada" type="checkbox" t-att-checked="rosa.monitor_centrada" class="field-odoo"/>
+
+                      </div>
+                      <div class="row justify-content-center align-middle">
+                        <img t-attf-src="/s3/static/description/rosa/monitor_4.jpeg" width="100" height="100" class="d-inline-block align-top mr-1" alt=""/>
+                      </div>
+                      <div class="row text-center">
+                        Existe pantalla no centrada. Cuello Girado
+                      </div>
+                    </div>
+                    <div class="col-respaldo-1 col-sm-12 border border-dark">
+                      <div class="row border-bot-rosa">
+                        <input name="monitor_reflejos" type="checkbox" t-att-checked="rosa.monitor_reflejos" class="field-odoo"/>
+
+                      </div>
+                      <div class="row justify-content-center align-middle">
+                        <img t-attf-src="/s3/static/description/rosa/monitor_5.jpeg" width="100" height="100" class="d-inline-block align-top mr-1" alt=""/>
+                      </div>
+                      <div class="row text-center">
+                        Existen reflejos en la pantalla
+                      </div>
+                    </div>
+                    <div class="col-respaldo-1 col-sm-12 border border-dark">
+                      <div class="row border-bot-rosa">
+                        <input name="monitor_documentos" type="checkbox" t-att-checked="rosa.monitor_documentos" class="field-odoo"/>
+
+                      </div>
+                      <div class="row justify-content-center align-middle">
+                        <img t-attf-src="/s3/static/description/rosa/monitor_6.jpeg" width="100" height="100" class="d-inline-block align-top mr-1" alt=""/>
+                      </div>
+                      <div class="row text-center">
+                        No hay soporte para documentos y es necesario
+                      </div>
+                    </div>
+                    <div class="col-respaldo-1 col-sm-12 border border-dark">
+                      <div class="row border-bot-rosa">
+                        <input name="monitor_alejado" type="checkbox" t-att-checked="rosa.monitor_alejado" class="field-odoo"/>
+
+                      </div>
+                      <div class="row justify-content-center align-middle">
+                        <img t-attf-src="/s3/static/description/rosa/monitor_7.jpeg" width="100" height="100" class="d-inline-block align-top mr-1" alt=""/>
+                      </div>
+                      <div class="row text-center">
+                        Monitor esta muy alejado
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+                <div class="col-xl-5 col-sm-12">
+                  <div class="row border border-dark justify-content-center align-middle">
+                    <div class="col-10 d-flex flex-column text-center  border color-segundo-rosa">
+                      TELÉFONO
+                    </div>
+                    <div class="col-2 d-flex flex-column border  text-center">
+                      <span name="telefono_puntuacion" t-esc="rosa.telefono_puntuacion"/>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xl-2 col-sm-12 border border-dark">
+                      <div class="row border-bot-rosa">
+                        <input name="telefono_manos" type="checkbox" t-att-checked="rosa.telefono_manos" class="field-odoo"/>
+                      </div>
+                      <div class="row justify-content-center align-middle">
+                        <img t-attf-src="/s3/static/description/rosa/telefono_1.jpeg" width="100" height="100" class="d-inline-block align-top mr-1" alt=""/>
+
+                      </div>
+                      <div class="row text-center">
+                        Teléfono una mano o manos
+                      </div>
+                    </div>
+                    <div class="col-xl-2 col-sm-12 border border-dark">
+                      <div class="row border-bot-rosa">
+                        <input name="telefono_alejado" type="checkbox" t-att-checked="rosa.telefono_alejado" class="field-odoo"/>
+                      </div>
+                      <div class="row justify-content-center align-middle">
+                        <img t-attf-src="/s3/static/description/rosa/telefono_2.jpeg" width="100" height="100" class="d-inline-block align-top mr-1" alt=""/>
+
+                      </div>
+                      <div class="row text-center">
+                        Teléfono muy alejado
+                      </div>
+                    </div>
+                    <div class="col-xl-5 col-sm-12 border border-dark">
+                      <div class="row border-bot-rosa">
+                        <input name="telefono_cuello" type="checkbox" t-att-checked="rosa.telefono_cuello" class="field-odoo"/>
+                      </div>
+                      <div class="row justify-content-center align-middle">
+                        <img t-attf-src="/s3/static/description/rosa/telefono_3.jpeg" width="100" height="100" class="d-inline-block align-top mr-1" alt=""/>
+
+                      </div>
+                      <div class="row text-center">
+                        Mantener cuello girado y hombro encogido
+                      </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-12 border border-dark">
+                      <div class="row border-bot-rosa">
+                        <input name="telefono_mano_libre" type="checkbox" t-att-checked="rosa.telefono_mano_libre" class="field-odoo"/>
+                      </div>
+                      <div class="row text-center">
+                        Sin opción a manos libres
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row my-4 border border-dark justify-content-center align-middle">
+                <div class="col-xl-8 col-sm-12 d-flex flex-column text-center  border ">
+                  <div class="row">
+                    <div class="col-6">
+                      Duración de uso de Monitor:
+                    </div>
+                    <div class="col-6">
+                      <select name="monitor_duracion" class="field-odoo">
+                        <t t-if="'menor' == rosa.monitor_duracion">
+                          <option value="menor" selected="selected">Menor a 1 hora por día o menor a 30 minutos ininterrumpidamente</option>
+                          <option value="entre">Si se permanece entre 1 y 4 horas al día o entre 30 minutos y 1 hora seguida</option>
+                          <option value="mayor">Si permanece más de 4 horas al día o más de una 1hora ininterrumpidamente</option>
+                        </t>
+                        <t t-elif="'entre' == rosa.monitor_duracion">
+                          <option value="menor">Menor a 1 hora por día o menor a 30 minutos ininterrumpidamente</option>
+                          <option value="entre" selected="selected">Si se permanece entre 1 y 4 horas al día o entre 30 minutos y 1 hora seguida</option>
+                          <option value="mayor">Si permanece más de 4 horas al día o más de una 1hora ininterrumpidamente</option>
+                        </t>
+                        <t t-elif="'mayor' == rosa.monitor_duracion">
+                          <option value="menor">Menor a 1 hora por día o menor a 30 minutos ininterrumpidamente</option>
+                          <option value="entre">Si se permanece entre 1 y 4 horas al día o entre 30 minutos y 1 hora seguida</option>
+                          <option value="mayor" selected="selected">Si permanece más de 4 horas al día o más de una 1hora ininterrumpidamente</option>
+                        </t>
+                        <t t-else="">
+                          <option value="menor">Menor a 1 hora por día o menor a 30 minutos ininterrumpidamente</option>
+                          <option value="entre">Si se permanece entre 1 y 4 horas al día o entre 30 minutos y 1 hora seguida</option>
+                          <option value="mayor">Si permanece más de 4 horas al día o más de una 1hora ininterrumpidamente</option>
+                        </t>
+
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-sm-12 d-flex flex-column border  text-center ">
+                  <div class="row">
+                    <div class="col-6">
+                      Duración de uso de Teléfono:
+                    </div>
+                    <div class="col-6">
+                      <select name="telefono_duracion" class="field-odoo">
+                        <t t-if="'menor' == rosa.telefono_duracion">
+                          <option value="menor" selected="selected">Menor a 1 hora por día o menor a 30 minutos ininterrumpidamente</option>
+                          <option value="entre">Si se permanece entre 1 y 4 horas al día o entre 30 minutos y 1 hora seguida</option>
+                          <option value="mayor">Si permanece más de 4 horas al día o más de una 1hora ininterrumpidamente</option>
+                        </t>
+                        <t t-elif="'entre' == rosa.telefono_duracion">
+                          <option value="menor">Menor a 1 hora por día o menor a 30 minutos ininterrumpidamente</option>
+                          <option value="entre" selected="selected">Si se permanece entre 1 y 4 horas al día o entre 30 minutos y 1 hora seguida</option>
+                          <option value="mayor">Si permanece más de 4 horas al día o más de una 1hora ininterrumpidamente</option>
+                        </t>
+                        <t t-elif="'mayor' == rosa.telefono_duracion">
+                          <option value="menor">Menor a 1 hora por día o menor a 30 minutos ininterrumpidamente</option>
+                          <option value="entre">Si se permanece entre 1 y 4 horas al día o entre 30 minutos y 1 hora seguida</option>
+                          <option value="mayor" selected="selected">Si permanece más de 4 horas al día o más de una 1hora ininterrumpidamente</option>
+                        </t>
+                        <t t-else="">
+                          <option value="menor">Menor a 1 hora por día o menor a 30 minutos ininterrumpidamente</option>
+                          <option value="entre">Si se permanece entre 1 y 4 horas al día o entre 30 minutos y 1 hora seguida</option>
+                          <option value="mayor">Si permanece más de 4 horas al día o más de una 1hora ininterrumpidamente</option>
+                        </t>
+
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row my-4 border border-dark justify-content-center align-middle">
+                <div class="col-10 d-flex flex-column text-center  border color-encabezado-rosa" style="height:30px;">
+                  TECLADO MÁS RATÓN
+                </div>
+                <div class="col-2 d-flex flex-column border  text-center color-segundo-rosa" style="height:30px;">
+                  <span name="teclado_raton_puntuacion" t-esc="rosa.teclado_raton_puntuacion"/>
+                </div>
+              </div>
+              <div class="row  border border-dark">
+                <div class="col-xl-7 col-sm-12">
+                  <div class="row  border border-dark justify-content-center align-middle">
+                    <div class="col-10 d-flex flex-column text-center  border color-encabezado-rosa">
+                      TECLADO
+                    </div>
+                    <div class="col-2 d-flex flex-column border  text-center color-segundo-rosa">
+                      <span name="teclado_puntuacion" t-esc="rosa.telefono_puntuacion"/>
+                    </div>
+                  </div>
+                  <div class="row  border border-dark justify-content-center align-middle">
+                    <div class="col-respaldo-1 col-sm-12 border border-dark">
+                      <div class="row border-bot-rosa">
+                        <input name="teclado_munecas_rectas" type="checkbox" t-att-checked="rosa.teclado_munecas_rectas" class="field-odoo"/>
+                      </div>
+                      <div class="row justify-content-center align-middle">
+                        <img t-attf-src="/s3/static/description/rosa/teclado_1.jpeg" width="100" height="100" class="d-inline-block align-top mr-1" alt=""/>
+                      </div>
+                      <div class="row text-center">
+                        Muñecas rectas, hombros relajados
+                      </div>
+                    </div>
+                    <div class="col-respaldo-1 col-sm-12 border border-dark">
+                      <div class="row border-bot-rosa">
+                        <input name="teclado_munecas_extendidas" type="checkbox" t-att-checked="rosa.teclado_munecas_extendidas" class="field-odoo"/>
+
+                      </div>
+                      <div class="row justify-content-center align-middle">
+                        <img t-attf-src="/s3/static/description/rosa/teclado_2.jpeg" width="100" height="100" class="d-inline-block align-top mr-1" alt=""/>
+                      </div>
+                      <div class="row text-center">
+                        Muñecas extendidas > 15°
+                      </div>
+                    </div>
+                    <div class="col-respaldo-1 col-sm-12 border border-dark">
+                      <div class="row border-bot-rosa">
+                        <input name="teclado_munecas_desviadas" type="checkbox" t-att-checked="rosa.teclado_munecas_desviadas" class="field-odoo"/>
+
+                      </div>
+                      <div class="row justify-content-center align-middle">
+                        <img t-attf-src="/s3/static/description/rosa/teclado_3.jpeg" width="100" height="100" class="d-inline-block align-top mr-1" alt=""/>
+                      </div>
+                      <div class="row text-center">
+                        Escribir en el teclado con las muñecas desviadas
+                      </div>
+                    </div>
+                    <div class="col-respaldo-1 col-sm-12 border border-dark">
+                      <div class="row border-bot-rosa">
+                        <input name="teclado_alto" type="checkbox" t-att-checked="rosa.teclado_alto" class="field-odoo"/>
+
+                      </div>
+                      <div class="row justify-content-center align-middle">
+                        <img t-attf-src="/s3/static/description/rosa/teclado_4.jpeg" width="100" height="100" class="d-inline-block align-top mr-1" alt=""/>
+                      </div>
+                      <div class="row text-center">
+                        Teclado demasiado alto. Hombros encogidos.
+                      </div>
+                    </div>
+                    <div class="col-respaldo-2 col-sm-12 border border-dark">
+                      <div class="row border-bot-rosa">
+                        <input name="teclado_alcanza" type="checkbox" t-att-checked="rosa.teclado_alcanza" class="field-odoo"/>
+
+                      </div>
+                      <div class="row justify-content-center align-middle">
+                        <img t-attf-src="/s3/static/description/rosa/teclado_5.jpeg" width="100" height="100" class="d-inline-block align-top mr-1" alt=""/>
+                      </div>
+                      <div class="row text-center">
+                        Alcanza objetos por encima de la cabeza, mandos, documentos, etc.
+                      </div>
+                    </div>
+                    <div class="col-respaldo-1 col-sm-12 border border-dark">
+                      <div class="row border-bot-rosa">
+                        <input name="teclado_ajustable" type="checkbox" t-att-checked="rosa.teclado_ajustable" class="field-odoo"/>
+
+                      </div>
+                      <div class="row text-center">
+                        Plataforma no ajustable
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+                <div class="col-xl-5 col-sm-12">
+                  <div class="row border border-dark justify-content-center align-middle">
+                    <div class="col-10 d-flex flex-column text-center  border color-encabezado-rosa">
+                      RATÓN
+                    </div>
+                    <div class="col-2 d-flex flex-column border  text-center color-segundo-rosa">
+                      <span name="raton_puntuacion" t-esc="rosa.raton_puntuacion"/>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xl-2 col-sm-12 border border-dark">
+                      <div class="row border-bot-rosa">
+                        <input name="raton_linea" type="checkbox" t-att-checked="rosa.raton_linea" class="field-odoo"/>
+                      </div>
+                      <div class="row justify-content-center align-middle">
+                        <img t-attf-src="/s3/static/description/rosa/raton_1.jpeg" width="100" height="100" class="d-inline-block align-top mr-1" alt=""/>
+
+                      </div>
+                      <div class="row text-center">
+                        Ratón en línea con el hombro
+                      </div>
+                    </div>
+                    <div class="col-xl-2 col-sm-12 border border-dark">
+                      <div class="row border-bot-rosa">
+                        <input name="raton_lejos" type="checkbox" t-att-checked="rosa.raton_lejos" class="field-odoo"/>
+                      </div>
+                      <div class="row justify-content-center align-middle">
+                        <img t-attf-src="/s3/static/description/rosa/raton_2.jpeg" width="100" height="100" class="d-inline-block align-top mr-1" alt=""/>
+
+                      </div>
+                      <div class="row text-center">
+                        Ratón con brazo lejos del cuerpo
+                      </div>
+                    </div>
+                    <div class="col-xl-2 col-sm-12 border border-dark">
+                      <div class="row border-bot-rosa">
+                        <input name="raton_diferentes" type="checkbox" t-att-checked="rosa.raton_diferentes" class="field-odoo"/>
+                      </div>
+                      <div class="row justify-content-center align-middle">
+                        <img t-attf-src="/s3/static/description/rosa/raton_3.jpeg" width="100" height="100" class="d-inline-block align-top mr-1" alt=""/>
+
+                      </div>
+                      <div class="row text-center">
+                        El teclado y el ratón se encuentran en diferentes superficies a distintas alturas
+                      </div>
+                    </div>
+                    <div class="col-xl-2 col-sm-12 border border-dark">
+                      <div class="row border-bot-rosa">
+                        <input name="raton_estirar" type="checkbox" t-att-checked="rosa.raton_estirar" class="field-odoo"/>
+                      </div>
+                      <div class="row justify-content-center align-middle">
+                        <img t-attf-src="/s3/static/description/rosa/raton_4.jpeg" width="100" height="100" class="d-inline-block align-top mr-1" alt=""/>
+
+                      </div>
+                      <div class="row text-center">
+                        Agarre en pinza del ratón, es pequeño o no permite estirar la mano.
+                      </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-12 border border-dark">
+                      <div class="row border-bot-rosa">
+                        <input name="raton_reposamos" type="checkbox" t-att-checked="rosa.raton_reposamos" class="field-odoo"/>
+                      </div>
+                      <div class="row justify-content-center align-middle">
+                        <img t-attf-src="/s3/static/description/rosa/raton_5.jpeg" width="100" height="100" class="d-inline-block align-top mr-1" alt=""/>
+
+                      </div>
+                      <div class="row text-center">
+                        Reposamanos delante del ratón, hace doblar la muñeca.
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row my-4 border border-dark justify-content-center align-middle">
+                <div class="col-xl-8 col-sm-12 d-flex flex-column text-center  border ">
+                  <div class="row">
+                    <div class="col-6">
+                      Duración de uso de Teclado:
+                    </div>
+                    <div class="col-6">
+                      <select name="teclado_duracion" class="field-odoo">
+                        <t t-if="'menor' == rosa.teclado_duracion">
+                          <option value="menor" selected="selected">Menor a 1 hora por día o menor a 30 minutos ininterrumpidamente</option>
+                          <option value="entre">Si se permanece entre 1 y 4 horas al día o entre 30 minutos y 1 hora seguida</option>
+                          <option value="mayor">Si permanece más de 4 horas al día o más de una 1hora ininterrumpidamente</option>
+                        </t>
+                        <t t-elif="'entre' == rosa.teclado_duracion">
+                          <option value="menor">Menor a 1 hora por día o menor a 30 minutos ininterrumpidamente</option>
+                          <option value="entre" selected="selected">Si se permanece entre 1 y 4 horas al día o entre 30 minutos y 1 hora seguida</option>
+                          <option value="mayor">Si permanece más de 4 horas al día o más de una 1hora ininterrumpidamente</option>
+                        </t>
+                        <t t-elif="'mayor' == rosa.teclado_duracion">
+                          <option value="menor">Menor a 1 hora por día o menor a 30 minutos ininterrumpidamente</option>
+                          <option value="entre">Si se permanece entre 1 y 4 horas al día o entre 30 minutos y 1 hora seguida</option>
+                          <option value="mayor" selected="selected">Si permanece más de 4 horas al día o más de una 1hora ininterrumpidamente</option>
+                        </t>
+                        <t t-else="">
+                          <option value="menor">Menor a 1 hora por día o menor a 30 minutos ininterrumpidamente</option>
+                          <option value="entre">Si se permanece entre 1 y 4 horas al día o entre 30 minutos y 1 hora seguida</option>
+                          <option value="mayor">Si permanece más de 4 horas al día o más de una 1hora ininterrumpidamente</option>
+                        </t>
+
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-sm-12 d-flex flex-column border  text-center ">
+                  <div class="row">
+                    <div class="col-6">
+                      Duración de uso de Ratón:
+                    </div>
+                    <div class="col-6">
+                      <select name="raton_duracion" class="field-odoo">
+                        <t t-if="'menor' == rosa.raton_duracion">
+                          <option value="menor" selected="selected">Menor a 1 hora por día o menor a 30 minutos ininterrumpidamente</option>
+                          <option value="entre">Si se permanece entre 1 y 4 horas al día o entre 30 minutos y 1 hora seguida</option>
+                          <option value="mayor">Si permanece más de 4 horas al día o más de una 1hora ininterrumpidamente</option>
+                        </t>
+                        <t t-elif="'entre' == rosa.raton_duracion">
+                          <option value="menor">Menor a 1 hora por día o menor a 30 minutos ininterrumpidamente</option>
+                          <option value="entre" selected="selected">Si se permanece entre 1 y 4 horas al día o entre 30 minutos y 1 hora seguida</option>
+                          <option value="mayor">Si permanece más de 4 horas al día o más de una 1hora ininterrumpidamente</option>
+                        </t>
+                        <t t-elif="'mayor' == rosa.raton_duracion">
+                          <option value="menor">Menor a 1 hora por día o menor a 30 minutos ininterrumpidamente</option>
+                          <option value="entre">Si se permanece entre 1 y 4 horas al día o entre 30 minutos y 1 hora seguida</option>
+                          <option value="mayor" selected="selected">Si permanece más de 4 horas al día o más de una 1hora ininterrumpidamente</option>
+                        </t>
+                        <t t-else="">
+                          <option value="menor">Menor a 1 hora por día o menor a 30 minutos ininterrumpidamente</option>
+                          <option value="entre">Si se permanece entre 1 y 4 horas al día o entre 30 minutos y 1 hora seguida</option>
+                          <option value="mayor">Si permanece más de 4 horas al día o más de una 1hora ininterrumpidamente</option>
+                        </t>
+
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xl-4 col-sm-12">
+                  <div class="row border border-dark text-center">
+                    <div class="col-8 color-segundo-rosa">
+                      RESULTADO GRUPO A
+                    </div>
+                    <div class="col-4">
+                      <span name="resultado_grupo_a" t-esc="rosa.resultado_grupo_a"/>
+                    </div>
+                  </div>
+                  <div class="row border border-dark text-center">
+                    <div class="col-8 color-segundo-rosa">
+                      RESULTADO GRUPO B
+                    </div>
+                    <div class="col-4">
+                      <span name="resultado_grupo_b" t-esc="rosa.resultado_grupo_b"/>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="col-xl-3 col-sm-12">
+                  <div class="row text-center">
+                    <div class="col-8 color-segundo-rosa">
+                    PUNTAJE FINAL
+                    </div>
+                    <div class="col-4 color-amarillo-rosa">
+                      <span name="resultado_final" t-esc="rosa.resultado_final"/>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="col-xl-2 col-sm-12">
+                  <div class="row text-center">
+                    <div class="col-6 color-segundo-rosa">
+                    NIVEL DE RIESGO
+                    </div>
+                    <div class="col-6 color-amarillo-rosa">
+                      <span name="nivel_riesgo" t-esc="rosa.nivel_riesgo"/>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="col-xl-3 col-sm-12">
+                  <div class="row text-center">
+                    <span name="situacion_trabajo" t-esc="rosa.situacion_trabajo"/>
+
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+
+            <button type="button" class="btn btn-primary botton-guardar-field-data">Guardar</button>
+
+          </div>
+
+        </div>
+      </div>
+
+    </t>
+  </template>
+
+</odoo>

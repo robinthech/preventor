@@ -1,0 +1,797 @@
+<odoo>
+  <template id="registro_accidente" name="Registro de accidente">
+    <t t-call="accidente.sidebar_registro_accidente">
+      <div class="wrapper modulo-wrapper">
+        <!-- Sidebar -->
+
+        <!-- Page Content -->
+        <div id="content" class="registro-accidente">
+          <div class="row py-2">
+            <div class="col-12">
+              <div class="alert alert-primary text-center" role="alert">
+                <h4>LISTADO DE REGISTRO DE ACCIDENTE</h4>
+              </div>
+              <div class="table-responsive">
+                <table id="modulo-lista-verificacion" class="table table-hover responsive nowrap text-center">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th>ACCIDENTE</th>
+                      <th>EMPRESA</th>
+                      <th>RUC</th>
+                      <th>EDITAR</th>
+                      <th>ELIMINAR</th>
+                    </tr>
+                  </thead>
+                  <tbody >
+                    <t t-set="contador" t-value="0"/>
+                    <t t-foreach="verificaciones" t-as="verificacion">
+                      <t t-set="contador" t-value="contador + 1"/>
+                      <tr>
+                        <td>
+                          <div>
+                            <span t-field="verificacion.sequence"/>
+                          </div>
+                        </td>
+                        <td>
+                          <span t-field="verificacion.razon"/>
+                        </td>
+                        <td>
+                          <span t-field="verificacion.ruc"/>
+                        </td>
+                        <td>
+                          <a class="btn btn-success" t-att-href="'/registro-accidente/%s' % (verificacion.id)" role="button">
+                            <i class="fa fa-pencil-square-o"></i>
+
+                          </a>
+                        </td>
+                        <td>
+                          <div>
+                            <button type="button" class="btn btn-danger" data-toggle="modal" t-attf-data-target="#trabajador-{{verificacion.id}}">
+                              <i class="fa fa-trash"></i>
+
+                            </button>
+                            <div class="modal fade" t-attf-id="trabajador-{{verificacion.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                  </div>
+                                  <div class="modal-body">
+                                    <div class="alert alert-danger" role="alert">
+                                      ESTA SEGURO DE ELIMINAR
+                                    </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                                    <button type="button" class="btn btn-secondary botton-eliminar-verificacion" t-att-data-verificacion_id="verificacion.id">ELIMINAR</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                        </td>
+                      </tr>
+                    </t>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-center">
+
+            <button type="button" class="btn btn-success font-weight-bold" data-toggle="modal" data-target="#new_trabajadores">
+              <strong>Crear registro de accidente</strong>
+            </button>
+            <div class="modal fade" id="new_trabajadores" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">NUEVA REGISTRO DE ACCIDENTE</h5>
+                  </div>
+                  <div class="modal-body">
+                    RUC
+                    <input class="col-12 form-control mt-1 mb-3" name="new-accidente-ruc" type="text"/>
+                    RAZON SOCIAL
+                    <input class="col-12 form-control mt-1 mb-3" name="new-accidente-razon" type="text"/>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                    <button type="button" class="btn btn-primary nuevo-registro-accidente">GUARDAR</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </t>
+  </template>
+  <template id="formulario_accidente" name="Registro de accidente">
+      <t t-call="accidente.sidebar_registro_accidente">
+          <div class="wrapper modulo-wrapper" style="position:relative">
+              <!-- Content -->
+              <div id="content" class="section_accidente">
+                  <div class="mx-auto accidente_id" style="width:85%" t-att-data-accidente_id="accidente.id">
+                      <!-- <h1>AUDITORIA INTERNA</h1> -->
+                      <div class="row font-weight-bold bg-primary" style="height: 80px;">
+                          <div class="col-3 border border-dark p-2 d-flex align-items-center">
+                              <h5>N° REGISTRO:<br/><span t-field="accidente.sequence"/></h5>
+                          </div>
+                          <div class="col-9 border border-dark text-center p-2 d-flex align-items-center justify-content-center">
+                              <h3>REGISTRO DE ACCIDENTES DE TRABAJO</h3>
+                          </div>
+                      </div>
+                      <div class="row my-2">
+                          <div class="col-12 p-2 font-weight-bold border border-dark bg-secondary d-flex align-items-center shadow" style="height:30px;">
+                              <h6 class="mb-0">DATOS DEL EMPLEADOR</h6>
+                          </div>
+                      </div>
+                      <div class="row font-weight-bold  bg-primary text-center" style="height:80px">
+                          <div class="col-3 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              RAZÓN SOCIAL O DENOMINACIÓN SOCIAL
+                          </div>
+                          <div class="col-2 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              RUC
+                          </div>
+                          <div class="col-3 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              DOMICILIO (Dirección, distrito, departamento, provincia)
+                          </div>
+                          <div class="col-2 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              ACTIVIDAD ECONÓMICA
+                          </div>
+                          <div class="col-2 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              Nº TRABAJADORES EN EL CENTRO LABORAL
+                          </div>
+                      </div>
+                      <div class="row font-weight-bold text-center" style="height:40px">
+                          <div class="col-3 px-0 border border-dark d-flex align-items-center justify-content-center">
+                              <input type="text" name="razon" class="form-control h-100 linea_accidente" placeholder="Razon social" t-att-value="accidente.razon" style="border-radius:0px"/>
+                          </div>
+                          <div class="col-2 px-0 border border-dark d-flex align-items-center justify-content-center">
+                              <input type="text" name="ruc" class="form-control h-100 linea_accidente" placeholder="RUC" t-att-value="accidente.ruc" style="border-radius:0px"/>
+                          </div>
+                          <div class="col-3 px-0 border border-dark d-flex align-items-center justify-content-center">
+                              <input type="text" name="domicilio" class="form-control h-100 linea_accidente" placeholder="Domicilio" t-att-value="accidente.domicilio" style="border-radius:0px"/>
+                          </div>
+                          <div class="col-2 px-0 border border-dark d-flex align-items-center justify-content-center">
+                              <input type="text"  name="actividad" class="form-control h-100 linea_accidente" placeholder="Actividad" t-att-value="accidente.actividad" style="border-radius:0px"/>
+                          </div>
+                          <div class="col-2 px-0 border border-dark d-flex align-items-center justify-content-center">
+                              <t t-set="trabajadores" t-value="accidente.trabajadores"/>
+                              <input type="number" name="trabajadores" class="form-control h-100 linea_accidente" t-attf-value="{{trabajadores}}" oninput="this.value = Math.abs(this.value)" style="border-radius:0px"/>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-12 p-2 font-weight-bold border border-dark d-flex align-items-center justify-content-center" style="height:30px;">
+                              <h6 class="mb-0">COMPLETAR SÓLO EN CASO QUE LAS ACTIVIDADES DEL EMPLEADOR SEAN CONSIDERADAS DE ALTO RIESGO</h6>
+                          </div>
+                      </div>
+                      <div class="row font-weight-bold  bg-primary text-center" style="height:80px">
+                          <div class="col-3 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              N° TRABAJADORES AFILIADOS AL SCTR
+                          </div>
+                          <div class="col-3 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              N° TRABAJADORES NO AFILIADOS AL SCTR
+                          </div>
+                          <div class="col-6 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              NOMBRE DE LA ASEGURADORA
+                          </div>
+                      </div>
+                      <div class="row font-weight-bold text-center" style="height:40px">
+                          <div class="col-3 px-0 border border-dark d-flex align-items-center justify-content-center">
+                              <t t-set="numero_afiliados" t-value="accidente.trabajadores_afiliados"/>
+                              <input type="number" name="trabajadores_afiliados" class="form-control h-100 linea_accidente" oninput="this.value = Math.abs(this.value)"  t-attf-value="{{numero_afiliados}}" style="border-radius:0px"/>
+                          </div>
+                          <div class="col-3 px-0 border border-dark d-flex align-items-center justify-content-center">
+                              <t t-set="no_afiliados" t-value="accidente.trabajadores_no_afiliados"/>
+                              <input type="number" name="trabajadores_no_afiliados" class="form-control h-100 linea_accidente" oninput="this.value = Math.abs(this.value)"  t-attf-value="{{no_afiliados}}" style="border-radius:0px"/>
+                          </div>
+                          <div class="col-6 px-0 border border-dark d-flex align-items-center justify-content-center">
+                              <input type="text" name="aseguradora" class="form-control h-100 linea_accidente" placeholder="Aseguradora" t-att-value="accidente.aseguradora" style="border-radius:0px"/>
+                          </div>
+                      </div>
+                      <div id="accordion">
+                        <div class="card row my-3">
+                          <div class="card-header" id="headingOne">
+                            <h5 class="mb-0">
+                              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                <h6 class="mb-0">Completar sólo si contrata servicios de intermediación o tercerización:</h6>
+                              </button>
+                            </h5>
+                          </div>
+                          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div class="card-body">
+                              <div class="row">
+                                  <div class="col-12 p-2 font-weight-bold border border-dark bg-secondary d-flex align-items-center shadow" style="height:30px;">
+                                      <h6 class="mb-0">DATOS DEL EMPLEADOR DE TERCERIZACIÓN</h6>
+                                  </div>
+                              </div>
+                              <div class="row font-weight-bold  bg-primary text-center" style="height:80px">
+                                  <div class="col-3 border border-dark p-2 d-flex align-items-center justify-content-center">
+                                      RAZÓN SOCIAL O DENOMINACIÓN SOCIAL
+                                  </div>
+                                  <div class="col-2 border border-dark p-2 d-flex align-items-center justify-content-center">
+                                      RUC
+                                  </div>
+                                  <div class="col-3 border border-dark p-2 d-flex align-items-center justify-content-center">
+                                      DOMICILIO (Dirección, distrito, departamento, provincia)
+                                  </div>
+                                  <div class="col-2 border border-dark p-2 d-flex align-items-center justify-content-center">
+                                      ACTIVIDAD ECONÓMICA
+                                  </div>
+                                  <div class="col-2 border border-dark p-2 d-flex align-items-center justify-content-center">
+                                      Nº TRABAJADORES EN EL CENTRO LABORAL
+                                  </div>
+                              </div>
+                              <div class="row font-weight-bold text-center" style="height:40px">
+                                  <div class="col-3 px-0 border border-dark d-flex align-items-center justify-content-center">
+                                      <input type="text" name="razon_terciario" class="form-control h-100 linea_accidente" placeholder="Razon social" t-att-value="accidente.razon_terciario" style="border-radius:0px"/>
+                                  </div>
+                                  <div class="col-2 px-0 border border-dark d-flex align-items-center justify-content-center">
+                                      <input type="text" name="ruc_terciario" class="form-control h-100 linea_accidente" placeholder="RUC" t-att-value="accidente.ruc_terciario" style="border-radius:0px"/>
+                                  </div>
+                                  <div class="col-3 px-0 border border-dark d-flex align-items-center justify-content-center">
+                                      <input type="text" name="domicilio_terciario" class="form-control h-100 linea_accidente" placeholder="Domicilio" t-att-value="accidente.domicilio_terciario" style="border-radius:0px"/>
+                                  </div>
+                                  <div class="col-2 px-0 border border-dark d-flex align-items-center justify-content-center">
+                                      <input type="text"  name="actividad_terciario" class="form-control h-100 linea_accidente" placeholder="Actividad" t-att-value="accidente.actividad_terciario" style="border-radius:0px"/>
+                                  </div>
+                                  <div class="col-2 px-0 border border-dark d-flex align-items-center justify-content-center">
+                                      <t t-set="numero_terciario" t-value="accidente.trabajadores_terciario"/>
+                                      <input type="number" name="trabajadores_terciario" class="form-control h-100 linea_accidente" t-attf-value="{{numero_terciario}}" oninput="this.value = Math.abs(this.value)" style="border-radius:0px"/>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-12 p-2 font-weight-bold border border-dark d-flex align-items-center justify-content-center" style="height:30px;">
+                                      <h6 class="mb-0">COMPLETAR SÓLO EN CASO QUE LAS ACTIVIDADES DEL EMPLEADOR SEAN CONSIDERADAS DE ALTO RIESGO</h6>
+                                  </div>
+                              </div>
+                              <div class="row font-weight-bold  bg-primary text-center" style="height:80px">
+                                  <div class="col-3 border border-dark p-2 d-flex align-items-center justify-content-center">
+                                      N° TRABAJADORES AFILIADOS AL SCTR
+                                  </div>
+                                  <div class="col-3 border border-dark p-2 d-flex align-items-center justify-content-center">
+                                      N° TRABAJADORES NO AFILIADOS AL SCTR
+                                  </div>
+                                  <div class="col-6 border border-dark p-2 d-flex align-items-center justify-content-center">
+                                      NOMBRE DE LA ASEGURADORA
+                                  </div>
+                              </div>
+                              <div class="row font-weight-bold text-center" style="height:40px">
+                                  <div class="col-3 px-0 border border-dark d-flex align-items-center justify-content-center">
+                                      <t t-set="numero_afiliados_terciario" t-value="accidente.trabajadores_afiliados_terciario"/>
+                                      <input type="number" name="trabajadores_afiliados_terciario" class="form-control h-100 linea_accidente" oninput="this.value = Math.abs(this.value)" t-attf-value="{{numero_afiliados_terciario}}" style="border-radius:0px"/>
+                                  </div>
+                                  <div class="col-3 px-0 border border-dark d-flex align-items-center justify-content-center">
+                                      <t t-set="numero_afiliados_no_terciario" t-value="accidente.trabajadores_no_afiliados_terciario"/>
+                                      <input type="number" name="trabajadores_no_afiliados_terciario" class="form-control h-100 linea_accidente" oninput="this.value = Math.abs(this.value)" t-attf-value="{{numero_afiliados_no_terciario}}" style="border-radius:0px"/>
+                                  </div>
+                                  <div class="col-6 px-0 border border-dark d-flex align-items-center justify-content-center">
+                                      <input type="text" name="aseguradora_terciario" placeholder="Aseguradora" class="form-control h-100 linea_accidente" t-att-value="accidente.aseguradora_terciario" style="border-radius:0px"/>
+                                  </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row my-2">
+                          <div class="col-12 p-2 font-weight-bold border border-dark bg-secondary d-flex align-items-center shadow" style="height:30px;">
+                              <h6 class="mb-0">DATOS DEL TRABAJADOR</h6>
+                          </div>
+                      </div>
+                      <div class="row font-weight-bold  bg-primary text-center" style="height:80px">
+                          <div class="col-6 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              APELLIDOS Y NOMBRES DEL TRABAJADOR ACCIDENTADO
+                          </div>
+                          <div class="col-3 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              Nº DNI/CE
+                          </div>
+                          <div class="col-3 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              EDAD
+                          </div>
+                      </div>
+                      <div class="row font-weight-bold text-center" style="height:40px">
+                          <div class="col-6 px-0 border border-dark d-flex align-items-center justify-content-center">
+                              <input type="text" name="trabajador" placeholder="Trabajador" class="form-control h-100 linea_accidente" t-att-value="accidente.trabajador" style="border-radius:0px"/>
+                          </div>
+                          <div class="col-3 px-0 border border-dark d-flex align-items-center justify-content-center">
+                              <input type="text" name="dni" placeholder="DNI" class="form-control h-100 linea_accidente" t-att-value="accidente.dni" style="border-radius:0px"/>
+                          </div>
+                          <div class="col-3 px-0 border border-dark d-flex align-items-center justify-content-center">
+                              <t t-set="numero_edad" t-value="accidente.edad"/>
+                              <input type="number" name="edad" class="form-control h-100 linea_accidente" oninput="this.value = Math.abs(this.value)" t-attf-value="{{numero_edad}}" style="border-radius:0px"/>
+                          </div>
+                      </div>
+                      <div class="row font-weight-bold  bg-primary text-center" style="height:80px">
+                          <div class="col-2 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              AREA
+                          </div>
+                          <div class="col-2 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              PUESTO DE TRABAJO
+                          </div>
+                          <div class="col-2 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              ANTIGÜEDAD
+                          </div>
+                          <div class="col-1 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              SEXO
+                          </div>
+                          <div class="col-1 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              TURNO
+                          </div>
+                          <div class="col-4 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              TIPO DE CONTRATO
+                          </div>
+                      </div>
+                      <div class="row font-weight-bold text-center" style="height:40px">
+                          <div class="col-2 px-0 border border-dark d-flex align-items-center justify-content-center">
+                              <input type="text" name="area" placeholder="Area" class="form-control h-100 linea_accidente" t-att-value="accidente.area" style="border-radius:0px"/>
+                          </div>
+                          <div class="col-2 px-0 border border-dark d-flex align-items-center justify-content-center">
+                              <input type="text" name="puesto" placeholder="Puesto" class="form-control h-100 linea_accidente" t-att-value="accidente.puesto" style="border-radius:0px"/>
+                          </div>
+                          <div class="col-2 px-0 border border-dark d-flex align-items-center justify-content-center">
+                              <input type="text" name="antiguedad" placeholder="Antigüedad" class="form-control h-100 linea_accidente" t-att-value="accidente.antiguedad" style="border-radius:0px"/>
+                          </div>
+                          <div class="col-1 px-0 border border-dark align-items-center justify-content-center">
+                            <select name="sexo" class="form-control linea_accidente h-100">
+                              <t t-if="'M' == accidente.sexo">
+                                <option value="M" selected="selected">M</option>
+                                <option value="F">F</option>
+                              </t>
+                              <t t-elif="'F' == accidente.sexo">
+                                <option value="M">M</option>
+                                <option value="F" selected="selected">F</option>
+                              </t>
+                            </select>
+                          </div>
+                          <div class="col-1 px-0 border border-dark align-items-center justify-content-center">
+                            <select name="turno" class="form-control linea_accidente h-100">
+                              <t t-if="'D' == accidente.turno">
+                                <option value="D" selected="selected">D</option>
+                                <option value="T">T</option>
+                                <option value="N">N</option>
+                              </t>
+                              <t t-elif="'T' == accidente.turno">
+                                <option value="D">D</option>
+                                <option value="T" selected="selected">T</option>
+                                <option value="N">N</option>
+                              </t>
+                              <t t-elif="'N' == accidente.turno">
+                                <option value="D">D</option>
+                                <option value="T">T</option>
+                                <option value="N" selected="selected">N</option>
+                              </t>
+                            </select>
+                          </div>
+                          <div class="col-4 px-0 border border-dark d-flex align-items-center justify-content-center">
+                              <input type="text" name="contrato" placeholder="Contrato" class="form-control h-100 linea_accidente" t-att-value="accidente.contrato" style="border-radius:0px"/>
+                          </div>
+                      </div>
+                      <div class="row font-weight-bold  text-center">
+                        <div class="col-4 border border-dark p-2 d-flex align-items-center justify-content-center bg-primary">
+                            TIEMPO DE EXPERIENCIA EN EL PUESTO
+                        </div>
+                        <div class="col-2 px-0 border border-dark d-flex align-items-center justify-content-center">
+                            <input type="text" name="tiempo" placeholder="Tiempo" class="form-control h-100 linea_accidente" t-att-value="accidente.tiempo" style="border-radius:0px"/>
+                        </div>
+                        <div class="col-4 border border-dark p-2 d-flex align-items-center justify-content-center bg-primary">
+                            N° HORAS TRABAJADAS ANTES DEL ACCIDENTE LABORAL
+                        </div>
+                        <div class="col-2 px-0 border border-dark d-flex align-items-center justify-content-center">
+                            <t t-set="numero_hora" t-value="accidente.hora"/>
+                            <input type="number" name="hora" class="form-control h-100 linea_accidente" t-attf-value="{{numero_hora}}" oninput="this.value = Math.abs(this.value)" style="border-radius:0px"/>
+                        </div>
+                      </div>
+                      <div class="row my-2">
+                          <div class="col-12 p-2 font-weight-bold border border-dark bg-secondary d-flex align-items-center shadow" style="height:30px;">
+                              <h6 class="mb-0">INVESTIGACIÓN DEL ACCIDENTE DE TRABAJO</h6>
+                          </div>
+                      </div>
+                      <div class="row font-weight-bold  bg-primary text-center" style="height:80px">
+                          <div class="col-3 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              FECHA Y HORA DEL ACCIDENTE
+                          </div>
+                          <div class="col-3 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              FECHA DE INVESTIGACIÓN
+                          </div>
+                          <div class="col-6 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              LUGAR EXACTO DONDE OCURRIÓ EL ACCIDENTE
+                          </div>
+                      </div>
+                      <div class="row font-weight-bold text-center" style="height:40px">
+                          <div class="col-3 px-0 border border-dark d-flex align-items-center justify-content-center">
+                              <input type="datetime-local" name="fecha_accidente" class="form-control h-100 linea_accidente" t-att-value="fecha_accidente" style="border-radius:0px"/>
+                          </div>
+                          <div class="col-3 px-0 border border-dark d-flex align-items-center justify-content-center">
+                              <input type="date" name="fecha_investigacion" class="form-control h-100 linea_accidente" t-att-value="accidente.fecha_investigacion" style="border-radius:0px"/>
+                          </div>
+                          <div class="col-6 px-0 border border-dark d-flex align-items-center justify-content-center">
+                              <input type="text" name="lugar_accidente" placeholder="Lugar del accidente" class="form-control h-100 linea_accidente" t-att-value="accidente.lugar_accidente" style="border-radius:0px"/>
+                          </div>
+                      </div>
+                      <div class="row font-weight-bold  bg-primary text-center" style="height:80px">
+                          <div class="col-4 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              MARCAR GRAVEDAD DEL ACCIDENTE DE TRABAJO
+                              <t t-if="'N' == accidente.gravedad_accidente">
+                                <input type="radio" class="form-check form-check-inline ml-1 linea_accidente" value="N" name="gravedad_accidente" checked="checked"/>
+                              </t>
+                              <t t-else="">
+                                <input type="radio" class="form-check form-check-inline ml-1 linea_accidente" value="N" name="gravedad_accidente"/>
+                              </t>
+                          </div>
+                          <div class="col-6 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              MARCAR GRAVEDAD DEL ACCIDENTE INCAPACITANTE (DE SER EL CASO)
+                              <t t-if="'N' == accidente.gravedad_accidente_incapacitante">
+                                <input type="radio" class="form-check form-check-inline ml-1 linea_accidente" value="N" name="gravedad_accidente_incapacitante" checked="checked"/>
+                              </t>
+                              <t t-else="">
+                                <input type="radio" class="form-check form-check-inline ml-1 linea_accidente" value="N" name="gravedad_accidente_incapacitante"/>
+                              </t>
+                          </div>
+                          <div class="col-1 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              Nº DÍAS DE DESCANSO MÉDICO
+                          </div>
+                          <div class="col-1 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              Nº DE TRABAJ. AFECTADOS
+                          </div>
+                      </div>
+                      <div class="row text-center" style="height:40px">
+                          <div class="col-4 px-0 border-left border-dark d-flex align-items-center justify-content-between border-bottom">
+                            <t t-if="'L' == accidente.gravedad_accidente">
+                              ACCIDENTE<br/>LEVE
+                              <input type="radio" class="form-check form-check-inline ml-1 linea_accidente" value="L" name="gravedad_accidente" checked="checked"/>
+                              ACCIDENTE<br/>INCAPACITANTE
+                              <input type="radio" class="form-check form-check-inline ml-1 linea_accidente" value="I" name="gravedad_accidente"/>
+                              MORTAL
+                              <input type="radio" class="form-check form-check-inline ml-1 linea_accidente" value="M" name="gravedad_accidente"/>
+                            </t>
+                            <t t-elif="'I' == accidente.gravedad_accidente">
+                              ACCIDENTE<br/>LEVE
+                              <input type="radio" class="form-check form-check-inline ml-1 linea_accidente" value="L" name="gravedad_accidente"/>
+                              ACCIDENTE<br/>INCAPACITANTE
+                              <input type="radio" class="form-check form-check-inline ml-1 linea_accidente" value="I" name="gravedad_accidente" checked="checked"/>
+                              MORTAL
+                              <input type="radio" class="form-check form-check-inline ml-1 linea_accidente" value="M" name="gravedad_accidente"/>
+                            </t>
+                            <t t-elif="'M' == accidente.gravedad_accidente">
+                              ACCIDENTE<br/>LEVE
+                              <input type="radio" class="form-check form-check-inline ml-1 linea_accidente" value="L" name="gravedad_accidente"/>
+                              ACCIDENTE<br/>INCAPACITANTE
+                              <input type="radio" class="form-check form-check-inline ml-1 linea_accidente" value="I" name="gravedad_accidente"/>
+                              MORTAL
+                              <input type="radio" class="form-check form-check-inline ml-1 linea_accidente" value="M" name="gravedad_accidente" checked="checked"/>
+                            </t>
+                            <t t-else="">
+                              ACCIDENTE<br/>LEVE
+                              <input type="radio" class="form-check form-check-inline ml-1 linea_accidente" value="L" name="gravedad_accidente"/>
+                              ACCIDENTE<br/>INCAPACITANTE
+                              <input type="radio" class="form-check form-check-inline ml-1 linea_accidente" value="I" name="gravedad_accidente"/>
+                              MORTAL
+                              <input type="radio" class="form-check form-check-inline ml-1 linea_accidente" value="M" name="gravedad_accidente"/>
+                            </t>
+                          </div>
+                          <div class="col-6 px-0 border border-dark d-flex align-items-center justify-content-between">
+                            <t t-if="'TT' == accidente.gravedad_accidente_incapacitante">
+                              TOTAL<br/>TEMPORAL
+                              <input type="radio" class="form-check form-check-inline linea_accidente" name="gravedad_accidente_incapacitante" value="TT" checked="checked"/>
+                              PARCIAL<br/>TEMPORAL
+                              <input type="radio" class="form-check form-check-inline linea_accidente" name="gravedad_accidente_incapacitante" value="PT"/>
+                              PARCIAL<br/>PERMANENTE
+                              <input type="radio" class="form-check form-check-inline linea_accidente" name="gravedad_accidente_incapacitante" value="PP"/>
+                              TOTAL<br/>PERMANENTE
+                              <input type="radio" class="form-check form-check-inline linea_accidente" name="gravedad_accidente_incapacitante" value="TP"/>
+                            </t>
+                            <t t-elif="'PT' == accidente.gravedad_accidente_incapacitante">
+                              TOTAL<br/>TEMPORAL
+                              <input type="radio" class="form-check form-check-inline linea_accidente" name="gravedad_accidente_incapacitante" value="TT"/>
+                              PARCIAL<br/>TEMPORAL
+                              <input type="radio" class="form-check form-check-inline linea_accidente" name="gravedad_accidente_incapacitante" value="PT" checked="checked"/>
+                              PARCIAL<br/>PERMANENTE
+                              <input type="radio" class="form-check form-check-inline linea_accidente" name="gravedad_accidente_incapacitante" value="PP"/>
+                              TOTAL<br/>PERMANENTE
+                              <input type="radio" class="form-check form-check-inline linea_accidente" name="gravedad_accidente_incapacitante" value="TP"/>
+                            </t>
+                            <t t-elif="'PP' == accidente.gravedad_accidente_incapacitante">
+                              TOTAL<br/>TEMPORAL
+                              <input type="radio" class="form-check form-check-inline linea_accidente" name="gravedad_accidente_incapacitante" value="TT"/>
+                              PARCIAL<br/>TEMPORAL
+                              <input type="radio" class="form-check form-check-inline linea_accidente" name="gravedad_accidente_incapacitante" value="PT"/>
+                              PARCIAL<br/>PERMANENTE
+                              <input type="radio" class="form-check form-check-inline linea_accidente" name="gravedad_accidente_incapacitante" value="PP" checked="checked"/>
+                              TOTAL<br/>PERMANENTE
+                              <input type="radio" class="form-check form-check-inline linea_accidente" name="gravedad_accidente_incapacitante" value="TP"/>
+                            </t>
+                            <t t-elif="'TP' == accidente.gravedad_accidente_incapacitante">
+                              TOTAL<br/>TEMPORAL
+                              <input type="radio" class="form-check form-check-inline linea_accidente" name="gravedad_accidente_incapacitante" value="TT"/>
+                              PARCIAL<br/>TEMPORAL
+                              <input type="radio" class="form-check form-check-inline linea_accidente" name="gravedad_accidente_incapacitante" value="PT"/>
+                              PARCIAL<br/>PERMANENTE
+                              <input type="radio" class="form-check form-check-inline linea_accidente" name="gravedad_accidente_incapacitante" value="PP"/>
+                              TOTAL<br/>PERMANENTE
+                              <input type="radio" class="form-check form-check-inline linea_accidente" name="gravedad_accidente_incapacitante" value="TP" checked="checked"/>
+                            </t>
+                            <t t-else="">
+                              TOTAL<br/>TEMPORAL
+                              <input type="radio" class="form-check form-check-inline linea_accidente" name="gravedad_accidente_incapacitante" value="TT"/>
+                              PARCIAL<br/>TEMPORAL
+                              <input type="radio" class="form-check form-check-inline linea_accidente" name="gravedad_accidente_incapacitante" value="PT"/>
+                              PARCIAL<br/>PERMANENTE
+                              <input type="radio" class="form-check form-check-inline linea_accidente" name="gravedad_accidente_incapacitante" value="PP"/>
+                              TOTAL<br/>PERMANENTE
+                              <input type="radio" class="form-check form-check-inline linea_accidente" name="gravedad_accidente_incapacitante" value="TP"/>
+                            </t>
+                          </div>
+                          <div class="col-1 px-0 border border-dark d-flex align-items-center justify-content-center">
+                              <t t-set="numero_dias" t-value="accidente.dias_descanso"/>
+                              <input type="number" name="dias_descanso" class="form-control h-100 linea_accidente" oninput="this.value = Math.abs(this.value)" t-attf-value="{{numero_dias}}" style="border-radius:0px"/>
+                          </div>
+                          <div class="col-1 px-0 border border-dark d-flex align-items-center justify-content-center">
+                              <t t-set="numero_trabajadores_afectados" t-value="accidente.trabajadores_afectados"/>
+                              <input type="number" name="trabajadores_afectados" class="form-control h-100 linea_accidente" oninput="this.value = Math.abs(this.value)" t-attf-value="{{numero_trabajadores_afectados}}" style="border-radius:0px"/>
+                          </div>
+                      </div>
+                      <div class="row my-2">
+                          <div class="col-12 p-2 font-weight-bold border border-dark bg-secondary d-flex align-items-center shadow" style="height:30px;">
+                              <h6 class="mb-0">DESCRIPCIÓN DEL ACCIDENTE DE TRABAJO</h6>
+                          </div>
+                      </div>
+                      <div class="row font-weight-bold text-center" style="height:120px">
+                          <div class="col-12 border border-dark px-0 d-flex align-items-center justify-content-center">
+                              <textarea  class="form-control h-100 linea_accidente" name="descripcion" style="border-radius:0px" placeholder="Descripcion del accidente de trabajo"><t t-esc="accidente.descripcion"/></textarea>
+                          </div>
+                      </div>
+                      <div class="row font-weight-bold text-center auditoria-interna" style="height:90px">
+                          <div class="col-12 px-0  border border-dark">
+                            <input id="upload" type="file" accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,image/jpeg, image/png" widget="many2many_binary" multiple="true" style="border:0px;height:35px" class="form-control o_website_form_input" name="attachment" t-att-data-accidente_id="accidente.id"><t t-esc="request.params.get('attachment', '')"/></input>
+                              <div id="attachment_files">
+
+
+                              </div>
+                          </div>
+
+                          <div class="col-4">
+                            <t t-if="attachments">
+                                <span><strong>Related Documents:</strong></span>
+                                <br/>
+                                <t t-foreach="attachments" t-as="attachment">
+                                    <a t-att-href="'/attachment/download?attachment_id=%i' % attachment.id">
+                                        <span t-esc="attachment.name" class="fa fa-download" />
+                                    </a>
+                                </t>
+                            </t>
+                          </div>
+                      </div>
+                      <div class="row my-2">
+                          <div class="col-12 p-2 font-weight-bold border border-dark bg-secondary d-flex align-items-center shadow" style="height:30px;">
+                              <h6 class="mb-0">DESCRIPCIÓN DE LAS CAUSAS QUE ORIGINARON EL ACCIDENTE DE TRABAJO</h6>
+                          </div>
+                      </div>
+                      <div class="row font-weight-bold text-center" style="height:120px">
+                          <div class="col-12 border border-dark px-0 d-flex align-items-center justify-content-center">
+                              <textarea  class="form-control h-100 linea_accidente" name="descripcion_causas" style="border-radius:0px" placeholder="Descripcion las causas que originaron el accidente de trabajo"><t t-esc="accidente.descripcion_causas"/></textarea>
+                          </div>
+                      </div>
+                      <div class="row my-2">
+                          <div class="col-12 p-2 font-weight-bold border border-dark bg-secondary d-flex align-items-center shadow" style="height:30px;">
+                              <h6 class="mb-0">MEDIDAS CORRECTIVAS</h6>
+                          </div>
+                      </div>
+                      <div class="row font-weight-bold  bg-primary text-center" style="height:80px;position:relative">
+                          <button type="button" class="btn btn-primary font-weight-bold nueva_medida" data-toggle="modal" style="position:absolute;left:-40px">
+                          <strong>+</strong>
+                          </button>
+                          <div class="col-6 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              DESCRIPCIÓN DE LA MEDIDA CORRECTIVA
+                          </div>
+                          <div class="col-2 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              RESPONSABLE
+                          </div>
+                          <div class="col-2 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              FECHA DE EJECUCIÓN
+                          </div>
+                          <div class="col-2 border border-dark p-2 d-flex align-items-center justify-content-center">
+                              ESTADO
+                          </div>
+                      </div>
+                      <t t-foreach="accidente.medida_ids" t-as="medida">
+                        <div class="row font-weight-bold text-center medida_id" t-att-data-medida_id="medida.id" style="height:40px">
+                            <div class="col-6 px-0 border border-dark d-flex align-items-center justify-content-center">
+                                <input type="text" class="form-control h-100 linea_medida" name="name" t-att-value="medida.name" style="border-radius:0px"/>
+                            </div>
+                            <div class="col-2 px-0 border border-dark d-flex align-items-center justify-content-center">
+                              <select name="responsable" class="form-control linea_medida">
+                                <t t-foreach="responsables" t-as="res">
+                                  <t t-if="res.id == medida.responsable.id ">
+                                    <option t-att-value="'%s' % (res.id)" t-esc="res.name" selected="selected"/>
+                                  </t>
+                                  <t t-else="">
+                                    <option t-att-value="'%s' % (res.id)" t-esc="res.name"/>
+                                  </t>
+                                </t>
+                              </select>
+                            </div>
+                            <div class="col-2 px-0 border border-dark d-flex align-items-center justify-content-center">
+                                <input type="date" class="form-control h-100 linea_medida" name="fecha_ejecucion" t-att-value="medida.fecha_ejecucion"  style="border-radius:0px"/>
+                            </div>
+                            <div class="col-2 px-0 border border-dark d-flex align-items-center justify-content-center">
+                                <t t-if="'P' == medida.estado">
+                                  <select name="estado" class="form-control linea_medida h-100 bg-danger border-0">
+                                    <option value="P" selected="selected">Pendiente</option>
+                                    <option value="E">En ejecucion</option>
+                                    <option value="R">Realizado</option>
+                                  </select>
+                                </t>
+                                <t t-elif="'E' == medida.estado">
+                                  <select name="estado" class="form-control linea_medida h-100 bg-warning border-0">
+                                    <option value="P">Pendiente</option>
+                                    <option value="E" selected="selected">En ejecucion</option>
+                                    <option value="R">Realizado</option>
+                                  </select>
+                                </t>
+                                <t t-elif="'R' == medida.estado">
+                                  <select name="estado" class="form-control linea_medida h-100 bg-success border-0">
+                                    <option value="P">Pendiente</option>
+                                    <option value="E">En ejecucion</option>
+                                    <option value="R" selected="selected">Realizado</option>
+                                  </select>
+                                </t>
+                            </div>
+                        </div>
+                      </t>
+                      <div class="row my-2" style="position:relative">
+                          <button type="button" class="btn btn-primary font-weight-bold"  data-toggle="modal" data-target="#nuevo_supervisor" style="position:absolute;left:-40px">
+                            <strong>+</strong>
+                          </button>
+                          <div class="col-12 p-2 font-weight-bold border border-dark bg-secondary d-flex align-items-center shadow" style="height:30px;">
+                              <h6 class="mb-0">RESPONSABLES DEL REGISTRO Y DE LA INVESTIGACIÓN</h6>
+                          </div>
+                          <div class="modal fade supervisor" id="nuevo_supervisor" tabindex="-1" role="dialog" aria-labelledby="supervisorModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                              <div class="modal-content text-dark text-left">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="supervisorModalLabel">NUEVO RESPONSABLE</h5>
+                                </div>
+                                <div class="modal-body">
+                                  NOMBRE
+                                  <select class="form-control mb-2 col-12 name" name="new-supervisor-name" required="required">
+                                      <t t-foreach="usuarios" t-as="responsable">
+                                        <option t-att-value="'%s' % (responsable.id)" t-esc="responsable.name" selected="selected"/>
+                                      </t>
+                                  </select>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                                  <button type="button" t-att-data-iperc_id="accidente.id" class="btn btn-primary nuevo-supervisor">GUARDAR</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                      <t t-foreach="accidente.responsable_ids" t-as="responsable">
+                        <div class="row text-center responsable_id" t-att-data-responsable_id="responsable.id">
+                            <div class="col-9 px-0 border border-dark d-flex align-items-center justify-content-center">
+                              <t t-esc="responsable.responsable.name"/>
+                            </div>
+                            <div class="col-3 px-0 border border-dark d-flex align-items-center justify-content-center eliminar">
+                                <t t-if="responsable.responsable.signature_binary">
+                                  <img class="image_file_input firma-responsable" t-attf-src="data:image/png;base64, #{responsable.responsable.signature_binary}"/>
+                                </t>
+                                <t t-else="">
+                                  <img class="image_file_input firma-responsable"/>
+                                </t>
+                                <span data-toggle="modal" style="position:absolute;top:5px;right:5px" t-attf-data-target="#responsable-{{responsable.id}}"></span>
+                            </div>
+                            <div class="modal fade" t-attf-id="responsable-{{responsable.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                  </div>
+                                  <div class="modal-body">
+                                    <div class="alert alert-danger text-center" role="alert">
+                                      ESTA SEGURO DE ELIMINAR
+                                    </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                                    <button type="button" class="btn btn-secondary botton-eliminar-supervisor" t-att-data-responsable_id="responsable.id">ELIMINAR</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                      </t>
+                      <div>
+                        <a href="/registro-accidente/success" type="button" class="btn btn-primary float-right font-weight-bold my-3">GUARDAR</a>
+                      </div>
+
+                </div>
+              </div>
+          </div>
+      </t>
+  </template>
+  <template id="configuracion_registro_accidente" name="Registro de accidente">
+    <t t-call="accidente.sidebar_registro_accidente">
+      <div class="wrapper modulo-wrapper section_accidente">
+        <!-- Sidebar -->
+
+        <!-- Page Content -->
+        <div id="content">
+          <div class="py-2 mx-auto">
+            <div class="text-center mb-5">
+              <h1>LISTADO DE RESPONSABLES</h1>
+            </div>
+            <table id="resumen" class="table table-hover responsive nowrap w-100 text-center">
+              <thead class="thead-dark">
+                <tr>
+                  <th>#</th>
+                  <th>RESPONSABLE DE MEDIDA CORRECTIVA</th>
+                </tr>
+              </thead>
+              <tbody>
+                <t t-set="counter" t-value="0"/>
+                <t t-foreach="responsables" t-as="responsable">
+                  <t t-set="counter" t-value="counter + 1"/>
+                  <tr></tr>
+                  <td><t t-esc="counter"/></td>
+                  <td><span t-field="responsable.name"/></td>
+                </t>
+              </tbody>
+            </table>
+
+            <div class="d-flex justify-content-center float-left">
+              <button type="button" class="btn btn-primary font-weight-bold" data-toggle="modal" data-target="#new_tipo_peligro">
+                AGREGAR RESPONSABLE
+              </button>
+              <div class="modal fade" id="new_tipo_peligro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">NUEVO RESPONSABLE</h5>
+                    </div>
+                    <div class="modal-body">
+                      NOMBRE
+                      <input class="form-control col-12" name="new-responsable-name" type="text"/>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                      <button type="button" class="btn btn-primary nuevo_responsable_configuracion">GUARDAR</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </t>
+  </template>
+
+  <template id="success" name="Registro de accidente">
+    <t t-call="accidente.sidebar_registro_accidente">
+      <div class="wrapper modulo-wrapper">
+        <!-- Sidebar -->
+
+        <!-- Page Content -->
+        <div id="content" class="lista-verificacion">
+          <div class="container">
+            <div class="row py-5 d-flex justify-content-center">
+              <div class="alert alert-primary" role="alert">
+                <h5>SU REGISTRO HA SIDO GUARDADO EXITOSAMENTE
+                </h5>
+              </div>
+            </div>
+            <!-- <div class="row py-5 d-flex justify-content-center"> -->
+            <a href="/registro-accidente" type="button" class="btn btn-primary font-weight-bold float-right">Siguiente &#62;</a>
+            <!-- </div> -->
+          </div>
+        </div>
+      </div>
+    </t>
+  </template>
+
+</odoo>

@@ -1,0 +1,160 @@
+<odoo>
+  <template id="video_snippet.shop_payment_message">
+    <div>
+      <div class="alert alert-success alert-template" role="alert" t-if="state=='venta_exitosa'">
+        <span><t t-esc="message"/></span>
+        <div t-if="new_user == True">
+          <a t-att-href="user.signup_url" class="btn btn-primary">Aun no tengo una cuenta.</a>
+        </div>
+        <div t-else="">
+          <!-- <a href="/slides" class="btn btn-primary">Ir a Mis Cursos</a> -->
+        </div>
+      </div>
+      <div class="alert alert-danger" role="alert" t-if="state=='error'">
+        <span><t t-esc="message"/></span>
+        <span></span>
+      </div>
+    </div>
+  </template>
+
+  <template id="video_snippet.shop_payment" name="Shop Payment">
+    <t t-call="website.layout">
+      <t t-set="no_header" t-value="True"/>
+      <nav class="navbar navbar-expand-md navbar-dark bg-primary accidente">
+        <div class="container">
+          <a class="navbar-brand text-white font-weight-bold" href="/">
+            <img src="/programa_anual/static/description/preventor isotipo.png" width="30" height="30" class="d-inline-block align-top mr-1" alt=""/>
+            PREVENTOR
+          </a>
+          <div id="top_menu_collapse" aria-expanded="false">
+            <ul class="nav navbar-nav ml-auto text-right" id="top_menu">
+              <li class="d-flex align-items-center mr-3">
+                <span class="text-gray-purple"><i class="fa fa-lock mr-1"/>
+                  <b>Pago 100% Seguro</b>
+                </span>
+              </li>
+              <li class="nav-item divider"></li>
+              <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle align-items-center d-flex" data-toggle="dropdown"><i class="fa fa-user-circle mr-1"></i>
+                  <b>
+                    <span t-esc="user_id.name[:23] + '...' if user_id.name and len(user_id.name) &gt; 25 else user_id.name"/>
+                  </b>
+                </a>
+                <div class="dropdown-menu js_usermenu" role="menu">
+
+                  <a class="dropdown-item" t-attf-href="/usuarios" role="menuitem">Panel de control</a>
+                  <a id="o_logout" class="dropdown-item" role="menuitem" href="/web/session/logout?redirect=https://softwaresst.com/">Cerrar sesión</a>
+                </div>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="o_payment_culqi mt-5">
+        <div class="row container mx-auto">
+          <div class="col-md-6 col-xs-12 px-0 p-3">
+            <div class="container">
+              <h2>Pago en línea</h2>
+              <div class="row">
+                <div class="col-md-10 col-xs-12">
+                  <input type="text" id="culqipk" placeholder="Correo" t-att-value="culqipk" hidden="true"/>
+                  <div class="input-group mb-3">
+                    <input type="text" class="form-control" id="email" name="email" placeholder="Correo"/>
+                  </div>
+                  <div class="input-group mb-3">
+                    <input type="text" class="form-control" id="card_number" name="card_number" placeholder="Número de tarjeta de cŕedito o débito"/>
+                  </div>
+                  <div class="d-flex">
+                    <div class="input-group mb-3 mr-3">
+                      <input type="text" class="form-control" id="expiration" name="expiration" placeholder="MM/AA" maxlength="5"/>
+                    </div>
+                    <div class="input-group mb-3">
+                      <input type="text" class="form-control" id="cvv" name="cvv" placeholder="CVC/CVV" maxlength="4"/>
+                    </div>
+                  </div>
+                  <div>
+                    <button type="button" class="btn btn-outline-primary btn_send_payment">Comprar Ahora</button>
+                  </div>
+                  <div class="shop_payment_message d-flex flex-row justify-content-center mb-4 mt-4"/>
+
+                  <div class=" pt-3"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-5 col-xs-12 px-0 p-3">
+            <div class="">
+              <div class="">
+                <div class="">
+                  <div class="h6 font-weight-bold mb-4">Tu Carrito de Compras</div>
+                  <t t-foreach="sale.order_line" t-as="line">
+                    <div class="product_id mb-3" t-att-data-product_id="line.product_id.id">
+                      <div class="row mb-2 align-items-center justify-content-around">
+                        <div class="col-4">
+                          <img t-attf-src="/web/image?model=product.product&#38;id={{line.product_id.id}}&#38;field=image_128"/>
+                        </div>
+                        <div style="flex:1">
+                          <span class="flex-row d-flex justify-content-between">
+                            <b><t t-esc="line.product_id.name"/></b>
+                          </span><br/>
+                          <div class="flex-row">
+                            <b>
+                              <span t-esc="line.price_total" class='price_sale' t-options="{'widget': 'monetary', 'display_currency': sale.currency_id}"/> /mes
+                            </b>
+                          </div>
+                        </div>
+                        <div class="">
+                          <button type="button" class="btn btn-danger deleteplan"><i class="fa fa-trash"></i></button>
+                        </div>
+                      </div>
+                      <select class="selectplan form-control col-8 mt-2">
+                        <t t-foreach="line.product_id.planes" t-as="plan">
+                          <t t-if="plan.name != 'Plan Gratis' ">
+                            <t t-if="plan.id == line.plan_id.id ">
+                              <option t-att-value="'%s' % (plan.id)" t-esc="plan.name" selected="selected"/>
+                            </t>
+                            <t t-else="">
+                              <option t-att-value="'%s' % (plan.id)" t-esc="plan.name"/>
+                            </t>
+                          </t>
+                        </t>
+                      </select>
+                    </div>
+                  </t>
+                  <div class="d-flex flex-row justify-content-between align-items-center border-top pt-2 mt-2">
+                    <span class="label_amount_total">Total:</span>
+                    <span id="total" t-esc="round(sale.amount_total,2)" t-options="{'widget': 'monetary', 'display_currency': sale.currency_id}" class="text-red-1 h3 font-weight-bold"/>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex-row d-flex justify-content-between col-7 p-0 mt-4">
+                <img class="cc-logo" src="/video_snippet/static/src/img/visa.png"/>
+                <img class="cc-logo" src="/video_snippet/static/src/img/mastercard.jpg"/>
+                <img class="cc-logo" src="/video_snippet/static/src/img/americanexpress.jpg"/>
+                <img class="cc-logo" src="/video_snippet/static/src/img/culqi.png"/>
+                <!-- <img class="cc-logo" src="/video_snippet/static/src/img/pagoefectivo.png" /> -->
+                <img class="cc-logo" src="/video_snippet/static/src/img/dinnersclub.png"/>
+              </div>
+
+              <!-- <t t-call="video_snippet.garantia"/> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </t>
+  </template>
+
+  <template id="video_snippet.garantia">
+    <div class="flex-row d-flex pt-3 mt-3">
+      <img class="mr-3" src="/video_snippet/static/src/img/garantia.png" width="50" height="100%"/>
+    </div>
+    <div class="flex-row pt-3">
+      <span class="text-muted text-justify garantia-text-muted">
+        El cobro se realizará en tu moneda local. En algunos casos, donde el banco no acepte pagos en moneda local, se hará en la conversion al tipo de cambio del día.
+      </span>
+    </div>
+  </template>
+</odoo>

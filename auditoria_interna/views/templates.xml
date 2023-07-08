@@ -1,0 +1,544 @@
+<odoo>
+    <template name="Principal" id="formulario_auditoria">
+        <t t-call="website.layout">
+            <t t-set="no_header" t-value="True"/>
+            <t t-set="no_footer" t-value="True"/>
+            <header>
+              <nav class="navbar navbar-expand-md navbar-dark bg-primary accidente">
+                <div class="container">
+                  <a class="navbar-brand logo" href="https://softwaresst.com">
+                    <img src="/web/image/website/1/logo/PREVENTOR?unique=43ff1c1" class="img img-fluid" alt=""/>
+                  </a>
+                  <div id="top_menu_collapse" aria-expanded="false">
+                    <ul class="nav navbar-nav ml-auto text-right" id="top_menu">
+                    <li class="nav-item dropdown flot-right">
+                    </li>
+
+                    <li class="nav-item divider"></li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle align-items-center d-flex" data-toggle="dropdown"><i class="fa fa-user-circle mr-1" style="font-size: 1.5rem"></i>
+                        <b>
+                            <span t-esc="user_id.name[:23] + '...' if user_id.name and len(user_id.name) &gt; 25 else user_id.name"/>
+                        </b>
+                        </a>
+                        <div class="dropdown-menu js_usermenu" role="menu">
+
+                        <a class="dropdown-item" t-attf-href="/usuarios" role="menuitem">Panel de control</a>
+                        <a id="o_logout" class="dropdown-item" role="menuitem" href="/web/session/logout?redirect=https://softwaresst.com/">Cerrar sesión</a>
+                        </div>
+                    </li>
+
+                    </ul>
+                </div>
+                </div>
+            </nav>
+            </header>
+            <div class="wrapper modulo-wrapper" style="position:relative">
+            <!-- Sidebar -->
+                <nav id="sidebar" class="bg-info">
+                <ul class="list-unstyled components">
+                    <p class="bg-success" style="height:60px;">
+                    <strong>MODULO DE AUDITORIA INTERNA</strong>
+                    </p>
+                </ul>
+                </nav>
+
+                <div id="content" class="table-auditoria" >
+                    <div class="mx-auto auditoria_id" style="width:85%" t-att-data-auditoria_id="auditoria_interna.id">
+                        <!-- <h1>AUDITORIA INTERNA</h1> -->
+                        <div class="row font-weight-bold bg-primary" style="height: 80px;">
+                            <div class="col-3 border border-dark p-2 d-flex align-items-center">
+                                <h4>N° REGISTRO: <t t-esc="auditoria_interna.name"/></h4>
+                            </div>
+                            <div class="col-9 border border-dark text-center p-2 d-flex align-items-center justify-content-center">
+                                <h2>REGISTRO DE AUDITORÍAS</h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 p-2 font-weight-bold border border-dark bg-secondary d-flex align-items-center" style="height:30px;">
+                                <h6 class="mb-0">DATOS DEL EMPLEADOR</h6>
+                            </div>
+                        </div>
+                        <div class="row font-weight-bold  bg-primary text-center" style="height:80px">
+                            <div class="col-3 border border-dark p-2 d-flex align-items-center justify-content-center">
+                                RAZÓN SOCIAL O DENOMINACIÓN SOCIAL
+                            </div>
+                            <div class="col-2 border border-dark p-2 d-flex align-items-center justify-content-center">
+                                RUC
+                            </div>
+                            <div class="col-3 border border-dark p-2 d-flex align-items-center justify-content-center">
+                                DOMICILIO (Dirección, distrito, departamento, provincia)
+                            </div>
+                            <div class="col-2 border border-dark p-2 d-flex align-items-center justify-content-center">
+                                ACTIVIDAD ECONÓMICA
+                            </div>
+                            <div class="col-2 border border-dark p-2 d-flex align-items-center justify-content-center">
+                                Nº TRABAJADORES EN EL CENTRO LABORAL
+                            </div>
+                        </div>
+                        <div class="row font-weight-bold text-center" style="height:40px">
+                            <div class="col-3 px-0 border border-dark d-flex align-items-center justify-content-center">
+                                <input type="text" name="cliente" class="form-control h-100 linea_auditoria" t-att-value="auditoria_interna.cliente" style="border-radius:0px"/>
+                            </div>
+                            <div class="col-2 px-0 border border-dark d-flex align-items-center justify-content-center">
+                                <input type="text" name="ruc" class="form-control h-100 linea_auditoria" t-att-value="auditoria_interna.ruc" style="border-radius:0px"/>
+                            </div>
+                            <div class="col-3 px-0 border border-dark d-flex align-items-center justify-content-center">
+                                <input type="text" name="domicilio" class="form-control h-100 linea_auditoria" t-att-value="auditoria_interna.domicilio" style="border-radius:0px"/>
+                            </div>
+                            <div class="col-2 px-0 border border-dark d-flex align-items-center justify-content-center">
+                                <input type="text"  name="actividad" class="form-control h-100 linea_auditoria" t-att-value="auditoria_interna.actividad" style="border-radius:0px"/>
+                            </div>
+                            <div class="col-2 px-0 border border-dark d-flex align-items-center justify-content-center">
+                                <input type="number" name="trabajadores" class="form-control h-100 linea_auditoria" t-att-value="auditoria_interna.trabajadores" oninput="this.value = Math.abs(this.value)" style="border-radius:0px"/>
+                            </div>
+                        </div>
+                        <div class="row font-weight-bold  bg-primary text-center" style="height:60px;position:relative">
+                            <button type="button" class="btn btn-primary font-weight-bold" data-toggle="modal" style="position:absolute;left:-40px" data-target="#new_auditor">
+                              <strong>+</strong>
+                            </button>
+                            <div class="modal fade" id="new_auditor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content text-dark">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">NUEVO AUDITOR</h5>
+                                  </div>
+                                  <div class="modal-body text-left">
+                                    NOMBRE
+                                    <input class="col-12 form-control mt-1 mb-2" name="new-auditor-nombre" type="text"/>
+                                    N° REGISTRO
+                                    <input class="col-12 form-control mt-1" name="new-auditor-registro" type="text"/>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                                    <button type="button" t-att-data-auditoria_id="auditoria_interna.id" class="btn btn-primary nuevo-auditor">GUARDAR</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-6 border border-dark p-2 d-flex align-items-center justify-content-center">
+                                NOMBRE(S) DEL(DE LOS) AUDITOR(ES)
+                            </div>
+                            <div class="col-6 border border-dark p-2 d-flex align-items-center justify-content-center">
+                                N° REGISTRO
+                            </div>
+                        </div>
+                        <t t-foreach="auditoria_interna.auditor_ids" t-as="auditor">
+                          <div class="row font-weight-bold text-center auditor_id" t-att-data-auditor_id="auditor.id" style="height:40px">
+                              <div class="col-6 px-0 border border-dark d-flex align-items-center justify-content-center">
+                                  <input type="text" class="form-control h-100 linea_auditor" name="name" t-att-value="auditor.name" style="border-radius:0px"/>
+                              </div>
+                              <div class="col-6 px-0 border border-dark d-flex align-items-center justify-content-center">
+                                  <input type="text" class="form-control h-100 linea_auditor" name="registro" t-att-value="auditor.registro"  style="border-radius:0px"/>
+                              </div>
+                          </div>
+                        </t>
+                        <div class="row font-weight-bold  bg-primary text-center" style="height:60px;position:relative">
+                            <button type="button" class="btn btn-primary font-weight-bold" data-toggle="modal" style="position:absolute;left:-40px" data-target="#new_registro">
+                              <strong>+</strong>
+                            </button>
+                            <div class="modal fade" id="new_registro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content text-dark">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">NUEVO REGISTRO</h5>
+                                  </div>
+                                  <div class="modal-body text-left">
+                                    FECHA DE AUDITORIA
+                                    <input class="col-12 form-control mt-1 mb-2"  name="new-registro-fecha" t-att-value="fecha_actual" type="datetime-local"/>
+                                    PROCESOS AUDITADOS
+                                    <input class="col-12 form-control mt-1 mb-2" name="new-registro-procesos" type="text"/>
+                                    RESPONSABLES
+                                    <input class="col-12 form-control mt-1" name="new-registro-responsables" type="text"/>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                                    <button type="button" t-att-data-auditoria_id="auditoria_interna.id" class="btn btn-primary nuevo-registro">GUARDAR</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-3 border border-dark p-2 d-flex align-items-center justify-content-center">
+                                FECHAS DE AUDITORÍA
+                            </div>
+                            <div class="col-3 border border-dark p-2 d-flex align-items-center justify-content-center">
+                                PROCESOS AUDITADOS
+                            </div>
+                            <div class="col-6 border border-dark p-2 d-flex align-items-center justify-content-center">
+                                NOMBRE DE LOS RESPONSABLES DE LOS PROCESOS AUDITADOS
+                            </div>
+                        </div>
+                        <t t-set="contador" t-value="0"/>
+                        <t t-foreach="auditoria_interna.registro_ids" t-as="registro">
+                        <div class="row font-weight-bold text-center registro_id" t-att-data-registro_id="registro.id" style="height:40px">
+                            <div class="col-3 border border-dark px-0 d-flex align-items-center justify-content-center">
+                                <input type="datetime-local" class="form-control h-100 linea_registro" name="fecha" t-att-value="fechas[contador]" style="border-radius:0px"/>
+                            </div>
+                            <div class="col-3 border border-dark px-0 d-flex align-items-center justify-content-center">
+                                <input type="text" class="form-control h-100 linea_registro" name="responsables" t-att-value="registro.responsables" style="border-radius:0px"/>
+                            </div>
+                            <div class="col-6 border border-dark px-0 d-flex align-items-center justify-content-center">
+                                <input type="text" class="form-control h-100 linea_registro" name="name" t-att-value="registro.name" style="border-radius:0px"/>
+                            </div>
+                        </div>
+                        <t t-set="contador" t-value="contador + 1"/>
+                        </t>
+                        <div class="row font-weight-bold  bg-primary text-center" style="height:60px">
+                            <div class="col-3 border border-dark p-2 d-flex align-items-center justify-content-center">
+                                NÚMERO DE NO CONFORMIDADES
+                            </div>
+                            <div class="col-9 border border-dark p-2 d-flex align-items-center justify-content-center">
+                                INFORMACIÓN A ADJUNTAR
+                            </div>
+                        </div>
+                        <div class="row font-weight-bold text-center auditoria-interna" style="height:90px">
+                            <div class="col-3 border border-dark px-0 d-flex align-items-center justify-content-center">
+                              <input type="number" oninput="this.value = Math.abs(this.value)" name="n_conformidad" t-att-value="auditoria_interna.n_conformidad" class="linea_auditoria form-control h-100 form-control h-100 text-center font-weight-bold" style="border-radius:0px;font-size: 2.75rem;"/>
+                            </div>
+                            <div class="col-9 border border-dark px-0 justify-content-center">
+                              <div class="col-12 px-0">
+                                <input id="upload" type="file" widget="many2many_binary" multiple="true" style="border:0px;height:35px" class="form-control o_website_form_input" name="attachment" required=""><t t-esc="request.params.get('attachment', '')"/></input>
+                                <textarea readonly="readonly" id="list" style="position:relative;height:45px" class="pl-3 py-0"/>
+                              </div>
+                              <div class="col-4">
+                                <t t-if="attachments">
+                                    <span><strong>Related Documents:</strong></span>
+                                    <br/>
+                                    <t t-foreach="attachments" t-as="attachment">
+                                        <a t-att-href="'/attachment/download?attachment_id=%i' % attachment.id">
+                                            <span t-esc="attachment.name" class="fa fa-download" />
+                                        </a>
+                                    </t>
+                                </t>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="row font-weight-bold  bg-primary text-center" style="height:60px">
+                            <div class="col-12 border border-dark p-2 d-flex align-items-center justify-content-center">
+                                MODELO DE ENCABEZADOS PARA EL PLAN DE ACCIÓN PARA EL CIERRE DE NO CONFORMIDADES
+                            </div>
+                        </div>
+                        <div class="row font-weight-bold text-center" style="height:60px">
+                            <div class="col-6 border border-dark p-2 d-flex align-items-center justify-content-center">
+                                DESCRIPCIÓN DE LA NO CONFORMIDAD
+                            </div>
+                            <div class="col-6 border border-dark p-2 d-flex align-items-center justify-content-center">
+                                CAUSAS DE LA NO CONFORMIDAD
+                            </div>
+                        </div>
+                        <div class="row font-weight-bold text-center" style="height:120px">
+                            <div class="col-6 border border-dark px-0 d-flex align-items-center justify-content-center">
+                                <textarea  class="form-control h-100 linea_auditoria" name="descripcionnoconformidad" style="border-radius:0px"><t t-esc="auditoria_interna.descripcionnoconformidad"/></textarea>
+                            </div>
+                            <div class="col-6 border border-dark px-0 d-flex align-items-center justify-content-center">
+                                <textarea  class="form-control h-100 linea_auditoria" name="causasdenoconformidad" style="border-radius:0px"><t t-esc="auditoria_interna.causasdenoconformidad"/></textarea>
+                            </div>
+                        </div>
+                        <div class="row font-weight-bold text-center" style="height:60px;position:relative">
+                            <button type="button" class="btn btn-primary font-weight-bold" data-toggle="modal" style="position:absolute;left:-40px" data-target="#new_medida">
+                              <strong>+</strong>
+                            </button>
+                            <div class="modal fade" id="new_medida" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content text-dark">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">NUEVA MEDIDA CORRECTIVA</h5>
+                                  </div>
+                                  <div class="modal-body text-left">
+                                    DESCRIPCIÓN
+                                    <input class="col-12 form-control mt-1 mb-2" name="new-medida-descripcion" type="text"/>
+                                    RESPONSABLE
+                                    <input class="col-12 form-control mt-1 mb-2" name="new-medida-responsable" type="text"/>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                                    <button type="button" t-att-data-auditoria_id="auditoria_interna.id" class="btn btn-primary nueva-medida">GUARDAR</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-4 border border-dark p-2 d-flex align-items-center justify-content-center">
+                                DESCRIPCIÓN DE MEDIDAS CORRECTIVAS
+                            </div>
+                            <div class="col-2 border border-dark p-2 d-flex align-items-center justify-content-center">
+                                NOMBRE DEL RESPONSABLE
+                            </div>
+                            <div class="col-2 border border-dark p-2 d-flex align-items-center justify-content-center">
+                                FECHA DE EJECUCIÓN
+                            </div>
+                            <div class="col-2 border border-dark p-2 d-flex align-items-center justify-content-center">
+                                FECHA DE TERMINO
+                            </div>
+                            <div class="col-2 border border-dark p-2 d-flex align-items-center justify-content-center">
+                                ESTADO
+                            </div>
+                        </div>
+                        <t t-foreach="auditoria_interna.no_conformidad_ids" t-as="medidas">
+                        <div class="row font-weight-bold text-center medidas_id" t-att-data-medidas_id="medidas.id"  style="height:40px">
+                            <div class="col-4 border border-dark px-0 d-flex align-items-center justify-content-center">
+                                <input type="text" name="medida_correctiva" t-att-value="medidas.medida_correctiva" class="form-control h-100 linea_medida" style="border-radius:0px"/>
+                            </div>
+                            <div class="col-2 border border-dark px-0 d-flex align-items-center justify-content-center">
+                                <input type="text" name="responsable"  t-att-value="medidas.responsable" class="form-control h-100 linea_medida" style="border-radius:0px"/>
+                            </div>
+                            <div class="col-2 border border-dark px-0 d-flex align-items-center justify-content-center">
+                                <input type="date" name="fecha_ejecucion" t-att-value="medidas.fecha_ejecucion" class="form-control h-100 linea_medida" style="border-radius:0px"/>
+                            </div>
+                            <div class="col-2 border border-dark px-0 d-flex align-items-center justify-content-center">
+                                <input type="date" name="fecha_termino" t-att-value="medidas.fecha_termino" class="form-control h-100 linea_medida" style="border-radius:0px"/>
+                            </div>
+                            <div class="col-2 border border-dark px-0 d-flex align-items-center justify-content-center">
+                                  <select class="form-control h-100 linea_medida" name="estado" style="border-radius:0px">
+                                      <t t-if="'1' == medidas.estado">
+                                        <option t-att-value="1" selected="selected">PENDIENTE</option>
+                                        <option t-att-value="2" >EN EJECUCIÓN</option>
+                                        <option t-att-value="3">REALIZADO</option>
+                                      </t>
+                                      <t t-elif="'2' == medidas.estado">
+                                        <option t-att-value="2" selected="selected">EN EJECUCIÓN</option>
+                                        <option t-att-value="1" >PENDIENTE</option>
+                                        <option t-att-value="3">REALIZADO</option>
+                                      </t>
+                                      <t t-elif="'3' == medidas.estado">
+                                        <option t-att-value="3" selected="selected">REALIZADO</option>
+                                        <option t-att-value="1">PENDIENTE</option>
+                                        <option t-att-value="2">EN EJECUCIÓN</option>
+                                      </t>
+                                  </select>
+                            </div>
+                        </div>
+                      </t>
+                        <div class="row font-weight-bold  bg-primary text-center" style="height:60px">
+                            <div class="col-12 border border-dark p-2 d-flex align-items-center justify-content-center">
+                                RESPONSABLE DEL REGISTRO
+                            </div>
+                        </div>
+                        <div class="row font-weight-bold text-center" style="height:40px">
+                            <div class="col-6 border border-dark px-0 d-flex align-items-center justify-content-center">
+                                <input type="text" class="form-control h-100" style="border-radius:0px"/>
+                            </div>
+                            <div class="col-6 border border-dark px-0 d-flex align-items-center justify-content-center">
+                                <input type="text" class="form-control h-100" style="border-radius:0px"/>
+                            </div>
+                        </div>
+                        <a href="/auditoria_interna/success" type="button" class="btn btn-primary float-right font-weight-bold my-3">GUARDAR</a>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template name="Auditoria Interna" id="lista_auditoria" >
+      <t t-call="website.layout">
+        <t t-set="no_header" t-value="True"/>
+          <button type="button" id="sidebarCollapse1" class="btn btn-info display-block"><i class="fa fa-arrow-right"></i></button>
+          <nav class="navbar navbar-expand-md navbar-dark bg-primary accidente">
+            <div class="container">
+              <a class="navbar-brand text-white d-flex align-items-center" href="/">
+                <img src="/auditoria_interna/static/description/preventor isotipo.png" width="30" height="30" class="d-inline-block align-top mr-1" alt=""/>
+                PREVENTOR
+              </a>
+                <div id="top_menu_collapse" aria-expanded="false">
+                  <ul class="nav navbar-nav ml-auto text-right" id="top_menu">
+                    <li class="nav-item divider"></li>
+                    <li class="nav-item dropdown">
+                      <a href="#" class="nav-link dropdown-toggle align-items-center d-flex" data-toggle="dropdown"><i class="fa fa-user-circle mr-1" style="font-size: 1.5rem"></i>
+                        <b>
+                          <span t-esc="user_id.name[:23] + '...' if user_id.name and len(user_id.name) &gt; 25 else user_id.name"/>
+                        </b>
+                      </a>
+                      <div class="dropdown-menu js_usermenu" role="menu">
+                        <a class="dropdown-item" t-attf-href="/usuarios" role="menuitem">Panel de control</a>
+                        <a id="o_logout" class="dropdown-item" role="menuitem" href="/web/session/logout?redirect=https://softwaresst.com/">Cerrar sesión</a>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+          <div class="wrapper modulo-wrapper" style="position:relative">
+          <!-- Sidebar -->
+          <nav id="sidebar" class="bg-info">
+            <ul class="list-unstyled components">
+              <p class="bg-success" style="height:60px;"><strong>MODULO DE AUDITORIA INTERNA</strong></p>
+            </ul>
+          </nav>
+
+          <!-- Page Content -->
+          <div id="content" class="eliminar-registro auditoria-interna">
+            <div class="row py-2">
+              <div class="col-12">
+                <div class="alert alert-primary text-center" role="alert">
+                  <h4>LISTADO DE AUDITORIAS INTERNAS</h4>
+                </div>
+                <table id="resumen" class="table table-hover responsive nowrap" style="width:100%; text-align: center;">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th>AUDITORIA</th>
+                      <th>EVALUADO</th>
+                      <th>EMPRESA</th>
+                      <th>EDITAR</th>
+                      <!-- <th>ACTUALIZAR EXCEL</th> -->
+                      <th>
+                        REPORTE
+                      </th>
+                      <th>
+                        ELIMINAR
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody >
+                    <t t-foreach="auditoria_interna" t-as="auditoria">
+                      <tr>
+                        <td>
+                          <div>
+                            <span t-field="auditoria.name"/>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <span t-field="auditoria.cliente"/>
+                          </div>
+                        </td>
+                        <td >
+                          <span t-field="auditoria.ruc"/>
+                        </td>
+                        <td >
+                          <a class="btn btn-success" t-att-href="'/auditoria_interna/%s' % (auditoria.id)" role="button">
+                            <i class="fa fa-pencil-square-o" style="font-size:20px"></i>
+
+                          </a>
+                        </td>
+                        <td >
+                          <!-- <t t-if="auditoria.txt_binary_excel_cal">
+                          <a class="btn btn-info" role="button" t-attf-href="/web/content?model=auditoria.interna&amp;field=txt_binary_excel_cal&amp;id={{auditoria.id}}&amp;filename={{auditoria.txt_excel_cal}}&amp;download=true">
+                            <i class="fa fa-file-excel-o" style="font-size:20px"></i>
+                          </a>
+                          </t> -->
+                        </td>
+                        <td>
+                          <div>
+                            <button type="button" class="btn btn-danger" data-toggle="modal" t-attf-data-target="#auditoria-{{auditoria.id}}">
+                              <i class="fa fa-trash" style="font-size:20px"></i>
+
+                            </button>
+                            <div class="modal fade" t-attf-id="auditoria-{{auditoria.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                  </div>
+                                  <div class="modal-body">
+                                    <div class="alert alert-danger" role="alert">
+                                      ESTA SEGURO DE ELIMINAR
+                                    </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                                    <button type="button" class="btn btn-secondary botton-eliminar-auditoria" t-att-data-auditoria_id="auditoria.id">ELIMINAR</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                        </td>
+                      </tr>
+                    </t>
+                  </tbody>
+                </table>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center">
+
+              <button type="button" class="btn btn-success font-weight-bold" data-toggle="modal" data-target="#new_auditoria">
+              <strong>Crear Auditoria Interna</strong>
+              </button>
+              <div class="modal fade" id="new_auditoria" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">NUEVA AUDITORIA INTERNA</h5>
+                    </div>
+                    <div class="modal-body">
+                      RAZON SOCIAL
+                      <input class="col-12 form-control mt-1 mb-3" name="new-auditoria-razon" type="text"/>
+                      RUC
+                      <input class="col-12 form-control mt-1 mb-3" name="new-auditoria-ruc" type="text"/>
+                      DOMICILIO
+                      <input class="col-12 form-control mt-1 mb-3" name="new-auditoria-domicilio" type="text"/>
+                      ACTIVIDAD ECONÓMICA
+                      <input class="col-12 form-control mt-1 mb-3" name="new-auditoria-actividad" type="text"/>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                      <button type="button" class="btn btn-primary nueva-auditoria-interna">GUARDAR</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </t>
+    </template>
+    <template id="success" name="Auditoria Guardada">
+       <t t-call="website.layout">
+         <t t-set="no_header" t-value="True"/>
+         <t t-set="no_footer" t-value="True"/>
+
+         <nav class="navbar navbar-expand-md navbar-dark bg-primary accidente">
+           <div class="container">
+             <a class="navbar-brand text-white d-flex align-items-center" href="/">
+               <img src="/auditoria_interna/static/description/preventor isotipo.png" width="30" height="30" class="d-inline-block align-top mr-1" alt=""/>
+               PREVENTOR
+             </a>
+               <div id="top_menu_collapse" aria-expanded="false">
+                 <ul class="nav navbar-nav ml-auto text-right" id="top_menu">
+                   <li class="nav-item divider"></li>
+                   <li class="nav-item dropdown">
+                     <a href="#" class="nav-link dropdown-toggle align-items-center d-flex" data-toggle="dropdown"><i class="fa fa-user-circle mr-1" style="font-size: 1.5rem"></i>
+                       <b>
+                         <span t-esc="user_id.name[:23] + '...' if user_id.name and len(user_id.name) &gt; 25 else user_id.name"/>
+                       </b>
+                     </a>
+                     <div class="dropdown-menu js_usermenu" role="menu">
+
+                       <a class="dropdown-item" t-attf-href="/usuarios" role="menuitem">Panel de control</a>
+                       <a id="o_logout" class="dropdown-item" role="menuitem" href="/web/session/logout?redirect=https://softwaresst.com/">Cerrar sesión</a>
+                     </div>
+                   </li>
+                 </ul>
+               </div>
+             </div>
+           </nav>
+         <div class="wrapper modulo-wrapper" style="position:relative">
+           <!-- Sidebar -->
+           <nav id="sidebar" class="bg-info">
+             <ul class="list-unstyled components">
+               <p class="bg-success" style="height:60px;"><strong>MODULO DE AUDITORIA INTERNA</strong></p>
+               <!-- <li>
+                 <a class="" href="/lista/auditoria">LISTAS DE auditoria</a>
+               </li> -->
+             </ul>
+           </nav>
+
+           <!-- Page Content -->
+           <div id="content" class="eliminar-registro auditoria-interna">
+             <div class="container">
+               <div class="row py-5 d-flex justify-content-center">
+                 <div class="alert alert-primary" role="alert">
+                   <h5>SU AUDITORIA HA SIDO GUARDADA EXITOSAMENTE
+                   </h5>
+                 </div>
+              </div>
+              <!-- <div class="row py-5 d-flex justify-content-center"> -->
+              <a href="/auditoria_interna" type="button" class="btn btn-primary font-weight-bold float-right">Siguiente &#62;</a>
+              <!-- </div> -->
+            </div>
+          </div>
+       </div>
+       </t>
+     </template>
+</odoo>

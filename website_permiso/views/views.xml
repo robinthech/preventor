@@ -1,0 +1,1621 @@
+<odoo>
+  <data>
+    <record id="user_form_1" model="ir.ui.view">
+      <field name="name">user.form.1</field>
+      <field name="model">res.users</field>
+      <field name="inherit_id" ref="base.view_users_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='signature']" position="after">
+          <group>
+            <field name="empresa_id"/>
+          </group>
+        </xpath>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="website_permiso.permiso_search">
+      <field name="name">permiso.trabajo.search</field>
+      <field name="model">permiso.trabajo</field>
+      <field name="arch" type="xml">
+        <search string="Agrupado por Estado">
+          <filter string="Estado" name="estado" context="{'group_by':'estado'}"/>
+        </search>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="website_permiso.permiso_search_1">
+      <field name="name">permiso.trabajo.search</field>
+      <field name="model">permiso.trabajo</field>
+      <field name="arch" type="xml">
+        <search string="Agrupado por Estado">
+          <filter string="Estado" name="estado" context="{'group_by':'estado'}"/>
+        </search>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="website_permiso.permiso_search_2">
+      <field name="name">permiso.trabajo.search</field>
+      <field name="model">permiso.trabajo</field>
+      <field name="arch" type="xml">
+        <search string="Agrupado por Estado">
+          <filter string="Estado" name="estado" context="{'group_by':'estado'}"/>
+        </search>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="website_permiso.permiso_kanban">
+      <field name="name">permiso.trabajo.kanban</field>
+      <field name="model">permiso.trabajo</field>
+      <field name="arch" type="xml">
+        <kanban default_group_by="estado">
+          <field name="name"/>
+          <field name="area_id"/>
+          <field name="contratista_id"/>
+          <field name="fecha_inicio"/>
+          <templates>
+            <div t-name="kanban-box" t-attf-class="oe_kanban_global_click">
+              <div>
+                <h5>
+                  CONTRATISTA:
+                  <field name="contratista_id"/>
+                </h5>
+              </div>
+              <div>
+                <h5>
+                  N°:
+                  <field name="name"/>
+                </h5>
+              </div>
+
+              <div>
+                <h5>
+                  Fecha De Inicio:
+                  <field name="fecha_inicio"/>
+                </h5>
+              </div>
+              <div>
+                <h5>
+                  Fecha De Fin:
+                  <field name="fecha_fin"/>
+                </h5>
+              </div>
+            </div>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="website_permiso.permiso_kanban_1">
+      <field name="name">permiso.trabajo.kanban</field>
+      <field name="model">permiso.trabajo</field>
+      <field name="arch" type="xml">
+
+        <kanban create="false" default_group_by="estado">
+          <field name="name"/>
+          <field name="area_id"/>
+          <field name="contratista_id"/>
+          <field name="fecha_inicio"/>
+          <templates>
+            <div t-name="kanban-box" t-attf-class="oe_kanban_global_click">
+              <div>
+                <h5>
+                  CONTRATISTA:
+                  <field name="contratista_id"/>
+                </h5>
+              </div>
+              <div>
+                <h5>
+                  N°:
+                  <field name="name"/>
+                </h5>
+              </div>
+
+              <div>
+                <h5>
+                  Fecha De Inicio:
+                  <field name="fecha_inicio"/>
+                </h5>
+              </div>
+              <div>
+                <h5>
+                  Fecha De Fin:
+                  <field name="fecha_fin"/>
+                </h5>
+              </div>
+            </div>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="website_permiso.permiso_kanban_2">
+      <field name="name">permiso.trabajo.kanban</field>
+      <field name="model">permiso.trabajo</field>
+      <field name="arch" type="xml">
+
+        <kanban create="false" default_group_by="estado">
+          <field name="name"/>
+          <field name="area_id"/>
+          <field name="contratista_id"/>
+          <field name="fecha_inicio"/>
+          <templates>
+            <div t-name="kanban-box" t-attf-class="oe_kanban_global_click">
+              <div>
+                <h5>
+                  CONTRATISTA:
+                  <field name="contratista_id"/>
+                </h5>
+              </div>
+              <div>
+                <h5>
+                  N°:
+                  <field name="name"/>
+                </h5>
+              </div>
+
+              <div>
+                <h5>
+                  Fecha De Inicio:
+                  <field name="fecha_inicio"/>
+                </h5>
+              </div>
+              <div>
+                <h5>
+                  Fecha De Fin:
+                  <field name="fecha_fin"/>
+                </h5>
+              </div>
+            </div>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="website_permiso.permiso_tree">
+      <field name="name">permiso.trabajo.tree</field>
+      <field name="model">permiso.trabajo</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name" readonly="1" string="N° Permiso"/>
+          <field name="fecha_inicio" string="Fecha y Hora del Trabajo"/>
+          <field name="contratista_id" string="Contratista / Empresa Ejecutora"/>
+          <field name="area_id" string="Lugar"/>
+          <field name="estado"/>
+        </tree>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="website_permiso.permiso_tree_1">
+      <field name="name">permiso.trabajo.tree.1</field>
+      <field name="model">permiso.trabajo</field>
+      <field name="arch" type="xml">
+        <tree create="false">
+          <field name="name" readonly="1" string="N° Permiso"/>
+          <field name="fecha_inicio" string="Fecha y Hora del Trabajo"/>
+          <field name="contratista_id" string="Contratista / Empresa Ejecutora"/>
+          <field name="area_id" string="Lugar"/>
+          <field name="estado"/>
+        </tree>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="website_permiso.permiso_tree_2">
+      <field name="name">permiso.trabajo.tree.2</field>
+      <field name="model">permiso.trabajo</field>
+      <field name="arch" type="xml">
+        <tree create="false">
+          <field name="name" readonly="1" string="N° Permiso"/>
+          <field name="fecha_inicio" string="Fecha y Hora del Trabajo"/>
+          <field name="contratista_id" string="Contratista / Empresa Ejecutora"/>
+          <field name="area_id" string="Lugar"/>
+          <field name="estado"/>
+        </tree>
+      </field>
+    </record>
+
+    <!--view solitante -->
+
+    <record model="ir.ui.view" id="website_permiso.permiso_form">
+      <field name="name">permiso.trabajo.form</field>
+      <field name="model">permiso.trabajo</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+            <field name="estado" widget="statusbar" options="{'fold_field': 'fold'}" readonly="1" statusbar_visible="1,2,3,4,5,6"/>
+            <button name="set_solicitado" type="object" string="Solicitar Permiso" attrs="{'invisible':['&amp;',('estado','!=','1'),('estado','!=','6')]}" class="btn btn-primary"/>
+            <button name="open_word_frio" type="object" string="EXCEL" class="btn btn-primary"/>
+          </header>
+          <sheet>
+            <div class="oe_title">
+              <h3>
+                <field name="name" readonly="1"/>
+              </h3>
+            </div>
+            <group>
+              <group>
+                <field name="fecha_inicio" attrs="{'readonly': ['&amp;',('estado','!=','1'),('estado','!=','6')]}"/>
+                <field name="fecha_fin" attrs="{'readonly': ['&amp;',('estado','!=','1'),('estado','!=','6')]}"/>
+                <field name="descripcion" readonly="1"/>
+              </group>
+              <group>
+                <field name="contratista_id" options="{'no_quick_create': True, 'no_create_edit' : True,'no_open':True}" readonly="1"/>
+                <field name="sub_area_id" options="{'no_quick_create': True, 'no_create_edit' : True,'no_open':True}" readonly="1"/>
+                <field name="area_id" readonly="1"/>
+                <field name="ubicacion_exacta" attrs="{'readonly': ['&amp;',('estado','!=','1'),('estado','!=','6')]}"/>
+                <field name="plantilla"/>
+              </group>
+            </group>
+            <group>
+              <group>
+                <field name="solicitante_id" readonly="1"/>
+                <field name="autorizador_id" readonly="1"/>
+                <field name="aprobador_id" readonly="1"/>
+              </group>
+              <group>
+                <field name="frio" readonly="1"/>
+                <field name="electrico" readonly="1"/>
+                <field name="altura" readonly="1"/>
+                <field name="confinado" readonly="1"/>
+                <field name="calor" readonly="1"/>
+              </group>
+            </group>
+            <group>
+              <field name="txt_excel_cal" invisible="1"/>
+              <field name="txt_binary_excel_cal" filename="txt_excel_cal" string="EXCEL" readonly="1"/>
+            </group>
+            <notebook>
+              <page string="Empleados">
+                <field name="empleados_ids" mode="tree" attrs="{'readonly': ['&amp;',('estado','!=','1'),('estado','!=','6')]}">
+                  <tree editable="top">
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="trabajador_id" domain="[('empresa_id','=',parent.contratista_id)]"/>
+                    <field name="dni" readonly="1"/>
+                  </tree>
+                </field>
+              </page>
+              <page string="EPPs">
+                <separator string="Permiso en Altura" attrs="{'invisible':[('altura','!=',True)]}"/>
+                <field name="epp_altura_ids" mode="tree" attrs="{'invisible':[('altura','!=',True)],'readonly': ['&amp;',('estado','!=','1'),('estado','!=','6')]}">
+                  <tree editable="top" create="false">
+                    <field name="check"/>
+                    <field name="image" widget="image" readonly="1" class="oe_avatar"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Permiso en Espacios Confinados" attrs="{'invisible':[('confinado','!=',True)]}"/>
+                <field name="epp_confinado_ids" mode="tree" attrs="{'invisible':[('confinado','!=',True)],'readonly': ['&amp;',('estado','!=','1'),('estado','!=','6')]}">
+                  <tree editable="top" create="false">
+                    <field name="check"/>
+                    <field name="image" widget="image" readonly="1" class="oe_avatar"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Permiso en Caliente" attrs="{'invisible':[('calor','!=',True)]}"/>
+                <field name="epp_calor_ids" mode="tree" attrs="{'invisible':[('calor','!=',True)],'readonly': ['&amp;',('estado','!=','1'),('estado','!=','6')]}">
+                  <tree editable="top" create="false">
+                    <field name="check"/>
+                    <field name="image" widget="image" readonly="1" class="oe_avatar"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Permiso en Frío" attrs="{'invisible':[('frio','!=',True)]}"/>
+                <field name="epp_frio_ids" mode="tree" attrs="{'invisible':[('frio','!=',True)],'readonly': ['&amp;',('estado','!=','1'),('estado','!=','6')]}">
+                  <tree editable="top" create="false">
+                    <field name="check"/>
+                    <field name="image" widget="image" readonly="1" class="oe_avatar"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Permiso en Eléctrico" attrs="{'invisible':[('electrico','!=',True)]}"/>
+                <field name="epp_electrico_ids" mode="tree" attrs="{'invisible':[('electrico','!=',True)],'readonly': ['&amp;',('estado','!=','1'),('estado','!=','6')]}">
+                  <tree editable="top" create="false">
+                    <field name="check"/>
+                    <field name="image" widget="image" readonly="1" class="oe_avatar"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+              </page>
+              <page string="Herramientas">
+                <separator string="Permiso en Altura" attrs="{'invisible':[('altura','!=',True)]}"/>
+                <field name="herramienta_altura_ids" mode="tree" attrs="{'invisible':[('altura','!=',True)],'readonly': ['&amp;',('estado','!=','1'),('estado','!=','6')]}">
+                  <tree editable="top" create="false">
+                    <field name="check"/>
+                    <field name="image" widget="image" readonly="1" class="oe_avatar"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+
+                <separator string="Permiso en Espacios Confinados" attrs="{'invisible':[('confinado','!=',True)]}"/>
+                <field name="herramienta_confinado_ids" mode="tree" attrs="{'invisible':[('confinado','!=',True)],'readonly': ['&amp;',('estado','!=','1'),('estado','!=','6')]}">
+                  <tree editable="top" create="false">
+                    <field name="check"/>
+                    <field name="image" widget="image" readonly="1" class="oe_avatar"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+
+                <separator string="Permiso en Caliente" attrs="{'invisible':[('calor','!=',True)]}"/>
+                <field name="herramienta_calor_ids" mode="tree" attrs="{'invisible':[('calor','!=',True)],'readonly':['&amp;',('estado','!=','1'),('estado','!=','6')]}">
+                  <tree editable="top" create="false">
+                    <field name="check"/>
+                    <field name="image" widget="image" readonly="1" class="oe_avatar"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Permiso en Frío" attrs="{'invisible':[('frio','!=',True)]}"/>
+                <field name="herramienta_frio_ids" mode="tree" attrs="{'invisible':[('frio','!=',True)],'readonly': ['&amp;',('estado','!=','1'),('estado','!=','6')]}">
+                  <tree editable="top" create="false">
+                    <field name="check"/>
+                    <field name="image" widget="image" readonly="1" class="oe_avatar"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Permiso en Eléctrico" attrs="{'invisible':[('electrico','!=',True)]}"/>
+                <field name="herramienta_electrico_ids" mode="tree" attrs="{'invisible':[('electrico','!=',True)],'readonly': ['&amp;',('estado','!=','1'),('estado','!=','6')]}">
+                  <tree editable="top" create="false">
+                    <field name="check"/>
+                    <field name="image" widget="image" readonly="1" class="oe_avatar"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+              </page>
+              <page string="Requisitos de Preparación" invisible="1">
+                <separator string="Altura" attrs="{'invisible':[('altura','!=',True)]}"/>
+                <field name="preparacion_altura_ids" mode="tree" attrs="{'invisible':[('altura','!=',True)],'readonly': ['&amp;',('estado','!=','1'),('estado','!=','6')]}">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Espacios Confinados" attrs="{'invisible':[('confinado','!=',True)]}"/>
+                <field name="preparacion_confinado_ids" mode="tree" attrs="{'invisible':[('confinado','!=',True)],'readonly':['&amp;',('estado','!=','1'),('estado','!=','6')]}">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Calor" attrs="{'invisible':[('calor','!=',True)]}"/>
+                <field name="preparacion_calor_ids" mode="tree" attrs="{'invisible':[('calor','!=',True)],'readonly': ['&amp;',('estado','!=','1'),('estado','!=','6')]}">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Frío" attrs="{'invisible':[('frio','!=',True)]}"/>
+                <field name="preparacion_frio_ids" mode="tree" attrs="{'invisible':[('frio','!=',True)],'readonly': ['&amp;',('estado','!=','1'),('estado','!=','6')]}">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Eléctrico" attrs="{'invisible':[('electrico','!=',True)]}"/>
+                <field name="preparacion_electrico_ids" mode="tree" attrs="{'invisible':[('electrico','!=',True)],'readonly': ['&amp;',('estado','!=','1'),('estado','!=','6')]}">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+              </page>
+              <page string="Cerramiento de Aberturas" invisible="1">
+                <separator string="Altura" attrs="{'invisible':[('altura','!=',True)]}"/>
+                <field name="cerramiento_altura_ids" mode="tree" attrs="{'invisible':[('altura','!=',True)],'readonly': ['&amp;',('estado','!=','1'),('estado','!=','6')]}">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Espacios Confinados" attrs="{'invisible':[('confinado','!=',True)]}"/>
+                <field name="cerramiento_confinado_ids" mode="tree" attrs="{'invisible':[('confinado','!=',True)],'readonly': ['&amp;',('estado','!=','1'),('estado','!=','6')]}">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Calor" attrs="{'invisible':[('calor','!=',True)]}"/>
+                <field name="cerramiento_calor_ids" mode="tree" attrs="{'invisible':[('calor','!=',True)],'readonly': ['&amp;',('estado','!=','1'),('estado','!=','6')]}">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Frío" attrs="{'invisible':[('frio','!=',True)]}"/>
+                <field name="cerramiento_frio_ids" mode="tree" attrs="{'invisible':[('frio','!=',True)],'readonly': ['&amp;',('estado','!=','1'),('estado','!=','6')]}">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Eléctrico" attrs="{'invisible':[('electrico','!=',True)]}"/>
+                <field name="cerramiento_electrico_ids" mode="tree" attrs="{'invisible':[('electrico','!=',True)],'readonly': ['&amp;',('estado','!=','1'),('estado','!=','6')]}">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+              </page>
+              <page string="Condiciones de Seguridad" invisible="1">
+                <separator string="Altura" attrs="{'invisible':[('altura','!=',True)]}"/>
+                <field name="seguridad_altura_ids" mode="tree" attrs="{'invisible':[('altura','!=',True)],'readonly': ['&amp;',('estado','!=','1'),('estado','!=','6')]}">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Espacios Confinados" attrs="{'invisible':[('confinado','!=',True)]}"/>
+                <field name="seguridad_confinado_ids" mode="tree" attrs="{'invisible':[('confinado','!=',True)],'readonly': ['&amp;',('estado','!=','1'),('estado','!=','6')]}">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Calor" attrs="{'invisible':[('calor','!=',True)]}"/>
+                <field name="seguridad_calor_ids" mode="tree" attrs="{'invisible':[('calor','!=',True)],'readonly': ['&amp;',('estado','!=','1'),('estado','!=','6')]}">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Frío" attrs="{'invisible':[('frio','!=',True)]}"/>
+                <field name="seguridad_frio_ids" mode="tree" attrs="{'invisible':[('frio','!=',True)],'readonly':['&amp;',('estado','!=','1'),('estado','!=','6')]}">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Eléctrico" attrs="{'invisible':[('electrico','!=',True)]}"/>
+                <field name="seguridad_electrico_ids" mode="tree" attrs="{'invisible':[('electrico','!=',True)],'readonly': ['&amp;',('estado','!=','1'),('estado','!=','6')]}">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+              </page>
+            </notebook>
+          </sheet>
+          <div class="oe_chatter">
+            <field name="message_follower_ids" widget="mail_followers"/>
+            <field name="message_ids" widget="mail_thread"/>
+          </div>
+        </form>
+      </field>
+    </record>
+    <!--view autorizador -->
+
+    <record model="ir.ui.view" id="website_permiso.permiso_form_1">
+      <field name="name">permiso.trabajo.form.1</field>
+      <field name="model">permiso.trabajo</field>
+      <field name="arch" type="xml">
+        <form create="false">
+          <header>
+            <field name="estado" widget="statusbar" options="{'fold_field': 'fold'}" readonly="1" statusbar_visible="1,2,3,4,5,6"/>
+            <button name="set_autorizado" type="object" string="Autorizar " attrs="{'invisible':[('estado','!=','2')]}" class="btn btn-primary"/>
+          </header>
+
+          <sheet>
+            <div class="oe_title">
+              <h3>
+                <field name="name" readonly="1"/>
+              </h3>
+            </div>
+
+            <group>
+              <group>
+
+                <field name="fecha_inicio" attrs="{'readonly': ['&amp;',('estado','!=','1'),('estado','!=','6')]}"/>
+                <field name="fecha_fin" attrs="{'readonly': ['&amp;',('estado','!=','1'),('estado','!=','6')]}"/>
+                <field name="descripcion" readonly="1"/>
+
+
+              </group>
+              <group>
+                <field name="contratista_id" options="{'no_quick_create': True, 'no_create_edit' : True,'no_open':True}" readonly="1"/>
+                <field name="sub_area_id" options="{'no_quick_create': True, 'no_create_edit' : True,'no_open':True}" readonly="1"/>
+                <field name="area_id" readonly="1"/>
+                <field name="ubicacion_exacta" attrs="{'readonly': ['&amp;',('estado','!=','1'),('estado','!=','6')]}"/>
+              </group>
+            </group>
+            <group>
+              <group>
+                <field name="solicitante_id" readonly="1"/>
+                <field name="autorizador_id" readonly="1"/>
+                <field name="aprobador_id" readonly="1"/>
+              </group>
+              <group>
+                <field name="frio" readonly="1"/>
+                <field name="electrico" readonly="1"/>
+                <field name="altura" readonly="1"/>
+                <field name="confinado" readonly="1"/>
+                <field name="calor" readonly="1"/>
+              </group>
+            </group>
+            <group>
+              <field name="txt_excel_cal" invisible="1"/>
+              <field name="txt_binary_excel_cal" filename="txt_excel_cal" string="EXCEL" readonly="1"/>
+            </group>
+
+            <notebook>
+              <page string="Empleados">
+                <field name="empleados_ids" mode="tree" readonly="1">
+                  <tree editable="top">
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="trabajador_id" domain="[('empresa_id','=',parent.contratista_id)]"/>
+                    <field name="dni" readonly="1"/>
+                  </tree>
+                </field>
+              </page>
+              <page string="EPPs">
+                <separator string="Altura" attrs="{'invisible':[('altura','!=',True)]}"/>
+                <field name="epp_altura_ids" mode="tree" attrs="{'invisible':[('altura','!=',True)]}" readonly="1">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check" readonly="1"/>
+                    <field name="image" widget="image" readonly="1" class="oe_avatar"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Espacios Confinados" attrs="{'invisible':[('confinado','!=',True)]}"/>
+                <field name="epp_confinado_ids" mode="tree" attrs="{'invisible':[('confinado','!=',True)]}" readonly="1">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check" readonly="1"/>
+                    <field name="image" widget="image" readonly="1" class="oe_avatar"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Calor" attrs="{'invisible':[('calor','!=',True)]}"/>
+                <field name="epp_calor_ids" mode="tree" attrs="{'invisible':[('calor','!=',True)]}" readonly="1">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check" readonly="1"/>
+                    <field name="image" widget="image" readonly="1" class="oe_avatar"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Frío" attrs="{'invisible':[('frio','!=',True)]}"/>
+                <field name="epp_frio_ids" mode="tree" attrs="{'invisible':[('frio','!=',True)]}" readonly="1">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check" readonly="1"/>
+                    <field name="image" widget="image" readonly="1" class="oe_avatar"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Eléctrico" attrs="{'invisible':[('electrico','!=',True)]}"/>
+                <field name="epp_electrico_ids" mode="tree" attrs="{'invisible':[('electrico','!=',True)]}" readonly="1">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check" readonly="1"/>
+                    <field name="image" widget="image" readonly="1" class="oe_avatar"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+              </page>
+              <page string="Herramientas">
+                <separator string="Altura" attrs="{'invisible':[('altura','!=',True)]}"/>
+                <field name="herramienta_altura_ids" mode="tree" attrs="{'invisible':[('altura','!=',True)]}" readonly="1">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check" readonly="1"/>
+                    <field name="image" widget="image" readonly="1" class="oe_avatar"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+
+                <separator string="Permiso en Espacios Confinados" attrs="{'invisible':[('confinado','!=',True)]}"/>
+                <field name="herramienta_confinado_ids" mode="tree" attrs="{'invisible':[('confinado','!=',True)],'readonly': ['&amp;',('estado','!=','1'),('estado','!=','6')]}">
+                  <tree editable="top" create="false">
+                    <field name="check"/>
+                    <field name="image" widget="image" readonly="1" class="oe_avatar"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+
+                <separator string="Calor" attrs="{'invisible':[('calor','!=',True)]}"/>
+                <field name="herramienta_calor_ids" mode="tree" attrs="{'invisible':[('calor','!=',True)]}" readonly="1">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check" readonly="1"/>
+                    <field name="image" widget="image" readonly="1" class="oe_avatar"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Frío" attrs="{'invisible':[('frio','!=',True)]}"/>
+                <field name="herramienta_frio_ids" mode="tree" attrs="{'invisible':[('frio','!=',True)]}" readonly="1">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check" readonly="1"/>
+                    <field name="image" widget="image" readonly="1" class="oe_avatar"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Eléctrico" attrs="{'invisible':[('electrico','!=',True)]}"/>
+                <field name="herramienta_electrico_ids" mode="tree" attrs="{'invisible':[('electrico','!=',True)]}" readonly="1">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check" readonly="1"/>
+                    <field name="image" widget="image" readonly="1" class="oe_avatar"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+              </page>
+              <page string="Requisitos de Preparación">
+                <separator string="Altura" attrs="{'invisible':[('altura','!=',True)]}"/>
+                <field name="preparacion_altura_ids" mode="tree" attrs="{'invisible':[('altura','!=',True)],'readonly': [('estado', '!=', '2')]}">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Espacios Confinados" attrs="{'invisible':[('confinado','!=',True)]}"/>
+                <field name="preparacion_confinado_ids" mode="tree" attrs="{'invisible':[('confinado','!=',True)],'readonly': [('estado', '!=', '2')]}">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Calor" attrs="{'invisible':[('calor','!=',True)]}"/>
+                <field name="preparacion_calor_ids" mode="tree" attrs="{'invisible':[('calor','!=',True)],'readonly': [('estado', '!=', '2')]}">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Frío" attrs="{'invisible':[('frio','!=',True)]}"/>
+                <field name="preparacion_frio_ids" mode="tree" attrs="{'invisible':[('frio','!=',True)],'readonly': [('estado', '!=', '2')]}">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Eléctrico" attrs="{'invisible':[('electrico','!=',True)]}"/>
+                <field name="preparacion_electrico_ids" mode="tree" attrs="{'invisible':[('electrico','!=',True)],'readonly': [('estado', '!=', '2')]}">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+              </page>
+            </notebook>
+
+          </sheet>
+          <div class="oe_chatter">
+            <field name="message_follower_ids" widget="mail_followers"/>
+            <field name="message_ids" widget="mail_thread"/>
+          </div>
+        </form>
+      </field>
+    </record>
+
+    <!--view aprobador -->
+    <record model="ir.ui.view" id="website_permiso.permiso_form_2">
+      <field name="name">permiso.trabajo.form.2</field>
+      <field name="model">permiso.trabajo</field>
+      <field name="arch" type="xml">
+        <form create="false">
+          <header>
+            <field name="estado" widget="statusbar" options="{'fold_field': 'fold'}" readonly="1" statusbar_visible="1,2,3,4,5,6"/>
+            <button name="set_aprobado" type="object" string="Aprobar" attrs="{'invisible':[('estado','!=','3')]}" class="btn btn-primary"/>
+            <button name="set_cerrado" type="object" string="Cerrar" attrs="{'invisible':[('estado','!=','4')]}" class="btn btn-primary"/>
+
+          </header>
+          <sheet>
+            <div class="oe_title">
+              <h3>
+                <field name="name" readonly="1"/>
+              </h3>
+            </div>
+
+            <group>
+              <group>
+
+                <field name="fecha_inicio" attrs="{'readonly': ['&amp;',('estado','!=','1'),('estado','!=','6')]}"/>
+                <field name="fecha_fin" attrs="{'readonly': ['&amp;',('estado','!=','1'),('estado','!=','6')]}"/>
+                <field name="descripcion" readonly="1"/>
+
+
+              </group>
+              <group>
+                <field name="contratista_id" options="{'no_quick_create': True, 'no_create_edit' : True,'no_open':True}" readonly="1"/>
+                <field name="sub_area_id" options="{'no_quick_create': True, 'no_create_edit' : True,'no_open':True}" readonly="1"/>
+                <field name="area_id" readonly="1"/>
+                <field name="ubicacion_exacta" attrs="{'readonly': ['&amp;',('estado','!=','1'),('estado','!=','6')]}"/>
+              </group>
+            </group>
+            <group>
+              <group>
+                <field name="solicitante_id" readonly="1"/>
+                <field name="autorizador_id" readonly="1"/>
+                <field name="aprobador_id" readonly="1"/>
+              </group>
+              <group>
+                <field name="frio" readonly="1"/>
+                <field name="electrico" readonly="1"/>
+                <field name="altura" readonly="1"/>
+                <field name="confinado" readonly="1"/>
+                <field name="calor" readonly="1"/>
+              </group>
+            </group>
+            <group>
+              <field name="txt_excel_cal" invisible="1"/>
+              <field name="txt_binary_excel_cal" filename="txt_excel_cal" string="EXCEL" readonly="1"/>
+            </group>
+            <notebook>
+              <page string="Empleados">
+                <field name="empleados_ids" mode="tree" readonly="1">
+                  <tree editable="top">
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="trabajador_id" domain="[('empresa_id','=',parent.contratista_id)]"/>
+                    <field name="dni" readonly="1"/>
+                  </tree>
+                </field>
+              </page>
+              <page string="EPPs">
+                <separator string="Altura" attrs="{'invisible':[('altura','!=',True)]}"/>
+                <field name="epp_altura_ids" mode="tree" attrs="{'invisible':[('altura','!=',True)]}" readonly="1">
+                  <tree editable="top" create="false">
+                    <field name="check" readonly="1"/>
+                    <field name="image" widget="image" readonly="1" class="oe_avatar"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Espacios Confinados" attrs="{'invisible':[('confinado','!=',True)]}"/>
+                <field name="epp_confinado_ids" mode="tree" attrs="{'invisible':[('confinado','!=',True)]}" readonly="1">
+                  <tree editable="top" create="false">
+                    <field name="check" readonly="1"/>
+                    <field name="image" widget="image" readonly="1" class="oe_avatar"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Calor" attrs="{'invisible':[('calor','!=',True)]}"/>
+                <field name="epp_calor_ids" mode="tree" attrs="{'invisible':[('calor','!=',True)]}" readonly="1">
+                  <tree editable="top" create="false">
+                    <field name="check" readonly="1"/>
+                    <field name="image" widget="image" readonly="1" class="oe_avatar"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Frío" attrs="{'invisible':[('frio','!=',True)]}"/>
+                <field name="epp_frio_ids" mode="tree" attrs="{'invisible':[('frio','!=',True)]}" readonly="1">
+                  <tree editable="top" create="false">
+                    <field name="check" readonly="1"/>
+                    <field name="image" widget="image" readonly="1" class="oe_avatar"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Eléctrico" attrs="{'invisible':[('electrico','!=',True)]}"/>
+                <field name="epp_electrico_ids" mode="tree" attrs="{'invisible':[('electrico','!=',True)]}" readonly="1">
+                  <tree editable="top" create="false">
+                    <field name="check" readonly="1"/>
+                    <field name="image" widget="image" readonly="1" class="oe_avatar"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+              </page>
+              <page string="Herramientas">
+                <separator string="Altura" attrs="{'invisible':[('altura','!=',True)]}"/>
+                <field name="herramienta_altura_ids" mode="tree" attrs="{'invisible':[('altura','!=',True)]}" readonly="1">
+                  <tree editable="top" create="false">
+                    <field name="check" readonly="1"/>
+                    <field name="image" widget="image" readonly="1" class="oe_avatar"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+
+                <separator string="Permiso en Espacios Confinados" attrs="{'invisible':[('confinado','!=',True)]}"/>
+                <field name="herramienta_confinado_ids" mode="tree" attrs="{'invisible':[('confinado','!=',True)],'readonly': ['&amp;',('estado','!=','1'),('estado','!=','6')]}">
+                  <tree editable="top" create="false">
+                    <field name="check"/>
+                    <field name="image" widget="image" readonly="1" class="oe_avatar"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+
+                <separator string="Calor" attrs="{'invisible':[('calor','!=',True)]}"/>
+                <field name="herramienta_calor_ids" mode="tree" attrs="{'invisible':[('calor','!=',True)]}" readonly="1">
+                  <tree editable="top" create="false">
+                    <field name="check" readonly="1"/>
+                    <field name="image" widget="image" readonly="1" class="oe_avatar"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Frío" attrs="{'invisible':[('frio','!=',True)]}"/>
+                <field name="herramienta_frio_ids" mode="tree" attrs="{'invisible':[('frio','!=',True)]}" readonly="1">
+                  <tree editable="top" create="false">
+                    <field name="check" readonly="1"/>
+                    <field name="image" widget="image" readonly="1" class="oe_avatar"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Eléctrico" attrs="{'invisible':[('electrico','!=',True)]}"/>
+                <field name="herramienta_electrico_ids" mode="tree" attrs="{'invisible':[('electrico','!=',True)]}" readonly="1">
+                  <tree editable="top" create="false">
+                    <field name="check" readonly="1"/>
+                    <field name="image" widget="image" readonly="1" class="oe_avatar"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+              </page>
+              <page string="Requisitos de Preparación">
+                <separator string="Altura" attrs="{'invisible':[('altura','!=',True)]}"/>
+                <field name="preparacion_altura_ids" mode="tree" attrs="{'invisible':[('altura','!=',True)]}" readonly="1">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Espacios Confinados" attrs="{'invisible':[('confinado','!=',True)]}"/>
+                <field name="preparacion_confinado_ids" mode="tree" attrs="{'invisible':[('confinado','!=',True)]}" readonly="1">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Calor" attrs="{'invisible':[('calor','!=',True)]}"/>
+                <field name="preparacion_calor_ids" mode="tree" attrs="{'invisible':[('calor','!=',True)]}" readonly="1">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Frío" attrs="{'invisible':[('frio','!=',True)]}"/>
+                <field name="preparacion_frio_ids" mode="tree" attrs="{'invisible':[('frio','!=',True)]}" readonly="1">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Eléctrico" attrs="{'invisible':[('electrico','!=',True)]}"/>
+                <field name="preparacion_electrico_ids" mode="tree" attrs="{'invisible':[('electrico','!=',True)]}" readonly="1">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+              </page>
+              <page string="Cerramiento de Aberturas">
+                <separator string="Altura" attrs="{'invisible':[('altura','!=',True)]}"/>
+                <field name="cerramiento_altura_ids" mode="tree" attrs="{'invisible':[('altura','!=',True)],'readonly': [('estado', '!=', '3')]}">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Espacios Confinados" attrs="{'invisible':[('confinado','!=',True)]}"/>
+                <field name="cerramiento_confinado_ids" mode="tree" attrs="{'invisible':[('confinado','!=',True)],'readonly': [('estado', '!=', '3')]}">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Calor" attrs="{'invisible':[('calor','!=',True)]}"/>
+                <field name="cerramiento_calor_ids" mode="tree" attrs="{'invisible':[('calor','!=',True)],'readonly': [('estado', '!=', '3')]}">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Frío" attrs="{'invisible':[('frio','!=',True)]}"/>
+                <field name="cerramiento_frio_ids" mode="tree" attrs="{'invisible':[('frio','!=',True)],'readonly': [('estado', '!=', '3')]}">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Eléctrico" attrs="{'invisible':[('electrico','!=',True)]}"/>
+                <field name="cerramiento_electrico_ids" mode="tree" attrs="{'invisible':[('electrico','!=',True)],'readonly': [('estado', '!=', '3')]}">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+              </page>
+              <page string="Condiciones de Seguridad">
+                <separator string="Altura" attrs="{'invisible':[('altura','!=',True)]}"/>
+                <field name="seguridad_altura_ids" mode="tree" attrs="{'invisible':[('altura','!=',True)],'readonly': [('estado', '!=', '3')]}">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Espacios Confinados" attrs="{'invisible':[('confinado','!=',True)]}"/>
+                <field name="seguridad_confinado_ids" mode="tree" atattrs="{'invisible':[('confinado','!=',True)],'readonly': [('estado', '!=', '3')]}">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Calor" attrs="{'invisible':[('calor','!=',True)]}"/>
+                <field name="seguridad_calor_ids" mode="tree" attrs="{'invisible':[('calor','!=',True)],'readonly': [('estado', '!=', '3')]}">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Frío" attrs="{'invisible':[('frio','!=',True)]}"/>
+                <field name="seguridad_frio_ids" mode="tree" attrs="{'invisible':[('frio','!=',True)],'readonly': [('estado', '!=', '3')]}">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+                <separator string="Eléctrico" attrs="{'invisible':[('electrico','!=',True)]}"/>
+                <field name="seguridad_electrico_ids" mode="tree" attrs="{'invisible':[('electrico','!=',True)],'readonly': [('estado', '!=', '3')]}">
+                  <tree editable="top" create="false">
+                    <field name="check" string="Check"/>
+                    <field name="name"/>
+                    <field name="requisito_id" invisible="1"/>
+                    <field name="permiso_id" invisible="1"/>
+                    <field name="tipo_requi_id" invisible="1"/>
+                  </tree>
+                </field>
+              </page>
+            </notebook>
+          </sheet>
+          <div class="oe_chatter">
+            <field name="message_follower_ids" widget="mail_followers"/>
+            <field name="message_ids" widget="mail_thread"/>
+          </div>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="website_permiso.permiso_graph">
+      <field name="name">permiso.graph</field>
+      <field name="model">permiso.trabajo</field>
+      <field name="arch" type="xml">
+        <graph>
+          <field name="altura"/>
+          <field name="confinado"/>
+          <field name="calor"/>
+          <field name="frio"/>
+          <field name="electrico"/>
+        </graph>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="website_permiso.tipo_permiso_graph">
+      <field name="name">tipo.permiso.graph</field>
+      <field name="model">tipo.permiso</field>
+      <field name="arch" type="xml">
+        <graph>
+          <field name="name" group="True"/>
+        </graph>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="website_permiso.tipo_permiso_tree">
+      <field name="name">tipo.permiso.tree</field>
+      <field name="model">tipo.permiso</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="descripcion"/>
+          <field name="icono" widget="image"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="website_permiso.tipo_permiso_form">
+      <field name="name">tipo.permiso.form</field>
+      <field name="model">tipo.permiso</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <field name="icono" widget="image" class="oe_avatar" nolabel="1"/>
+            <div class="oe_title">
+              <h4>
+                <field name="name" placeholder="Nombre"/>
+              </h4>
+            </div>
+
+            <group>
+              <field name="descripcion"/>
+              <field name="tipos"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="website_permiso.area_tree">
+      <field name="name">area.tree</field>
+      <field name="model">area.area</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="descripcion"/>
+          <field name="active"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="website_permiso.area_form">
+      <field name="name">area.form</field>
+      <field name="model">area.area</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+
+            <group>
+              <field name="name"/>
+              <field name="descripcion"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="website_permiso.sub_area_tree">
+      <field name="name">sub.area.tree</field>
+      <field name="model">sub.area</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="descripcion"/>
+          <field name="area_id"/>
+          <field name="active"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="website_permiso.sub_area_form">
+      <field name="name">sub.area.form</field>
+      <field name="model">sub.area</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+
+            <group>
+              <field name="name"/>
+              <field name="descripcion"/>
+              <field name="area_id"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="website_permiso.empresa_tree">
+      <field name="name">empresa.tree</field>
+      <field name="model">empresa.empresa</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="razon_social"/>
+          <field name="ruc"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="website_permiso.empresa_from">
+      <field name="name">empresa.from</field>
+      <field name="model">empresa.empresa</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="logo" widget="image" class="oe_avatar"/>
+              <field name="name"/>
+              <field name="razon_social"/>
+              <field name="ruc"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="website_permiso.trabajador_tree">
+      <field name="name">trabajador.tree</field>
+      <field name="model">trabajador.trabajador</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="dni"/>
+          <field name="active"/>
+          <field name="empresa_id"/>
+          <field name="tipo"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="website_permiso.trabajador_form">
+      <field name="name">trabajador.form</field>
+      <field name="model">trabajador.trabajador</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="dni"/>
+              <field name="empresa_id"/>
+              <field name="requisito_ids"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="website_permiso.requisito_tree">
+      <field name="name">requisito.tree</field>
+      <field name="model">requisito.requisito</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="descripcion"/>
+          <field name="image" widget="image"/>
+          <field name="tipo_permiso_id" options="{'no_quick_create': True, 'no_create_edit' : True,'no_open':True}"/>
+          <field name="tipo_requi_id"/>
+          <field name="altura" invisible="1"/>
+          <field name="confinado" invisible="1"/>
+          <field name="calor" invisible="1"/>
+          <field name="frio" invisible="1"/>
+          <field name="electrico" invisible="1"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="website_permiso.requisito_form">
+      <field name="name">requisito.form</field>
+      <field name="model">requisito.requisito</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+
+            <field name="image" widget="image" class="oe_avatar" nolabel="1"/>
+            <div class="oe_title">
+              <h4>
+                <field name="name" placeholder="Nombre"/>
+              </h4>
+            </div>
+            <group>
+              <field name="descripcion"/>
+              <field name="tipo_permiso_id" options="{'no_quick_create': True, 'no_create_edit' : True,'no_open':True}"/>
+              <field name="tipo_requi_id"/>
+              <field name="altura" invisible="1"/>
+              <field name="confinado" invisible="1"/>
+              <field name="calor" invisible="1"/>
+              <field name="frio" invisible="1"/>
+              <field name="electrico" invisible="1"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="website_permiso.tipo_requisito_tree">
+      <field name="name">tipo_requisito.tree</field>
+      <field name="model">tipo.requisito</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="descripcion"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="website_permiso.tipo_requisito_form">
+      <field name="name">tipo_requisito.form</field>
+      <field name="model">tipo.requisito</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="descripcion"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!--Solicitante-->
+    <record model="ir.actions.act_window" id="website_permiso.permiso_accion">
+      <field name="name">Permisos de Trabajo</field>
+      <field name="res_model">permiso.trabajo</field>
+      <field name="view_mode">kanban,tree,graph,form</field>
+
+
+      <field name="search_view_id" ref="website_permiso.permiso_search_1"/>
+    </record>
+
+    <record id="website_permiso.permiso_accion_0_1" model="ir.actions.act_window.view">
+      <field name="sequence" eval="2"/>
+      <field name="view_mode">tree</field>
+      <field name="view_id" ref="website_permiso.permiso_tree"/>
+      <field name="act_window_id" ref="website_permiso.permiso_accion"/>
+    </record>
+    <record id="website_permiso.permiso_accion_0_2" model="ir.actions.act_window.view">
+      <field name="sequence" eval="4"/>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="website_permiso.permiso_form"/>
+      <field name="act_window_id" ref="website_permiso.permiso_accion"/>
+    </record>
+    <record id="website_permiso.permiso_accion_0_3" model="ir.actions.act_window.view">
+      <field name="sequence" eval="3"/>
+      <field name="view_mode">graph</field>
+      <field name="view_id" ref="website_permiso.permiso_graph"/>
+      <field name="act_window_id" ref="website_permiso.permiso_accion"/>
+    </record>
+    <record id="website_permiso.permiso_accion_0_4" model="ir.actions.act_window.view">
+      <field name="sequence" eval="1"/>
+      <field name="view_mode">kanban</field>
+      <field name="view_id" ref="website_permiso.permiso_kanban"/>
+      <field name="act_window_id" ref="website_permiso.permiso_accion"/>
+    </record>
+
+    <!--Autorizador-->
+    <record model="ir.actions.act_window" id="website_permiso.permiso_accion_1">
+      <field name="name">Permisos de Trabajo</field>
+      <field name="res_model">permiso.trabajo</field>
+      <field name="view_mode">kanban,tree,graph,form</field>
+      <field name="search_view_id" ref="website_permiso.permiso_search_2"/>
+    </record>
+
+    <record id="website_permiso.permiso_accion_1_1" model="ir.actions.act_window.view">
+      <field name="sequence" eval="2"/>
+      <field name="view_mode">tree</field>
+      <field name="view_id" ref="website_permiso.permiso_tree_1"/>
+      <field name="act_window_id" ref="website_permiso.permiso_accion_1"/>
+    </record>
+
+    <record id="website_permiso.permiso_accion_1_2" model="ir.actions.act_window.view">
+      <field name="sequence" eval="4"/>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="website_permiso.permiso_form_1"/>
+      <field name="act_window_id" ref="website_permiso.permiso_accion_1"/>
+    </record>
+
+    <record id="website_permiso.permiso_accion_1_3" model="ir.actions.act_window.view">
+      <field name="sequence" eval="3"/>
+      <field name="view_mode">graph</field>
+      <field name="view_id" ref="website_permiso.permiso_graph"/>
+      <field name="act_window_id" ref="website_permiso.permiso_accion_1"/>
+    </record>
+
+    <record id="website_permiso.permiso_accion_1_4" model="ir.actions.act_window.view">
+      <field name="sequence" eval="1"/>
+      <field name="view_mode">kanban</field>
+      <field name="view_id" ref="website_permiso.permiso_kanban_1"/>
+      <field name="act_window_id" ref="website_permiso.permiso_accion_1"/>
+    </record>
+
+    <!--Aprobador-->
+    <record model="ir.actions.act_window" id="website_permiso.permiso_accion_2">
+      <field name="name">Permisos de Trabajo</field>
+      <field name="res_model">permiso.trabajo</field>
+      <field name="view_mode">kanban,tree,graph,form</field>
+
+
+      <field name="search_view_id" ref="website_permiso.permiso_search"/>
+    </record>
+
+    <record id="website_permiso.permiso_accion_2_1" model="ir.actions.act_window.view">
+      <field name="sequence" eval="2"/>
+      <field name="view_mode">tree</field>
+      <field name="view_id" ref="website_permiso.permiso_tree_2"/>
+      <field name="act_window_id" ref="website_permiso.permiso_accion_2"/>
+    </record>
+    <record id="website_permiso.permiso_accion_2_2" model="ir.actions.act_window.view">
+      <field name="sequence" eval="4"/>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="website_permiso.permiso_form_2"/>
+      <field name="act_window_id" ref="website_permiso.permiso_accion_2"/>
+    </record>
+    <record id="website_permiso.permiso_accion_2_3" model="ir.actions.act_window.view">
+      <field name="sequence" eval="3"/>
+      <field name="view_mode">graph</field>
+      <field name="view_id" ref="website_permiso.permiso_graph"/>
+      <field name="act_window_id" ref="website_permiso.permiso_accion_2"/>
+    </record>
+    <record id="website_permiso.permiso_accion_2_4" model="ir.actions.act_window.view">
+      <field name="sequence" eval="1"/>
+      <field name="view_mode">kanban</field>
+      <field name="view_id" ref="website_permiso.permiso_kanban_2"/>
+      <field name="act_window_id" ref="website_permiso.permiso_accion_2"/>
+    </record>
+
+    <record model="ir.actions.act_window" id="website_permiso.tipo_permiso_accion">
+      <field name="name">Tipos de Permiso</field>
+      <field name="res_model">tipo.permiso</field>
+      <field name="view_mode">tree,form,graph</field>
+
+
+    </record>
+    <record model="ir.actions.act_window" id="website_permiso.area_accion">
+      <field name="name">Área</field>
+      <field name="res_model">area.area</field>
+      <field name="view_mode">tree,form</field>
+
+
+    </record>
+    <record model="ir.actions.act_window" id="website_permiso.sub_area_accion">
+      <field name="name">Sub Área</field>
+      <field name="res_model">sub.area</field>
+      <field name="view_mode">tree,form</field>
+
+
+    </record>
+    <record model="ir.actions.act_window" id="website_permiso.empresa_accion">
+      <field name="name">Empresa</field>
+      <field name="res_model">empresa.empresa</field>
+      <field name="view_mode">tree,form</field>
+
+
+    </record>
+    <record model="ir.actions.act_window" id="website_permiso.trabajador_accion">
+      <field name="name">Trabajador</field>
+      <field name="res_model">trabajador.trabajador</field>
+      <field name="view_mode">tree,form</field>
+
+
+    </record>
+    <record model="ir.actions.act_window" id="website_permiso.requisito_accion">
+      <field name="name">Requisito</field>
+      <field name="res_model">requisito.requisito</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.ui.view" id="website_permiso.usuarios_solicitante_form">
+          <field name="name">usuarios.solicitante.form</field>
+          <field name="model">res.users</field>
+          <field name="arch" type="xml">
+            <form>
+              <sheet>
+                <group>
+                  <field name="name"/>
+                  <field name="login"/>
+                  <field name="perfil"/>
+                </group>
+              </sheet>
+            </form>
+          </field>
+        </record>
+
+    <record model="ir.ui.view" id="website_permiso.usuarios_solicitante_tree">
+      <field name="name">usuarios.solicitante.tree</field>
+      <field name="model">res.users</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="login"/>
+          <field name="perfil"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="website_permiso.usuarios_solicitante_accion">
+      <field name="name">Usuario Solicitante</field>
+      <field name="res_model">res.users</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="website_permiso.usuarios_solicitante_accion_1" model="ir.actions.act_window.view">
+      <field name="sequence" eval="2"/>
+      <field name="view_mode">tree</field>
+      <field name="view_id" ref="website_permiso.usuarios_solicitante_tree"/>
+      <field name="act_window_id" ref="website_permiso.usuarios_solicitante_accion"/>
+    </record>
+
+
+    <record id="website_permiso.usuarios_solicitante_accion_2" model="ir.actions.act_window.view">
+      <field name="sequence" eval="4"/>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="website_permiso.usuarios_solicitante_form"/>
+      <field name="act_window_id" ref="website_permiso.usuarios_solicitante_accion"/>
+    </record>
+
+    <record model="ir.actions.act_window" id="website_permiso.tipo_requisito_accion">
+      <field name="name">Tipo de Requisito</field>
+      <field name="res_model">tipo.requisito</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem name="Permisos de Trabajo" sequence="-4" id="website_permiso.menu_principal" web_icon="website_permiso,static/description/icon.png"/>
+
+    <menuitem name="Permisos" sequence="0" id="website_permiso.menu_permisos" parent="website_permiso.menu_principal"/>
+
+    <menuitem name="Permisos - Solicitante" groups="group_permiso_soli" id="website_permiso.permisos_1" action="website_permiso.permiso_accion" parent="website_permiso.menu_permisos"/>
+    <menuitem name="Permisos - Autorizador" groups="group_permiso_aut" id="website_permiso.permisos_2" action="website_permiso.permiso_accion_1" parent="website_permiso.menu_permisos"/>
+    <menuitem name="Permisos - Aprobador" groups="group_permiso_apro" id="website_permiso.permisos_3" action="website_permiso.permiso_accion_2" parent="website_permiso.menu_permisos"/>
+
+    <menuitem name="Listas" sequence="1" id="website_permiso.menu_listas" parent="website_permiso.menu_principal"/>
+    <menuitem id="permisos_tablero" name="Tablero" action="board.open_board_my_dash_action" parent="website_permiso.menu_principal" sequence="-6"/>
+    <menuitem name="Tipo de Permisos" id="website_permiso.tipo_permisos" sequence="0" action="website_permiso.tipo_permiso_accion" parent="website_permiso.menu_listas"/>
+    <menuitem name="Área" id="website_permiso.area" sequence="0" action="website_permiso.area_accion" parent="website_permiso.menu_listas"/>
+    <menuitem name="Sub Áreas" id="website_permiso.sub_area" sequence="0" action="website_permiso.sub_area_accion" parent="website_permiso.menu_listas"/>
+    <menuitem name="Empresas" id="website_permiso.empresa" sequence="0" action="website_permiso.empresa_accion" parent="website_permiso.menu_listas"/>
+    <menuitem name="Trabajadores" id="website_permiso.trabajador" sequence="0" action="website_permiso.trabajador_accion" parent="website_permiso.menu_listas"/>
+    <menuitem name="Requisitos" id="website_permiso.requisito" sequence="0" action="website_permiso.requisito_accion" parent="website_permiso.menu_listas"/>
+    <menuitem name="Tipo de Requisitos" id="website_permiso.tipo_requisito" sequence="0" action="website_permiso.tipo_requisito_accion" parent="website_permiso.menu_listas"/>
+
+
+    <menuitem name="Personal" sequence="5" id="website_permiso.menu_usuarios" parent="website_permiso.menu_principal"/>
+    <menuitem id="usuarios_solicitante" name="Usuario Solicitante" action="website_permiso.usuarios_solicitante_accion" parent="website_permiso.menu_usuarios" sequence="1"/>
+    <!-- <menuitem id="usuarios_aprobador" name="Usuario Aprobador" action="website_permiso.usuarios_aprobador" parent="website_permiso.menu_usuarios" sequence="2"/>
+    <menuitem id="usuarios_autorizador" name="Usuario Autorizador" action="website_permiso.usuarios_autorizador" parent="website_permiso.menu_usuarios" sequence="3"/> -->
+
+  </data>
+</odoo>

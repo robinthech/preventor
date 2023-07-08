@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+            id="action_report_saleorder"
+            string="Quotation / Order"
+            model="iperc.continuo"
+            report_type="qweb-pdf"
+            file="iperc_continuo.report_continuo"
+            name="iperc_continuo.report_continuo"
+        />
+
+
+    </data>
+</odoo>

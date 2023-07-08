@@ -1,0 +1,81 @@
+<odoo>
+    <data>
+        <record id='equipo_proteccion_default_1' model='equipo.proteccion.default'>
+            <field name='name'>Botas de seguridad</field>
+        </record>
+        <record id='equipo_proteccion_default_2' model='equipo.proteccion.default'>
+            <field name='name'>Botas de seguridad dieléctricas</field>
+        </record>
+        <record id='equipo_proteccion_default_3' model='equipo.proteccion.default'>
+            <field name='name'>Guantes de seguridad</field>
+        </record>
+        <record id='equipo_proteccion_default_4' model='equipo.proteccion.default'>
+            <field name='name'>Guantes de seguridad dieléctrico</field>
+        </record>
+        <record id='equipo_proteccion_default_5' model='equipo.proteccion.default'>
+            <field name='name'>Guantes de seguridad de cuero</field>
+        </record>
+        <record id='equipo_proteccion_default_6' model='equipo.proteccion.default'>
+            <field name='name'>Guantes de seguridad de látex</field>
+        </record>
+        <record id='equipo_proteccion_default_7' model='equipo.proteccion.default'>
+            <field name='name'>Casco de seguridad</field>
+        </record>
+        <record id='equipo_proteccion_default_8' model='equipo.proteccion.default'>
+            <field name='name'>Lentes de seguridad transparente</field>
+        </record>
+        <record id='equipo_proteccion_default_9' model='equipo.proteccion.default'>
+            <field name='name'>Lentes de seguridad de sol</field>
+        </record>
+        <record id='equipo_proteccion_default_10' model='equipo.proteccion.default'>
+            <field name='name'>Tapones auditivos</field>
+        </record>
+        <record id='equipo_proteccion_default_11' model='equipo.proteccion.default'>
+            <field name='name'>Orejeras</field>
+        </record>
+        <record id='equipo_proteccion_default_12' model='equipo.proteccion.default'>
+            <field name='name'>Chaleco de seguridad</field>
+        </record>
+        <record id='equipo_emergencia_default_1' model='equipo.emergencia.default'>
+            <field name='name'>Extintores portátiles de PQS</field>
+        </record>
+        <record id='equipo_emergencia_default_2' model='equipo.emergencia.default'>
+            <field name='name'>Mangas contra incendio</field>
+        </record>
+        <record id='equipo_emergencia_default_3' model='equipo.emergencia.default'>
+            <field name='name'>Cilindros con arena</field>
+        </record>
+        <record id='equipo_emergencia_default_4' model='equipo.emergencia.default'>
+            <field name='name'>Botiquín de primeros auxilios</field>
+        </record>
+        <record id='equipo_emergencia_default_5' model='equipo.emergencia.default'>
+            <field name='name'>Camillas de emergencia</field>
+        </record>
+        <record id='equipo_emergencia_default_6' model='equipo.emergencia.default'>
+            <field name='name'>Uniformes especiales</field>
+        </record>
+        <record id='equipo_emergencia_default_7' model='equipo.emergencia.default'>
+            <field name='name'>Trajes Nivel A y B</field>
+        </record>
+        <record id='seguridad_responsable_default_1' model='seguridad.responsable.default'>
+            <field name='name'>Responsable 1</field>
+        </record>
+        <record id='seguridad_responsable_default_2' model='seguridad.responsable.default'>
+            <field name='name'>Responsable 2</field>
+        </record>
+        <record id='equipo_trabajadores_1' model='equipo.trabajadores.trabajadores'>
+            <field name='dni'>88888888</field>
+            <field name='name'>Trabajador 1</field>
+        </record>
+        <record id='equipo_trabajadores_2' model='equipo.trabajadores.trabajadores'>
+            <field name='dni'>88888889</field>
+            <field name='name'>Trabajador 2</field>
+        </record>
+        <record id='equipo_trabajadores_default_1' model='equipo.trabajadores.default'>
+            <field name='area'>Area</field>
+            <field name="fecha_entrega" eval="(DateTime.today()).strftime('%Y-%m-%d')"></field>
+            <field name="fecha_renovacion" eval="(DateTime.today()).strftime('%Y-%m-%d')"></field>
+            <field name="equipo_id" eval="ref('equipo_trabajadores_1')"></field>
+        </record>
+      </data>
+</odoo>

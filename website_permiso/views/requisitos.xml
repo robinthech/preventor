@@ -1,0 +1,109 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="website_permiso.requisito_estandar_tree">
+      <field name="name">requisito.estandar.tree</field>
+      <field name="model">requisito.estandar</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="tipo"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="website_permiso.requisito_estandar_form">
+      <field name="name">requisito.estandar.form</field>
+      <field name="model">requisito.estandar</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="tipo"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="website_permiso.requisito_estandar_accion">
+      <field name="name">Requisitos General</field>
+      <field name="res_model">requisito.estandar</field>
+      <field name="view_mode">tree,form</field>
+
+
+    </record>
+
+    <menuitem name="Requisitos" sequence="40" id="website_permiso.menu_requisitos_estandar" action="website_permiso.requisito_estandar_accion" parent="website_permiso.menu_principal"/>
+
+    <record model="ir.ui.view" id="website_permiso.sede_sede_tree">
+      <field name="name">sede.sede.tree</field>
+      <field name="model">sede.sede</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="website_permiso.sede_sede_form">
+      <field name="name">sede.sede.form</field>
+      <field name="model">sede.sede</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="name"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="website_permiso.sede_sede_accion">
+      <field name="name">Sedes</field>
+      <field name="res_model">sede.sede</field>
+      <field name="view_mode">tree,form</field>
+
+
+    </record>
+
+    <menuitem name="Sede" sequence="40" id="website_permiso.menu_sede_sede" action="website_permiso.sede_sede_accion" parent="website_permiso.menu_principal"/>
+
+    <record model="ir.ui.view" id="website_permiso.contratista_contratista_tree">
+      <field name="name">contratista.contratista.tree</field>
+      <field name="model">contratista.contratista</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="website_permiso.contratista_contratista_form">
+      <field name="name">contratista.contratista.form</field>
+      <field name="model">contratista.contratista</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="name"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="website_permiso.contratista_contratista_accion">
+      <field name="name">contratista</field>
+      <field name="res_model">contratista.contratista</field>
+      <field name="view_mode">tree,form</field>
+
+
+    </record>
+
+    <menuitem name="contratista" sequence="40" id="website_permiso.menu_contratista_contratista" action="website_permiso.contratista_contratista_accion" parent="website_permiso.menu_principal"/>
+
+
+  </data>
+</odoo>

@@ -1,0 +1,60 @@
+.matriz-basica .alto{
+  background:red;
+  color:white;
+}
+
+.matriz-basica .medio{
+  background:yellow;
+}
+
+.matriz-basica .bajo{
+  background:#00FF00;
+}
+
+.matriz-basica .vertical{
+  writing-mode: vertical-lr;
+  transform: rotate(-90deg);
+}
+
+.matriz-basica td{
+	border: 1px solid black;
+}
+
+
+@media only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px){
+  .matriz-basica .display-none-continuo{
+  	display: none;
+  }
+}
+
+.eliminar span{
+  background-image:url('/iperc/static/src/icon/cancel.svg');
+  display:inline-block;
+  width:23px;
+  margin-left: 10px;
+  height: 65%;
+  background-repeat: no-repeat;
+  cursor:pointer;
+}
+
+
+.tooltip_continuo .tooltiptext {
+  visibility: hidden;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+.tooltip_continuo:hover .tooltiptext {
+  visibility: visible;
+}

@@ -1,0 +1,250 @@
+<odoo>
+    <data>
+        <record id='supervisor_iperc_default_1' model='supervisor.iperc.default'>
+            <field name='name'>Supervisor 1</field>
+            <field name="fecha" eval="(DateTime.now()).strftime('%Y-%m-%d %H:%M:%S')"></field>
+        </record>
+        <record id='supervisor_iperc_default_2' model='supervisor.iperc.default'>
+            <field name='name'>Supervisor 2</field>
+            <field name="fecha" eval="(DateTime.now()).strftime('%Y-%m-%d %H:%M:%S')"></field>
+        </record>
+        <record id='supervisor_iperc_default_3' model='supervisor.iperc.default'>
+            <field name='name'>Supervisor 3</field>
+            <field name="fecha" eval="(DateTime.now()).strftime('%Y-%m-%d %H:%M:%S')"></field>
+        </record>
+        <record id='control_iperc_default_1' model='control.iperc.default'>
+            <field name='name'></field>
+        </record>
+        <record id='riesgo_iperc_default_1' model='evaluacion.iperc.default'>
+            <field name='name'></field>
+            <field name='riesgo'></field>
+            <field name='evaluacion'></field>
+            <field name='riesgo_residual'></field>
+            <field name='medidas'></field>
+        </record>
+        <record id='trabajador_iperc_default_1' model='trabajador.iperc.default'>
+            <field name='name'></field>
+            <field name='fecha' eval="(DateTime.now()).strftime('%Y-%m-%d')"></field>
+            <field name='area'></field>
+            <field name='dni'></field>
+        </record>
+        <record id='tipo_peligro_mecanico' model='type.iperc'>
+            <field name='name'>MECÁNICOS</field>
+        </record>
+        <record id='tipo_peligro_mecanico_1' model='evaluacion.iperc'>
+            <field name='name'>Equipos y Máquinas sin guardas</field>
+            <field name="type_id" eval="ref('tipo_peligro_mecanico')"></field>
+        </record>
+        <record id='tipo_peligro_mecanico_2' model='evaluacion.iperc'>
+            <field name='name'>Herramienta defectuosa</field>
+            <field name="type_id" eval="ref('tipo_peligro_mecanico')"></field>
+        </record>
+        <record id='tipo_peligro_mecanico_3' model='evaluacion.iperc'>
+            <field name='name'>Vehículos en mal estado</field>
+            <field name="type_id" eval="ref('tipo_peligro_mecanico')"></field>
+        </record>
+        <record id='tipo_peligro_mecanico_4' model='evaluacion.iperc'>
+            <field name='name'>Objetos punzocortantes</field>
+            <field name="type_id" eval="ref('tipo_peligro_mecanico')"></field>
+        </record>
+        <record id='tipo_peligro_mecanico_5' model='descripcion.iperc'>
+            <field name='name'>Equipos y Máquinas sin guardas</field>
+            <field name="descripcion_id" eval="ref('tipo_peligro_mecanico')"></field>
+        </record>
+        <record id='tipo_peligro_mecanico_6' model='descripcion.iperc'>
+            <field name='name'>Herramienta defectuosa</field>
+            <field name="descripcion_id" eval="ref('tipo_peligro_mecanico')"></field>
+        </record>
+        <record id='tipo_peligro_mecanico_7' model='descripcion.iperc'>
+            <field name='name'>Vehículos en mal estado</field>
+            <field name="descripcion_id" eval="ref('tipo_peligro_mecanico')"></field>
+        </record>
+        <record id='tipo_peligro_mecanico_8' model='descripcion.iperc'>
+            <field name='name'>Objetos punzocortantes</field>
+            <field name="descripcion_id" eval="ref('tipo_peligro_mecanico')"></field>
+        </record>
+        <record id='tipo_peligro_electricos' model='type.iperc'>
+            <field name='name'>ELECTRICOS</field>
+        </record>
+        <record id='tipo_peligro_electricos_1' model='evaluacion.iperc'>
+            <field name='name'>Tableros eléctricos en mal estado</field>
+            <field name="type_id" eval="ref('tipo_peligro_electricos')"></field>
+        </record>
+        <record id='tipo_peligro_electricos_2' model='evaluacion.iperc'>
+            <field name='name'>Conductores sin entubar y expuestos</field>
+            <field name="type_id" eval="ref('tipo_peligro_electricos')"></field>
+        </record>
+        <record id='tipo_peligro_electricos_3' model='evaluacion.iperc'>
+            <field name='name'>Tomacorrientes sobrecargados</field>
+            <field name="type_id" eval="ref('tipo_peligro_electricos')"></field>
+        </record>
+        <record id='tipo_peligro_electricos_4' model='evaluacion.iperc'>
+            <field name='name'>Deficiente distribución de cargas</field>
+            <field name="type_id" eval="ref('tipo_peligro_electricos')"></field>
+        </record>
+        <record id='tipo_peligro_electricos_5' model='evaluacion.iperc'>
+            <field name='name'>Conexiones clandestinas</field>
+            <field name="type_id" eval="ref('tipo_peligro_electricos')"></field>
+        </record>
+        <record id='tipo_peligro_electricos_6' model='descripcion.iperc'>
+            <field name='name'>Tableros eléctricos en mal estado</field>
+            <field name="descripcion_id" eval="ref('tipo_peligro_electricos')"></field>
+        </record>
+        <record id='tipo_peligro_electricos_7' model='descripcion.iperc'>
+            <field name='name'>Conductores sin entubar y expuestos</field>
+            <field name="descripcion_id" eval="ref('tipo_peligro_electricos')"></field>
+        </record>
+        <record id='tipo_peligro_electricos_8' model='descripcion.iperc'>
+            <field name='name'>Tomacorrientes sobrecargados</field>
+            <field name="descripcion_id" eval="ref('tipo_peligro_electricos')"></field>
+        </record>
+        <record id='tipo_peligro_electricos_9' model='descripcion.iperc'>
+            <field name='name'>Deficiente distribución de cargas</field>
+            <field name="descripcion_id" eval="ref('tipo_peligro_electricos')"></field>
+        </record>
+        <record id='tipo_peligro_electricos_10' model='descripcion.iperc'>
+            <field name='name'>Conexiones clandestinas</field>
+            <field name="descripcion_id" eval="ref('tipo_peligro_electricos')"></field>
+        </record>
+        <record id='tipo_peligro_incendios' model='type.iperc'>
+            <field name='name'>INCENDIOS Y EXPLOSIONES</field>
+        </record>
+        <record id='tipo_peligro_incendios_1' model='evaluacion.iperc'>
+            <field name='name'>Materiales inflamables cerca de fuentes de calor</field>
+            <field name="type_id" eval="ref('tipo_peligro_incendios')"></field>
+        </record>
+        <record id='tipo_peligro_incendios_2' model='evaluacion.iperc'>
+            <field name='name'>Cilindros de gases comprimidos inflamables con válvulas defectuosas</field>
+            <field name="type_id" eval="ref('tipo_peligro_incendios')"></field>
+        </record>
+        <record id='tipo_peligro_incendios_3' model='evaluacion.iperc'>
+            <field name='name'>Derrames de líquidos inflamables</field>
+            <field name="type_id" eval="ref('tipo_peligro_incendios')"></field>
+        </record>
+        <record id='tipo_peligro_incendios_4' model='descripcion.iperc'>
+            <field name='name'>Materiales inflamables cerca de fuentes de calor</field>
+            <field name="descripcion_id" eval="ref('tipo_peligro_incendios')"></field>
+        </record>
+        <record id='tipo_peligro_incendios_5' model='descripcion.iperc'>
+            <field name='name'>Cilindros de gases comprimidos inflamables con válvulas defectuosas</field>
+            <field name="descripcion_id" eval="ref('tipo_peligro_incendios')"></field>
+        </record>
+        <record id='tipo_peligro_incendios_6' model='descripcion.iperc'>
+            <field name='name'>Derrames de líquidos inflamables</field>
+            <field name="descripcion_id" eval="ref('tipo_peligro_incendios')"></field>
+        </record>
+        <record id='tipo_peligro_ergo' model='type.iperc'>
+            <field name='name'>ERGONÓMICOS</field>
+        </record>
+        <record id='tipo_peligro_ergo_1' model='evaluacion.iperc'>
+            <field name='name'>Posturas forzadas</field>
+            <field name="type_id" eval="ref('tipo_peligro_ergo')"></field>
+        </record>
+        <record id='tipo_peligro_ergo_2' model='evaluacion.iperc'>
+            <field name='name'>Movimientos repetitivos</field>
+            <field name="type_id" eval="ref('tipo_peligro_ergo')"></field>
+        </record>
+        <record id='tipo_peligro_ergo_3' model='evaluacion.iperc'>
+            <field name='name'>Malas técnicas de levantamiento y manipulación manual de cargas</field>
+            <field name="type_id" eval="ref('tipo_peligro_ergo')"></field>
+        </record>
+        <record id='tipo_peligro_ergo_4' model='evaluacion.iperc'>
+            <field name='name'>Sobreesfuerzos</field>
+            <field name="type_id" eval="ref('tipo_peligro_ergo')"></field>
+        </record>
+        <record id='tipo_peligro_ergo_5' model='descripcion.iperc'>
+            <field name='name'>Posturas forzadas</field>
+            <field name="descripcion_id" eval="ref('tipo_peligro_ergo')"></field>
+        </record>
+        <record id='tipo_peligro_ergo_6' model='descripcion.iperc'>
+            <field name='name'>Movimientos repetitivos</field>
+            <field name="descripcion_id" eval="ref('tipo_peligro_ergo')"></field>
+        </record>
+        <record id='tipo_peligro_ergo_7' model='descripcion.iperc'>
+            <field name='name'>Malas técnicas de levantamiento y manipulación manual de cargas</field>
+            <field name="descripcion_id" eval="ref('tipo_peligro_ergo')"></field>
+        </record>
+        <record id='tipo_peligro_ergo_8' model='descripcion.iperc'>
+            <field name='name'>Sobreesfuerzos</field>
+            <field name="descripcion_id" eval="ref('tipo_peligro_ergo')"></field>
+        </record>
+        <record id='tipo_peligro_locativos' model='type.iperc'>
+            <field name='name'>LOCATIVOS</field>
+        </record>
+        <record id='tipo_peligro_locativos_1' model='evaluacion.iperc'>
+            <field name='name'>Hacinamiento</field>
+            <field name="type_id" eval="ref('tipo_peligro_locativos')"></field>
+        </record>
+        <record id='tipo_peligro_locativos_2' model='evaluacion.iperc'>
+            <field name='name'>Falta de Orden y Limpieza</field>
+            <field name="type_id" eval="ref('tipo_peligro_locativos')"></field>
+        </record>
+        <record id='tipo_peligro_locativos_3' model='evaluacion.iperc'>
+            <field name='name'>Superficies de trabajo en mal estado</field>
+            <field name="type_id" eval="ref('tipo_peligro_locativos')"></field>
+        </record>
+        <record id='tipo_peligro_locativos_4' model='evaluacion.iperc'>
+            <field name='name'>Infraestructura en mal estado de conservación</field>
+            <field name="type_id" eval="ref('tipo_peligro_locativos')"></field>
+        </record>
+        <record id='tipo_peligro_locativos_5' model='descripcion.iperc'>
+            <field name='name'>Hacinamiento</field>
+            <field name="descripcion_id" eval="ref('tipo_peligro_locativos')"></field>
+        </record>
+        <record id='tipo_peligro_locativos_6' model='descripcion.iperc'>
+            <field name='name'>Falta de Orden y Limpieza</field>
+            <field name="descripcion_id" eval="ref('tipo_peligro_locativos')"></field>
+        </record>
+        <record id='tipo_peligro_locativos_7' model='descripcion.iperc'>
+            <field name='name'>Superficies de trabajo en mal estado</field>
+            <field name="descripcion_id" eval="ref('tipo_peligro_locativos')"></field>
+        </record>
+        <record id='tipo_peligro_locativos_8' model='descripcion.iperc'>
+            <field name='name'>Infraestructura en mal estado de conservación</field>
+            <field name="descripcion_id" eval="ref('tipo_peligro_locativos')"></field>
+        </record>
+        <record id='tipo_peligro_psico' model='type.iperc'>
+            <field name='name'>PSICOSOCIAL</field>
+        </record>
+        <record id='tipo_peligro_psico_1' model='evaluacion.iperc'>
+            <field name='name'>Estilo de mando autoritario</field>
+            <field name="type_id" eval="ref('tipo_peligro_psico')"></field>
+        </record>
+        <record id='tipo_peligro_psico_2' model='evaluacion.iperc'>
+            <field name='name'>Deficiente clima laboral</field>
+            <field name="type_id" eval="ref('tipo_peligro_psico')"></field>
+        </record>
+        <record id='tipo_peligro_psico_3' model='evaluacion.iperc'>
+            <field name='name'>Comunicaciones deficientes</field>
+            <field name="type_id" eval="ref('tipo_peligro_psico')"></field>
+        </record>
+        <record id='tipo_peligro_psico_4' model='evaluacion.iperc'>
+            <field name='name'>Turnos y horarios de trabajo</field>
+            <field name="type_id" eval="ref('tipo_peligro_psico')"></field>
+        </record>
+        <record id='tipo_peligro_psico_5' model='evaluacion.iperc'>
+            <field name='name'>Régimen laboral extenso</field>
+            <field name="type_id" eval="ref('tipo_peligro_psico')"></field>
+        </record>
+        <record id='tipo_peligro_psico_6' model='descripcion.iperc'>
+            <field name='name'>Estilo de mando autoritario</field>
+            <field name="descripcion_id" eval="ref('tipo_peligro_psico')"></field>
+        </record>
+        <record id='tipo_peligro_psico_7' model='descripcion.iperc'>
+            <field name='name'>Deficiente clima laboral</field>
+            <field name="descripcion_id" eval="ref('tipo_peligro_psico')"></field>
+        </record>
+        <record id='tipo_peligro_psico_8' model='descripcion.iperc'>
+            <field name='name'>Comunicaciones deficientes</field>
+            <field name="descripcion_id" eval="ref('tipo_peligro_psico')"></field>
+        </record>
+        <record id='tipo_peligro_psico_9' model='descripcion.iperc'>
+            <field name='name'>Turnos y horarios de trabajo</field>
+            <field name="descripcion_id" eval="ref('tipo_peligro_psico')"></field>
+        </record>
+        <record id='tipo_peligro_psico_10' model='descripcion.iperc'>
+            <field name='name'>Régimen laboral extenso</field>
+            <field name="descripcion_id" eval="ref('tipo_peligro_psico')"></field>
+        </record>
+    </data>
+</odoo>

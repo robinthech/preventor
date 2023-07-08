@@ -1,0 +1,458 @@
+<odoo>
+    <data>
+      <record id='inspecciones.formato_inspecion_subestandar' model='formato.inspeccion'>
+          <field name='name'>FORMATO DE REPORTE DE CONDICIONES SUBESTANDARES ENCONTRADAS</field>
+          <field name='tipo'>2</field>
+      </record>
+
+      <record id='inspecciones.condiciones_area_trabajo_sub' model='formato.condicion'>
+        <field name='name'>CONDICIONES DE LAS AREAS DE TRABAJO</field>
+          <field name='inspeccion_id' ref='inspecciones.formato_inspecion_subestandar'/>
+      </record>
+
+      <record id='inspecciones.condiciones_area_trabajo_sub_1' model='formato.sub.condicion'>
+        <field name='name'>Se encuentra el piso del área de trabajo limpio y libre de obstáculos</field>
+        <field name='rango_peligro'>A</field>
+        <field name='nivel_riesgo'>B</field>
+        <field name='condicion_id' ref='inspecciones.condiciones_area_trabajo_sub'/>
+      </record>
+
+      <record id='inspecciones.formato_inspecion_general' model='formato.inspeccion'>
+          <field name='name'>FORMATO DE INSPECCIONES GENERALES DE SEGURIDAD</field>
+      </record>
+
+      <record id='inspecciones.condiciones_area_trabajo' model='formato.condicion'>
+          <field name='name'>CONDICIONES DE LAS AREAS DE TRABAJO</field>
+          <field name='inspeccion_id' ref='inspecciones.formato_inspecion_general'/>
+      </record>
+
+      <record id='inspecciones.condiciones_area_trabajo_1' model='formato.sub.condicion'>
+        <field name='name'>Se encuentra el piso del área de trabajo limpio y libre de obstáculos</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.condiciones_area_trabajo'/>
+      </record>
+
+      <record id='inspecciones.condiciones_area_trabajo_2' model='formato.sub.condicion'>
+        <field name='name'>Las puertas de salida se encuentran debidamente señalizadas</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.condiciones_area_trabajo'/>
+      </record>
+
+      <record id='inspecciones.condiciones_area_trabajo_3' model='formato.sub.condicion'>
+        <field name='name'>Las escaleras están en buen estado y libres de obstáculos</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.condiciones_area_trabajo'/>
+      </record>
+
+      <record id='inspecciones.condiciones_area_trabajo_4' model='formato.sub.condicion'>
+        <field name='name'>Las vías de escape se encuentran debidamente señalizadas</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.condiciones_area_trabajo'/>
+      </record>
+
+      <record id='inspecciones.condiciones_area_trabajo_5' model='formato.sub.condicion'>
+        <field name='name'>Se encuentran las áreas de   trabajo claramente identificadas</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.condiciones_area_trabajo'/>
+      </record>
+
+      <record id='inspecciones.condiciones_area_trabajo_6' model='formato.sub.condicion'>
+        <field name='name'>Se encuentran las áreas de trabajo debidamente demarcadas</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.condiciones_area_trabajo'/>
+      </record>
+
+      <record id='inspecciones.condiciones_area_trabajo_7' model='formato.sub.condicion'>
+        <field name='name'>Los esmeriles están señalizados, tienen guardas y careta de  protección</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.condiciones_area_trabajo'/>
+      </record>
+
+      <record id='inspecciones.condiciones_area_trabajo_8' model='formato.sub.condicion'>
+        <field name='name'>El área de trabajo cuenta con las señales de seguridad adecuada</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.condiciones_area_trabajo'/>
+      </record>
+
+      <!-- EQUIPO DE PROTECCIÓN PERSONAL -->
+      <record id='inspecciones.equipo_proteccion_personal' model='formato.condicion'>
+          <field name='name'>EQUIPO DE PROTECCIÓN PERSONAL</field>
+          <field name='inspeccion_id' ref='inspecciones.formato_inspecion_general'/>
+      </record>
+
+      <record id='inspecciones.equipo_proteccion_personal_1' model='formato.sub.condicion'>
+        <field name='name'>Los trabajadores utilizan adecuadamente los cascos de protección</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.equipo_proteccion_personal'/>
+      </record>
+
+      <record id='inspecciones.equipo_proteccion_personal_2' model='formato.sub.condicion'>
+        <field name='name'>Los trabajadores utilizan botas de protección en buenas condiciones</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.equipo_proteccion_personal'/>
+      </record>
+
+      <record id='inspecciones.equipo_proteccion_personal_3' model='formato.sub.condicion'>
+        <field name='name'>Los trabajadores utilizan las gafas de protección cuando es requerido</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.equipo_proteccion_personal'/>
+      </record>
+
+      <record id='inspecciones.equipo_proteccion_personal_4' model='formato.sub.condicion'>
+        <field name='name'>Los trabajadores utilizan las orejeras o tapones cuando es requerido</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.equipo_proteccion_personal'/>
+      </record>
+
+      <record id='inspecciones.equipo_proteccion_personal_5' model='formato.sub.condicion'>
+        <field name='name'>Los trabajadores utilizan protección respiratoria cuando es requerido</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.equipo_proteccion_personal'/>
+      </record>
+
+      <record id='inspecciones.equipo_proteccion_personal_6' model='formato.sub.condicion'>
+        <field name='name'>Los trabajadores utilizan adecuadamente el uniforme de trabajo</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.equipo_proteccion_personal'/>
+      </record>
+
+      <record id='inspecciones.equipo_proteccion_personal_7' model='formato.sub.condicion'>
+        <field name='name'>Los trabajadores utilizan otros E.P.P. cuando es requerido</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.equipo_proteccion_personal'/>
+      </record>
+
+      <!--ORDEN Y LIMPIEZA -->
+      <record id='inspecciones.orden_limpieza' model='formato.condicion'>
+          <field name='name'>ORDEN Y LIMPIEZA</field>
+          <field name='inspeccion_id' ref='inspecciones.formato_inspecion_general'/>
+      </record>
+
+      <record id='inspecciones.orden_limpieza_1' model='formato.sub.condicion'>
+        <field name='name'>Las zonas de trabajo se encuentran limpias en todo momento</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.orden_limpieza'/>
+      </record>
+
+      <record id='inspecciones.orden_limpieza_2' model='formato.sub.condicion'>
+        <field name='name'>Se utiliza las bandejas para el aceite usado, son retiradas oportunamente</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.orden_limpieza'/>
+      </record>
+
+      <record id='inspecciones.orden_limpieza_3' model='formato.sub.condicion'>
+        <field name='name'>Existe un área para los equipos de limpieza cuando no se utilizan</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.orden_limpieza'/>
+      </record>
+
+      <record id='inspecciones.orden_limpieza_4' model='formato.sub.condicion'>
+        <field name='name'>Las mangueras de aire se encuentran colgadas cuando no se utilizan</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.orden_limpieza'/>
+      </record>
+
+      <record id='inspecciones.orden_limpieza_5' model='formato.sub.condicion'>
+        <field name='name'>Los cartones, parihuelas  cajas son retiradas del área de trabajo</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.orden_limpieza'/>
+      </record>
+
+      <record id='inspecciones.orden_limpieza_6' model='formato.sub.condicion'>
+        <field name='name'>Se encuentran ordenadas las canastillas para los componentes retirados</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.orden_limpieza'/>
+      </record>
+
+      <record id='inspecciones.orden_limpieza_7' model='formato.sub.condicion'>
+        <field name='name'>Los trabajadores no consumen alimentos y bebidas en el área de trabajo</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.orden_limpieza'/>
+      </record>
+
+      <record id='inspecciones.orden_limpieza_8' model='formato.sub.condicion'>
+        <field name='name'>Los depósitos de chatarra y basura contienen sólo lo que indica su clasificación de color</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.orden_limpieza'/>
+      </record>
+
+
+      <!--ORDEN Y LIMPIEZA -->
+      <record id='inspecciones.herramientas_mano' model='formato.condicion'>
+          <field name='name'>HERRAMIENTAS DE MANO</field>
+          <field name='inspeccion_id' ref='inspecciones.formato_inspecion_general'/>
+      </record>
+
+      <record id='inspecciones.herramientas_mano_1' model='formato.sub.condicion'>
+        <field name='name'>Se encuentran en buen estado de conservación</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.herramientas_mano'/>
+      </record>
+
+      <record id='inspecciones.herramientas_mano_2' model='formato.sub.condicion'>
+        <field name='name'>Las herramientas sin uso se encuentran debidamente almacenadas</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.herramientas_mano'/>
+      </record>
+
+      <record id='inspecciones.herramientas_mano_3' model='formato.sub.condicion'>
+        <field name='name'>Las herramientas en mal estado son retiradas del área de trabajo</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.herramientas_mano'/>
+      </record>
+
+      <record id='inspecciones.herramientas_mano_4' model='formato.sub.condicion'>
+        <field name='name'>Los trabajadores utilizan en forma correcta las herramientas de mano</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.herramientas_mano'/>
+      </record>
+
+      <record id='inspecciones.herramientas_mano_5' model='formato.sub.condicion'>
+        <field name='name'>Las maletas de herramientas de los trabajadores se encuentran limpias</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.herramientas_mano'/>
+      </record>
+
+      <!--ORDEN Y LIMPIEZA -->
+      <record id='inspecciones.equipos_izaje' model='formato.condicion'>
+          <field name='name'>EQUIPOS DE IZAJE</field>
+          <field name='inspeccion_id' ref='inspecciones.formato_inspecion_general'/>
+      </record>
+
+      <record id='inspecciones.equipos_izaje_1' model='formato.sub.condicion'>
+        <field name='name'>Los trabajadores utilizan los equipos de izaje necesarios</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.equipos_izaje'/>
+      </record>
+
+      <record id='inspecciones.equipos_izaje_2' model='formato.sub.condicion'>
+        <field name='name'>Los trabajadores han sido capacitados en el uso de equipos de izaje</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.equipos_izaje'/>
+      </record>
+
+      <record id='inspecciones.equipos_izaje_3' model='formato.sub.condicion'>
+        <field name='name'>Los comandos de los puentes grúas funcionan adecuadamente</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.equipos_izaje'/>
+      </record>
+
+      <record id='inspecciones.equipos_izaje_4' model='formato.sub.condicion'>
+        <field name='name'>Las fajas y eslingas indican las capacidades máximas de levante</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.equipos_izaje'/>
+      </record>
+
+      <record id='inspecciones.equipos_izaje_5' model='formato.sub.condicion'>
+        <field name='name'>Los armarios tienen un inventario de los equipos de izaje con que cuenta</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.equipos_izaje'/>
+      </record>
+
+      <record id='inspecciones.equipos_izaje_6' model='formato.sub.condicion'>
+        <field name='name'>Los puentes grúas o las grúas rotativas no se quedan  con cargas suspendidas</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.equipos_izaje'/>
+      </record>
+
+      <record id='inspecciones.equipos_izaje_7' model='formato.sub.condicion'>
+        <field name='name'>Los trabajadores no realizan trabajos debajo de cargas suspendidas</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.equipos_izaje'/>
+      </record>
+
+      <!--ORDEN Y LIMPIEZA -->
+      <record id='inspecciones.manejo_almacenamiento_materiales' model='formato.condicion'>
+          <field name='name'>MANEJO Y ALMACENAMIENTO DE MATERIALES</field>
+          <field name='inspeccion_id' ref='inspecciones.formato_inspecion_general'/>
+      </record>
+
+      <record id='inspecciones.manejo_almacenamiento_materiales_1' model='formato.sub.condicion'>
+        <field name='name'>Se utilizan los equipos de transporte adecuados para los materiales</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.manejo_almacenamiento_materiales'/>
+      </record>
+
+      <record id='inspecciones.manejo_almacenamiento_materiales_2' model='formato.sub.condicion'>
+        <field name='name'>Las canastillas utilizadas en el área son retiradas oportunamente</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.manejo_almacenamiento_materiales'/>
+      </record>
+
+      <record id='inspecciones.manejo_almacenamiento_materiales_3' model='formato.sub.condicion'>
+        <field name='name'>Las canastillas están debidamente almacenadas en los estantes</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.manejo_almacenamiento_materiales'/>
+      </record>
+
+      <record id='inspecciones.manejo_almacenamiento_materiales_4' model='formato.sub.condicion'>
+        <field name='name'>Se encuentran las áreas de almacenamiento ordenadas y limpias</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.manejo_almacenamiento_materiales'/>
+      </record>
+
+      <record id='inspecciones.manejo_almacenamiento_materiales_5' model='formato.sub.condicion'>
+        <field name='name'>Están los armarios y repisas seguros, se encuentran limpios y ordenados</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.manejo_almacenamiento_materiales'/>
+      </record>
+
+      <record id='inspecciones.manejo_almacenamiento_materiales_6' model='formato.sub.condicion'>
+        <field name='name'>Están limpios y ordenados los patios adyacentes a su área de trabajo</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.manejo_almacenamiento_materiales'/>
+      </record>
+
+      <record id='inspecciones.manejo_almacenamiento_materiales_7' model='formato.sub.condicion'>
+        <field name='name'>Los materiales están almacenados sólo en los lugares establecidos</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.manejo_almacenamiento_materiales'/>
+      </record>
+
+      <!--ORDEN Y LIMPIEZA -->
+      <record id='inspecciones.soldadura_oxicorte' model='formato.condicion'>
+          <field name='name'>SOLDADURA Y OXICORTE</field>
+          <field name='inspeccion_id' ref='inspecciones.formato_inspecion_general'/>
+      </record>
+
+      <record id='inspecciones.soldadura_oxicorte_1' model='formato.sub.condicion'>
+        <field name='name'>Los equipos de oxiacetileno cuentan con bloqueadores de retroceso</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.soldadura_oxicorte'/>
+      </record>
+
+      <record id='inspecciones.soldadura_oxicorte_2' model='formato.sub.condicion'>
+        <field name='name'>Las válvulas de los equipos de oxiacetileno se cierran cuando no se usan</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.soldadura_oxicorte'/>
+      </record>
+
+      <record id='inspecciones.soldadura_oxicorte_3' model='formato.sub.condicion'>
+        <field name='name'>Los equipos de protección para soldadura están disponibles y en uso</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.soldadura_oxicorte'/>
+      </record>
+
+      <record id='inspecciones.soldadura_oxicorte_4' model='formato.sub.condicion'>
+        <field name='name'>Se utilizan protectores cuando se realizan trabajos de  soldadura</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.soldadura_oxicorte'/>
+      </record>
+
+      <record id='inspecciones.soldadura_oxicorte_5' model='formato.sub.condicion'>
+        <field name='name'>Los cables eléctricos de las máquinas soldadoras están en buen estado</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.soldadura_oxicorte'/>
+      </record>
+
+      <record id='inspecciones.soldadura_oxicorte_6' model='formato.sub.condicion'>
+        <field name='name'>Las botellas de  gases comprimidos cuentan con tapa de protección</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.soldadura_oxicorte'/>
+      </record>
+
+      <record id='inspecciones.soldadura_oxicorte_7' model='formato.sub.condicion'>
+        <field name='name'>Las botellas no utilizadas se encuentran en el almacén respectivo</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.soldadura_oxicorte'/>
+      </record>
+
+      <!--ORDEN Y LIMPIEZA -->
+      <record id='inspecciones.equipos_contraincendio' model='formato.condicion'>
+          <field name='name'>EQUIPOS CONTRAINCENDIO</field>
+          <field name='inspeccion_id' ref='inspecciones.formato_inspecion_general'/>
+      </record>
+
+      <record id='inspecciones.equipos_contraincendio_1' model='formato.sub.condicion'>
+        <field name='name'>Los extintores de su área se encuentran en el lugar asignado</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.equipos_contraincendio'/>
+      </record>
+
+      <record id='inspecciones.equipos_contraincendio_2' model='formato.sub.condicion'>
+        <field name='name'>Los extintores cuentan con precinto, pasador y tarjeta de control</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.equipos_contraincendio'/>
+      </record>
+
+      <record id='inspecciones.equipos_contraincendio_3' model='formato.sub.condicion'>
+        <field name='name'>El espacio de acceso al extintor se encuentra libre de obstáculos</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.equipos_contraincendio'/>
+      </record>
+
+      <record id='inspecciones.equipos_contraincendio_4' model='formato.sub.condicion'>
+        <field name='name'>Los trabajadores conocen el uso de los extintores, han sido capacitados</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.equipos_contraincendio'/>
+      </record>
+
+      <record id='inspecciones.equipos_contraincendio_5' model='formato.sub.condicion'>
+        <field name='name'>Está publicado en el área de trabajo el procedimiento en caso de incendio</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.equipos_contraincendio'/>
+      </record>
+
+      <record id='inspecciones.equipos_contraincendio_6' model='formato.sub.condicion'>
+        <field name='name'>La señal para extintores es visible desde cualquier punto del taller</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.equipos_contraincendio'/>
+      </record>
+
+      <record id='inspecciones.equipos_contraincendio_7' model='formato.sub.condicion'>
+        <field name='name'>Los trabajadores conocen la ubicación  de los pulsadores contraincendio</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.equipos_contraincendio'/>
+      </record>
+
+      <record id='inspecciones.equipos_contraincendio_8' model='formato.sub.condicion'>
+        <field name='name'>El almacén de materiales inflamables cuenta con extintor adecuado</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.equipos_contraincendio'/>
+      </record>
+
+      <!--ORDEN Y LIMPIEZA -->
+      <record id='inspecciones.sistemos_electricos' model='formato.condicion'>
+          <field name='name'>SISTEMAS ELÉCTRICOS</field>
+          <field name='inspeccion_id' ref='inspecciones.formato_inspecion_general'/>
+      </record>
+
+      <record id='inspecciones.sistemos_electricos_1' model='formato.sub.condicion'>
+        <field name='name'>Los tomacorrientes están protegidos y asegurados</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.sistemos_electricos'/>
+      </record>
+
+      <record id='inspecciones.sistemos_electricos_2' model='formato.sub.condicion'>
+        <field name='name'>Los cables eléctricos se encuentran entubados o empotrados a la pared</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.sistemos_electricos'/>
+      </record>
+
+      <record id='inspecciones.sistemos_electricos_3' model='formato.sub.condicion'>
+        <field name='name'>Las extensiones eléctricas provisionales son de cable vulcanizado</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.sistemos_electricos'/>
+      </record>
+
+      <record id='inspecciones.sistemos_electricos_4' model='formato.sub.condicion'>
+        <field name='name'>Los tableros eléctricos indican claramente que controlan</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.sistemos_electricos'/>
+      </record>
+
+      <record id='inspecciones.sistemos_electricos_5' model='formato.sub.condicion'>
+        <field name='name'>Los tableros eléctricos se encuentran despejados en todo momento</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.sistemos_electricos'/>
+      </record>
+
+      <record id='inspecciones.sistemos_electricos_6' model='formato.sub.condicion'>
+        <field name='name'>Se colocan avisos de prohibido energizar en maquinaria e reparación</field>
+        <field name='puntaje_maximo'>3</field>
+        <field name='condicion_id' ref='inspecciones.sistemos_electricos'/>
+      </record>
+
+
+    </data>
+</odoo>

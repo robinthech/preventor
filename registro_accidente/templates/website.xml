@@ -1,0 +1,292 @@
+<odoo>
+  <template id="lista_accidentes" name="N° Accidentes">
+    <t t-call="registro_accidente.sidebar_accidente">
+      <div class="wrapper accidentes-principal modulo-wrapper">
+        <!-- Sidebar -->
+        <!-- Page Content -->
+        <div id="content" class="list-registro-accidente" t-att-data-empresa_id="empresa.id">
+          <div class="row py-2">
+            <div class="col-12">
+              <div class="alert alert-primary text-center" role="alert">
+                <h4>REGISTRO DE ACCIDENTES
+                </h4>
+              </div>
+              <button type="button" class="btn bg-success" data-toggle="modal" t-attf-data-target="#crearregistro">NUEVO REGISTRO</button>
+              <div class="modal fade" t-attf-id="crearregistro" t-att-aria-hidden="true" tabindex="-1" role="dialog" aria-labelledby="exampleModalTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">NUEVO REGISTRO</h5>
+                    </div>
+                    <div class="modal-body">
+                      FECHA
+                      <input class="form-control col-12" t-att-value="fecha_actual" name="new-registro-fecha" type="date"/>
+                      RAZON SOCIAL
+                      <input class="form-control col-12" name="new-registro-razon" type="text"/>
+                      AREA / SEDE
+                      <input class="form-control col-12" name="new-registro-lugar" type="text"/>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Descartar</button>
+                      <!--Guardar requiere de js-->
+                      <button type="button" class="btn btn-primary botton-registro-accidente">Guardar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <hr/>
+              <div class="table-responsive">
+                <table id="modulo-registro-accidente" class="table table-hover responsive nowrap w-100 text-center" t-att-data-plan_id="plan.id">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>REGISTRO</th>
+                    <th>FECHA</th>
+                    <th>EDITAR</th>
+                    <th>
+                      EXCEL
+                    </th>
+                    <th>
+                      ELIMINAR
+                    </th>
+                  </tr>
+                </thead>
+                <tbody >
+                  <t t-set="contador" t-value="0"/>
+                  <t t-foreach="registros" t-as="registro">
+                    <t t-set="contador" t-value="contador + 1"/>
+                    <tr>
+                      <td>
+                        <div>
+                          <span t-field="registro.sequence"/>
+                        </div>
+                      </td>
+                      <td >
+                        <span t-field="registro.fecha"/>
+                      </td>
+                      <td >
+                        <a class="btn btn-success" t-att-href="'/accidentes/%s' % (registro.id)" role="button">
+                          <i class="fa fa-pencil-square-o"></i>
+
+                        </a>
+                      </td>
+                      <t t-if="registro.txt_binary_excel_cal">
+                        <t t-if="(plan.report_excel or contador==1)">
+                          <td >
+                            <a class="btn btn-info" role="button" t-attf-href="/web/content?model=registro.accidente&amp;field=txt_binary_excel_cal&amp;id={{registro.id}}&amp;filename={{registro.txt_excel_cal}}&amp;download=true">
+                              <i class="fa fa-file-excel-o"></i>
+                            </a>
+                          </td>
+                        </t>
+                        <t t-else="">
+                          <td class="line-excel">
+                            <a class="btn btn-info text-light file-gratis">
+                              <i class="fa fa-file-excel-o"></i>
+                            </a>
+                          </td>
+
+                        </t>
+                      </t>
+                      <t t-else="">
+                        <td class="line-excel">
+                        </td>
+                      </t>
+                      <td>
+                        <div >
+                          <button type="button" class="btn btn-danger" data-toggle="modal" t-attf-data-target="#accidente-{{registro.id}}">
+                            <i class="fa fa-trash"></i>
+                          </button>
+                          <div class="modal fade" t-attf-id="accidente-{{registro.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                </div>
+                                <div class="modal-body">
+                                  <div class="alert alert-danger" role="alert">
+                                    ESTA SEGURO DE ELIMINAR
+                                  </div>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                                  <button type="button" class="btn btn-secondary botton-eliminar-registro-accidente" t-att-data-registro_id="registro.id">ELIMINAR</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                      </td>
+                    </tr>
+                  </t>
+                </tbody>
+              </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </t>
+  </template>
+
+  <template id="lista_accidentes_form" name="N° Accidentes">
+    <t t-call="registro_accidente.sidebar_accidente">
+      <div class="wrapper modulo-accidente">
+        <!-- Sidebar -->
+
+        <!-- Page Content -->
+        <div id="content">
+          <div class="form-registro-accidente" t-att-data-registro_id="registro.id">
+            <div class="row" style="height: 10px;"></div>
+            <table  class="table table-hover responsive nowrap tabla-registro-accidente-form w-100 text-center">
+              <thead class="bg-primary">
+                <tr>
+                  <th scope="col" colspan="2" ><span t-field="registro.sequence"/></th>
+                  <th scope="col" colspan="7" > FORMATO DE DATOS PARA REGISTRO DE ESTADÍSTICAS DE SEGURIDAD Y SALUD EN EL TRABAJO</th>
+                </tr>
+                  <tr class="bg-secondary">
+                  <th  scope="col" colspan="3" >FECHA</th>
+                  <th  scope="col" colspan="3" > RAZÓN SOCIAL</th>
+                  <th  scope="col" colspan="3" >AREA / SEDE </th>
+                </tr>
+
+              </thead>
+              <tbody >
+                <td scope="col" colspan="3" class="change-linea m-0 p-0">
+                    <input class="fecha w-100 h-100 m-0 p-0" t-att-value="registro.fecha" type="date"/>
+                </td>
+                <td scope="col" colspan="3" class="change-linea m-0 p-0">
+                    <input class="razon_social w-100 h-100 m-0 p-0" t-att-value="registro.razon_social" type="text"/>
+                </td>
+                <td scope="col" colspan="3" class="change-linea m-0 p-0">
+                    <input class="lugar w-100 h-100 m-0 p-0" t-att-value="registro.lugar" type="text"/>
+                </td>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="carousel-inner" style="overflow-x: auto;">
+                <table class="table table-hover responsive nowrap tabla-registro-accidente-form w-100 text-center">
+                  <thead class="bg-primary">
+                    <tr>
+                      <th>MES</th>
+                      <th>N° ACCIDENTE MORTAL</th>
+                      <th>N° ACCIDENTE DE TRABAJO LEVE</th>
+                      <th>N° ACCIDENTES DE TRABAJO INCAPACITANTES</th>
+                      <th> TOTAL DE HORAS HOMBRES TRABAJADAS</th>
+                      <th>ÍNDICE DE FRECUENCIA</th>
+                      <th>N° DÍAS PERDIDOS</th>
+                      <th>ÍNDICE DE GRAVEDAD</th>
+                      <th>ÍNDICE DE ACCIDENTABILIDAD</th>
+                      <th>  N° ENFERMEDAD OCUPACIONAL</th>
+                      <th>N° TRABAJADORES EXPUESTOS AL AGENTE</th>
+                      <th>TASA DE INCIDENCIA </th>
+                      <th>N° TRABAJADORES CON CÁNCER PROFESIONAL</th>
+                      <th>  N° INCIDENTES PELIGROSOS </th>
+                      <th>N° INCIDENTES   </th>
+
+                    </tr>
+                  </thead>
+                  <tbody >
+                    <t t-foreach="registro.accidentes_ids" t-as="line">
+                      <tr>
+                        <td>
+                          <div>
+                            <span t-esc="line.name"></span>
+
+                          </div>
+                        </td>
+                        <td class="change-linea m-0 p-0">
+
+                          <input class="linea-accidente m-0 p-0" oninput="this.value = Math.abs(this.value)" min="0" name="n_mortal" t-att-value="line.n_mortal" type="number" t-att-data-linea_id="line.id"/>
+                        </td>
+                        <td class="change-linea m-0 p-0">
+                          <input class="linea-accidente m-0 p-0" oninput="this.value = Math.abs(this.value)" min="0" name="n_leve" t-att-value="line.n_leve" type="number" t-att-data-linea_id="line.id"/>
+                        </td>
+                        <td class="change-linea m-0 p-0">
+                          <input class="linea-accidente m-0 p-0" oninput="this.value = Math.abs(this.value)" min="0" name="n_inca" t-att-value="line.n_inca" type="number" t-att-data-linea_id="line.id"/>
+                        </td>
+                        <td class="change-linea m-0 p-0">
+                          <input class="linea-accidente" name="horas_trabajadas" t-att-value="line.horas_trabajadas" type="number" t-att-data-linea_id="line.id"/>
+                        </td>
+                        <td class="change-linea m-0 p-0">
+
+                          <input class="linea-accidente m-0 p-0" name="indice_frecuencia" t-att-value="line.indice_frecuencia" disabled="1" type="text" t-att-data-linea_id="line.id"/>
+                        </td>
+
+                        <td class="change-linea m-0 p-0">
+
+                          <input class="linea-accidente m-0 p-0" name="dias_perdidos" t-att-value="line.dias_perdidos" type="number" t-att-data-linea_id="line.id"/>
+                        </td>
+
+                        <td class="change-linea m-0 p-0">
+
+                          <input class="linea-accidente m-0 p-0" name="indice_gravedad" t-att-value="line.indice_gravedad" type="text" disabled="1" t-att-data-linea_id="line.id"/>
+                        </td>
+
+                        <td class="change-linea m-0 p-0">
+                          <input class="linea-accidente m-0 p-0" name="indice_accidentabilidad" t-att-value="line.indice_accidentabilidad" disabled="1" type="text" t-att-data-linea_id="line.id"/>
+                        </td>
+                        <td class="change-linea m-0 p-0">
+                          <input class="linea-accidente m-0 p-0" oninput="this.value = Math.abs(this.value)" min="0" name="n_ocupacional" t-att-value="line.n_ocupacional" type="number" t-att-data-linea_id="line.id"/>
+                        </td>
+                        <td class="change-linea m-0 p-0">
+                          <input class="linea-accidente m-0 p-0" name="trabajador_expuesto" t-att-value="line.trabajador_expuesto" type="number" t-att-data-linea_id="line.id"/>
+                        </td>
+                        <td class="change-linea m-0 p-0">
+                          <input class="linea-accidente m-0 p-0" name="tasa_incidencia" t-att-value="line.tasa_incidencia" type="text" t-att-data-linea_id="line.id"/>
+                        </td>
+
+                        <td class="change-linea m-0 p-0">
+                          <input class="linea-accidente m-0 p-0" name="trabajador_cancer" t-att-value="line.trabajador_cancer" type="text" t-att-data-linea_id="line.id"/>
+                        </td>
+                        <td class="change-linea m-0 p-0">
+                          <input class="linea-accidente m-0 p-0" oninput="this.value = Math.abs(this.value)" min="0" name="n_peligroso" t-att-value="line.n_peligroso" type="number" t-att-data-linea_id="line.id"/>
+                        </td>
+                        <td class="change-linea m-0 p-0">
+                          <input class="çlinea-accidente m-0 p-0" oninput="this.value = Math.abs(this.value)" min="0" name="n_incidentes" t-att-value="line.n_incidentes" type="number" t-att-data-linea_id="line.id"/>
+                        </td>
+                      </tr>
+                    </t>
+                  </tbody>
+                </table>
+              </div>
+
+
+          <div class="my-3" style="position:relative">
+              <button type="button" class="btn btn-primary font-weight-bold"  data-toggle="modal" data-target="#nuevo_supervisor" style="position:absolute;left:-40px">
+                <strong>+</strong>
+              </button>
+              <div class="col-12 p-2 font-weight-bold border border-dark bg-secondary d-flex align-items-center shadow" style="height:30px;">
+                  <h6 class="mb-0">RESPONSABLES DEL REGISTRO Y DE LA INVESTIGACIÓN</h6>
+              </div>
+              <div class="modal fade supervisor" id="nuevo_supervisor" tabindex="-1" role="dialog" aria-labelledby="supervisorModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content text-dark text-left">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="supervisorModalLabel">NUEVO RESPONSABLE</h5>
+                    </div>
+                    <div class="modal-body">
+                      NOMBRE
+                      <select class="form-control mb-2 col-12 name" name="new-supervisor-name" required="required">
+                          <t t-foreach="usuarios" t-as="responsable">
+                            <option t-att-value="'%s' % (responsable.id)" t-esc="responsable.name" selected="selected"/>
+                          </t>
+                      </select>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                      <button type="button" t-att-data-iperc_id="registro.id" class="btn btn-primary nuevo-supervisor">GUARDAR</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+
+      </div>
+    </t>
+  </template>
+
+</odoo>

@@ -1,0 +1,39 @@
+<odoo>
+    <data>
+        <record  id="category_mapa_riesgo" model="ir.module.category">
+           <field name="name">MAPA RIESGO</field>
+       </record>
+
+       <record id="group_mapa_riesgo" model="res.groups">
+           <field name="name">Registrador</field>
+           <field name="category_id" ref="category_mapa_riesgo"/>
+       </record>
+
+
+        <record id="model_access_mapa_riesgo" model="ir.model.access">
+            <field name="name">model.access.mapa.riesgo</field>
+            <field name="group_id" ref="mapa_riesgo.group_mapa_riesgo"/>
+            <field name="model_id" ref="mapa_riesgo.model_mapa_riesgo"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+
+
+        <record id="model_access_mapa_riesgo_portal" model="ir.model.access">
+            <field name="name">model.access.mapa.riesgo.portal</field>
+            <field name="group_id" ref="base.group_portal"/>
+            <field name="model_id" ref="mapa_riesgo.model_mapa_riesgo"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+
+
+
+    </data>
+</odoo>

@@ -1,0 +1,47 @@
+<odoo>
+    <data>
+      <record id="model_access_registro_accidente" model="ir.model.access">
+          <field name="name">model.access.registro.accidente</field>
+          <field name="group_id" ref="registro_accidente.group_registro_accidente"/>
+          <field name="model_id" ref="registro_accidente.model_registro_accidente"/>
+          <field name="perm_read" eval="1"/>
+          <field name="perm_create" eval="1"/>
+          <field name="perm_write" eval="1"/>
+          <field name="perm_unlink" eval="1"/>
+
+      </record>
+
+      <record id="model_access_line_accidente" model="ir.model.access">
+          <field name="name">model.access.line.accidente</field>
+          <field name="group_id" ref="registro_accidente.group_registro_accidente"/>
+          <field name="model_id" ref="registro_accidente.model_line_accidente"/>
+          <field name="perm_read" eval="1"/>
+          <field name="perm_create" eval="1"/>
+          <field name="perm_write" eval="1"/>
+          <field name="perm_unlink" eval="1"/>
+
+      </record>
+
+      <record id="model_accessportal_registro_accidente" model="ir.model.access">
+          <field name="name">model.access.registro.accidente</field>
+          <field name="group_id" ref="base.group_portal"/>
+          <field name="model_id" ref="registro_accidente.model_registro_accidente"/>
+          <field name="perm_read" eval="1"/>
+          <field name="perm_create" eval="1"/>
+          <field name="perm_write" eval="1"/>
+          <field name="perm_unlink" eval="1"/>
+
+      </record>
+
+      <record id="model_accessportal_line_accidente" model="ir.model.access">
+          <field name="name">model.access.line.accidente</field>
+          <field name="group_id" ref="base.group_portal"/>
+          <field name="model_id" ref="registro_accidente.model_line_accidente"/>
+          <field name="perm_read" eval="1"/>
+          <field name="perm_create" eval="1"/>
+          <field name="perm_write" eval="1"/>
+          <field name="perm_unlink" eval="1"/>
+
+      </record>
+    </data>
+</odoo>

@@ -1,0 +1,401 @@
+<odoo>
+  <template id="form_sono" name="Registros de Monitoreo - Ruido por Sonometria">
+    <t t-call="s3.ventana_navegacion_menu">
+
+        <div id="content" class="width-table p-3 planid mx-auto my-2" t-att-data-plan_id="plan.id">
+          <button type="button" id="sidebarCollapse" class="btn btn-info display-none">
+            <i class="fa fa-arrow-left"></i>
+          </button>
+          <div class="alert alert-primary text-center mb-5" role="alert">
+            <h4>SONOMETRÍA</h4>
+          </div>
+
+          <form method="POST">
+            <div class="row m-1">
+              <div class="col-sm-12 bg-primary text-center border border-dark">
+                <strong>REGISTROS DE MONITOREO</strong>
+              </div>
+            </div>
+
+            <p></p>
+
+            <div class="row m-1">
+              <div class="col-sm-4 bg-primary text-center border border-dark">
+                <strong>RUC</strong>
+              </div>
+              <div class="col-sm-8 text-center border border-dark">
+                <strong><span t-field="registro.ruc"/></strong>
+              </div>
+            </div>
+            <div class="row m-1">
+              <div class="col-sm-4 bg-primary text-center border border-dark">
+                <strong>RAZON SOCIAL</strong>
+              </div>
+              <div class="col-sm-8 text-center border border-dark">
+                <strong><span t-field="registro.cliente"/></strong>
+              </div>
+            </div>
+
+            <p></p>
+
+            <div class="row m-1">
+              <div class="col-sm-4 bg-primary text-center border border-dark">
+                <strong>NUMERO DE PUNTOS POR AGENTE</strong>
+              </div>
+              <div class="col-sm-4 bg-primary text-center border border-dark">
+                <strong>FECHA INICIO</strong>
+              </div>
+              <div class="col-sm-4 bg-primary text-center border border-dark">
+                <strong>FECHA FIN</strong>
+              </div>
+            </div>
+            <div class="row m-1">
+              <t t-set="cont" t-value="0"/>
+              <t t-foreach="registro.sonometria_ids" t-as="sono">
+                <t t-set="cont" t-value="cont + 1"/>
+              </t>
+              <div class="col-sm-4 text-center border border-dark">
+                <strong><span t-esc="cont"/></strong>
+              </div>
+              <div class="col-sm-4 text-center border border-dark">
+                <strong><span t-field="registro.fecha_monitoreo"/></strong>
+              </div>
+              <div class="col-sm-4 text-center border border-dark">
+                <strong><span t-field="registro.fecha_monitoreo_fin"/></strong>
+              </div>
+            </div>
+            <p></p>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Registros</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Datos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Resultados</a>
+              </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+                <div class="py-7">
+                  <div class="table-responsive">
+                    <table id="resumen" class="table table-hover table-bordered responsive nowrap" style="width:100%; text-align: center;">
+                      <thead>
+                        <tr class="table-active bg-primary">
+                          <th class="align-middle">N°</th>
+                          <th class="align-middle">Area</th>
+                          <th class="align-middle">Puesto de Trabajo</th>
+                          <th class="align-middle">Tipo de Actividad</th>
+                          <th class="align-middle">Tiempo de exposición (horas))</th>
+                          <th class="align-middle">Leq (dBA)</th>
+                          <th class="align-middle">L Máx</th>
+                          <th class="align-middle">L Min</th>
+                          <th class="align-middle"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <t t-set="counter" t-value="0"/>
+                        <t t-foreach="registro.sonometria_ids" t-as="sono">
+
+                          <t t-set="counter" t-value="counter + 1"/>
+                          <tr class="row_registro">
+                            <td>
+                              <span class="align-middle" t-esc="counter"/>
+                            </td>
+                            <td>
+                              <span class="align-middle" t-field="sono.area"/>
+                            </td>
+                            <td >
+                              <span class="align-middle" t-field="sono.puesto_trabajo"/>
+                            </td>
+                            <td>
+                              <span class="align-middle" t-field="sono.tipo_actividad"/>
+                            </td>
+                            <td >
+                              <span class="align-middle" t-field="sono.jornada"/>
+                            </td>
+                            <td >
+                              <span class="align-middle" t-field="sono.leq"/>
+                            </td>
+                            <td >
+                              <span class="align-middle" t-field="sono.l_max"/>
+                            </td>
+                            <td >
+                              <span class="align-middle" t-field="sono.l_min"/>
+                            </td>
+                            <td >
+                              <button type="button" class="btn bg-success" data-toggle="modal" t-attf-data-target="#aeae{{sono.id}}">EDITAR</button>
+                              <div class="modal fade" t-attf-id="aeae{{sono.id}}" t-att-aria-hidden="true" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLongTitle">Ruido por Sonometria</h5>
+                                    </div>
+                                    <div class="modal-body">
+                                      <form class="registro_sonometria">
+                                        <div class="form-group row">
+                                          <input name="id" type="text" class="d-none" t-attf-value="{{sono.id}}" placeholder="ID"/>
+                                          <label for="area" class="col-sm-2 col-form-label">Area</label>
+                                          <div class="col-sm-10">
+                                            <input name="area" type="text" class="form-control area" t-attf-value="{{sono.area}}" placeholder="Area"/>
+                                          </div>
+                                          <label for="puesto_trabajo" class="col-sm-2 col-form-label">Puesto de Trabajo</label>
+                                          <div class="col-sm-10">
+                                            <input type="text" name="puesto_trabajo" class="form-control puesto_trabajo" t-attf-value="{{sono.puesto_trabajo}}" placeholder="Puesto de Trabajo"/>
+                                          </div>
+                                          <label for="tipo_actividad" class="col-sm-2 col-form-label">Tipo de Actividad</label>
+                                          <div class="col-sm-10">
+                                            <select name="tarea" t-attf-id="tarea-{{sono.id}}" class="form-control tipo_actividad">
+                                              <option value="1" t-att-selected="'selected' if sono.tipo_actividad == '1' else ''">Administrativo</option>
+                                              <option value="2" t-att-selected="'selected' if sono.tipo_actividad == '2' else ''">Operativo</option>
+                                            </select>
+                                          </div>
+                                          <label for="jornada" class="col-sm-2 col-form-label">Tiempo de exposición (horas))</label>
+                                          <div class="col-sm-10">
+                                            <input name="jornada" type="text" class="form-control jornada" t-attf-value="{{sono.jornada}}" placeholder="0.00"/>
+                                          </div>
+                                          <label for="leq" class="col-sm-2 col-form-label">Leq (dBA)</label>
+                                          <div class="col-sm-10">
+                                            <input name="leq" type="text" class="form-control leq" t-attf-value="{{sono.leq}}" placeholder="0.00"/>
+                                          </div>
+                                          <label for="l-max" class="col-sm-2 col-form-label">L Max</label>
+                                          <div class="col-sm-10">
+                                            <input name="l-max" type="text" class="form-control l-max" t-attf-value="{{sono.l_max}}" placeholder="0.00"/>
+                                          </div>
+                                          <label for="l-min" class="col-sm-2 col-form-label">L Min</label>
+                                          <div class="col-sm-10">
+                                            <input name="l-min" type="text" class="form-control l-min" t-attf-value="{{sono.l_min}}" placeholder="0.00"/>
+                                          </div>
+                                        </div>
+                                      </form>
+                                    </div>
+                                    <div class="modal-footer" t-att-data-id="sono.id">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Descartar</button>
+                                      <button type="button" class="btn btn-primary botton-editar-sono">Guardar</button>
+                                      <button type="button" class="btn btn-danger" data-toggle="modal" t-attf-data-target="#dada{{sono.id}}">Eliminar</button>
+                                      <div class="modal fade" t-attf-id="dada{{sono.id}}" t-att-aria-hidden="true" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h4 class="modal-title" id="exampleModalLongTitle">Esta Seguro de Eliminar</h4>
+                                            </div>
+                                            <div class="modal-footer" t-att-data-id="sono.id">
+                                              <input name="id_registro" type="text" class="d-none" t-attf-value="{{registro.id}}" placeholder="ID"/>
+                                              <input name="id" type="text" class="d-none" t-attf-value="{{sono.id}}" placeholder="ID"/>
+                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Descartar</button>
+                                              <button type="button" class="btn btn-danger botton-eliminar-sono">Eliminar</button>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                        </t>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="row m-1">
+                  <div class="col-sm-4 text-center">
+                    <button type="button" class="btn btn-secondary" data-toggle="modal" t-attf-data-target="#exampleModalLong">CREAR</button>
+                  </div>
+                  <div class="col-sm-4 text-center">
+                    <strong></strong>
+                  </div>
+                  <div class="col-sm-4 text-center">
+                    <a class="btn btn-secondary" t-att-href="'/registros/%s' % (registro.id)" role="button">REGRESAR</a>
+                  </div>
+                </div>
+                <div class="modal fade row_registro" t-attf-id="exampleModalLong" t-att-aria-hidden="true" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Ruido por Sonometria</h5>
+                      </div>
+                      <div class="modal-body">
+                        <form class="registro_sonometria">
+                          <div class="form-group row">
+                            <input name="id" type="text" class="d-none" t-attf-value="{{registro.id}}" placeholder="ID"/>
+                            <label for="area" class="col-sm-2 col-form-label">Area</label>
+                            <div class="col-sm-10">
+                              <input name="area" type="text" class="form-control area" placeholder="Area"/>
+                            </div>
+                            <label for="puesto_trabajo" class="col-sm-2 col-form-label">Puesto de Trabajo</label>
+                            <div class="col-sm-10">
+                              <input name="puesto_trabajo" type="text" class="form-control puesto_trabajo" placeholder="Puesto de Trabajo"/>
+                            </div>
+                            <label for="tipo_actividad" t-attf-value="1" class="col-sm-2 col-form-label">Tipo de Actividad</label>
+                            <div class="col-sm-10">
+                              <select id="tipo_actividad_id" class="form-control horario">
+                                <option name="tipo_actividad" t-attf-value="1">Administrativo</option>
+                                <option name="tipo_actividad" t-attf-value="2">Operativo</option>
+                              </select>
+                            </div>
+
+                            <label for="jornada" class="col-sm-2 col-form-label">Tiempo de exposición (horas))</label>
+                            <div class="col-sm-10">
+                              <input name="jornada" type="text" class="form-control jornada" placeholder="0.00"/>
+                            </div>
+                            <label for="leq" class="col-sm-2 col-form-label">Leq (dBA)</label>
+                            <div class="col-sm-10">
+                              <input name="leq" type="text" class="form-control leq" placeholder="0.00"/>
+                            </div>
+                            <label for="l-max" class="col-sm-2 col-form-label">L Max</label>
+                            <div class="col-sm-10">
+                              <input name="l-max" type="text" class="form-control l-max" placeholder="0.00"/>
+                            </div>
+                            <label for="l-min" class="col-sm-2 col-form-label">L Min</label>
+                            <div class="col-sm-10">
+                              <input name="l-min" type="text" class="form-control l-min" placeholder="0.00"/>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Descartar</button>
+                        <!--Guardar requiere de js-->
+                        <button type="button" class="btn btn-primary botton-crear-sono">Guardar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <t t-set="counter" t-value="0"/>
+                <div class="py-6">
+                  <div class="table-responsive">
+                    <table id="resumen" class="table table-hover table-bordered responsive nowrap" style="width:100%; text-align: center;">
+                      <thead>
+                        <tr class="table-active bg-primary">
+                          <th class="align-middle">N°</th>
+                          <th class="align-middle">Area</th>
+                          <th class="align-middle">Puesto de Trabajo</th>
+                          <th class="align-middle">Tiempo de exposición (horas))</th>
+                          <th class="align-middle">Leq (dBA)</th>
+                          <th class="align-middle">L Máx</th>
+                          <th class="align-middle">L Min</th>
+                          <th class="align-middle">LMPc (dBA)</th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <t t-foreach="registro.sonometria_ids" t-as="sono">
+
+                          <t t-set="counter" t-value="counter + 1"/>
+                          <tr class="row_registro">
+                            <td>
+                              <span class="align-middle" t-esc="counter"/>
+                            </td>
+                            <td>
+                              <span class="align-middle" t-field="sono.area"/>
+                            </td>
+                            <td >
+                              <span class="align-middle" t-field="sono.puesto_trabajo"/>
+                            </td>
+                            <td >
+                              <span class="align-middle" t-field="sono.jornada"/>
+                            </td>
+                            <td >
+                              <span class="align-middle" t-field="sono.leq"/>
+                            </td>
+                            <td >
+                              <span class="align-middle" t-field="sono.l_max"/>
+                            </td>
+                            <td >
+                              <span class="align-middle" t-field="sono.l_min"/>
+                            </td>
+                            <td >
+                              <span class="align-middle" t-field="sono.val_max"/>
+                            </td>
+                          </tr>
+                        </t>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                <t t-set="counter" t-value="0"/>
+                <div class="py-6">
+                  <div class="table-responsive">
+                    <table id="resumen" class="table table-hover table-bordered responsive nowrap" style="width:100%; text-align: center;">
+                      <thead>
+                        <tr class="table-active bg-primary">
+                          <th class="align-middle">N°</th>
+                          <th class="align-middle">Tipo de Actividad</th>
+                          <th class="align-middle">Tiempo de exposición (horas))</th>
+                          <th class="align-middle">Leq (dBA)</th>
+                          <th class="align-middle">L Máx</th>
+                          <th class="align-middle">L Min</th>
+                          <th class="align-middle">LMPc (dBA)</th>
+                          <th class="align-middle">¿Cumple con la R.M. N°375-2008-TR?</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <t t-foreach="registro.sonometria_ids" t-as="sono">
+
+                          <t t-set="counter" t-value="counter + 1"/>
+                          <tr class="row_registro">
+                            <td>
+                              <span class="align-middle" t-esc="counter"/>
+                            </td>
+                            <td >
+                              <t t-if="sono.tipo_actividad == '1'" class="align-middle">Administrativo</t>
+                              <t t-if="sono.tipo_actividad == '2'" class="align-middle">Operativo</t>
+                            </td>
+                            <td >
+                              <span class="align-middle" t-field="sono.jornada"/>
+                            </td>
+                            <td >
+                              <span class="align-middle" t-field="sono.leq"/>
+                            </td>
+                            <td >
+                              <span class="align-middle" t-field="sono.l_max"/>
+                            </td>
+                            <td >
+                              <span class="align-middle" t-field="sono.l_min"/>
+                            </td>
+                            <td >
+                              <span class="align-middle" t-field="sono.val_max"/>
+                            </td>
+                            <t t-if="sono.cumple=='NO CUMPLE'">
+                              <td class="bg-danger">
+                                <span class="align-middle" t-field="sono.cumple"/>
+                              </td>
+                            </t>
+                            <t t-if="sono.cumple=='SÍ CUMPLE'">
+                              <td class="" style="background-color:#A3F452;">
+                                <span class="align-middle" t-field="sono.cumple"/>
+                              </td>
+                            </t>
+                          </tr>
+                        </t>
+                      </tbody>
+                    </table>
+                    <div class="row_registro">
+                      <a class="btn btn-success actualizar-excel-sono" t-att-data-registro_id="registro.id" role="button">ACTUALIZAR</a>
+                      <a class="btn btn-info" role="button" t-attf-href="/web/content?model=registro.monitoreo&amp;field=excel_sono_binary&amp;id={{registro.id}}&amp;filename={{registro.excel_sono}}&amp;download=true">
+                        <i class="fa fa-file-excel-o" style="font-size:20px"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </form>
+
+        </div>
+
+    </t>
+  </template>
+
+
+
+</odoo>

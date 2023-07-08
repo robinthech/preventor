@@ -1,0 +1,79 @@
+<odoo>
+  <data>
+        <record model="ir.ui.view" id="formato_inspeccion_tree">
+          <field name="name">formato.inspeccion.tree</field>
+          <field name="model">formato.inspeccion</field>
+          <field name="arch" type="xml">
+            <tree>
+              <field name="name"/>
+              <field name="condiciones_ids"/>
+            </tree>
+          </field>
+        </record>
+
+        <record model="ir.ui.view" id="formato_inspeccion_form">
+          <field name="name">formato.inspeccion.form</field>
+          <field name="model">formato.inspeccion</field>
+          <field name="arch" type="xml">
+            <form>
+              <sheet>
+                <group>
+                  <field name="name"/>
+                  <field name="tipo"/>
+                  <field name="origen"/>
+                  <field name="condiciones_ids"/>
+                </group>
+              </sheet>
+            </form>
+          </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="formato_inspeccion_accion">
+          <field name="name">Formato de Inspecciones</field>
+          <field name="res_model">formato.inspeccion</field>
+          <field name="view_mode">tree,form</field>
+
+
+        </record>
+        <menuitem name="Formato de Inspecciones" id="menu_formato_inspeccion" sequence="0" action="formato_inspeccion_accion" />
+
+
+        <record model="ir.ui.view" id="formato_condicionn_tree">
+          <field name="name">formato.condicion.tree</field>
+          <field name="model">formato.condicion</field>
+          <field name="arch" type="xml">
+            <tree>
+              <field name="name"/>
+              <field name="sub_total_max"/>
+              <field name="sub_condiciones_ids"/>
+            </tree>
+          </field>
+        </record>
+
+        <record model="ir.ui.view" id="formato_condicion_form">
+          <field name="name">formato.condicion.form</field>
+          <field name="model">formato.condicion</field>
+          <field name="arch" type="xml">
+            <form>
+              <sheet>
+                <group>
+                  <field name="name"/>
+                  <field name="sub_total_max"/>
+                  <field name="sub_condiciones_ids"/>
+                </group>
+              </sheet>
+            </form>
+          </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="formato_condicion_accion">
+          <field name="name">Formato de Inspecciones</field>
+          <field name="res_model">formato.condicion</field>
+          <field name="view_mode">tree,form</field>
+
+
+        </record>
+        <menuitem name="Formato de Inspecciones" id="menu_formato_condicion" sequence="0" action="formato_condicion_accion" />
+
+  </data>
+</odoo>

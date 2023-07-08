@@ -1,0 +1,380 @@
+<odoo>
+  <template id="list_registros" name="Registros de Monitoreo">
+    <t t-call="s3.sidebar_s3">
+      <div class="wrapper modulo-s3" style="position:relative">
+        <!-- Sidebar -->
+        <div id="content" class="evapro row_registro">
+          <div class="row py-2">
+            <div class="col-12">
+              <div class="alert alert-primary text-center" role="alert">
+                <h4>REGISTROS DE MONITOREOS OCUPACIONALES</h4>
+              </div>
+              <div class="table-responsive">
+                <table id="modulo-registro-s3" class="table table-hover responsive nowrap" style="width:100%; text-align: center;" t-att-data-plan_id="plan.id">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th>REGISTRO</th>
+                      <th>RAZON SOCIAL</th>
+                      <th>FECHA DE INICIO</th>
+                      <th>FECHA DE FIN</th>
+                      <th>EDITAR</th>
+                      <th>ELIMINAR</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <t t-foreach="registros" t-as="registro">
+                      <tr>
+                        <td>
+                          <div>
+                            <span t-field="registro.sequence"/>
+                          </div>
+                        </td>
+                        <td >
+                          <span t-field="registro.cliente"/>
+                        </td>
+                        <td >
+                          <span t-field="registro.fecha_monitoreo"/>
+                        </td>
+                        <td >
+                          <span t-field="registro.fecha_monitoreo_fin"/>
+                        </td>
+                        <td>
+                          <a class="btn btn-success" t-att-href="'/registros/%s' % (registro.id)" role="button">
+                            <i class="fa fa-pencil-square-o" style="font-size:20px"></i>
+                          </a>
+                        </td>
+                        <td>
+                          <div>
+                            <button type="button" class="btn btn-danger" data-toggle="modal" t-attf-data-target="#registro-{{registro.id}}">
+                              <i class="fa fa-trash" style="font-size:20px"></i>
+                            </button>
+                            <div class="modal fade" t-attf-id="registro-{{registro.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                  </div>
+                                  <div class="modal-body">
+                                    <div class="alert alert-danger" role="alert">
+                                      ESTA SEGURO DE ELIMINAR
+                                    </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                                    <button type="button" class="btn btn-secondary botton-eliminar-registro" t-att-data-registro_id="registro.id">ELIMINAR</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </t>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-success font-weight-bold" data-toggle="modal" t-attf-data-target="#exampleModal">
+              <strong>Crear registro</strong>
+            </button>
+          </div>
+        </div>
+        <div class="modal fade row_registro" t-attf-id="exampleModal" t-att-aria-hidden="true" tabindex="-1" role="dialog" aria-labelledby="exampleModalTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalTitle">NUEVO REGISTRO DE MONITOREO</h5>
+              </div>
+              <div class="modal-body">
+                <form class="registro_moni">
+                  <div class="form-group row">
+                    <label for="ruc" class="col-sm-2 col-form-label">RUC</label>
+                    <div class="col-sm-10">
+                      <input name="ruc" type="text" class="form-control ruc" placeholder="RUC"/>
+                    </div>
+                    <label for="cliente" class="col-sm-2 col-form-label">Razon Social</label>
+                    <div class="col-sm-10">
+                      <input name="cliente" type="text" class="form-control cliente mt-2" placeholder="Razon Social"/>
+                    </div>
+                    <label for="puntos" class="col-sm-2 col-form-label">Puntos Máximos por Agente</label>
+                    <div class="col-sm-10">
+                      <input name="puntos" type="number" class="form-control puntos" placeholder="3" t-att-value="plan.limite_puntos" disabled="disabled"/>
+                    </div>
+                    <label for="fecha_ini" class="col-sm-2 col-form-label">Fecha Inicio del Monitoreo</label>
+                    <div class="col-sm-10">
+                      <input name="fecha_ini" type="date" class="form-control fecha_ini" placeholder="dd/mm/aaaa"/>
+                    </div>
+                    <label for="fecha_fin" class="col-sm-2 col-form-label">Fecha Fin del Monitoreo</label>
+                    <div class="col-sm-10">
+                      <input name="fecha_fin" type="date" class="form-control fecha_fin" placeholder="dd/mm/aaaa"/>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Descartar</button>
+                <!--Guardar requiere de js-->
+                <button type="button" class="btn btn-primary botton-crear-registro">Guardar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </t>
+  </template>
+
+  <template id="form_registros" name="Registros de Monitoreo">
+    <t t-call="s3.sidebar_s3">
+      <div class="wrapper modulo-s3" style="position:relative">
+        <!-- Sidebar -->
+        <div id="content" class="width-table botones">
+          <form method="POST">
+            <div class="row m-1">
+              <div class="col-sm-12 bg-primary text-center border border-dark">
+                <strong>REGISTROS DE MONITOREO</strong>
+              </div>
+            </div>
+
+            <p></p>
+
+            <div class="row m-1">
+              <div class="col-sm-4 bg-primary text-center border border-dark">
+                <strong>RUC</strong>
+              </div>
+              <div class="col-sm-8 text-center border border-dark">
+                <strong><span t-field="registro.ruc"/></strong>
+              </div>
+            </div>
+            <div class="row m-1">
+              <div class="col-sm-4 bg-primary text-center border border-dark">
+                <strong>RAZON SOCIAL</strong>
+              </div>
+              <div class="col-sm-8 text-center border border-dark">
+                <strong><span t-field="registro.cliente"/></strong>
+              </div>
+            </div>
+
+            <p></p>
+
+            <div class="row m-1">
+              <div class="col-sm-4 bg-primary text-center border border-dark">
+                <strong>TOTAL DE PUNTOS EVALUADOS</strong>
+              </div>
+              <div class="col-sm-4 bg-primary text-center border border-dark">
+                <strong>FECHA INICIO</strong>
+              </div>
+              <div class="col-sm-4 bg-primary text-center border border-dark">
+                <strong>FECHA FIN</strong>
+              </div>
+            </div>
+            <div class="row m-1">
+              <div class="col-sm-4 text-center border border-dark">
+                <strong><span t-esc="total_puntos"/></strong>
+              </div>
+              <div class="col-sm-4 text-center border border-dark">
+                <strong><span t-field="registro.fecha_monitoreo"/></strong>
+              </div>
+              <div class="col-sm-4 text-center border border-dark">
+                <strong><span t-field="registro.fecha_monitoreo_fin"/></strong>
+              </div>
+            </div>
+
+            <p></p>
+
+            <div class="row m-1">
+              <div class="col-sm-12 bg-primary text-center border border-dark">
+                <strong>AGENTES FISICOS</strong>
+              </div>
+            </div>
+            <div class="row my-3 mx-1">
+              <a class="col-sm-3 btn btn-secondary text-center shadow botones-s3 border" t-att-href="'/registros/ilu/%s' % (registro.id)">
+                Iluminacion
+              </a>
+              <div class="d-flex col-sm-1 text-center border border-dark align-items-center justify-content-center">
+                <strong><span t-field="registro.puntos_ilu"/></strong>
+              </div>
+              <a class="col-sm-3 btn btn-secondary text-center shadow botones-s3 border text-white hint--medium hint--bounce hint--error hint--bottom" data-hint="Disponible para plan corporativo">
+                Estres Termico por Calor
+              </a>
+              <a class="d-flex col-sm-1 text-center border border-dark align-items-center justify-content-center">
+                <strong>0</strong>
+              </a>
+              <a class="col-sm-3 btn btn-secondary text-center shadow botones-s3 border text-white hint--medium hint--bounce hint--error hint--bottom" data-hint="Disponible para plan corporativo">
+                Vibracion Cuerpo Completo
+              </a>
+              <a class="d-flex col-sm-1 text-center border border-dark align-items-center justify-content-center">
+                <strong>0</strong>
+              </a>
+            </div>
+
+            <div class="row my-3 mx-1">
+              <a class="col-sm-3 btn btn-secondary text-center shadow botones-s3 border" t-att-href="'/registros/dosi/%s' % (registro.id)">
+                Ruido por Dosimetria
+              </a>
+              <a class="d-flex col-sm-1 text-center border border-dark align-items-center justify-content-center">
+                <strong><span t-field="registro.puntos_dosi"/></strong>
+              </a>
+              <a class="col-sm-3 btn btn-secondary text-center shadow botones-s3 border text-white hint--medium hint--bounce hint--error hint--bottom" data-hint="Disponible para plan corporativo">
+                Estres Termico por Frio
+              </a>
+              <div class="d-flex col-sm-1 text-center border border-dark align-items-center justify-content-center">
+                <strong>0</strong>
+              </div>
+              <a class="col-sm-3 btn btn-secondary text-center shadow botones-s3 border text-white hint--medium hint--bounce hint--error hint--bottom" data-hint="Disponible para plan corporativo">
+                Vibracion Mano Brazo
+              </a>
+              <div class="d-flex col-sm-1 text-center border border-dark align-items-center justify-content-center">
+                <strong>0</strong>
+              </div>
+            </div>
+
+            <div class="row my-3 mx-1">
+              <a class="col-sm-3 btn btn-secondary text-center shadow botones-s3 border" t-att-href="'/registros/sono/%s' % (registro.id)">
+                Ruido por Sonometria
+              </a>
+              <div class="d-flex col-sm-1 text-center border border-dark align-items-center justify-content-center">
+                <strong><span t-field="registro.puntos_sono"/></strong>
+              </div>
+              <a class="col-sm-3 btn btn-secondary text-center shadow botones-s3 border text-white hint--medium hint--bounce hint--error hint--bottom" data-hint="Disponible para plan corporativo">
+                Confort Termico
+              </a>
+              <div class="col-sm-1 text-center border border-dark">
+                <strong>0</strong>
+              </div>
+              <a class="col-sm-3 btn btn-secondary text-center shadow botones-s3 border text-white hint--medium hint--bounce hint--error hint--bottom" data-hint="Disponible para plan corporativo">
+                Radiacion UV
+              </a>
+              <div class="col-sm-1 text-center border border-dark">
+                <strong>0</strong>
+              </div>
+            </div>
+            <div class="row my-3 mx-1">
+              <a class="col-sm-3 btn btn-secondary text-center shadow botones-s3 border text-white hint--medium hint--bounce hint--error hint--bottom" data-hint="Disponible para plan corporativo">
+                Radiacion Electromagnetica
+              </a>
+              <div class="col-sm-1 text-center border border-dark">
+                <strong>0</strong>
+              </div>
+            </div>
+
+            <p></p>
+
+            <div class="row my-3 mx-1">
+              <div class="col-sm-12 bg-primary text-center border border-dark">
+                <strong>AGENTES QUIMICOS</strong>
+              </div>
+            </div>
+            <div class="row my-3 mx-1">
+              <a class="col-sm-3 btn btn-secondary text-center shadow botones-s3 border text-white hint--medium hint--bounce hint--error hint--bottom" data-hint="Disponible para plan corporativo">
+                Polvo Inhalable
+              </a>
+              <div class="col-sm-1 text-center border border-dark">
+                <strong>0</strong>
+              </div>
+              <a class="col-sm-3 btn btn-secondary text-center shadow botones-s3 border text-white hint--medium hint--bounce hint--error hint--bottom" data-hint="Disponible para plan corporativo">
+                Vapores de Acido Nitrico
+              </a>
+              <div class="col-sm-1 text-center border border-dark">
+                <strong>0</strong>
+              </div>
+              <a class="col-sm-3 btn btn-secondary text-center shadow botones-s3 border text-white hint--medium hint--bounce hint--error hint--bottom" data-hint="Disponible para plan corporativo">
+                Polvo Respirable
+              </a>
+              <div class="col-sm-1 text-center border border-dark">
+                <strong>0</strong>
+              </div>
+            </div>
+            <div class="row my-3 mx-1">
+              <a class="col-sm-3 btn btn-secondary text-center shadow botones-s3 border text-white hint--medium hint--bounce hint--error hint--bottom" data-hint="Disponible para plan corporativo">
+                C. Organicos Volatiles
+              </a>
+              <div class="col-sm-1 text-center border border-dark">
+                <strong>0</strong>
+              </div>
+              <a class="col-sm-3 btn btn-secondary text-center shadow botones-s3 border text-white hint--medium hint--bounce hint--error hint--bottom" data-hint="Disponible para plan corporativo">
+                Humos Metalicos
+              </a>
+              <div class="col-sm-1 text-center border border-dark">
+                <strong>0</strong>
+              </div>
+            </div>
+            <p></p>
+
+            <div class="row my-3 mx-1">
+              <div class="col-sm-12 bg-primary text-center border border-dark">
+                <strong>AGENTES BIOLOGICOS</strong>
+              </div>
+            </div>
+            <div class="row my-3 mx-1">
+              <a class="col-sm-3 btn btn-secondary text-center shadow botones-s3 border text-white hint--medium hint--bounce hint--error hint--bottom" data-hint="Disponible para plan corporativo">
+                Aire
+              </a>
+              <div class="col-sm-1 text-center border border-dark">
+                <strong>0</strong>
+              </div>
+              <a class="col-sm-3 btn btn-secondary text-center shadow botones-s3 border text-white hint--medium hint--bounce hint--error hint--bottom" data-hint="Disponible para plan corporativo">
+                Superficie
+              </a>
+              <div class="col-sm-1 text-center border border-dark">
+                <strong>0</strong>
+              </div>
+              <a class="col-sm-3 btn btn-secondary text-center shadow botones-s3 border text-white hint--medium hint--bounce hint--error hint--bottom" data-hint="Disponible para plan corporativo">
+                Agua
+              </a>
+              <div class="col-sm-1 text-center border border-dark">
+                <strong>0</strong>
+              </div>
+            </div>
+
+            <p></p>
+
+            <div class="row m-1">
+              <div class="col-sm-4 text-center">
+                <strong></strong>
+              </div>
+              <div class="col-sm-4 text-center">
+                <strong></strong>
+              </div>
+              <div class="col-sm-4 text-center px-0">
+                <a class="float-right btn btn-secondary" t-att-href="'/registros'" role="button">REGRESAR</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </t>
+  </template>
+
+  <template id="registros_guia" name="Guia">
+    <t t-call="s3.sidebar_s3">
+      <div class="wrapper modulo-wrapper" style="position:relative">
+        <!-- Sidebar -->
+        <!-- Page Content -->
+        <div id="content" class="programa-anual">
+          <t t-if="len(producto.solve_file_ids)>0">
+            <div class="container">
+              <div class="mx-auto row-center">
+                <object t-att-data="pdf" type="application/pdf" width="100%" height="600px" class="display-none"/>
+                <a class="btn btn-primary display-block-guia font-weight-bold justify-content-center" style="margin-top:50%" t-att-href="pdf">Visualizar PDF<span></span></a>
+                <!-- <object t-att-data="pdf" type="application/pdf" width="100%" height="600px"/> -->
+              </div>
+            </div>
+          </t>
+          <t t-else="">
+            <div class="card text-center">
+              <div class="card-header  bg-warning">
+                ALERTA
+              </div>
+              <div class="card-body">
+                <p class="card-text">No se ha publicado el pdf</p>
+              </div>
+              <div class="card-footer text-muted"></div>
+            </div>
+          </t>
+        </div>
+      </div>
+    </t>
+  </template>
+</odoo>
